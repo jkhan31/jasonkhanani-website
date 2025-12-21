@@ -55,110 +55,122 @@ const ResumePage = () => {
           </div>
         </header>
 
-        {/* Summary Section */}
+        {/* Executive Summary */}
         <section className="mb-12 relative z-10">
-          <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Executive Summary</h2>
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Professional Summary</h2>
           <p className="text-lg leading-relaxed font-serif italic opacity-80 border-l-2 pl-6" style={{ borderColor: colors.orange }}>
-            Systems-oriented analyst with 6+ years of experience translating complex marketplace and logistics data into €1.5M+ of quantified impact. 
-            Developer of the <span style={{ color: colors.sage, fontWeight: 'bold' }}>Purpose-Wellbeing Axis (PWA)</span>—an engineering approach 
-            to operational sustainability designed for high-pressure remote environments. Specialized in hypothesis-driven diagnostics and SQL-based re-engineering.
+            Industrial Engineer &amp; Business Analyst with 6+ years of experience specializing in deep-dive analysis to streamline complexity and build resilient operational systems. Proven track record of delivering <strong style={{ color: colors.rust }}>€1.5M+ in quantified impact</strong> through process engineering, systems architecture, and AI-augmented insights in e-commerce and logistics. Developer of <span style={{ color: colors.sage, fontWeight: 'bold' }}>The Purpose-Wellbeing Axis (PWA)</span>, an engineering-based framework for human systems design, used to architect workflows that prevent burnout and foster <span style={{ color: colors.sage, fontWeight: 'bold' }}>Systemic Resilience</span> in high-pressure remote environments.
           </p>
         </section>
 
-        {/* Experience Section */}
+        {/* Core Competencies */}
+        <section className="mb-12 relative z-10">
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Core Competencies</h2>
+          <ul className="list-disc pl-6 text-sm opacity-80 leading-relaxed">
+            <li><strong>Operational Analysis:</strong> Deep-dive diagnostics, Process Mapping &amp; Optimization, Capacity Planning, A/B Testing, Funnel Analysis, Metric Design (Retention, Conversion).</li>
+            <li><strong>Systems Architecture:</strong> Lean Six Sigma (Green Belt), Human Systems Design (PWA/SFR), Business Requirement Documentation (BRD), Systems Thinking.</li>
+            <li><strong>AI &amp; Data:</strong> SQL (MySQL, PostgreSQL), Python (AI-Augmented Workflows), Looker, Tableau, Advanced Excel Modeling, Prompt Engineering for Operations.</li>
+            <li><strong>Methodology:</strong> Industrial Engineering Principles, DMAIC, Strategic Cost &amp; Efficiency Modeling.</li>
+          </ul>
+        </section>
+
+        {/* Professional Experience */}
         <section className="mb-12 relative z-10">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-40">Professional Experience</h2>
-          
-          {/* ZALORA - Senior Analyst */}
+          {/* Commercial PMO (Analytics & Systems Architect) | Leading SE Asian E-commerce Platform */}
           <div className="mb-10 group">
             <div className="flex justify-between items-baseline mb-2">
-              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">ZALORA Group</h3>
-              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Apr 2025 — Present</span>
-            </div>
-            <p className="text-sm font-bold uppercase tracking-wide mb-3 opacity-70">Senior Analyst, Commercial Product Operations</p>
-            <div className="mb-3">
-              <Badge color={colors.rust} icon={Search}>Investigator</Badge>
-              <Badge color={colors.orange} icon={Shield}>Architect</Badge>
+              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">Commercial PMO (Analytics &amp; Systems Architect)</h3>
+              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Apr 2025 – Present</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Optimized regional stock performance by designing a SKU-level velocity model, increasing hub throughput using SQL and capacity planning.</span></li>
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Automated high-volume manual billing workflows for the TRENDER analytics product, standardizing seller data monetization via n8n.</span></li>
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Applied <span style={{ color: colors.sage }}>PWA/SFR</span> principles to team workflows during organizational restructuring to maintain delivery momentum and systemic resilience.</span></li>
+              <li><span className="text-hankoRust">•</span> Standardized fragmented regional onboarding workflows into a unified global system, significantly reducing cross-functional friction and support ticket volume.</li>
+              <li><span className="text-hankoRust">•</span> Applied <span style={{ color: colors.sage }}>PWA/SFR principles</span> to team workflows during organizational restructuring, maintaining delivery momentum and reducing burnout-related attrition.</li>
+              <li><span className="text-hankoRust">•</span> Developed SKU-level performance models to optimize cross-border inventory allocation and size fill across Southeast Asian markets, enhancing efficiency.</li>
             </ul>
           </div>
-
-          {/* ZALORA - Operations Manager */}
+          {/* Operations Manager (Growth & Business Analytics) | Leading SE Asian E-commerce Platform */}
           <div className="mb-10 group">
             <div className="flex justify-between items-baseline mb-2">
-              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">ZALORA Group</h3>
-              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Oct 2024 — Apr 2025</span>
+              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">Operations Manager (Growth &amp; Business Analytics)</h3>
+              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Oct 2024 – Apr 2025</span>
             </div>
-            <p className="text-sm font-bold uppercase tracking-wide mb-3 opacity-70">Operations Manager (Growth & Systems)</p>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Performed margin sensitivity analysis; designed a targeted handling fee structure projected to deliver <strong style={{ color: colors.rust }}>€200K in annual revenue</strong>.</span></li>
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Engineered AI-driven logic flows for Seller Helpdesk; achieved 24/7 coverage and improved SLA via automated intent-based routing.</span></li>
+              <li><span className="text-hankoRust">•</span> Performed margin sensitivity analysis across payment methods; designed a targeted handling fee structure projected to deliver <strong style={{ color: colors.rust }}>€200K in annual revenue</strong>.</li>
+              <li><span className="text-hankoRust">•</span> Analyzed ticket patterns to design an <strong>AI-driven helpdesk</strong>; achieved 24/7 coverage and significantly improved SLA performance through automated routing logic.</li>
+              <li><span className="text-hankoRust">•</span> Managed a cross-functional team of 8; implemented OKR frameworks and <span style={{ color: colors.sage }}>Sustainable Feedback Rhythm (SFR)</span> principles to improve alignment and delivery on key operational metrics.</li>
             </ul>
           </div>
-
-          {/* ZALORA - Assoc PM */}
+          {/* Associate Project Manager (Investigator Track) | Leading SE Asian E-commerce Platform */}
           <div className="mb-10 group">
             <div className="flex justify-between items-baseline mb-2">
-              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">ZALORA Group</h3>
-              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2022 — Sep 2024</span>
+              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">Associate Project Manager (Investigator Track)</h3>
+              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2022 – Sep 2024</span>
             </div>
-            <p className="text-sm font-bold uppercase tracking-wide mb-3 opacity-70">Associate Product Manager (Logistics & Analytics)</p>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Diagnosed €520K in annual logistics subsidy leakage via SQL; redesigned fee structures to drive a <strong style={{ color: colors.rust }}>31% increase in shipping revenue</strong>.</span></li>
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Converted 15% of marketplace returns into exchanges, preserving <strong style={{ color: colors.rust }}>€695K in potential revenue loss</strong> via new exchange features.</span></li>
+              <li><span className="text-hankoRust">•</span> Identified logistics subsidy leakage via SQL diagnostics; redesigned fee structures and minimum spend thresholds to drive a <strong style={{ color: colors.rust }}>31% increase in shipping revenue (€500K impact)</strong>.</li>
+              <li><span className="text-hankoRust">•</span> Modeled 3PL billing discrepancies and implemented a flat-fee trucking model, resulting in a <strong style={{ color: colors.rust }}>58% reduction in subsidies</strong>.</li>
+              <li><span className="text-hankoRust">•</span> Migrated return logistics to a cashless chargeback system, eliminating cash-on-pickup fraud and reducing failed pickup attempts.</li>
+              <li><span className="text-hankoRust">•</span> Performed deep-dive diagnostics on warehouse performance and logistics datasets (SQL, Tableau) to guide executive leadership on network performance and strategic cost drivers.</li>
             </ul>
           </div>
-
-          {/* Paxel */}
+          {/* Graduate Management Trainee (Product/Business Analyst) | Leading SE Asian E-commerce Platform */}
           <div className="mb-10 group">
             <div className="flex justify-between items-baseline mb-2">
-              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">Paxel</h3>
-              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Jan 2020 — Oct 2021</span>
+              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">Graduate Management Trainee (Product/Business Analyst)</h3>
+              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2021 – Oct 2022</span>
             </div>
-            <p className="text-sm font-bold uppercase tracking-wide mb-3 opacity-70">Product Operations Analyst (Systems Architect)</p>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Optimized a 130-node supply chain network; relocated hubs with a <strong style={{ color: colors.rust }}>&lt;1 year payback period</strong>.</span></li>
-              <li className="flex gap-3"><span className="text-hankoRust">•</span> <span>Authored BRDs for core routing engine, reducing fleet activation lead time by <strong style={{ color: colors.rust }}>60% (5 days to 2 days)</strong>.</span></li>
+              <li><span className="text-hankoRust">•</span> Diagnosed revenue erosion from high return rates; launched a marketplace exchange feature that preserved <strong style={{ color: colors.rust }}>€695K in revenue</strong> with a 15% exchange rate.</li>
+              <li><span className="text-hankoRust">•</span> Utilized NPS and customer feedback loops to provide quantitative service-level diagnostics to regional operations teams.</li>
+            </ul>
+          </div>
+          {/* Product Operations (Systems Architect) | Regional Tech-Logistics Startup */}
+          <div className="mb-10 group">
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className="text-xl font-bold group-hover:text-hankoRust transition-colors">Product Operations (Systems Architect)</h3>
+              <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Jan 2020 – Oct 2021</span>
+            </div>
+            <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
+              <li><span className="text-hankoRust">•</span> Optimized a 130-node supply chain network; relocated 7 major hubs with a <strong style={{ color: colors.rust }}>&lt;1 year payback period</strong> through rigorous capacity and cost modeling.</li>
+              <li><span className="text-hankoRust">•</span> Authored BRDs for the core routing engine, reducing fleet setup and route activation lead time by <strong style={{ color: colors.rust }}>60% (from 5 days to 2 days)</strong>.</li>
             </ul>
           </div>
         </section>
 
-        {/* Bottom Grid: Education & Tools */}
-        <div className="grid md:grid-cols-2 gap-12 border-t-0.5 pt-12 relative z-10" style={{ borderColor: `${colors.ink}20` }}>
-          
-          {/* Foundation */}
+        {/* Bottom Grid: Education, Research & Stack */}
+        <div className="grid md:grid-cols-3 gap-12 border-t-0.5 pt-12 relative z-10" style={{ borderColor: `${colors.ink}20` }}>
+          {/* Education */}
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Foundation</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Education</h2>
             <div className="mb-6">
               <h4 className="font-bold text-base">University of Michigan</h4>
-              <p className="text-sm opacity-60">B.S.E. Industrial & Operations Engineering (Cum Laude)</p>
+              <p className="text-sm opacity-60">B.S.E. Industrial &amp; Operations Engineering (Cum Laude)</p>
             </div>
             <div className="mb-6">
-              <h4 className="font-bold text-base">Six Sigma Green Belt</h4>
-              <p className="text-sm opacity-60">Institute of Industrial & Systems Engineers (IISE)</p>
-            </div>
-            <div>
-              <h4 className="font-bold text-base" style={{ color: colors.sage }}>Research Lead</h4>
-              <p className="text-xs opacity-60 italic">Purpose-Wellbeing Axis (PWA) - Systemic Resilience Research</p>
+              <h4 className="font-bold text-base">Six Sigma Green Belt Certification</h4>
+              <p className="text-sm opacity-60">Institute of Industrial &amp; Systems Engineers (IISE)</p>
             </div>
           </section>
-
+          {/* Research */}
+          <section>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Research</h2>
+            <div>
+              <h4 className="font-bold text-base" style={{ color: colors.sage }}>Research Lead</h4>
+              <p className="text-xs opacity-60 italic">Developed <span style={{ color: colors.sage }}>The Purpose-Wellbeing Axis (PWA)</span> &amp; <span style={{ color: colors.sage }}>The Sustainable Feedback Rhythm (SFR)</span>—a human systems design framework for building vocational resilience and fostering systemic well-being.</p>
+            </div>
+          </section>
           {/* Stack */}
           <section>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">The Stack</h2>
             <div className="flex flex-wrap gap-2">
-              {['SQL (PostgreSQL)', 'Looker', 'Tableau', 'Python', 'n8n Automation', 'Scenario Modeling', 'BRD Writing', 'DMAIC', 'GenAI'].map(tool => (
+              {['SQL (MySQL, PostgreSQL)', 'Python (AI-Augmented Workflows)', 'Looker', 'Tableau', 'Advanced Excel Modeling', 'n8n Automation', 'Scenario Modeling', 'BRD Writing', 'DMAIC', 'GenAI', 'Prompt Engineering'].map(tool => (
                 <span key={tool} className="px-3 py-1 bg-ricePaper border border-hankoRust/20 text-[10px] font-bold uppercase tracking-widest text-sumiInk rounded-full opacity-80 hover:border-foxOrange hover:text-foxOrange transition-all cursor-default">
                   {tool}
                 </span>
               ))}
             </div>
           </section>
-
         </div>
       </div>
       
