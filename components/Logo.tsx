@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface LogoProps {
@@ -7,43 +6,33 @@ interface LogoProps {
 }
 
 export const Logo: React.FC<LogoProps> = ({ className = "", size = 'md' }) => {
-  const sizeMap = {
-    sm: 'w-12 h-6',
-    md: 'w-24 h-12',
-    lg: 'w-48 h-24',
-    xl: 'w-96 h-48'
+  // We use height as the anchor since the signature is very wide (5:1 aspect ratio)
+  const heightMap = {
+    sm: 'h-5 md:h-6',
+    md: 'h-8 md:h-10',
+    lg: 'h-16 md:h-20',
+    xl: 'h-32 md:h-40'
   };
+
+  const logoUrl = "https://see.fontimg.com/api/rf5/K74zp/ZjA0ZDIwYjE0YzZmNDIzYjkzNzA1ZTg1OTgwZGM3MTQudHRm/amto/motterdam.png?r=fs&h=300&w=1500&fg=000000&bg=FFFFFF&tb=1&s=200";
+
+  // Check if the logo is being placed on a dark background based on common utility classes in this app
+  const isInverse = className.includes('text-ricePaper') || className.includes('text-white');
 
   return (
     <div 
-      className={`inline-block select-none transition-transform hover:scale-105 duration-300 ${sizeMap[size]} ${className}`}
+      className={`inline-flex items-center select-none transition-transform hover:scale-105 duration-500 will-change-transform ${className}`}
       aria-label="Jason Kester Hanani Signature"
     >
-      <svg 
-        viewBox="0 0 160 80" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg" 
-        className="w-full h-full drop-shadow-sm"
-      >
-        <path 
-          d="M45,35 Q45,55 45,65 C45,85 25,85 25,75 Q25,65 35,65 M35,65 L55,15 C60,5 65,5 63,15 L52,65 M53,45 Q70,40 68,55 L75,65 M75,65 L95,15 C100,5 105,5 103,15 L92,65 M93,45 Q115,40 110,60 M47,24 A1.5,1.5 0 1 1 46.9,24" 
-          stroke="currentColor" 
-          strokeWidth="3.5" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-          className="animate-logo-draw"
-        />
-      </svg>
-      <style>{`
-        @keyframes logo-draw {
-          from { stroke-dasharray: 600; stroke-dashoffset: 600; }
-          to { stroke-dashoffset: 0; }
-        }
-        .animate-logo-draw {
-          stroke-dasharray: 600;
-          animation: logo-draw 1.5s ease-out forwards;
-        }
-      `}</style>
+      <img 
+        src={logoUrl} 
+        alt="jkh signature" 
+        className={`
+          ${heightMap[size]} w-auto object-contain 
+          ${isInverse ? 'invert brightness-[1.2] mix-blend-screen' : 'mix-blend-multiply'}
+        `}
+        loading="eager"
+      />
     </div>
   );
 };

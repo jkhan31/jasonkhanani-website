@@ -5,230 +5,124 @@ import { SectionHeader } from '../components/SectionHeader';
 import { AxisMarker } from '../components/AxisMarker';
 import { Logo } from '../components/Logo';
 import { ARTICLES } from '../constants';
-import { ArrowRight, Mail, ChevronRight, MessageSquare } from 'lucide-react';
+import { ArrowRight, Globe, Layers, Zap, Database, ShieldCheck } from 'lucide-react';
 
 const Hero: React.FC = () => (
-  <section className="px-6 py-24 md:py-32 lg:py-40 max-w-7xl mx-auto relative">
-    <div className="absolute top-10 right-10 opacity-10 pointer-events-none hidden lg:block">
+  <section className="px-6 py-24 md:py-32 lg:py-48 max-w-7xl mx-auto relative overflow-hidden">
+    <div className="absolute top-10 right-10 opacity-5 pointer-events-none hidden lg:block">
         <Logo size="xl" />
     </div>
-    <div className="max-w-4xl">
-      <p className="text-hankoRust font-medium tracking-[0.2em] text-xs uppercase mb-6 flex items-center">
-        Industrial Engineer <span className="mx-2">•</span> Business Analyst
+    <div className="max-w-4xl relative z-10">
+      <p className="text-hankoRust font-bold tracking-[0.3em] text-[10px] uppercase mb-8 flex items-center">
+        <span className="w-8 h-px bg-hankoRust mr-4" /> 
+        Senior Operations Analyst & Systems Architect
       </p>
-      <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-sumiInk leading-[1.1] mb-8">
-        Turning Messy Operations into <span className="italic text-foxOrange">Clear Decisions.</span>
+      <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-sumiInk leading-[0.95] mb-10 tracking-tight">
+        Architecture for <span className="italic text-foxOrange">Global</span> Operations.
       </h1>
-      <p className="text-lg md:text-2xl text-sumiInk/70 max-w-2xl leading-relaxed mb-12">
-        Specialized in revenue diagnostics, systems architecture, and sustainable workflow design for high-performing remote teams.
+      <p className="text-xl md:text-3xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16">
+        I engineer high-margin systems for remote-first organizations by applying Industrial Engineering rigor to messy operational data.
       </p>
-      <div className="flex flex-wrap gap-6">
+      <div className="flex flex-wrap gap-8">
         <Link 
           to="/evidence" 
-          className="px-8 py-4 bg-hankoRust text-ricePaper text-sm tracking-widest uppercase hover:bg-foxOrange transition-colors duration-300 shadow-sm"
+          className="px-10 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
         >
-          Explore the Evidence Vault
+          View Diagnostic Portfolio
         </Link>
         <Link 
           to="/framework" 
-          className="px-8 py-4 border-0.5 border-hankoRust text-hankoRust text-sm tracking-widest uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
+          className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
         >
-          View Framework
+          Operating Protocols
         </Link>
       </div>
     </div>
   </section>
 );
 
-const ImpactStrip: React.FC = () => (
-  <section className="bg-ricePaper border-y-0.5 border-hankoRust/10 px-6 py-20 overflow-hidden">
-    <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-      {[
-        { label: 'Recovered Revenue', value: '€690K+' },
-        { label: 'Annual Logistics Savings', value: '€500K+' },
-        { label: 'Lead Time Reduction', value: '60%' },
-        { label: 'Subsidy Reduction', value: '58%' },
-      ].map((stat, idx) => (
-        <div key={idx} className="flex flex-col">
-          <span className="text-4xl lg:text-5xl font-serif text-hankoRust mb-2">{stat.value}</span>
-          <span className="text-[10px] uppercase tracking-widest text-sumiInk/50 font-semibold">{stat.label}</span>
-        </div>
-      ))}
-    </div>
-  </section>
-);
-
-const AboutJason: React.FC = () => (
-  <section className="px-6 py-24 md:py-32 bg-white">
-    <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
-      <div className="w-full lg:w-1/2">
-        <div className="relative inline-block mb-12">
-          <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
-            alt="Jason Kester Hanani" 
-            className="w-full max-w-md grayscale hover:grayscale-0 transition-all duration-1000 border-0.5 border-hankoRust/20"
-          />
-          <div className="absolute -bottom-6 -right-6 hidden md:block">
-            <div className="bg-hankoRust text-ricePaper p-6 text-xs font-bold uppercase tracking-widest">
-              Est. 2019 <br/> Operational Analyst
-            </div>
+const RemoteLeverage: React.FC = () => (
+  <section className="px-6 py-24 md:py-32 bg-sumiInk text-ricePaper relative overflow-hidden">
+    <div className="absolute inset-0 opacity-[0.03] bg-grid pointer-events-none" />
+    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+      <div>
+        <SectionHeader eyebrow="The Global Edge" title="Why Industrial Engineering Matters for Remote Teams." className="mb-10 text-ricePaper" />
+        <div className="space-y-8 text-lg text-ricePaper/60 font-serif leading-relaxed">
+          <p>
+            Distributed teams fail when operational friction remains invisible. I bridge the gap by treating your remote company like a precision manufacturing plant—where "communication" is the raw material and "decision-making" is the throughput.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            {[
+              { icon: Database, title: "SQL Forensics", desc: "Tracing revenue leaks across global transaction layers." },
+              { icon: Layers, title: "Async Architecture", desc: "Designing protocols that eliminate the meeting tax." },
+              { icon: Zap, title: "Velocity Audits", desc: "Identifying bottlenecks in cross-functional delivery." },
+              { icon: Globe, title: "Global Compliance", desc: "Systems that scale across regional logic variances." }
+            ].map((item, i) => (
+              <div key={i} className="group">
+                <item.icon className="text-foxOrange mb-4 group-hover:scale-110 transition-transform" size={24} />
+                <h4 className="text-ricePaper font-bold text-xs uppercase tracking-widest mb-2">{item.title}</h4>
+                <p className="text-sm opacity-80">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-1/2">
-        <SectionHeader eyebrow="The Persona" title="Hi, I'm Jason." className="mb-8" />
-        <div className="space-y-6 text-lg text-sumiInk/70 font-serif leading-relaxed">
-          <p>
-            I'm here to help you navigate the complexities of global operations and build systems rooted in purposeful productivity. 
-            With a background in <span className="text-hankoRust font-semibold">Industrial & Operations Engineering</span> from the University of Michigan, 
-            I view every bottleneck as a design problem waiting for a structural solution.
-          </p>
-          <p>
-            My work is built upon two research-based frameworks: the <span className="italic">Purpose-Wellbeing Axis (PWA)</span> 
-            and the <span className="italic">Sustainable Feedback Rhythm (SFR)</span>. These aren't just theories; they are the operating 
-            systems I've used to recover millions in revenue leakage while maintaining team resilience in high-pressure environments.
-          </p>
-          <p>
-            Whether you're streamlining a complex supply chain or architecting a high-leverage remote workflow, I invite you to learn and build alongside me.
-          </p>
+      <div className="relative">
+        <div className="border-0.5 border-ricePaper/10 p-4 md:p-12 aspect-square flex flex-col justify-center items-center bg-white/5 backdrop-blur-sm">
+           <div className="relative w-full h-full border border-ricePaper/5 flex items-center justify-center">
+              <AxisMarker className="absolute h-full opacity-20 bg-ricePaper" />
+              <div className="w-3/4 h-3/4 border-0.5 border-dashed border-foxOrange/40 rounded-full animate-[spin_20s_linear_infinite]" />
+              <div className="absolute text-[10px] font-bold uppercase tracking-[0.5em] text-foxOrange -rotate-90 origin-center left-0">Purpose</div>
+              <div className="absolute text-[10px] font-bold uppercase tracking-[0.5em] text-ricePaper right-0 rotate-90 origin-center">Efficiency</div>
+              <ShieldCheck className="text-foxOrange" size={48} />
+           </div>
         </div>
-        <div className="mt-12 flex items-center gap-6">
-           <Link to="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-hankoRust pb-1 hover:text-foxOrange hover:border-foxOrange transition-all">View Experience</Link>
-           <div className="w-12 h-px bg-hankoRust/20" />
-           <span className="font-signature text-2xl text-sumiInk opacity-40">Jason Kester Hanani</span>
+        <div className="absolute -bottom-6 -left-6 bg-hankoRust p-6 shadow-2xl">
+          <span className="text-4xl font-serif">€1.5M+</span>
+          <p className="text-[9px] uppercase tracking-widest font-bold opacity-60">Quantified Impact</p>
         </div>
       </div>
     </div>
   </section>
-);
-
-const LatestWriting: React.FC = () => {
-  const latest = ARTICLES[0];
-  if (!latest) return null;
-
-  return (
-    <section className="px-6 py-24 bg-ricePaper/30 border-y-0.5 border-hankoRust/10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-start">
-        <div className="w-full md:w-1/3">
-          <SectionHeader eyebrow="Fresh Insight" title="From the Desk" className="mb-6" />
-          <p className="text-sumiInk/50 text-sm leading-relaxed mb-8">
-            Tactical essays on navigating complexity, Industrial Engineering, and high-leverage decision making.
-          </p>
-          <Link 
-            to="/writing" 
-            className="text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors flex items-center group"
-          >
-            Browse all writing <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-        <div className="w-full md:w-2/3">
-          <Link to={`/writing/${latest.slug}`} className="group">
-            <div className="p-8 md:p-12 border-0.5 border-hankoRust/20 hover:border-hankoRust/40 transition-all duration-500 bg-white shadow-sm">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-hankoRust mb-4 block">
-                Latest Article &bull; {latest.date}
-              </span>
-              <h3 className="text-3xl md:text-4xl font-serif mb-6 group-hover:text-foxOrange transition-colors">
-                {latest.title}
-              </h3>
-              <p className="text-lg text-sumiInk/60 mb-8 max-w-xl">
-                {latest.excerpt}
-              </p>
-              <div className="inline-block px-6 py-3 border-b border-sumiInk group-hover:border-foxOrange text-[10px] font-bold uppercase tracking-widest transition-all">
-                Read Full Essay
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const TrackCard: React.FC<{ 
-  title: string; 
-  persona: string; 
-  description: string; 
-  accent: string;
-  className?: string;
-}> = ({ title, persona, description, accent, className = "" }) => (
-  <div className={`p-8 md:p-12 border-0.5 border-hankoRust/20 relative group hover:border-hankoRust/40 transition-colors ${className}`}>
-    <div className={`absolute top-0 left-0 w-1 h-full ${accent} opacity-50`} />
-    <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-sumiInk/40 mb-4 block">Persona</span>
-    <h3 className="text-3xl font-serif mb-6">{persona}</h3>
-    <p className="text-lg text-sumiInk/70 leading-relaxed mb-8">
-      {description}
-    </p>
-    <div className="flex items-center text-xs tracking-widest uppercase font-bold text-hankoRust group-hover:text-foxOrange transition-colors cursor-default">
-      Focus: {title}
-    </div>
-  </div>
 );
 
 const Tracks: React.FC = () => (
-  <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
+  <section className="px-6 py-24 md:py-40 max-w-7xl mx-auto">
     <SectionHeader 
-      eyebrow="The Methodology" 
-      title="Dual Track Execution" 
-      className="mb-16"
+      eyebrow="Execution Tracks" 
+      title="How I Build Leverage." 
+      className="mb-20 text-center"
     />
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-0.5 border-hankoRust/10">
-      <TrackCard 
-        persona="The Investigator"
-        title="Diagnostics"
-        description="I do the heavy lifting up front—diagnosing the 'why' behind operational leaks through deep-dive SQL forensic analysis and data modeling."
-        accent="bg-hankoRust"
-      />
-      <TrackCard 
-        persona="The Architect"
-        title="Design"
-        description="I build the blueprint for 'what’s next'—designing efficient, streamlined systems that process owners can run with absolute ease."
-        accent="bg-foxOrange"
-      />
-    </div>
-  </section>
-);
-
-const ContactSection: React.FC = () => (
-  <section className="px-6 py-24 md:py-32 bg-sumiInk text-ricePaper border-t-0.5 border-hankoRust/10 overflow-hidden relative">
-    <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-       <Logo size="xl" />
-    </div>
-    <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20">
-      <div className="lg:w-1/2">
-        <SectionHeader eyebrow="Get in Touch" title="Request a Diagnostic Audit." className="mb-8" />
-        <p className="text-xl text-ricePaper/60 mb-12 font-serif leading-relaxed">
-          Stuck with a scaling bottleneck or a revenue leak you can't trace? Let's apply Industrial Engineering principles to your problem.
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500">
+        <div className="absolute top-0 right-0 p-8 opacity-5"><Database size={80} /></div>
+        <span className="text-hankoRust font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Persona 01</span>
+        <h3 className="text-4xl font-serif mb-8 italic">The Investigator</h3>
+        <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
+          Diagnostic heavy lifting. I dive into your Postgres/BigQuery instances to find where revenue is leaking and why process owners are stuck.
         </p>
-        <div className="space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-hankoRust/20 flex items-center justify-center">
-              <Mail size={18} className="text-foxOrange" />
-            </div>
-            <a href="mailto:jasonkhanani@gmail.com" className="text-lg hover:text-foxOrange transition-colors">jason@khanani.com</a>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-hankoRust/20 flex items-center justify-center">
-              <MessageSquare size={18} className="text-foxOrange" />
-            </div>
-            <span className="text-lg">LinkedIn Messaging Enabled</span>
-          </div>
-        </div>
+        <ul className="space-y-4 mb-12">
+          {["Revenue Forensics", "SQL Data Modeling", "Scenario Sensitivity Analysis"].map(item => (
+            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
+              <span className="w-4 h-[1px] bg-hankoRust/30 mr-3" /> {item}
+            </li>
+          ))}
+        </ul>
       </div>
-      <div className="lg:w-1/2">
-        <div className="bg-ricePaper/5 p-8 md:p-12 border-0.5 border-ricePaper/10 backdrop-blur-sm">
-          <h4 className="text-xs font-bold uppercase tracking-widest mb-8 opacity-60">The Diagnostic Request</h4>
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input type="text" placeholder="Full Name" className="w-full bg-transparent border-b border-ricePaper/20 py-3 text-sm focus:outline-none focus:border-foxOrange transition-all" />
-              <input type="email" placeholder="Email Address" className="w-full bg-transparent border-b border-ricePaper/20 py-3 text-sm focus:outline-none focus:border-foxOrange transition-all" />
-            </div>
-            <input type="text" placeholder="Organization / Project" className="w-full bg-transparent border-b border-ricePaper/20 py-3 text-sm focus:outline-none focus:border-foxOrange transition-all" />
-            <textarea placeholder="Tell me about your primary operational bottleneck..." rows={4} className="w-full bg-transparent border-b border-ricePaper/20 py-3 text-sm focus:outline-none focus:border-foxOrange transition-all resize-none"></textarea>
-            <button className="w-full py-4 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-foxOrange transition-all shadow-lg">
-              Submit Diagnostic Request
-            </button>
-          </form>
-        </div>
+      <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500">
+        <div className="absolute top-0 right-0 p-8 opacity-5"><Layers size={80} /></div>
+        <span className="text-foxOrange font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Persona 02</span>
+        <h3 className="text-4xl font-serif mb-8 italic">The Architect</h3>
+        <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
+          Operational blueprinting. I design the automations and documentation that allow teams to scale without adding headcount.
+        </p>
+        <ul className="space-y-4 mb-12">
+          {["Async Workflow Design", "Automated Ops Pipelines", "Distributed System Resilience"].map(item => (
+            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
+              <span className="w-4 h-[1px] bg-foxOrange/30 mr-3" /> {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
@@ -238,39 +132,44 @@ const Home: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-1000">
       <Hero />
-      <ImpactStrip />
-      <AboutJason />
-      <LatestWriting />
+      <RemoteLeverage />
       <Tracks />
       
-      {/* Operational Sustainability Teaser */}
-      <section className="bg-sage text-ricePaper px-6 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="text-[10px] uppercase tracking-widest font-bold mb-4 block opacity-60">The Framework</span>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 leading-tight">Systems for People: The PWA Framework.</h2>
-            <p className="text-xl leading-relaxed opacity-80 mb-12">
-              "I apply Industrial Engineering principles to human workflows. Most burnout is a design flaw; I build systems that scale without breaking people via the Purpose-Wellbeing Axis."
-            </p>
-            <Link 
-              to="/framework" 
-              className="px-8 py-4 border-0.5 border-ricePaper/40 hover:border-ricePaper hover:text-sumiInk hover:bg-ricePaper transition-all text-xs tracking-widest uppercase font-bold"
-            >
-              Explore the PWA Theory
+      {/* Latest Writing Teaser */}
+      <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto border-t-0.5 border-hankoRust/10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+           <div className="max-w-xl">
+             <SectionHeader eyebrow="Thinking" title="Tactical Dispatches." className="mb-0" />
+           </div>
+           <Link to="/writing" className="group flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust">
+             Archive <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+           </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {ARTICLES.slice(0, 2).map((article, i) => (
+            <Link key={i} to={`/writing/${article.slug}`} className="group p-8 md:p-12 border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl transition-all duration-500">
+               <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-hankoRust/40 mb-4 block">{article.date} &bull; {article.category}</span>
+               <h4 className="text-2xl md:text-3xl font-serif mb-6 group-hover:text-foxOrange transition-colors">{article.title}</h4>
+               <p className="text-sumiInk/60 font-serif mb-8 line-clamp-2">{article.excerpt}</p>
+               <span className="text-[10px] uppercase font-bold tracking-widest border-b border-sumiInk/20 group-hover:border-foxOrange transition-all">Read Essay</span>
             </Link>
-          </div>
-          <div className="hidden md:flex justify-center">
-            <div className="relative w-64 h-64 border-0.5 border-ricePaper/20 rounded-full flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                 <AxisMarker className="h-48 opacity-40 bg-ricePaper" />
-              </div>
-              <div className="w-4 h-4 rounded-full bg-foxOrange animate-pulse" />
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      <ContactSection />
+      {/* Global Contact Hook */}
+      <section className="px-6 py-32 bg-ricePaper text-center">
+         <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-serif mb-12">Ready for the audit?</h2>
+            <p className="text-xl text-sumiInk/60 font-serif mb-16">
+              I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams.
+            </p>
+            <div className="flex flex-wrap justify-center gap-8">
+               <a href="mailto:jasonkhanani@gmail.com" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Request Diagnostic Call</a>
+               <a href="https://linkedin.com/in/jasonkhanani" target="_blank" className="px-12 py-5 border-0.5 border-sumiInk/20 text-[10px] font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition-all">LinkedIn Profile</a>
+            </div>
+         </div>
+      </section>
     </div>
   );
 };
