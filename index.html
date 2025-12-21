@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jason Kester Hanani | Operational Clarity</title>
+    <!-- Premium SVG Favicon matching the site signature -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 80'%3E%3Cpath d='M45,35 Q45,55 45,65 C45,85 25,85 25,75 Q25,65 35,65 M35,65 L55,15 C60,5 65,5 63,15 L52,65 M53,45 Q70,40 68,55 L75,65 M75,65 L95,15 C100,5 105,5 103,15 L92,65 M93,45 Q115,40 110,60 M47,24 A1.5,1.5 0 1 1 46.9,24' stroke='%231A1A1A' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ricePaper: '#FAF5F0',
+              sumiInk: '#1A1A1A',
+              hankoRust: '#802B0A',
+              foxOrange: '#F07F2E',
+              sage: '#4D6B57',
+            },
+            fontFamily: {
+              serif: ['"Source Serif 4"', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+              signature: ['Caveat', 'cursive'],
+            },
+            borderWidth: {
+              '0.5': '0.5px',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #FAF5F0;
+        color: #1A1A1A;
+        font-family: 'Inter', sans-serif;
+      }
+      .font-serif {
+        font-family: 'Source Serif 4', serif;
+      }
+      .font-signature {
+        font-family: 'Caveat', cursive;
+      }
+      /* Custom noise texture */
+      .bg-noise {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+        pointer-events: none;
+      }
+      /* Ensure signature doesn't wrap awkwardly */
+      .font-signature {
+        white-space: nowrap;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.475.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
