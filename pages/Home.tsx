@@ -14,14 +14,13 @@ const Hero: React.FC = () => (
     </div>
     <div className="max-w-4xl relative z-10">
       <p className="text-hankoRust font-bold tracking-[0.3em] text-[10px] uppercase mb-8 flex items-center">
-        <span className="w-8 h-px bg-hankoRust mr-4" /> 
-        Senior Operations Analyst & Systems Architect
+        Industrial Engineer &bull; Product & Operations Analyst
       </p>
       <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-sumiInk leading-[0.95] mb-10 tracking-tight">
-        Architecture for <span className="italic text-foxOrange">Global</span> Operations.
+        Turning Messy Operations into <span className="italic text-foxOrange">Clear Decisions</span>
       </h1>
       <p className="text-xl md:text-3xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16">
-        I engineer high-margin systems for remote-first organizations by applying Industrial Engineering rigor to messy operational data.
+        Product &amp; Operations Analyst specialized in revenue diagnostics, systems architecture, and sustainable workflow engineering.
       </p>
       <div className="flex flex-wrap gap-8">
         <Link 
