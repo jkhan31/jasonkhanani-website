@@ -24,11 +24,36 @@ const Loading = () => (
   </div>
 );
 
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { error: Error | null }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  componentDidCatch(error: Error, info: any) {
+    console.error('ErrorBoundary caught', error, info);
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="p-12 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-foxOrange mb-4">Application error</h2>
+          <pre className="whitespace-pre-wrap text-sm bg-white/5 p-6 border rounded">{String(this.state.error && this.state.error.stack)}</pre>
+        </div>
+      );
+    }
+    return this.props.children as any;
+  }
+}
+
 const App: React.FC = () => {
   return (
     <HashRouter>
       <ScrollToTop />
       <Layout>
+        <ErrorBoundary>
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -39,6 +64,7 @@ const App: React.FC = () => {
             <Route path="/resume" element={<Resume />} />
           </Routes>
         </Suspense>
+        </ErrorBoundary>
       </Layout>
     </HashRouter>
   );
