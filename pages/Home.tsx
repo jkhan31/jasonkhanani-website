@@ -14,26 +14,27 @@ const Hero: React.FC = () => (
     </div>
     <div className="max-w-4xl relative z-10">
       <p className="text-hankoRust font-bold tracking-[0.3em] text-[10px] uppercase mb-8 flex items-center">
-        Industrial Engineer &bull; Product & Operations Analyst
+        INDUSTRIAL ENGINEER &bull; BUSINESS ANALYST
       </p>
       <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-sumiInk leading-[0.95] mb-10 tracking-tight">
         Turning Messy Operations into <span className="italic text-foxOrange">Clear Decisions</span>
       </h1>
+      <p className="text-sm uppercase text-sumiInk/50 mb-4 font-bold">Operational Clarity. Systemic Resilience.</p>
       <p className="text-xl md:text-3xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16">
-        Product &amp; Operations Analyst specialized in revenue diagnostics, systems architecture, and sustainable workflow engineering.
+        Specialized in deep-dive analysis to streamline complexity, process optimization, and deploying AI-augmented workflows for high-performing systems.  
       </p>
       <div className="flex flex-wrap gap-8">
         <Link 
           to="/evidence" 
           className="px-10 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
         >
-          View Diagnostic Portfolio
+          Explore the Evidence Vault
         </Link>
         <Link 
           to="/framework" 
           className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
         >
-          Operating Protocols
+          Discover My Framework
         </Link>
       </div>
     </div>
@@ -45,17 +46,17 @@ const RemoteLeverage: React.FC = () => (
     <div className="absolute inset-0 opacity-[0.03] bg-grid pointer-events-none" />
     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
       <div>
-        <SectionHeader eyebrow="The Global Edge" title="Why Industrial Engineering Matters for Remote Teams." className="mb-10 text-ricePaper" />
+        <SectionHeader eyebrow="Remote-First Advantage" title="Why Industrial Engineering Matters for Remote Teams" className="mb-10 text-ricePaper" />
         <div className="space-y-8 text-lg text-ricePaper/60 font-serif leading-relaxed">
           <p>
-            Distributed teams fail when operational friction remains invisible. I bridge the gap by treating your remote company like a precision manufacturing plant—where "communication" is the raw material and "decision-making" is the throughput.
+            Remote organizations succeed when processes are visible, accountable, and resilient. I translate operational ambiguity into measurable control paths—so distributed teams can move faster without fragility.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {[
-              { icon: Database, title: "SQL Forensics", desc: "Tracing revenue leaks across global transaction layers." },
-              { icon: Layers, title: "Async Architecture", desc: "Designing protocols that eliminate the meeting tax." },
-              { icon: Zap, title: "Velocity Audits", desc: "Identifying bottlenecks in cross-functional delivery." },
-              { icon: Globe, title: "Global Compliance", desc: "Systems that scale across regional logic variances." }
+              { icon: Database, title: "Revenue Forensics", desc: "Find and quantify revenue leakage across your data stack." },
+              { icon: Layers, title: "Async Architecture", desc: "Design playbooks that reduce meetings and increase throughput." },
+              { icon: Zap, title: "Velocity Audits", desc: "Map delivery cadence and remove cross-functional blockers." },
+              { icon: Globe, title: "Compliance & Scaling", desc: "Build systems that respect regional constraints while scaling." }
             ].map((item, i) => (
               <div key={i} className="group">
                 <item.icon className="text-foxOrange mb-4 group-hover:scale-110 transition-transform" size={24} />
@@ -78,7 +79,7 @@ const RemoteLeverage: React.FC = () => (
         </div>
         <div className="absolute -bottom-6 -left-6 bg-hankoRust p-6 shadow-2xl">
           <span className="text-4xl font-serif">€1.5M+</span>
-          <p className="text-[9px] uppercase tracking-widest font-bold opacity-60">Quantified Impact</p>
+          <p className="text-[9px] uppercase tracking-widest font-bold opacity-60">Quantified Impact Recovered</p>
         </div>
       </div>
     </div>
@@ -95,7 +96,7 @@ const Tracks: React.FC = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500">
         <div className="absolute top-0 right-0 p-8 opacity-5"><Database size={80} /></div>
-        <span className="text-hankoRust font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Persona 01</span>
+        <span className="text-hankoRust font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Investigator</span>
         <h3 className="text-4xl font-serif mb-8 italic">The Investigator</h3>
         <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
           Diagnostic heavy lifting. I dive into your Postgres/BigQuery instances to find where revenue is leaking and why process owners are stuck.
@@ -110,7 +111,7 @@ const Tracks: React.FC = () => (
       </div>
       <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500">
         <div className="absolute top-0 right-0 p-8 opacity-5"><Layers size={80} /></div>
-        <span className="text-foxOrange font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Persona 02</span>
+        <span className="text-foxOrange font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Architect</span>
         <h3 className="text-4xl font-serif mb-8 italic">The Architect</h3>
         <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
           Operational blueprinting. I design the automations and documentation that allow teams to scale without adding headcount.
@@ -137,13 +138,13 @@ const Home: React.FC = () => {
       {/* Latest Writing Teaser */}
       <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto border-t-0.5 border-hankoRust/10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-           <div className="max-w-xl">
-             <SectionHeader eyebrow="Thinking" title="Tactical Dispatches." className="mb-0" />
-           </div>
-           <Link to="/writing" className="group flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust">
-             Archive <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
-           </Link>
-        </div>
+             <div className="max-w-xl">
+               <SectionHeader eyebrow="Insights" title="Architects of Operational Excellence" className="mb-0" />
+             </div>
+             <Link to="/writing" className="group flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust">
+               Read All Insights <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+             </Link>
+          </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {ARTICLES.slice(0, 2).map((article, i) => (
             <Link key={i} to={`/writing/${article.slug}`} className="group p-8 md:p-12 border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl transition-all duration-500">
@@ -153,6 +154,18 @@ const Home: React.FC = () => {
                <span className="text-[10px] uppercase font-bold tracking-widest border-b border-sumiInk/20 group-hover:border-foxOrange transition-all">Read Essay</span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="px-6 py-20 max-w-5xl mx-auto text-center">
+        <div className="bg-white/5 p-12 border-0.5 border-hankoRust/10 rounded-lg">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">Want a short diagnostic that surfaces quick wins?</h2>
+          <p className="text-sumiInk/60 mb-8">I run a focused 60–90 minute diagnostic to flag the top 3 impact areas, evidence-backed.</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <a href="mailto:jasonkhanani@gmail.com?subject=Diagnostic%20Request" className="px-10 py-4 bg-hankoRust text-ricePaper font-bold uppercase tracking-widest shadow-md hover:bg-foxOrange transition">Request Diagnostic Call</a>
+            <Link to="/evidence" className="px-10 py-4 border-0.5 border-sumiInk/20 font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition">See Example Diagnostics</Link>
+          </div>
         </div>
       </section>
 
