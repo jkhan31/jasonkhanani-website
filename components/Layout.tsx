@@ -44,8 +44,9 @@ const Header: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 h-12">
-          <Link to="/" onClick={closeMenu} className="flex items-center hover:opacity-80 transition-opacity text-sumiInk relative z-[70]">
+          <Link to="/" onClick={closeMenu} className="flex items-center gap-3 hover:opacity-80 transition-opacity text-sumiInk relative z-[70]">
             <Logo size="md" className="-ml-4" />
+            <span className="hidden md:inline-block font-serif text-lg font-semibold tracking-tight text-sumiInk">Jason K Hanani</span>
           </Link>
 
           {/* Desktop Navigation */}
