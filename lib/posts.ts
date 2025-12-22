@@ -1,9 +1,16 @@
 import matter from 'gray-matter';
-import readingTime from 'reading-time';
+
 
 type RawModule = Record<string, string>;
 
-const modules = import.meta.glob('./content/posts/*.md', { eager: true, as: 'raw' }) as RawModule;
+const modules = import.meta.glob('./content/posts/*.md', { eager: true, query: '?raw', import: 'default' }) as RawModule;
+
+function estimateReadingTime(text: string) {
+  const words = (text || '').split(/\s+/).filter(Boolean).length;
+  const wpm = 200;
+  const minutes = Math.max(1, Math.round(words / wpm));
+  return `${minutes} min`;
+}
 
 export const ARTICLES = Object.entries(modules).map(([filePath, raw]) => {
   const { data, content } = matter(raw);
@@ -14,7 +21,7 @@ export const ARTICLES = Object.entries(modules).map(([filePath, raw]) => {
     title: data.title,
     excerpt: data.excerpt,
     date: data.date,
-    readTime: data.readTime || readingTime(content).text,
+    readTime: data.readTime || estimateReadingTime(content),
     category: data.category,
     tags: data.tags || [],
     content,
