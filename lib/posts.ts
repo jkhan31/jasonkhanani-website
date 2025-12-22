@@ -3,7 +3,7 @@ import matter from 'gray-matter';
 
 type RawModule = Record<string, string>;
 
-const modules = import.meta.glob('./content/posts/*.md', { eager: true, query: '?raw', import: 'default' }) as RawModule;
+const modules = import.meta.glob('../content/posts/*.md', { eager: true, query: '?raw', import: 'default' }) as RawModule;
 
 function estimateReadingTime(text: string) {
   const words = (text || '').split(/\s+/).filter(Boolean).length;
