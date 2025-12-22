@@ -1,6 +1,6 @@
 
 import { CaseStudy, ExperienceItem } from './types';
-export { ARTICLES } from './content/posts';
+export { ARTICLES } from './lib/posts';
 
 export const CASE_STUDIES: CaseStudy[] = [
   {

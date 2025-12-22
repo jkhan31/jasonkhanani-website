@@ -1,104 +1,11 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ARTICLES } from '../constants';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { ContentBlock } from '../types';
-
-const ScrollImage: React.FC<{ url: string; alt?: string; caption?: string }> = ({ url, alt, caption }) => {
-  const [isRevealed, setIsRevealed] = useState(false);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsRevealed(true);
-          if (imageRef.current) observer.unobserve(imageRef.current);
-        }
-      },
-      { threshold: 0.3, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <figure className="my-16 group" ref={imageRef}>
-      <div className="overflow-hidden border-0.5 border-hankoRust/10 shadow-sm">
-        <img 
-          src={url} 
-          alt={alt || "Operational Visual"} 
-          className={`w-full h-auto transition-all duration-1000 ease-in-out hover:scale-[1.02] ${
-            isRevealed ? 'grayscale-0' : 'grayscale'
-          }`}
-        />
-      </div>
-      {caption && (
-        <figcaption className="mt-4 text-xs font-serif italic text-sumiInk/40 text-center">
-          Fig. — {caption}
-        </figcaption>
-      )}
-    </figure>
-  );
-};
-
-const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
-  switch (block.type) {
-    case 'heading':
-      return <h2 className="text-2xl md:text-3xl font-serif text-sumiInk mt-16 mb-6">{block.value}</h2>;
-    
-    case 'paragraph':
-      return <p className="text-lg md:text-xl text-sumiInk/80 leading-relaxed font-serif mb-8">{block.value}</p>;
-    
-    case 'callout':
-      return (
-        <div className="my-12 p-8 border-l-4 border-hankoRust bg-hankoRust/5 relative group">
-          {block.label && (
-            <span className="text-[10px] font-bold uppercase tracking-widest text-hankoRust mb-2 block">
-              {block.label}
-            </span>
-          )}
-          <p className="text-lg italic font-serif text-sumiInk/70 leading-relaxed">
-            {block.value}
-          </p>
-        </div>
-      );
-
-    case 'image':
-      return <ScrollImage url={block.url} alt={block.alt} caption={block.caption} />;
-
-    case 'table':
-      return (
-        <div className="my-12 overflow-x-auto border-0.5 border-hankoRust/10">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-hankoRust/5 border-b-0.5 border-hankoRust/10">
-                {block.headers.map((h, i) => (
-                  <th key={i} className="px-6 py-4 text-[10px] uppercase tracking-widest font-bold text-hankoRust">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.rows.map((row, i) => (
-                <tr key={i} className="border-b-0.5 border-hankoRust/5 hover:bg-white transition-colors">
-                  {row.map((cell, j) => (
-                    <td key={j} className="px-6 py-4 text-sm text-sumiInk/70 font-serif">{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
-
-    default:
-      return null;
-  }
-};
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -157,10 +64,10 @@ const BlogPost: React.FC = () => {
         </div>
       </header>
 
-      <div className="article-content">
-        {article.content.map((block, idx) => (
-          <BlockRenderer key={idx} block={block} />
-        ))}
+      <div className="article-content prose max-w-none">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+          {article.content}
+        </ReactMarkdown>
       </div>
 
       <section className="mt-24 pt-16 border-t-0.5 border-hankoRust/10">
