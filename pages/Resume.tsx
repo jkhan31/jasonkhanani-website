@@ -44,7 +44,7 @@ const ResumePage = () => {
               className="flex items-center gap-2 px-8 py-4 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-foxOrange transition-all shadow-xl active:scale-95"
               onClick={() => window.print()}
             >
-              <Download size={16} /> Export Dossier
+              <Download size={16} /> Download Full Resume
             </button>
           </div>
         </header>
