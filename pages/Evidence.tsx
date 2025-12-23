@@ -22,20 +22,20 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
   const IconComponent = getIconForStudy(study.id);
   
   return (
-    <div className="group border-0.5 border-darkText/20 bg-white p-8 md:p-12 hover:border-brandAccent transition-all duration-500 hover:shadow-lg">
+    <div className="group border-0.5 border-hankoRust/20 bg-white p-8 md:p-12 hover:border-hankoRust/50 transition-all duration-500 hover:shadow-lg">
       <div className="flex flex-col h-full">
         {/* Icon and Title Section */}
         <div className="mb-8">
           <div className="flex items-start justify-between mb-4">
-            <IconComponent className="w-8 h-8 text-brandAccent" strokeWidth={1.5} />
-            <span className="text-[10px] uppercase tracking-widest font-bold text-darkText/40">
+            <IconComponent className="w-8 h-8 text-hankoRust" strokeWidth={1.5} />
+            <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/40">
               {study.stealthTitle}
             </span>
           </div>
-          <h3 className="text-3xl font-serif text-darkText mb-4 leading-tight group-hover:text-brandAccent transition-colors">
+          <h3 className="text-3xl font-serif text-sumiInk mb-4 leading-tight group-hover:text-hankoRust transition-colors">
             {study.title}
           </h3>
-          <p className="text-base font-serif italic text-darkText/60 border-l-2 border-brandAccent/30 pl-6 my-6">
+          <p className="text-base font-serif italic text-sumiInk/60 border-l-2 border-hankoRust/30 pl-6 my-6">
             {study.hook}
           </p>
         </div>
@@ -44,14 +44,14 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
         <div className="space-y-6 mb-12 flex-grow">
           {study.details.map((detail: string, idx: number) => (
             <div key={idx} className="flex flex-col gap-2">
-              <p className="text-sm text-darkText/80 leading-relaxed">{detail}</p>
+              <p className="text-sm text-sumiInk/80 leading-relaxed">{detail}</p>
             </div>
           ))}
         </div>
 
         {/* Impact Section with Hanko Rust accent */}
-        <div className="pt-8 border-t-0.5 border-darkText/10">
-          <span className="text-[10px] uppercase tracking-widest font-bold text-darkText/30 mb-2 block">
+        <div className="pt-8 border-t-0.5 border-hankoRust/10">
+          <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/30 mb-2 block">
             Outcome Impact
           </span>
           <span className="text-3xl font-serif text-hankoRust font-bold">{study.impact}</span>
@@ -63,12 +63,12 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
 
 const Evidence: React.FC = () => {
   return (
-    <div className="min-h-screen bg-neutralBg">
+    <div className="min-h-screen bg-ricePaper">
       {/* Back to Home Navigation */}
       <div className="px-6 pt-8 max-w-7xl mx-auto">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-sm text-darkText/60 hover:text-brandAccent transition-colors group"
+          className="inline-flex items-center gap-2 text-sm text-sumiInk/60 hover:text-hankoRust transition-colors group"
         >
           <span className="group-hover:-translate-x-1 transition-transform">←</span>
           <span>Back to Home</span>
@@ -81,7 +81,7 @@ const Evidence: React.FC = () => {
           title="Systems in Action" 
           className="mb-6"
         />
-        <p className="text-lg text-darkText/70 max-w-3xl mb-16 leading-relaxed">
+        <p className="text-lg text-sumiInk/70 max-w-3xl mb-16 leading-relaxed">
           Bridging technical diagnostics with human-centered project management. Each case demonstrates high-leverage interventions in complex operational environments.
         </p>
 
@@ -93,8 +93,8 @@ const Evidence: React.FC = () => {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-16 pt-8 border-t-0.5 border-darkText/10 text-center">
-          <p className="text-sm text-darkText/50 italic max-w-2xl mx-auto leading-relaxed">
+        <div className="mt-16 pt-8 border-t-0.5 border-sumiInk/10 text-center">
+          <p className="text-sm text-sumiInk/50 italic max-w-2xl mx-auto leading-relaxed">
             Detailed company history, specific project documentation, and raw data are available via resume upon request.
           </p>
         </div>

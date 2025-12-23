@@ -13,10 +13,6 @@ module.exports = {
         hankoRust: '#802B0A',
         foxOrange: '#F07F2E',
         sage: '#4D6B57',
-        // New privacy-first brand colors
-        neutralBg: '#F9FAF9',
-        darkText: '#414382',
-        brandAccent: '#A26FD7',
       },
       fontFamily: {
         serif: ['"Source Serif 4"', 'serif'],
