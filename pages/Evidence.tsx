@@ -3,23 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { CASE_STUDIES } from '../constants';
-import { TrendingUp, Search, Zap, MessageSquare, Layout } from 'lucide-react';
-
-// Map persona types to appropriate icons
-const getIconForPersona = (persona: string) => {
-  switch (persona) {
-    case 'Investigator':
-      return Search;
-    case 'Architect':
-      return Layout;
-    default:
-      return Zap;
-  }
-};
+import { TrendingUp, Search, Zap, MessageSquare, Layout, LucideIcon } from 'lucide-react';
+import { CaseStudy } from '../types';
 
 // Map case study IDs to specific icons
-const getIconForStudy = (id: string) => {
-  const iconMap: { [key: string]: any } = {
+const getIconForStudy = (id: string): LucideIcon => {
+  const iconMap: { [key: string]: LucideIcon } = {
     'revenue-preservation': TrendingUp,
     'logistics-optimization': Search,
     'network-reengineering': Zap,
@@ -29,7 +18,7 @@ const getIconForStudy = (id: string) => {
   return iconMap[id] || Zap;
 };
 
-const CaseCard: React.FC<{ study: any }> = ({ study }) => {
+const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
   const IconComponent = getIconForStudy(study.id);
   
   return (
