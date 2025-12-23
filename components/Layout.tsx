@@ -140,10 +140,10 @@ const Footer: React.FC = () => (
             I provide the operational clarity needed to build systems that last.
           </p>
           <a 
-            href="mailto:jasonkhanani@gmail.com"
+            href="mailto:contact@jasonkhanani.com"
             className="inline-block border-b-0.5 border-ricePaper hover:border-foxOrange hover:text-foxOrange transition-all pb-1 text-lg"
           >
-            jason@khanani.com
+            contact@jasonkhanani.com
           </a>
         </div>
         <div className="flex flex-col md:items-end justify-center space-y-4">
