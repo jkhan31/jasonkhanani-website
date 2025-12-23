@@ -66,6 +66,44 @@ Netlify-specific setup
 - The n8n flow should save the incoming file to disk, run `node ./scripts/convert-docx.js <file> "Title"`, then run `./scripts/git-commit-and-pr.sh "Title"` (script added in `scripts/`).
 - Ensure your n8n host has NodeJS, git, and optionally the `gh` CLI, and set `GITHUB_TOKEN` and `NETLIFY_BUILD_HOOK_URL` as environment variables.
 
+GitHub OAuth for Netlify CMS (single-author setup)
+-------------------------------------------------
+
+Because Git Gateway is deprecated, for a single-author workflow use the GitHub backend. Steps:
+
+1) Register a GitHub OAuth App
+- Go to https://github.com/settings/developers -> OAuth Apps -> New OAuth App.
+- Application name: e.g., "Netlify CMS — jasonkhanani-website".
+- Homepage URL: `https://jasonkhanani-website.netlify.app` (change if you use a different domain).
+- Authorization callback URL: `https://jasonkhanani-website.netlify.app/admin/` (include trailing `/admin/`).
+- Click "Register application" and copy the **Client ID** and **Client Secret**.
+
+2) Add credentials to Netlify
+- In your Netlify site dashboard go to Site settings → Build & deploy → Environment → Environment variables.
+- Add two variables:
+	- `GITHUB_CLIENT_ID` = the Client ID from GitHub
+	- `GITHUB_CLIENT_SECRET` = the Client Secret from GitHub
+
+3) Confirm `admin/config.yml` uses the GitHub backend
+- `admin/config.yml` in this repo has `backend.name: github` and `repo: jkhan31/jasonkhanani-website`.
+
+4) Deploy and test
+- Trigger a deploy on Netlify (new deploy picks up env vars).
+- Visit `https://jasonkhanani-website.netlify.app/admin` and sign in via GitHub.
+- Create a draft post; Netlify CMS will commit or open a PR depending on config.
+
+Local development notes
+- To test locally, set the env vars in your shell before running the dev server:
+```bash
+export GITHUB_CLIENT_ID=your_client_id
+export GITHUB_CLIENT_SECRET=your_client_secret
+npm run dev
+```
+
+Security notes
+- Keep the Client Secret private; Netlify environment variables are secure and suitable for this use.
+- If you want higher security, consider creating a GitHub App and using its credentials, but OAuth App is simpler for single-author setups.
+
 Security notes
 - Keep the Apps Script and n8n secrets private. Use n8n credentials / environment variables rather than hard-coding secrets.
 

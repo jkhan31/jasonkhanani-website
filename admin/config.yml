@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: jkhan31/jasonkhanani-website
   branch: main
+  # For OAuth, set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in Netlify environment variables
 
 media_folder: "content/posts/assets" # where media files will be stored in the repo
 public_folder: "/content/posts/assets"
@@ -24,5 +26,6 @@ collections:
       - { name: "body", label: "Body", widget: "markdown" }
 
 # Notes:
-# - This config uses Git Gateway (Netlify Identity + Git Gateway) for auth. If you prefer GitHub App auth, change `backend` accordingly.
+# - This config uses the GitHub backend. Register a GitHub OAuth App and set
+#   `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` as Netlify environment variables.
 # - Media files will be written under `content/posts/assets/` by default.
