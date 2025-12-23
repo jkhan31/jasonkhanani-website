@@ -40,3 +40,32 @@ npm run dev
 Visit `/writing/<slug>` to review.
 
 If you want, I can extend `import-docs` to accept folder names (search Drive), parallelize downloads, or support exporting to HTML instead of DOCX.
+
+Netlify-specific setup
+----------------------
+
+1. Deploy the site on Netlify
+- Connect the GitHub repo and set Build command: `npm run build` and Publish directory: `dist`.
+
+2. Admin routing
+- Add `_redirects` with `/admin/*  /admin/index.html  200` so the CMS UI loads correctly (already added in repo).
+
+3. Identity & Git Gateway
+- In Netlify > Site settings > Identity: Enable Identity service.
+- Under Identity, enable "Git Gateway" and authorize your Git provider. This allows Netlify CMS to create commits/PRs on behalf of editors.
+- Invite editor accounts or allow registration per your policy.
+
+4. Media
+- By default `admin/config.yml` writes media to `content/posts/assets`. If you prefer Cloudinary/S3, configure media settings in `config.yml` and set credentials as Netlify Environment Variables.
+
+5. Build hooks (for automation)
+- Create a Build Hook: Site → Settings → Build & deploy → Build hooks → Add build hook. Save the URL and set it as `NETLIFY_BUILD_HOOK_URL` in your n8n / host environment.
+
+6. n8n integration pointers
+- Use the included `scripts/n8n_import_workflow_template.json` as a starting point in n8n. Set `N8N_IMPORT_SECRET` in n8n and in your Apps Script `WEBHOOK_SECRET`.
+- The n8n flow should save the incoming file to disk, run `node ./scripts/convert-docx.js <file> "Title"`, then run `./scripts/git-commit-and-pr.sh "Title"` (script added in `scripts/`).
+- Ensure your n8n host has NodeJS, git, and optionally the `gh` CLI, and set `GITHUB_TOKEN` and `NETLIFY_BUILD_HOOK_URL` as environment variables.
+
+Security notes
+- Keep the Apps Script and n8n secrets private. Use n8n credentials / environment variables rather than hard-coding secrets.
+
