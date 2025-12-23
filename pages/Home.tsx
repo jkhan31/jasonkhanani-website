@@ -44,21 +44,27 @@ const Hero: React.FC = () => (
 const RemoteLeverage: React.FC = () => (
   <section className="px-6 py-24 md:py-32 bg-sumiInk text-ricePaper relative overflow-hidden">
     <div className="absolute inset-0 opacity-[0.03] bg-grid pointer-events-none" />
-    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-start relative z-10">
       <div>
-        <SectionHeader eyebrow="Remote-First Advantage" title="Why Industrial Engineering Matters for Remote Teams" className="mb-10 text-ricePaper" />
+        <SectionHeader
+          eyebrow="Operational Excellence"
+          title="Building Operational Excellence: Strategy to System."
+          className="text-ricePaper"
+          titleClassName="text-5xl md:text-6xl text-ricePaper"
+          eyebrowClassName="text-sm md:text-base"
+        />
         <div className="space-y-8 text-lg text-ricePaper/60 font-serif leading-relaxed">
           <p>
-            Remote organizations succeed when processes are visible, accountable, and resilient. I translate operational ambiguity into measurable control paths—so distributed teams can move faster without fragility.
+            In today's dynamic business environment, sustained impact stems from operational clarity and resilient systems. I specialize in dissecting complexity and engineering robust solutions that perform consistently, no matter the organizational structure.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {[
-              { icon: Database, title: "Revenue Forensics", desc: "Find and quantify revenue leakage across your data stack." },
-              { icon: Layers, title: "Async Architecture", desc: "Design playbooks that reduce meetings and increase throughput." },
-              { icon: Globe, title: "Compliance & Scaling", desc: "Build systems that respect regional constraints while scaling." }
+              { title: "Deep-Dive Diagnostics", desc: "Uncovering hidden inefficiencies and process leaks at the data level to inform strategic action." },
+              { title: "Asynchronous Workflow Design", desc: "Architecting seamless, documentation-driven processes that minimize dependencies and enhance cross-functional efficiency." },
+              { title: "Performance Optimization", desc: "Pinpointing friction points and bottlenecks to accelerate system throughput and maximize delivery speed." },
+              { title: "Scalable System Design", desc: "Building robust, adaptable processes and tools that reliably perform across diverse teams and evolving business needs." }
             ].map((item, i) => (
               <div key={i} className="group">
-                <item.icon className="text-foxOrange mb-4 group-hover:scale-110 transition-transform" size={24} />
                 <h4 className="text-ricePaper font-bold text-xs uppercase tracking-widest mb-2">{item.title}</h4>
                 <p className="text-sm opacity-80">{item.desc}</p>
               </div>
@@ -67,14 +73,23 @@ const RemoteLeverage: React.FC = () => (
         </div>
       </div>
       <div className="relative">
-        <div className="border-0.5 border-ricePaper/10 p-4 md:p-12 aspect-square flex flex-col justify-center items-center bg-white/5 backdrop-blur-sm">
-           <div className="relative w-full h-full border border-ricePaper/5 flex items-center justify-center">
-              <AxisMarker className="absolute h-full opacity-20 bg-ricePaper" />
-              <div className="w-3/4 h-3/4 border-0.5 border-dashed border-foxOrange/40 rounded-full animate-[spin_20s_linear_infinite]" />
-              <div className="absolute text-[10px] font-bold uppercase tracking-[0.5em] text-foxOrange -rotate-90 origin-center left-0">Purpose</div>
-              <div className="absolute text-[10px] font-bold uppercase tracking-[0.5em] text-ricePaper right-0 rotate-90 origin-center">Efficiency</div>
-              <ShieldCheck className="text-foxOrange" size={48} />
-           </div>
+        <div className="border-0.5 border-ricePaper/10 p-6 md:p-12 aspect-square flex flex-col justify-center items-start bg-white/5 backdrop-blur-sm">
+          <div className="w-full h-full flex flex-col justify-center gap-6 px-6">
+            {[
+              { title: "Deep-Dive Diagnostics", short: "Data-level forensics to find leaks and fix root causes." },
+              { title: "Async Workflow Design", short: "Documentation-led flows to reduce blockers and context-switching." },
+              { title: "Performance Optimization", short: "Targeted tuning of bottlenecks to speed delivery." },
+              { title: "Scalable System Design", short: "Processes and tools that adapt across teams and growth." }
+            ].map((p, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="w-3 h-3 rounded-full bg-foxOrange mt-2" />
+                <div>
+                  <h4 className="text-ricePaper font-bold text-sm uppercase tracking-widest">{p.title}</h4>
+                  <p className="text-ricePaper/70 text-sm">{p.short}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="absolute -bottom-6 -left-6 bg-hankoRust p-6 shadow-2xl">
           <span className="text-4xl font-serif">€1.5M+</span>
