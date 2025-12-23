@@ -5,7 +5,7 @@ import { SectionHeader } from '../components/SectionHeader';
 import { AxisMarker } from '../components/AxisMarker';
 import { Logo } from '../components/Logo';
 import { ARTICLES } from '../constants';
-import { ArrowRight, Globe, Layers, Zap, Database, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Globe, Layers, Database, ShieldCheck } from 'lucide-react';
 
 const Hero: React.FC = () => (
   <section className="px-6 py-24 md:py-32 lg:py-48 max-w-7xl mx-auto relative overflow-hidden">
@@ -55,7 +55,6 @@ const RemoteLeverage: React.FC = () => (
             {[
               { icon: Database, title: "Revenue Forensics", desc: "Find and quantify revenue leakage across your data stack." },
               { icon: Layers, title: "Async Architecture", desc: "Design playbooks that reduce meetings and increase throughput." },
-              { icon: Zap, title: "Velocity Audits", desc: "Map delivery cadence and remove cross-functional blockers." },
               { icon: Globe, title: "Compliance & Scaling", desc: "Build systems that respect regional constraints while scaling." }
             ].map((item, i) => (
               <div key={i} className="group">
@@ -99,7 +98,7 @@ const Tracks: React.FC = () => (
         <span className="text-hankoRust font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Investigator</span>
         <h3 className="text-4xl font-serif mb-8 italic">The Investigator</h3>
         <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
-          Diagnostic heavy lifting. I dive into your Postgres/BigQuery instances to find where revenue is leaking and why process owners are stuck.
+          I dive into your Postgres/BigQuery instances to find where revenue is leaking and why process owners are stuck.
         </p>
         <ul className="space-y-4 mb-12">
           {["Revenue Forensics", "SQL Data Modeling", "Scenario Sensitivity Analysis"].map(item => (
@@ -157,27 +156,15 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="px-6 py-20 max-w-5xl mx-auto text-center">
-        <div className="bg-white/5 p-12 border-0.5 border-hankoRust/10 rounded-lg">
-          <h2 className="text-3xl md:text-4xl font-serif mb-6">Want a short diagnostic that surfaces quick wins?</h2>
-          <p className="text-sumiInk/60 mb-8">I run a focused 60–90 minute diagnostic to flag the top 3 impact areas, evidence-backed.</p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a href="mailto:contact@jasonkhanani.com?subject=Diagnostic%20Request" className="px-10 py-4 bg-hankoRust text-ricePaper font-bold uppercase tracking-widest shadow-md hover:bg-foxOrange transition">Request Diagnostic Call</a>
-            <Link to="/evidence" className="px-10 py-4 border-0.5 border-sumiInk/20 font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition">See Example Diagnostics</Link>
-          </div>
-        </div>
-      </section>
-
       {/* Global Contact Hook */}
       <section className="px-6 py-32 bg-ricePaper text-center">
          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-serif mb-12">Ready for the audit?</h2>
+            <h2 className="text-4xl md:text-6xl font-serif mb-12">Let's Connect</h2>
             <p className="text-xl text-sumiInk/60 font-serif mb-16">
               I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams.
             </p>
             <div className="flex flex-wrap justify-center gap-8">
-               <a href="mailto:contact@jasonkhanani.com" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Request Diagnostic Call</a>
+               <a href="mailto:contact@jasonkhanani.com" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Get In Touch</a>
                <a href="https://linkedin.com/in/jasonkhanani" target="_blank" className="px-12 py-5 border-0.5 border-sumiInk/20 text-[10px] font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition-all">LinkedIn Profile</a>
             </div>
          </div>
