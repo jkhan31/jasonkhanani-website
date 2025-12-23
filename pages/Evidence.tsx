@@ -61,7 +61,7 @@ const Evidence: React.FC = () => {
           Ready to audit your operations?
         </h3>
         <a 
-          href="mailto:jasonkhanani@gmail.com"
+          href="mailto:jason@khanani.com"
           className="relative z-10 inline-block px-12 py-5 bg-hankoRust text-ricePaper uppercase tracking-widest text-xs font-bold hover:bg-foxOrange transition-colors"
         >
           Book a Diagnostic Call

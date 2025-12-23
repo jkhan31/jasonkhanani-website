@@ -35,7 +35,7 @@ const ResumePage = () => {
               <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">Jason Kester Hanani</h1>
               <p className="text-xl font-medium opacity-80" style={{ color: colors.rust }}>Senior Product & Operations Analyst | Systems Architect</p>
               <div className="flex flex-wrap gap-6 mt-6 text-sm font-medium opacity-60">
-                <a href="mailto:jasonkhanani@gmail.com" className="flex items-center gap-2 hover:text-foxOrange transition"><Mail size={16} /> jason@khanani.com</a>
+                <a href="mailto:jason@khanani.com" className="flex items-center gap-2 hover:text-foxOrange transition"><Mail size={16} /> jason@khanani.com</a>
                 <a href="https://linkedin.com/in/jasonkhanani" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition"><Linkedin size={16} /> linkedin.com/in/jasonkhanani</a>
                 <a href="https://jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition"><Globe size={16} /> Global Remote Ready</a>
               </div>
