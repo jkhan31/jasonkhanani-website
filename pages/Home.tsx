@@ -13,10 +13,10 @@ const Hero: React.FC = () => (
         <Logo size="xl" />
     </div>
     <div className="max-w-4xl relative z-10">
-      <p className="text-hankoRust font-bold tracking-[0.3em] text-[10px] uppercase mb-8 flex items-center">
+      <p className="text-hankoRust font-bold tracking-[0.3em] text-[14px] uppercase mb-8 flex items-center">
         INDUSTRIAL ENGINEER &bull; BUSINESS ANALYST
       </p>
-      <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-sumiInk leading-[0.95] mb-10 tracking-tight">
+      <h1 className="text-6xl md:text-8xl lg:text-5xl font-serif text-sumiInk leading-[0.95] mb-10 tracking-tight">
         Turning Messy Operations into <span className="italic text-foxOrange">Clear Decisions</span>
       </h1>
       <p className="text-sm uppercase text-sumiInk/50 mb-4 font-bold">Operational Clarity. Systemic Resilience.</p>
