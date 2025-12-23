@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node scripts/copy-admin.js",
+    "postbuild": "node scripts/copy-admin.cjs",
     "preview": "vite preview",
     "new-post": "node scripts/new-post.js",
     "convert-docx": "node scripts/convert-docx.js",
