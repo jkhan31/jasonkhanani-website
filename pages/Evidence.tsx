@@ -1,71 +1,114 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { CASE_STUDIES } from '../constants';
+import { TrendingUp, Search, Zap, MessageSquare, Layout } from 'lucide-react';
 
-const CaseCard: React.FC<{ study: any }> = ({ study }) => (
-  <div className="group border-0.5 border-hankoRust/20 bg-white/30 p-8 md:p-12 hover:border-hankoRust/50 transition-all duration-500">
-    <div className="flex flex-col h-full">
-      <div className="mb-8">
-        <span className={`text-[10px] uppercase tracking-widest font-bold mb-4 block ${
-          study.persona === 'Investigator' ? 'text-hankoRust' : study.persona === 'Architect' ? 'text-foxOrange' : 'text-sage'
-        }`}>
-          Track: {study.persona}
-        </span>
-        <h3 className="text-3xl font-serif text-sumiInk mb-4 leading-tight group-hover:text-hankoRust transition-colors">
-          {study.title}
-        </h3>
-        <p className="text-lg font-serif italic text-sumiInk/60 border-l-0.5 border-hankoRust/20 pl-6 my-6">
-          {study.hook}
-        </p>
-      </div>
+// Map persona types to appropriate icons
+const getIconForPersona = (persona: string) => {
+  switch (persona) {
+    case 'Investigator':
+      return Search;
+    case 'Architect':
+      return Layout;
+    default:
+      return Zap;
+  }
+};
 
-      <div className="space-y-4 mb-12 flex-grow">
-        {study.details.map((detail: string, idx: number) => (
-          <div key={idx} className="flex gap-4">
-            <span className="text-hankoRust opacity-40 font-serif text-xs pt-1">{String(idx + 1).padStart(2, '0')}</span>
-            <p className="text-sm text-sumiInk/70 leading-relaxed">{detail}</p>
+// Map case study IDs to specific icons
+const getIconForStudy = (id: string) => {
+  const iconMap: { [key: string]: any } = {
+    'revenue-preservation': TrendingUp,
+    'logistics-optimization': Search,
+    'network-reengineering': Zap,
+    'support-automation': MessageSquare,
+    'pmo-standardization': Layout,
+  };
+  return iconMap[id] || Zap;
+};
+
+const CaseCard: React.FC<{ study: any }> = ({ study }) => {
+  const IconComponent = getIconForStudy(study.id);
+  
+  return (
+    <div className="group border-0.5 border-darkText/20 bg-white p-8 md:p-12 hover:border-brandAccent transition-all duration-500 hover:shadow-lg">
+      <div className="flex flex-col h-full">
+        {/* Icon and Title Section */}
+        <div className="mb-8">
+          <div className="flex items-start justify-between mb-4">
+            <IconComponent className="w-8 h-8 text-brandAccent" strokeWidth={1.5} />
+            <span className="text-[10px] uppercase tracking-widest font-bold text-darkText/40">
+              {study.stealthTitle}
+            </span>
           </div>
-        ))}
-      </div>
+          <h3 className="text-3xl font-serif text-darkText mb-4 leading-tight group-hover:text-brandAccent transition-colors">
+            {study.title}
+          </h3>
+          <p className="text-base font-serif italic text-darkText/60 border-l-2 border-brandAccent/30 pl-6 my-6">
+            {study.hook}
+          </p>
+        </div>
 
-      <div className="pt-8 border-t-0.5 border-hankoRust/10">
-        <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/30 mb-2 block">Direct Impact</span>
-        <span className="text-2xl font-serif text-hankoRust">{study.impact}</span>
+        {/* Challenge → Diagnostic → Outcome Details */}
+        <div className="space-y-6 mb-12 flex-grow">
+          {study.details.map((detail: string, idx: number) => (
+            <div key={idx} className="flex flex-col gap-2">
+              <p className="text-sm text-darkText/80 leading-relaxed">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Impact Section with Hanko Rust accent */}
+        <div className="pt-8 border-t-0.5 border-darkText/10">
+          <span className="text-[10px] uppercase tracking-widest font-bold text-darkText/30 mb-2 block">
+            Outcome Impact
+          </span>
+          <span className="text-3xl font-serif text-hankoRust font-bold">{study.impact}</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Evidence: React.FC = () => {
   return (
-    <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
-      <SectionHeader 
-        eyebrow="Evidence Vault" 
-        title="Proof of Impact" 
-        className="mb-6"
-      />
-      <p className="text-lg text-sumiInk/60 max-w-2xl mb-16">
-        A collection of tactical operations and systems architecture cases. These results represent high-leverage interventions in complex environments.
-      </p>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-px md:bg-hankoRust/10">
-        {CASE_STUDIES.map(study => (
-          <CaseCard key={study.id} study={study} />
-        ))}
+    <div className="min-h-screen bg-neutralBg">
+      {/* Back to Home Navigation */}
+      <div className="px-6 pt-8 max-w-7xl mx-auto">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 text-sm text-darkText/60 hover:text-brandAccent transition-colors group"
+        >
+          <span className="group-hover:-translate-x-1 transition-transform">←</span>
+          <span>Back to Home</span>
+        </Link>
       </div>
 
-      <div className="mt-24 bg-sumiInk p-12 md:p-20 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-foxOrange via-transparent to-transparent" />
-        <h3 className="text-3xl md:text-4xl font-serif text-ricePaper mb-8 relative z-10">
-          Ready to audit your operations?
-        </h3>
-        <a 
-          href="mailto:contact@jasonkhanani.com"
-          className="relative z-10 inline-block px-12 py-5 bg-hankoRust text-ricePaper uppercase tracking-widest text-xs font-bold hover:bg-foxOrange transition-colors"
-        >
-          Book a Diagnostic Call
-        </a>
+      <div className="px-6 py-16 md:py-24 max-w-7xl mx-auto animate-in fade-in duration-700">
+        <SectionHeader 
+          eyebrow="Privacy-First Evidence" 
+          title="Systems in Action" 
+          className="mb-6"
+        />
+        <p className="text-lg text-darkText/70 max-w-3xl mb-16 leading-relaxed">
+          Bridging technical diagnostics with human-centered project management. Each case demonstrates high-leverage interventions in complex operational environments.
+        </p>
+
+        {/* Case Studies Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {CASE_STUDIES.map(study => (
+            <CaseCard key={study.id} study={study} />
+          ))}
+        </div>
+
+        {/* Footer Note */}
+        <div className="mt-16 pt-8 border-t-0.5 border-darkText/10 text-center">
+          <p className="text-sm text-darkText/50 italic max-w-2xl mx-auto leading-relaxed">
+            Detailed company history, specific project documentation, and raw data are available via resume upon request.
+          </p>
+        </div>
       </div>
     </div>
   );
