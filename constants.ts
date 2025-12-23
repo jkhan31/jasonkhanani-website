@@ -4,42 +4,68 @@ export { ARTICLES } from './lib/posts';
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    id: 'revenue-recovery',
-    title: 'ZALORA Marketplace Exchange',
-    stealthTitle: 'Leading SE Asian E-commerce Platform',
-    hook: 'Recovering €690K+ in leakage via SQL forensics and automated reconciliation.',
+    id: 'revenue-preservation',
+    title: 'Revenue Preservation',
+    stealthTitle: 'Global E-commerce Marketplace',
+    hook: 'The Challenge — Returns were bleeding revenue without structured diagnostics.',
     persona: 'Investigator',
-    impact: '€690K+ Recovered',
+    impact: '€700K',
     details: [
-      'Identified systematic reconciliation errors in marketplace exchange processes.',
-      'Developed SQL-based forensic tools to trace transaction anomalies.',
-      'Automated reconciliation workflows to prevent future leakage.'
+      'The Challenge: High return rates were masking underlying friction points in the customer journey, leading to significant revenue loss.',
+      'The Diagnostic: Conducted SQL forensics to trace return patterns and identified systematic issues in the exchange process.',
+      'Outcome Impact: Engineered an optimized exchange model that preserved €700K in annual revenue.'
     ]
   },
   {
-    id: 'logistics-routing',
-    title: 'Paxel Routing Engine',
-    stealthTitle: 'Regional Logistics Startup',
-    hook: 'Reducing fleet lead time by 60% through hub relocation and process re-engineering.',
+    id: 'logistics-optimization',
+    title: 'Logistics Optimization',
+    stealthTitle: 'Regional Logistics Network',
+    hook: 'The Challenge — Third-party logistics billing discrepancies were creating operational opacity.',
+    persona: 'Investigator',
+    impact: '€0.5M',
+    details: [
+      'The Challenge: Inconsistent 3PL billing created financial uncertainty and operational inefficiency across the distribution network.',
+      'The Diagnostic: Applied SQL-based forensics to audit billing records and trace systematic discrepancies in logistics partner invoicing.',
+      'Outcome Impact: Recovered and prevented future losses totaling €0.5M through data-driven reconciliation.'
+    ]
+  },
+  {
+    id: 'network-reengineering',
+    title: 'Network Re-Engineering',
+    stealthTitle: 'Multi-Node Distribution Network',
+    hook: 'The Challenge — Delivery lead times were exceeding competitive benchmarks by 40%.',
     persona: 'Architect',
-    impact: '60% Lead Time Reduction',
+    impact: '60% Gain',
     details: [
-      'Applied Industrial Engineering principles to redesign hub locations.',
-      'Optimized routing algorithms to maximize fleet utilization.',
-      'Reduced annual logistics operational costs by €520K.'
+      'The Challenge: Suboptimal hub placement and routing protocols were creating delivery delays and customer dissatisfaction.',
+      'The Diagnostic: Analyzed geospatial distribution patterns and applied industrial engineering principles to identify ideal hub locations.',
+      'Outcome Impact: Relocated 7 strategic hubs, achieving a 60% reduction in delivery lead time.'
     ]
   },
   {
-    id: 'agentic-ai',
-    title: 'Inkkeeper AI Pipeline',
-    stealthTitle: 'AI Workflow Prototyping',
-    hook: 'Architecting an AI-driven helpdesk to achieve 24/7 coverage with zero increase in headcount.',
-    persona: 'Future',
-    impact: '24/7 Operational Coverage',
+    id: 'support-automation',
+    title: 'Support Automation',
+    stealthTitle: 'E-commerce Support Operations',
+    hook: 'The Challenge — Support volume was scaling faster than team capacity.',
+    persona: 'Architect',
+    impact: '40% Reduction',
     details: [
-      'Integrated LLMs into existing customer support ticket flows.',
-      'Designed automated classification and triage systems.',
-      'Empowered agents to focus on complex diagnostics while AI handled repetitive tasks.'
+      'The Challenge: Repetitive customer inquiries were consuming agent bandwidth and slowing response times on complex issues.',
+      'The Diagnostic: Mapped customer journey touchpoints and classified support ticket patterns to identify automation opportunities.',
+      'Outcome Impact: Implemented targeted automation that reduced support volume by 40% while improving response quality.'
+    ]
+  },
+  {
+    id: 'pmo-standardization',
+    title: 'PMO Standardization',
+    stealthTitle: 'Multinational Corporate PMO',
+    hook: 'The Challenge — Regional teams operated in silos with no unified project visibility.',
+    persona: 'Architect',
+    impact: '100% Visibility',
+    details: [
+      'The Challenge: Fragmented project management practices across regions created misalignment and resource inefficiencies.',
+      'The Diagnostic: Audited existing workflows and designed a unified source-of-truth framework for cross-regional priorities.',
+      'Outcome Impact: Achieved 100% portfolio visibility across all regional operations, enabling strategic resource allocation.'
     ]
   }
 ];
