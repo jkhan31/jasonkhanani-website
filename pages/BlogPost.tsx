@@ -64,11 +64,11 @@ const BlogPost: React.FC = () => {
         </div>
       </header>
 
-      <div className="article-content prose max-w-none">
+      <article className="article-content max-w-none">
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
           {article.content}
         </ReactMarkdown>
-      </div>
+      </article>
 
       <section className="mt-24 pt-16 border-t-0.5 border-hankoRust/10">
         <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-sumiInk/30 mb-12 text-center md:text-left">Continue Reading</h3>
