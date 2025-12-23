@@ -22,11 +22,11 @@ export const CASE_STUDIES: CaseStudy[] = [
     stealthTitle: 'Regional Logistics Network',
     hook: 'The Challenge — Third-party logistics billing discrepancies were creating operational opacity.',
     persona: 'Investigator',
-    impact: '€0.5M',
+    impact: '€500K',
     details: [
       'The Challenge: Inconsistent 3PL billing created financial uncertainty and operational inefficiency across the distribution network.',
       'The Diagnostic: Applied SQL-based forensics to audit billing records and trace systematic discrepancies in logistics partner invoicing.',
-      'Outcome Impact: Recovered and prevented future losses totaling €0.5M through data-driven reconciliation.'
+      'Outcome Impact: Recovered and prevented future losses totaling € through data-driven reconciliation.'
     ]
   },
   {
