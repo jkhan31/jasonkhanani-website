@@ -163,7 +163,7 @@ const Home: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-serif mb-6">Want a short diagnostic that surfaces quick wins?</h2>
           <p className="text-sumiInk/60 mb-8">I run a focused 60–90 minute diagnostic to flag the top 3 impact areas, evidence-backed.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="mailto:jason@khanani.com?subject=Diagnostic%20Request" className="px-10 py-4 bg-hankoRust text-ricePaper font-bold uppercase tracking-widest shadow-md hover:bg-foxOrange transition">Request Diagnostic Call</a>
+            <a href="mailto:contact@jasonkhanani.com?subject=Diagnostic%20Request" className="px-10 py-4 bg-hankoRust text-ricePaper font-bold uppercase tracking-widest shadow-md hover:bg-foxOrange transition">Request Diagnostic Call</a>
             <Link to="/evidence" className="px-10 py-4 border-0.5 border-sumiInk/20 font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition">See Example Diagnostics</Link>
           </div>
         </div>
@@ -177,7 +177,7 @@ const Home: React.FC = () => {
               I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams.
             </p>
             <div className="flex flex-wrap justify-center gap-8">
-               <a href="mailto:jason@khanani.com" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Request Diagnostic Call</a>
+               <a href="mailto:contact@jasonkhanani.com" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Request Diagnostic Call</a>
                <a href="https://linkedin.com/in/jasonkhanani" target="_blank" className="px-12 py-5 border-0.5 border-sumiInk/20 text-[10px] font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition-all">LinkedIn Profile</a>
             </div>
          </div>
