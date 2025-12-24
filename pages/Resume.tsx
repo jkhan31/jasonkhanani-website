@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Download, Mail, Linkedin, Globe, Shield, Search, Zap, Code, Terminal, Clock } from 'lucide-react';
 
 const Badge: React.FC<{ children: React.ReactNode; color: string; icon?: any }> = ({ children, color, icon: Icon }) => (
@@ -160,7 +161,7 @@ const ResumePage = () => {
                 An engineering framework for human systems design, outlining principles for vocational resilience and systemic well-being in high-pressure environments.
               </p>
               <p className="text-sm opacity-60 mt-2">
-                <a href="/framework" className="text-hankoRust hover:text-foxOrange transition-colors" style={{ color: colors.rust }}>Learn more about the PWA &amp; SFR →</a>
+                <Link to="/framework" className="text-hankoRust hover:text-foxOrange transition-colors" style={{ color: colors.rust }}>Learn more about the PWA &amp; SFR →</Link>
               </p>
             </div>
           </section>
