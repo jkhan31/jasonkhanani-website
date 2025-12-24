@@ -123,18 +123,48 @@ const Writing: React.FC = () => {
   // Group non-featured articles by category for the grouped sections view
   const groupedArticles = useMemo(() => {
     const nonFeaturedArticles = normalizedArticles.filter((a: any) => !a.isFeatured);
-    const groups: Record<string, Article[]> = {};
+    const categoryMap = new Map<string, Article[]>();
     nonFeaturedArticles.forEach((article: any) => {
       const key = article.category || 'Uncategorized';
-      if (!groups[key]) groups[key] = [];
-      groups[key].push(article as Article);
+      const list = categoryMap.get(key) || [];
+      list.push(article as Article);
+      categoryMap.set(key, list);
     });
-    return Object.entries(groups)
+
+    const categoryGroups = Array.from(categoryMap.entries())
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([title, articles]) => ({
-        title,
-        articles: articles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime()),
-      }));
+      .map(([title, articles]) => {
+        // within category, group by series
+        const seriesMap = new Map<string, Article[]>();
+        const noSeries: Article[] = [];
+        articles.forEach(a => {
+          if (a.series) {
+            const list = seriesMap.get(a.series) || [];
+            list.push(a);
+            seriesMap.set(a.series, list);
+          } else {
+            noSeries.push(a);
+          }
+        });
+
+        const seriesGroups = Array.from(seriesMap.entries())
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([title, arts]) => ({
+            title,
+            articles: arts.sort((x, y) => y.dateObj.getTime() - x.dateObj.getTime()),
+          }));
+
+        // sort no-series articles by date desc
+        noSeries.sort((x, y) => y.dateObj.getTime() - x.dateObj.getTime());
+
+        return {
+          title,
+          seriesGroups,
+          articles: noSeries,
+        };
+      });
+
+    return categoryGroups;
   }, [normalizedArticles]);
 
   return (
@@ -241,13 +271,31 @@ const Writing: React.FC = () => {
           {groupedArticles.map(group => (
             <div key={group.title} className="mb-16 last:mb-0">
               <SectionHeader title={group.title} className="mb-8" />
-              <div className="flex overflow-x-auto whitespace-nowrap gap-6 pb-4 md:pb-8">
-                {group.articles.map(article => (
-                  <div key={article.slug} className="w-80 flex-shrink-0">
-                    <ArticlePreviewCard article={article} compact={true} />
-                  </div>
-                ))}
-              </div>
+                    {group.seriesGroups.map(seriesGroup => (
+                      <div key={seriesGroup.title} className="mb-6">
+                        <h3 className="text-xl font-serif text-sumiInk/80 mb-4">{seriesGroup.title}</h3>
+                        <div className="flex overflow-x-auto whitespace-nowrap gap-6 pb-4 md:pb-8 scrollbar-hide">
+                          {seriesGroup.articles.map(article => (
+                            <div key={article.slug} className="w-80 flex-shrink-0">
+                              <ArticlePreviewCard article={article} compact={true} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+
+                    {group.articles && group.articles.length > 0 && (
+                      <div className="mb-6">
+                        <h3 className="text-xl font-serif text-sumiInk/80 mb-4">Other</h3>
+                        <div className="flex overflow-x-auto whitespace-nowrap gap-6 pb-4 md:pb-8 scrollbar-hide">
+                          {group.articles.map(article => (
+                            <div key={article.slug} className="w-80 flex-shrink-0">
+                              <ArticlePreviewCard article={article} compact={true} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
             </div>
           ))}
         </div>
