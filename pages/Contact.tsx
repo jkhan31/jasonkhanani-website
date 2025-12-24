@@ -115,6 +115,7 @@ const Contact: React.FC = () => {
             </button>
 
             {status === 'success' && <div className="text-sm text-foxOrange">Thanks — message sent.</div>}
+
             {status === 'error' && <div className="text-sm text-foxOrange">There was a problem. Please try again.</div>}
           </div>
         </form>
