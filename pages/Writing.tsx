@@ -9,6 +9,9 @@ const Writing: React.FC = () => {
   // Filter state (category or series)
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeFilterKind, setActiveFilterKind] = useState<'category' | 'series' | null>(null);
+  // Pagination prep (not rendered yet)
+  const [articlesPerPage, setArticlesPerPage] = useState<number>(9);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   // Normalize ARTICLES to guarantee fields needed for filtering, sorting, and tagging.
   const normalizedArticles = useMemo(() => {
@@ -95,7 +98,8 @@ const Writing: React.FC = () => {
   }, [normalizedArticles]);
 
   // Filtered grid (excludes featured) based on activeFilter/state
-  const filteredArticlesForDisplay = useMemo(() => {
+  // Step 1: compute the full filtered list
+  const filteredArticlesAll = useMemo(() => {
     let articles = normalizedArticles.filter((a: any) => !a.isFeatured);
     if (activeFilter && activeFilterKind === 'category') {
       articles = articles.filter((a: any) => a.category === activeFilter);
@@ -104,6 +108,17 @@ const Writing: React.FC = () => {
     }
     return articles.sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());
   }, [activeFilter, activeFilterKind, normalizedArticles]);
+
+  // Step 2: slice for current page (pagination prep)
+  const filteredArticlesForDisplay = useMemo(() => {
+    const start = (currentPage - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    return filteredArticlesAll.slice(start, end);
+  }, [filteredArticlesAll, currentPage, articlesPerPage]);
+
+  const totalFilteredPages = useMemo(() => {
+    return Math.max(1, Math.ceil(filteredArticlesAll.length / articlesPerPage));
+  }, [filteredArticlesAll.length, articlesPerPage]);
 
   // Group non-featured articles by category for the grouped sections view
   const groupedArticles = useMemo(() => {
@@ -204,7 +219,7 @@ const Writing: React.FC = () => {
             {activeFilterKind === 'category' ? `Category: ${activeFilter}` : `Series: ${activeFilter}`}
           </h2>
           {filteredArticlesForDisplay.length > 0 ? (
-            <div id="articles-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="articles-grid" className="mt-6 bg-ricePaper rounded-lg shadow-inner p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredArticlesForDisplay.map((article: any) => (
                 <ArticlePreviewCard key={article.slug} article={article} compact={true} />
               ))}
