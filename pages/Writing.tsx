@@ -24,8 +24,8 @@ const Writing: React.FC = () => {
       // Ensure tags is an array
       const tags = Array.isArray(a.tags)
         ? a.tags
-        : typeof a.tags === 'string'
-        ? a.tags.split(/\s*,\s*/).filter(Boolean)
+        : typeof (a as any).tags === 'string'
+        ? (a as any).tags.split(/\s*,\s*/).filter(Boolean)
         : [];
 
       // Ensure slug and id
@@ -173,7 +173,7 @@ const Writing: React.FC = () => {
   }, [normalizedArticles]);
 
   return (
-    <div className="px-6 py-24 md:py-32 max-w-4xl mx-auto animate-in fade-in duration-700">
+    <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
       <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
       <p className="text-lg text-sumiInk/60 mb-12 leading-relaxed">
         Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
@@ -242,9 +242,9 @@ const Writing: React.FC = () => {
       {featuredArticlesToDisplay.length > 0 && (
         <div className="mb-12 border-0.5 border-foxOrange/50 bg-foxOrange/5 rounded-lg p-6">
           <SectionHeader title="Featured Insights" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredArticlesToDisplay.map((article: any) => (
-              <ArticlePreviewCard key={article.slug} article={article} compact={false} />
+              <ArticlePreviewCard key={article.slug} article={article} compact />
             ))}
           </div>
         </div>
@@ -260,7 +260,7 @@ const Writing: React.FC = () => {
             <>
               <div id="articles-grid" className="mt-6 bg-ricePaper rounded-lg shadow-inner p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredArticlesForDisplay.map((article: any) => (
-                  <ArticlePreviewCard key={article.slug} article={article} compact={true} />
+                  <ArticlePreviewCard key={article.slug} article={article} compact />
                 ))}
               </div>
 
@@ -322,11 +322,9 @@ const Writing: React.FC = () => {
                     {group.seriesGroups.map(seriesGroup => (
                       <div key={seriesGroup.title} className="mb-6">
                         <h3 className="text-xl font-serif text-sumiInk/80 mb-4">{seriesGroup.title}</h3>
-                        <div className="flex overflow-x-auto whitespace-nowrap gap-6 pb-4 md:pb-8 scrollbar-hide">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                           {seriesGroup.articles.map(article => (
-                            <div key={article.slug} className="w-80 flex-shrink-0">
-                              <ArticlePreviewCard article={article} compact={true} />
-                            </div>
+                            <ArticlePreviewCard key={article.slug} article={article} compact />
                           ))}
                         </div>
                       </div>
@@ -334,12 +332,10 @@ const Writing: React.FC = () => {
 
                     {group.articles && group.articles.length > 0 && (
                       <div className="mb-6">
-                        <h3 className="text-xl font-serif text-sumiInk/80 mb-4">Other</h3>
-                        <div className="flex overflow-x-auto whitespace-nowrap gap-6 pb-4 md:pb-8 scrollbar-hide">
+                        <h3 className="text-xl font-serif text-sumiInk/80 mb-4">Standalone Articles</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                           {group.articles.map(article => (
-                            <div key={article.slug} className="w-80 flex-shrink-0">
-                              <ArticlePreviewCard article={article} compact={true} />
-                            </div>
+                            <ArticlePreviewCard key={article.slug} article={article} compact />
                           ))}
                         </div>
                       </div>

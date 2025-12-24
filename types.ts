@@ -39,6 +39,6 @@ export interface Article {
   dateObj: Date; // normalized Date instance for sorting
   isFeatured: boolean;
 
-  // Preserve any existing content representation
-  content: ContentBlock[];
+  // Preserve any existing content representation (markdown string from .md or structured blocks)
+  content: string | ContentBlock[];
 }

@@ -1,7 +1,7 @@
     import React from 'react';
     import { Link } from 'react-router-dom';
     import { Clock } from 'lucide-react';
-    import type { Article } from '../lib/posts';
+    import type { Article } from '../types';
 
     interface ArticlePreviewCardProps {
     article: Article;
@@ -12,7 +12,7 @@
     return (
         <Link 
         to={`/writing/${article.slug}`} 
-        className="group block p-8 md:p-12 border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl hover:border-hankoRust/30 transition-all duration-500 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none"
+        className={`group block ${compact ? 'p-6' : 'p-8 md:p-12'} border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl hover:border-hankoRust/30 transition-all duration-500 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none flex flex-col h-full`}
         >
         {/* Date, Category, Read Time */}
         <div className="flex items-center justify-between mb-4">
@@ -31,15 +31,17 @@
             </div>
         </div>
 
-        {/* Title */}
-        <h4 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-serif mb-6 text-sumiInk group-hover:text-foxOrange transition-colors leading-tight`}>
-            {article.title}
-        </h4>
+        {/* Title + Excerpt (growable content area to keep CTA/tags at bottom) */}
+        <div className="flex-grow">
+            <h4 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-serif mb-4 text-sumiInk group-hover:text-foxOrange transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+                {article.title}
+            </h4>
 
-        {/* Excerpt */}
-        <p className={`text-sumiInk/60 font-serif mb-8 leading-relaxed ${compact ? 'line-clamp-2' : 'line-clamp-3'}`}>
-            {article.excerpt}
-        </p>
+            {/* Excerpt */}
+            <p className={`text-sumiInk/60 font-serif mb-8 leading-relaxed ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+                {article.excerpt}
+            </p>
+        </div>
 
         {/* CTA and Tags */}
         <div className="flex items-center justify-between">
@@ -48,7 +50,7 @@
             </span>
             <div className="flex flex-wrap gap-2 justify-end">
             {article.tags.slice(0, 2).map(tag => (
-                <span key={tag} className="text-[8px] uppercase tracking-widest font-bold text-sumiInk/20">
+                <span key={tag} className="text-[9px] uppercase tracking-widest font-bold text-sumiInk/40">
                 #{tag}
                 </span>
             ))}

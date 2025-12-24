@@ -65,9 +65,26 @@ const BlogPost: React.FC = () => {
       </header>
 
       <article className="article-content max-w-none">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
-          {article.content}
-        </ReactMarkdown>
+        {(() => {
+          const markdownSource = typeof article.content === 'string'
+            ? article.content
+            : Array.isArray(article.content)
+            ? article.content.map((blk: any) => {
+                if (blk.type === 'paragraph') return blk.value;
+                if (blk.type === 'heading') return `## ${blk.value}`;
+                if (blk.type === 'callout') return `> ${blk.value}`;
+                if (blk.type === 'image') return `![${blk.caption || ''}](${blk.url})`;
+                if (blk.type === 'table') return '';
+                return '';
+              }).join('\n\n')
+            : '';
+
+          return (
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+              {markdownSource}
+            </ReactMarkdown>
+          );
+        })()}
       </article>
 
       <section className="mt-24 pt-16 border-t-0.5 border-hankoRust/10">
