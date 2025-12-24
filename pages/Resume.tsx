@@ -136,37 +136,71 @@ const ResumePage = () => {
           </div>
         </section>
 
-        {/* Bottom Grid: Education, Research & Stack */}
-        <div className="grid md:grid-cols-3 gap-12 border-t-0.5 pt-12 relative z-10" style={{ borderColor: `${colors.ink}20` }}>
-          {/* Education */}
+        {/* Bottom Grid: Education & Certifications, My Methodology, The Stack */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 border-t-0.5 pt-12 relative z-10" style={{ borderColor: `${colors.ink}20` }}>
+          {/* Education & Certifications */}
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Education</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Education &amp; Certifications</h2>
             <div className="mb-6">
-              <h4 className="font-bold text-base">University of Michigan</h4>
-              <p className="text-sm opacity-60">B.S.E. Industrial &amp; Operations Engineering (Cum Laude) — Dec 2018</p>
+              <h4 className="font-bold text-base">B.S.E. Industrial &amp; Operations Engineering (Cum Laude)</h4>
+              <p className="text-sm opacity-60">University of Michigan, College of Engineering — Dec 2018</p>
             </div>
             <div className="mb-6">
-              <h4 className="font-bold text-base">Six Sigma Green Belt Certification</h4>
+              <h4 className="font-bold text-base">Six Sigma Green Belt</h4>
               <p className="text-sm opacity-60">Institute of Industrial and Systems Engineers — Certification No. 2558-18401 (Apr 2017)</p>
             </div>
           </section>
-          {/* Research */}
-          <section>
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Research</h2>
-            <div>
-              <h4 className="font-bold text-base" style={{ color: colors.sage }}>Research Lead</h4>
-              <p className="text-xs opacity-60 italic">Developed <span style={{ color: colors.sage }}>The Purpose-Wellbeing Axis (PWA)</span> &amp; <span style={{ color: colors.sage }}>The Sustainable Feedback Rhythm (SFR)</span>—a human systems design framework for building vocational resilience and fostering systemic well-being.</p>
+
+          {/* My Methodology (PWA & SFR) */}
+          <section className="md:col-span-2 lg:col-span-2">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">My Methodology</h2>
+            <div className="border-l-2 pl-4" style={{ borderColor: colors.sage }}>
+              <h3 className="font-bold text-base" style={{ color: colors.sage, marginBottom: '0.5rem' }}>The Purpose-Wellbeing Axis (PWA) &amp; The Sustainable Feedback Rhythm (SFR)</h3>
+              <p className="text-sm opacity-80 italic leading-relaxed">
+                An engineering framework for human systems design, outlining principles for vocational resilience and systemic well-being in high-pressure environments.
+              </p>
+              <p className="text-sm opacity-60 mt-2">
+                <a href="/framework" className="text-hankoRust hover:text-foxOrange transition-colors" style={{ color: colors.rust }}>Learn more about the PWA &amp; SFR →</a>
+              </p>
             </div>
           </section>
-          {/* Stack */}
+
+          {/* The Stack (categorized) */}
           <section>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">The Stack</h2>
-            <div className="flex flex-wrap gap-2">
-              {['SQL (MySQL, PostgreSQL)', 'Python (AI-Augmented Workflows)', 'Looker', 'Tableau', 'Advanced Excel Modeling', 'n8n Automation', 'Scenario Modeling', 'BRD Writing', 'DMAIC', 'GenAI', 'Prompt Engineering'].map(tool => (
-                <span key={tool} className="px-3 py-1 bg-ricePaper border border-hankoRust/20 text-[10px] font-bold uppercase tracking-widest text-sumiInk rounded-full opacity-80 hover:border-foxOrange hover:text-foxOrange transition-all cursor-default">
-                  {tool}
-                </span>
-              ))}
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-bold text-sm mb-2" style={{ color: colors.rust }}>Operational Clarity &amp; Analysis</h4>
+                <div className="flex flex-wrap gap-2">
+                  {['SQL (EDA)', 'Python (AI-Augmented EDA)', 'Tableau', 'Looker', 'Advanced Excel Modeling', 'Scenario Modeling'].map(skill => (
+                    <span key={skill} className="px-3 py-1 bg-slate-50 border border-slate-200 text-xs font-semibold rounded-full opacity-80 text-slate-700">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-sm mb-2" style={{ color: colors.orange }}>Systems Architecture &amp; Automation</h4>
+                <div className="flex flex-wrap gap-2">
+                  {['n8n Automation', 'Workflow Automation', 'BRD Writing', 'DMAIC'].map(skill => (
+                    <span key={skill} className="px-3 py-1 bg-slate-50 border border-slate-200 text-xs font-semibold rounded-full opacity-80 text-slate-700">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-sm mb-2" style={{ color: colors.sage }}>AI Integration</h4>
+                <div className="flex flex-wrap gap-2">
+                  {['GenAI', 'Prompt Engineering'].map(skill => (
+                    <span key={skill} className="px-3 py-1 bg-slate-50 border border-slate-200 text-xs font-semibold rounded-full opacity-80 text-slate-700">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
         </div>
