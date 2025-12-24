@@ -137,13 +137,13 @@ const ResumePage = () => {
         </section>
 
         {/* Bottom Grid: Education & Certifications, My Methodology, The Stack */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 border-t-0.5 pt-12 relative z-10" style={{ borderColor: `${colors.ink}20` }}>
+        <div className="flex flex-col gap-12 border-t-0.5 pt-12 relative z-10" style={{ borderColor: `${colors.ink}20` }}>
           {/* Education & Certifications */}
           <section>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Education &amp; Certifications</h2>
             <div className="mb-6">
               <h4 className="font-bold text-base">B.S.E. Industrial &amp; Operations Engineering (Cum Laude)</h4>
-              <p className="text-sm opacity-60">University of Michigan, College of Engineering — Dec 2018</p>
+              <p className="text-sm opacity-60">University of Michigan, College of Engineering (Dec 2018)</p>
             </div>
             <div className="mb-6">
               <h4 className="font-bold text-base">Six Sigma Green Belt</h4>
@@ -152,7 +152,7 @@ const ResumePage = () => {
           </section>
 
           {/* My Methodology (PWA & SFR) */}
-          <section className="md:col-span-2 lg:col-span-2">
+          <section>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">My Methodology</h2>
             <div className="border-l-2 pl-4" style={{ borderColor: colors.sage }}>
               <h3 className="font-bold text-base" style={{ color: colors.sage, marginBottom: '0.5rem' }}>The Purpose-Wellbeing Axis (PWA) &amp; The Sustainable Feedback Rhythm (SFR)</h3>
