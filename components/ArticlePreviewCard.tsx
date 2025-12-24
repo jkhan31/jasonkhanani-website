@@ -12,7 +12,7 @@
     return (
         <Link 
         to={`/writing/${article.slug}`} 
-        className="group block p-8 md:p-12 border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl hover:border-hankoRust/30 transition-all duration-500"
+        className="group block p-8 md:p-12 border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl hover:border-hankoRust/30 transition-all duration-500 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none"
         >
         {/* Date, Category, Read Time */}
         <div className="flex items-center justify-between mb-4">

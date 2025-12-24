@@ -180,8 +180,9 @@ const Writing: React.FC = () => {
           role="tab"
           aria-selected={!activeFilter}
           aria-controls="articles-grid"
+          aria-label={`Show all insights (${nonFeaturedCount} articles)`}
           onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
-          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none ${
             !activeFilter ? 'bg-hankoRust text-ricePaper border-hankoRust' : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
           }`}
         >
@@ -198,8 +199,9 @@ const Writing: React.FC = () => {
               role="tab"
               aria-selected={isActive}
               aria-controls="articles-grid"
+              aria-label={`Filter articles by category: ${cat} (${count})`}
               onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none ${
                 isActive ? 'bg-hankoRust text-ricePaper border-hankoRust' : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
               }`}
             >
@@ -218,8 +220,9 @@ const Writing: React.FC = () => {
               role="tab"
               aria-selected={isActive}
               aria-controls="articles-grid"
+              aria-label={`Filter articles by series: ${s} (${count})`}
               onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none ${
                 isActive ? 'bg-foxOrange text-ricePaper border-foxOrange' : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
               }`}
             >
@@ -267,7 +270,7 @@ const Writing: React.FC = () => {
           )}
         </div>
       ) : (
-        <div className="mt-12">
+        <div id="articles-grid" className="mt-12">
           {groupedArticles.map(group => (
             <div key={group.title} className="mb-16 last:mb-0">
               <SectionHeader title={group.title} className="mb-8" />
