@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
+import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ARTICLES } from '../constants';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 
@@ -8,16 +9,67 @@ const Writing: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTag = searchParams.get('tag');
 
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    ARTICLES.forEach(a => a.tags.forEach(t => tags.add(t)));
-    return Array.from(tags).sort();
+  // Normalize ARTICLES to guarantee fields needed for filtering, sorting, and tagging.
+  const normalizedArticles = useMemo(() => {
+    return ARTICLES.map((a, idx) => {
+      // Ensure tags is an array
+      const tags = Array.isArray(a.tags)
+        ? a.tags
+        : typeof a.tags === 'string'
+        ? a.tags.split(/\s*,\s*/).filter(Boolean)
+        : [];
+
+      // Ensure slug and id
+      const slug = a.slug || (a.title ? a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : `post-${idx}`);
+      const id = (a as any).id || slug;
+
+      // Date normalization: keep original string but also add a Date object for sorting
+      const dateStr = a.date || '';
+      const dateObj = dateStr ? new Date(dateStr) : new Date(0);
+
+      // Ensure isFeatured boolean
+      const isFeatured = (a as any).isFeatured === true;
+
+      return {
+        ...a,
+        id,
+        slug,
+        tags,
+        isFeatured,
+        date: dateStr,
+        dateObj,
+      } as any;
+    }).sort((x: any, y: any) => y.dateObj.getTime() - x.dateObj.getTime());
   }, []);
 
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    normalizedArticles.forEach(a => (a.tags || []).forEach((t: string) => tags.add(t)));
+    return Array.from(tags).sort();
+  }, [normalizedArticles]);
+
   const filteredArticles = useMemo(() => {
-    if (!activeTag) return ARTICLES;
-    return ARTICLES.filter(a => a.tags.includes(activeTag));
-  }, [activeTag]);
+    if (!activeTag) return normalizedArticles;
+    return normalizedArticles.filter(a => (a.tags || []).includes(activeTag));
+  }, [activeTag, normalizedArticles]);
+
+  // Featured selection with fallback to fill two slots
+  const featuredArticlesToDisplay = useMemo(() => {
+    const featured = normalizedArticles.filter(a => a.isFeatured).slice();
+    featured.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+    const result: any[] = [];
+    // Take up to 2 featured
+    for (let i = 0; i < Math.min(2, featured.length); i++) result.push(featured[i]);
+    if (result.length < 2) {
+      // Fill remaining slots with most recent non-featured articles
+      const nonFeatured = normalizedArticles.filter(a => !a.isFeatured && !result.find(r => r.slug === a.slug));
+      nonFeatured.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+      for (let i = 0; i < nonFeatured.length && result.length < 2; i++) {
+        result.push(nonFeatured[i]);
+      }
+    }
+    return result;
+  }, [normalizedArticles]);
 
   const handleTagToggle = (tag: string | null) => {
     if (tag) {
@@ -62,6 +114,18 @@ const Writing: React.FC = () => {
         ))}
       </div>
 
+      {/* Featured Insights */}
+      {featuredArticlesToDisplay.length > 0 && (
+        <div className="mb-12 border-0.5 border-foxOrange/50 bg-foxOrange/5 rounded-lg p-6">
+          <SectionHeader title="Featured Insights" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featuredArticlesToDisplay.map((article: any) => (
+              <ArticlePreviewCard key={article.slug} article={article} compact={false} />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="space-y-16">
         {filteredArticles.length > 0 ? (
           filteredArticles.map((article, idx) => (
@@ -93,7 +157,7 @@ const Writing: React.FC = () => {
                     Read Essay <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="flex flex-wrap gap-2">
-                    {article.tags.map(t => (
+                    {(article.tags || []).map((t: string) => (
                       <span key={t} className="text-[9px] uppercase tracking-widest font-bold text-sumiInk/20">#{t}</span>
                     ))}
                   </div>
