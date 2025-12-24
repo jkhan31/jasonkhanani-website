@@ -12,6 +12,19 @@
   </head>
   <body class="bg-grid">
     <div id="root"></div>
+
+    <!--
+      This is a hidden Netlify form to ensure Netlify's build process detects it.
+      The React `Contact` component submits to the corresponding Netlify endpoint.
+    -->
+    <form name="contact" netlify hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <button type="submit"></button>
+    </form>
+    <!-- End hidden Netlify form -->
+
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

@@ -217,8 +217,8 @@ const Home: React.FC = () => {
               I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams.
             </p>
             <div className="flex flex-wrap justify-center gap-8">
-               <a href="mailto:contact@jasonkhanani.com" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Get In Touch</a>
-               <a href="https://linkedin.com/in/jasonkhanani" target="_blank" className="px-12 py-5 border-0.5 border-sumiInk/20 text-[10px] font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition-all">LinkedIn Profile</a>
+              <Link to="/contact" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Get In Touch</Link>
+              <a href="https://linkedin.com/in/jasonkhanani" target="_blank" className="px-12 py-5 border-0.5 border-sumiInk/20 text-[10px] font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition-all">LinkedIn Profile</a>
             </div>
          </div>
       </section>
