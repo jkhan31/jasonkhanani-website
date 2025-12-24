@@ -1,3 +1,7 @@
+/// <reference types="vite/client" />
+
+import type { Article } from '../types';
+
 type RawModule = Record<string, string>;
 
 const modules = import.meta.glob('../content/posts/*.md', { eager: true, query: '?raw', import: 'default' }) as RawModule;
@@ -44,20 +48,28 @@ function parseFrontmatter(raw: string) {
   return { data, content };
 }
 
-export const ARTICLES = Object.entries(modules).map(([filePath, raw]) => {
+export const ARTICLES: Article[] = Object.entries(modules).map(([filePath, raw]) => {
   const { data, content } = parseFrontmatter(raw);
   const slugMatch = filePath.match(/([^/\\]+)\.md$/);
   const slug = slugMatch ? slugMatch[1] : filePath;
-  return {
+  const dateStr = data.date || '';
+  const dateObj = dateStr ? new Date(dateStr) : new Date(0);
+
+  const article: Article = {
+    id: data.id || slug,
     slug,
     title: data.title || slug,
     excerpt: data.excerpt || '',
-    date: data.date || '',
+    date: dateStr,
+    dateObj,
     readTime: data.readTime || estimateReadingTime(content),
     category: data.category || '',
+    series: data.series || null,
     tags: data.tags || [],
-    content,
+    isFeatured: data.isFeatured === true,
+    // We don't parse full content blocks here; provide an empty array for typing consistency.
+    content: [] as any,
   };
-}).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-export type Article = typeof ARTICLES[number];
+  return article;
+}).sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());

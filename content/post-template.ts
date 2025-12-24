@@ -2,12 +2,16 @@
 import { Article } from '../types';
 
 export const NEW_POST_TEMPLATE: Article = {
+  id: "your-url-slug",
   slug: "your-url-slug",
   title: "A Compelling Title That Commands Authority",
   excerpt: "A sharp, one-to-two sentence summary that creates immediate curiosity.",
   date: "Month Year",
+  dateObj: new Date("Month Year"),
   readTime: "X min",
   category: "Strategy",
+  series: null,
+  isFeatured: false,
   tags: ["Tag1", "Tag2"],
   content: [
     { type: 'paragraph', value: "Introduction paragraph goes here." },

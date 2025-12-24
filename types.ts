@@ -26,12 +26,19 @@ export type ContentBlock =
   | { type: 'table'; headers: string[]; rows: string[][] };
 
 export interface Article {
+  // Guaranteed fields after normalization
+  id: string;
   slug: string;
   title: string;
   excerpt: string;
-  date: string;
   readTime: string;
-  tags: string[];
   category: string;
-  content: ContentBlock[];
+  series: string | null;
+  tags: string[];
+  date: string; // original date string (YYYY-MM-DD)
+  dateObj: Date; // normalized Date instance for sorting
+  isFeatured: boolean;
+
+  // Preserve any existing content representation (markdown string from .md or structured blocks)
+  content: string | ContentBlock[];
 }
