@@ -84,21 +84,24 @@ const Writing: React.FC = () => {
     return counts;
   }, [normalizedArticles]);
 
-  // Featured selection with fallback to fill two slots
+  // Featured selection: show up to 3 slots. If fewer than 3 featured exist,
+  // fill remaining slots with the most recent non-featured articles.
   const featuredArticlesToDisplay = useMemo(() => {
     const featured = normalizedArticles.filter(a => a.isFeatured).slice();
     featured.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
     const result: any[] = [];
-    // Take up to 2 featured
-    for (let i = 0; i < Math.min(2, featured.length); i++) result.push(featured[i]);
-    if (result.length < 2) {
+    // Take up to 3 featured (most recent first)
+    for (let i = 0; i < Math.min(3, featured.length); i++) result.push(featured[i]);
+
+    if (result.length < 3) {
       // Fill remaining slots with most recent non-featured articles
       const nonFeatured = normalizedArticles.filter(a => !a.isFeatured && !result.find(r => r.slug === a.slug));
       nonFeatured.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
-      for (let i = 0; i < nonFeatured.length && result.length < 2; i++) {
+      for (let i = 0; i < nonFeatured.length && result.length < 3; i++) {
         result.push(nonFeatured[i]);
       }
     }
+
     return result;
   }, [normalizedArticles]);
 
