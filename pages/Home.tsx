@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { AxisMarker } from '../components/AxisMarker';
 import { Logo } from '../components/Logo';
+import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ARTICLES } from '../constants';
 import { ArrowRight, Globe, Layers, Database, ShieldCheck } from 'lucide-react';
 
@@ -143,31 +144,68 @@ const Tracks: React.FC = () => (
 );
 
 const Home: React.FC = () => {
+  // Select 3 articles: prioritize featured, then most recent
+  const selectedArticles = useMemo(() => {
+    // First, get all featured articles sorted by date (most recent first)
+    const featured = ARTICLES
+      .filter(a => a.tags.includes('featured') || a.category === 'Featured')
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    
+    // If we have 3+ featured articles, return the first 3
+    if (featured.length >= 3) {
+      return featured.slice(0, 3);
+    }
+    
+    // Otherwise, combine featured articles with most recent non-featured
+    const nonFeatured = ARTICLES
+      .filter(a => !featured.includes(a))
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    
+    return [...featured, ...nonFeatured].slice(0, 3);
+  }, []);
+
   return (
     <div className="animate-in fade-in duration-1000">
       <Hero />
       <RemoteLeverage />
       <Tracks />
       
-      {/* Latest Writing Teaser */}
+      {/* Insights & Strategic Thinking */}
       <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto border-t-0.5 border-hankoRust/10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-             <div className="max-w-xl">
-               <SectionHeader eyebrow="Insights" title="Architects of Operational Excellence" className="mb-0" />
-             </div>
-             <Link to="/writing" className="group flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust">
-               Read All Insights <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
-             </Link>
+          <div className="max-w-2xl">
+            <SectionHeader 
+              eyebrow="Insights & Strategic Thinking" 
+              title="Latest from the Operations Vault" 
+              className="mb-0" 
+            />
+            <p className="text-sumiInk/60 font-serif mt-6 leading-relaxed">
+              Deep dives into operational excellence, system design, and the future of AI-augmented business operations.
+            </p>
           </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {ARTICLES.slice(0, 2).map((article, i) => (
-            <Link key={i} to={`/writing/${article.slug}`} className="group p-8 md:p-12 border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl transition-all duration-500">
-               <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-hankoRust/40 mb-4 block">{article.date} &bull; {article.category}</span>
-               <h4 className="text-2xl md:text-3xl font-serif mb-6 group-hover:text-foxOrange transition-colors">{article.title}</h4>
-               <p className="text-sumiInk/60 font-serif mb-8 line-clamp-2">{article.excerpt}</p>
-               <span className="text-[10px] uppercase font-bold tracking-widest border-b border-sumiInk/20 group-hover:border-foxOrange transition-all">Read Essay</span>
-            </Link>
+          <Link 
+            to="/writing" 
+            className="group flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors whitespace-nowrap"
+          >
+            View All Essays <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+          </Link>
+        </div>
+        
+        {/* 3-Column Grid of Article Previews */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {selectedArticles.map((article) => (
+            <ArticlePreviewCard key={article.slug} article={article} compact />
           ))}
+        </div>
+        
+        {/* View All CTA */}
+        <div className="mt-16 text-center">
+          <Link
+            to="/writing"
+            className="inline-flex items-center px-10 py-4 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange hover:shadow-lg transition-all duration-300"
+          >
+            View All Essays
+          </Link>
         </div>
       </section>
 
