@@ -55,6 +55,27 @@ const Writing: React.FC = () => {
     return Array.from(series).sort();
   }, [normalizedArticles]);
 
+  const nonFeaturedCount = useMemo(() => normalizedArticles.filter((a: any) => !a.isFeatured).length, [normalizedArticles]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    normalizedArticles.forEach((a: any) => {
+      if (a.isFeatured) return;
+      const key = a.category || 'Uncategorized';
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    return counts;
+  }, [normalizedArticles]);
+
+  const seriesCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    normalizedArticles.forEach((a: any) => {
+      if (a.isFeatured) return;
+      if (a.series) counts[a.series] = (counts[a.series] || 0) + 1;
+    });
+    return counts;
+  }, [normalizedArticles]);
+
   // Featured selection with fallback to fill two slots
   const featuredArticlesToDisplay = useMemo(() => {
     const featured = normalizedArticles.filter(a => a.isFeatured).slice();
@@ -109,43 +130,59 @@ const Writing: React.FC = () => {
       </p>
 
       {/* Global Filter Bar */}
-      <div className="flex overflow-x-auto whitespace-nowrap gap-4 mb-8 py-2 border-b-0.5 border-sumiInk/10">
+      <div className="flex overflow-x-auto whitespace-nowrap gap-4 mb-8 py-2 border-b-0.5 border-sumiInk/10" role="tablist" aria-label="Article filters">
         <button
+          role="tab"
+          aria-selected={!activeFilter}
+          aria-controls="articles-grid"
           onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
-          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all ${
+          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
             !activeFilter ? 'bg-hankoRust text-ricePaper border-hankoRust' : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
           }`}
         >
-          All Insights
+          <span>All Insights</span>
+          <span className={`${!activeFilter ? 'text-ricePaper/80' : 'text-sumiInk/60'}`}>({nonFeaturedCount})</span>
         </button>
 
-        {allCategories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all ${
-              activeFilter === cat && activeFilterKind === 'category'
-                ? 'bg-hankoRust text-ricePaper border-hankoRust'
-                : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+        {allCategories.map(cat => {
+          const count = categoryCounts[cat] || 0;
+          const isActive = activeFilter === cat && activeFilterKind === 'category';
+          return (
+            <button
+              key={cat}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls="articles-grid"
+              onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+                isActive ? 'bg-hankoRust text-ricePaper border-hankoRust' : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
+              }`}
+            >
+              <span>{cat}</span>
+              <span className={`${isActive ? 'text-ricePaper/80' : 'text-sumiInk/60'}`}>({count})</span>
+            </button>
+          );
+        })}
 
-        {allSeries.map(s => (
-          <button
-            key={s}
-            onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all ${
-              activeFilter === s && activeFilterKind === 'series'
-                ? 'bg-foxOrange text-ricePaper border-foxOrange'
-                : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
-            }`}
-          >
-            {s}
-          </button>
-        ))}
+        {allSeries.map(s => {
+          const count = seriesCounts[s] || 0;
+          const isActive = activeFilter === s && activeFilterKind === 'series';
+          return (
+            <button
+              key={s}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls="articles-grid"
+              onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+                isActive ? 'bg-foxOrange text-ricePaper border-foxOrange' : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
+              }`}
+            >
+              <span>{s}</span>
+              <span className={`${isActive ? 'text-ricePaper/80' : 'text-sumiInk/60'}`}>({count})</span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Featured Insights */}
@@ -167,14 +204,14 @@ const Writing: React.FC = () => {
             {activeFilterKind === 'category' ? `Category: ${activeFilter}` : `Series: ${activeFilter}`}
           </h2>
           {filteredArticlesForDisplay.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="articles-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredArticlesForDisplay.map((article: any) => (
                 <ArticlePreviewCard key={article.slug} article={article} compact={true} />
               ))}
             </div>
           ) : (
             <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
-              <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No articles found for this selection.</p>
+              <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No articles found in the '{activeFilter}' {activeFilterKind}.</p>
               <button
                 onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
                 className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust hover:border-foxOrange hover:text-foxOrange transition-all"
