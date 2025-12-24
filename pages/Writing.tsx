@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
@@ -12,6 +12,11 @@ const Writing: React.FC = () => {
   // Pagination prep (not rendered yet)
   const [articlesPerPage, setArticlesPerPage] = useState<number>(9);
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // Reset page when active filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter, activeFilterKind]);
 
   // Normalize ARTICLES to guarantee fields needed for filtering, sorting, and tagging.
   const normalizedArticles = useMemo(() => {
@@ -252,11 +257,51 @@ const Writing: React.FC = () => {
             {activeFilterKind === 'category' ? `Category: ${activeFilter}` : `Series: ${activeFilter}`}
           </h2>
           {filteredArticlesForDisplay.length > 0 ? (
-            <div id="articles-grid" className="mt-6 bg-ricePaper rounded-lg shadow-inner p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredArticlesForDisplay.map((article: any) => (
-                <ArticlePreviewCard key={article.slug} article={article} compact={true} />
-              ))}
-            </div>
+            <>
+              <div id="articles-grid" className="mt-6 bg-ricePaper rounded-lg shadow-inner p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredArticlesForDisplay.map((article: any) => (
+                  <ArticlePreviewCard key={article.slug} article={article} compact={true} />
+                ))}
+              </div>
+
+              {/* Pagination controls (only for filtered grid) */}
+              {totalFilteredPages > 1 && (
+                <div className="mt-6 flex justify-center items-center gap-3">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-md transition-all ${
+                      currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:border-hankoRust/50 hover:text-sumiInk'
+                    }`}
+                  >
+                    Previous
+                  </button>
+
+                  {Array.from({ length: totalFilteredPages }, (_, i) => i + 1).map(pageNum => (
+                    <button
+                      key={pageNum}
+                      onClick={() => setCurrentPage(pageNum)}
+                      aria-current={currentPage === pageNum}
+                      className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-md transition-all ${
+                        currentPage === pageNum ? 'bg-hankoRust text-ricePaper border-hankoRust' : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  ))}
+
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalFilteredPages, p + 1))}
+                    disabled={currentPage === totalFilteredPages}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-md transition-all ${
+                      currentPage === totalFilteredPages ? 'opacity-40 cursor-not-allowed' : 'hover:border-hankoRust/50 hover:text-sumiInk'
+                    }`}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
               <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No articles found in the '{activeFilter}' {activeFilterKind}.</p>
