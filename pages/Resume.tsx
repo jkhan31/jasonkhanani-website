@@ -32,8 +32,8 @@ const ResumePage = () => {
         <header className="relative z-10 border-b-0.5 pb-10 mb-12" style={{ borderColor: `${colors.ink}10` }}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div>
-              <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">Jason Kester Hanani</h1>
-              <p className="text-xl font-medium opacity-80" style={{ color: colors.rust }}>Senior Product & Operations Analyst | Systems Architect</p>
+              <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">JASON KESTER HANANI</h1>
+              <p className="text-xl font-medium opacity-80" style={{ color: colors.rust }}>Industrial Engineer & Business Analyst</p>
               <div className="flex flex-wrap gap-6 mt-6 text-sm font-medium opacity-60">
                 <a href="mailto:contact@jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition"><Mail size={16} /> contact@jasonkhanani.com</a>
                 <a href="https://linkedin.com/in/jasonkhanani" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition"><Linkedin size={16} /> linkedin.com/in/jasonkhanani</a>
@@ -53,7 +53,7 @@ const ResumePage = () => {
         <section className="mb-12 relative z-10">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Professional Summary</h2>
           <p className="text-lg leading-relaxed font-serif italic opacity-80 border-l-2 pl-6" style={{ borderColor: colors.orange }}>
-            Industrial Engineer &amp; Business Analyst with 6+ years of experience specializing in deep-dive analysis to streamline complexity and build resilient operational systems. Proven track record of delivering <strong style={{ color: colors.rust }}>€1.5M+ in quantified impact</strong> through process engineering, systems architecture, and AI-augmented insights in e-commerce and logistics. Developer of <span style={{ color: colors.sage, fontWeight: 'bold' }}>The Purpose-Wellbeing Axis (PWA)</span>, an engineering-based framework for human systems design, used to architect workflows that prevent burnout and foster <span style={{ color: colors.sage, fontWeight: 'bold' }}>Systemic Resilience</span> in high-pressure remote environments.
+            <strong>Industrial Engineer & Business Analyst</strong> with 6+ years of experience. I specialize in <strong>deep-dive analysis to streamline complexity</strong> and <strong>architect resilient operational systems</strong>. Proven track record of delivering over <strong style={{ color: colors.rust }}>€1.5M in quantified impact</strong> through process engineering, <strong>AI-augmented workflows</strong>, and human systems design in e-commerce and logistics. I focus on fostering <strong style={{ color: colors.sage }}>Systemic Resilience</strong> and high-performing operations.
           </p>
         </section>
 
@@ -61,10 +61,10 @@ const ResumePage = () => {
         <section className="mb-12 relative z-10">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Core Competencies</h2>
           <ul className="list-disc pl-6 text-sm opacity-80 leading-relaxed">
-            <li><strong>Operational Analysis:</strong> Deep-dive diagnostics, Process Mapping &amp; Optimization, Capacity Planning, A/B Testing, Funnel Analysis, Metric Design (Retention, Conversion).</li>
-            <li><strong>Systems Architecture:</strong> Lean Six Sigma (Green Belt), Human Systems Design (PWA/SFR), Business Requirement Documentation (BRD), Systems Thinking.</li>
-            <li><strong>AI &amp; Data:</strong> SQL (MySQL, PostgreSQL), Python (AI-Augmented Workflows), Looker, Tableau, Advanced Excel Modeling, Prompt Engineering for Operations.</li>
-            <li><strong>Methodology:</strong> Industrial Engineering Principles, DMAIC, Strategic Cost &amp; Efficiency Modeling.</li>
+            <li><strong>Operational Clarity &amp; Analysis:</strong> SQL (for data extraction &amp;EDA), Python (AI-Augmented EDA), Tableau, Looker, Advanced Excel Modeling (scenario planning &amp; simulation).</li>
+            <li><strong>Systems Architecture &amp; Optimization:</strong> Lean Six Sigma Green Belt, Process Mapping &amp; Optimization, DMAIC, Workflow Automation (n8n/Python), Human Systems Design.</li>
+            <li><strong>AI Integration:</strong> AI-Augmented Workflows, Prompt Engineering for Operations, AI-Driven Diagnostics, Prototyping Product Requirements with GenAI.</li>
+            <li><strong>Strategic Impact:</strong> Root Cause Analysis, Business Requirement Documentation (BRD), Supply Chain Optimization, Business Process Improvement, Decision Leverage.</li>
           </ul>
         </section>
 
@@ -139,11 +139,11 @@ const ResumePage = () => {
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Education</h2>
             <div className="mb-6">
               <h4 className="font-bold text-base">University of Michigan</h4>
-              <p className="text-sm opacity-60">B.S.E. Industrial &amp; Operations Engineering (Cum Laude)</p>
+              <p className="text-sm opacity-60">B.S.E. Industrial &amp; Operations Engineering (Cum Laude) — Dec 2018</p>
             </div>
             <div className="mb-6">
               <h4 className="font-bold text-base">Six Sigma Green Belt Certification</h4>
-              <p className="text-sm opacity-60">Institute of Industrial &amp; Systems Engineers (IISE)</p>
+              <p className="text-sm opacity-60">Institute of Industrial and Systems Engineers — Certification No. 2558-18401 (Apr 2017)</p>
             </div>
           </section>
           {/* Research */}
