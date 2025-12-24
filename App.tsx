@@ -1,6 +1,7 @@
 
 import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import AnalyticsTracker from './utils/AnalyticsTracker';
 import { Layout } from './components/Layout';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -53,6 +54,7 @@ const App: React.FC = () => {
   return (
     <HashRouter>
       <ScrollToTop />
+      <AnalyticsTracker />
       <Layout>
         <ErrorBoundary>
         <Suspense fallback={<Loading />}>
