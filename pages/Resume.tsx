@@ -34,11 +34,11 @@ const ResumePage = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div>
               <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">JASON KESTER HANANI</h1>
-              <p className="text-xl font-medium opacity-80" style={{ color: colors.rust }}>Industrial Engineer & Business Analyst</p>
-              <div className="flex items-center gap-4 mt-6 text-sm font-medium opacity-60">
-                <a href="mailto:contact@jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition"><Mail size={16} /> contact@jasonkhanani.com</a>
-                <a href="https://jasonkhanani.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition"><Globe size={16} /> jasonkhanani.com</a>
-                <a href="https://www.linkedin.com/in/jasonkhanani/" target="_blank" rel="noreferrer" className="ml-4 inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-shadow">
+              <p className="text-xl font-medium opacity-80 whitespace-normal break-words max-w-full" style={{ color: colors.rust }}>Industrial Engineer &amp; Business Analyst</p>
+              <div className="flex flex-col md:flex-row md:items-center gap-2 mt-6 text-sm font-medium opacity-60">
+                <a href="mailto:contact@jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words"><Mail size={16} /> contact@jasonkhanani.com</a>
+                <a href="https://jasonkhanani.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words mt-2 md:mt-0"><Globe size={16} /> jasonkhanani.com</a>
+                <a href="https://www.linkedin.com/in/jasonkhanani/" target="_blank" rel="noreferrer" className="mt-2 md:ml-4 md:mt-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-shadow">
                   <Linkedin size={16} />
                 </a>
               </div>
