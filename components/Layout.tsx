@@ -149,6 +149,7 @@ const Footer: React.FC = () => (
         <div className="flex flex-col md:items-end justify-center space-y-4">
           <a href="https://www.linkedin.com/in/jasonkhanani/" className="hover:text-foxOrange transition-colors">LinkedIn</a>
           <Link to="/evidence" className="hover:text-foxOrange transition-colors">Evidence Vault</Link>
+          <Link to="/contact" className="hover:text-foxOrange transition-colors">Contact</Link>
           <Link to="/resume" className="hover:text-foxOrange transition-colors">Resume</Link>
         </div>
       </div>

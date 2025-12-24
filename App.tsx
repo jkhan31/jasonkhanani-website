@@ -9,6 +9,7 @@ const Framework = lazy(() => import('./pages/Framework'));
 const Writing = lazy(() => import('./pages/Writing'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Resume = lazy(() => import('./pages/Resume'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -62,6 +63,7 @@ const App: React.FC = () => {
             <Route path="/writing" element={<Writing />} />
             <Route path="/writing/:slug" element={<BlogPost />} />
             <Route path="/resume" element={<Resume />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </Suspense>
         </ErrorBoundary>
