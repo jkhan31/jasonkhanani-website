@@ -51,6 +51,14 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
+            {location.pathname !== '/' && (
+              <Link
+                to="/"
+                className={`text-sm tracking-wide transition-colors text-sumiInk hover:text-foxOrange`}
+              >
+                Home
+              </Link>
+            )}
             {links.map((link) => (
               <Link
                 key={link.path}
@@ -94,6 +102,17 @@ const Header: React.FC = () => {
         `}
       >
         <div className="flex flex-col justify-center items-center flex-grow p-8 space-y-10 text-center">
+          {location.pathname !== '/' && (
+            <Link
+              to="/"
+              onClick={closeMenu}
+              className={`text-4xl font-serif transition-all duration-500 delay-0ms ${
+                'text-sumiInk hover:text-foxOrange'
+              } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+            >
+              Home
+            </Link>
+          )}
           {links.map((link, idx) => (
             <Link
               key={link.path}
