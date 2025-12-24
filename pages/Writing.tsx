@@ -1,13 +1,14 @@
-import React, { useMemo } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ARTICLES } from '../constants';
-import { ArrowRight, Clock, Tag } from 'lucide-react';
+import type { Article } from '../types';
 
 const Writing: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const activeTag = searchParams.get('tag');
+  // Filter state (category or series)
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [activeFilterKind, setActiveFilterKind] = useState<'category' | 'series' | null>(null);
 
   // Normalize ARTICLES to guarantee fields needed for filtering, sorting, and tagging.
   const normalizedArticles = useMemo(() => {
@@ -42,16 +43,17 @@ const Writing: React.FC = () => {
     }).sort((x: any, y: any) => y.dateObj.getTime() - x.dateObj.getTime());
   }, []);
 
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    normalizedArticles.forEach(a => (a.tags || []).forEach((t: string) => tags.add(t)));
-    return Array.from(tags).sort();
+  const allCategories = useMemo(() => {
+    const categories = new Set<string>();
+    normalizedArticles.forEach(a => categories.add(a.category || ''));
+    return Array.from(categories).filter(Boolean).sort();
   }, [normalizedArticles]);
 
-  const filteredArticles = useMemo(() => {
-    if (!activeTag) return normalizedArticles;
-    return normalizedArticles.filter(a => (a.tags || []).includes(activeTag));
-  }, [activeTag, normalizedArticles]);
+  const allSeries = useMemo(() => {
+    const series = new Set<string>();
+    normalizedArticles.forEach(a => a.series && series.add(a.series));
+    return Array.from(series).sort();
+  }, [normalizedArticles]);
 
   // Featured selection with fallback to fill two slots
   const featuredArticlesToDisplay = useMemo(() => {
@@ -71,45 +73,77 @@ const Writing: React.FC = () => {
     return result;
   }, [normalizedArticles]);
 
-  const handleTagToggle = (tag: string | null) => {
-    if (tag) {
-      setSearchParams({ tag });
-    } else {
-      setSearchParams({});
+  // Filtered grid (excludes featured) based on activeFilter/state
+  const filteredArticlesForDisplay = useMemo(() => {
+    let articles = normalizedArticles.filter((a: any) => !a.isFeatured);
+    if (activeFilter && activeFilterKind === 'category') {
+      articles = articles.filter((a: any) => a.category === activeFilter);
+    } else if (activeFilter && activeFilterKind === 'series') {
+      articles = articles.filter((a: any) => a.series === activeFilter);
     }
-  };
+    return articles.sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());
+  }, [activeFilter, activeFilterKind, normalizedArticles]);
+
+  // Group non-featured articles by category for the grouped sections view
+  const groupedArticles = useMemo(() => {
+    const nonFeaturedArticles = normalizedArticles.filter((a: any) => !a.isFeatured);
+    const groups: Record<string, Article[]> = {};
+    nonFeaturedArticles.forEach((article: any) => {
+      const key = article.category || 'Uncategorized';
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(article as Article);
+    });
+    return Object.entries(groups)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([title, articles]) => ({
+        title,
+        articles: articles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime()),
+      }));
+  }, [normalizedArticles]);
 
   return (
     <div className="px-6 py-24 md:py-32 max-w-4xl mx-auto animate-in fade-in duration-700">
-      <SectionHeader eyebrow="Thought Leadership" title="Decision Rigor" />
+      <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
       <p className="text-lg text-sumiInk/60 mb-12 leading-relaxed">
         Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
       </p>
 
-      {/* Filter Chips */}
-      <div className="flex flex-wrap gap-2 mb-20">
+      {/* Global Filter Bar */}
+      <div className="flex overflow-x-auto whitespace-nowrap gap-4 mb-8 py-2 border-b-0.5 border-sumiInk/10">
         <button
-          onClick={() => handleTagToggle(null)}
-          className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest border transition-all ${
-            activeTag === null 
-              ? 'bg-sumiInk text-ricePaper border-sumiInk shadow-md' 
-              : 'text-sumiInk/40 border-hankoRust/10 hover:border-hankoRust/30'
+          onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
+          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all ${
+            !activeFilter ? 'bg-hankoRust text-ricePaper border-hankoRust' : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
           }`}
         >
-          All Posts
+          All Insights
         </button>
-        {allTags.map(tag => (
+
+        {allCategories.map(cat => (
           <button
-            key={tag}
-            onClick={() => handleTagToggle(tag)}
-            className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest border transition-all flex items-center gap-2 ${
-              activeTag === tag 
-                ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md' 
-                : 'text-sumiInk/40 border-hankoRust/10 hover:border-hankoRust/30'
+            key={cat}
+            onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
+            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all ${
+              activeFilter === cat && activeFilterKind === 'category'
+                ? 'bg-hankoRust text-ricePaper border-hankoRust'
+                : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
             }`}
           >
-            <Tag size={10} />
-            {tag}
+            {cat}
+          </button>
+        ))}
+
+        {allSeries.map(s => (
+          <button
+            key={s}
+            onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
+            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all ${
+              activeFilter === s && activeFilterKind === 'series'
+                ? 'bg-foxOrange text-ricePaper border-foxOrange'
+                : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
+            }`}
+          >
+            {s}
           </button>
         ))}
       </div>
@@ -126,57 +160,46 @@ const Writing: React.FC = () => {
         </div>
       )}
 
-      <div className="space-y-16">
-        {filteredArticles.length > 0 ? (
-          filteredArticles.map((article, idx) => (
-            <Link to={`/writing/${article.slug}`} key={idx} className="group block">
-              <article className="border-b border-hankoRust/5 pb-16">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-hankoRust">
-                      {article.date}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-hankoRust/20" />
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/40">
-                      {article.category}
-                    </span>
+      {/* Conditional main content: filtered grid OR grouped sections */}
+      {activeFilter ? (
+        <div className="mt-12">
+          <h2 className="text-2xl font-serif text-sumiInk mb-8">
+            {activeFilterKind === 'category' ? `Category: ${activeFilter}` : `Series: ${activeFilter}`}
+          </h2>
+          {filteredArticlesForDisplay.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredArticlesForDisplay.map((article: any) => (
+                <ArticlePreviewCard key={article.slug} article={article} compact={true} />
+              ))}
+            </div>
+          ) : (
+            <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
+              <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No articles found for this selection.</p>
+              <button
+                onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
+                className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust hover:border-foxOrange hover:text-foxOrange transition-all"
+              >
+                View All Insights
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="mt-12">
+          {groupedArticles.map(group => (
+            <div key={group.title} className="mb-16 last:mb-0">
+              <SectionHeader title={group.title} className="mb-8" />
+              <div className="flex overflow-x-auto whitespace-nowrap gap-6 pb-4 md:pb-8">
+                {group.articles.map(article => (
+                  <div key={article.slug} className="w-80 flex-shrink-0">
+                    <ArticlePreviewCard article={article} compact={true} />
                   </div>
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-sumiInk/30 mt-2 md:mt-0">
-                    <Clock size={12} />
-                    {article.readTime}
-                  </div>
-                </div>
-                <h3 className="text-3xl md:text-4xl font-serif text-sumiInk group-hover:text-foxOrange transition-colors mb-6 leading-tight">
-                  {article.title}
-                </h3>
-                <p className="text-lg text-sumiInk/60 leading-relaxed mb-8 max-w-2xl">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center gap-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust/20 pb-1 group-hover:border-foxOrange group-hover:text-foxOrange transition-all flex items-center">
-                    Read Essay <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {(article.tags || []).map((t: string) => (
-                      <span key={t} className="text-[9px] uppercase tracking-widest font-bold text-sumiInk/20">#{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            </Link>
-          ))
-        ) : (
-          <div className="py-20 text-center border-0.5 border-dashed border-hankoRust/20">
-            <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No matching articles found for this specialization.</p>
-            <button 
-              onClick={() => handleTagToggle(null)}
-              className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust"
-            >
-              Reset Filters
-            </button>
-          </div>
-        )}
-      </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
