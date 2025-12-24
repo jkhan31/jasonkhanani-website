@@ -1,7 +1,7 @@
 
 import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
-import AnalyticsTracker from './utils/AnalyticsTracker';
+import AnalyticsTracker from './src/utils/AnalyticsTracker';
 import { Layout } from './components/Layout';
 
 const Home = lazy(() => import('./pages/Home'));
