@@ -25,12 +25,15 @@ async function generateSitemap() {
     const query = '*[_type == "article"].slug.current';
     const articleSlugs = await client.fetch(query);
     
-    console.log(`Found ${articleSlugs.length} articles from Sanity`);
+    // Filter out null/undefined slugs
+    const validSlugs = articleSlugs.filter(slug => slug != null && slug !== '');
+    
+    console.log(`Found ${validSlugs.length} articles from Sanity`);
     
     // Combine static routes with article routes
     const allUrls = [
       ...staticRoutes,
-      ...articleSlugs.map(slug => `/writing/${slug}`)
+      ...validSlugs.map(slug => `/writing/${slug}`)
     ];
     
     // Generate XML sitemap
@@ -53,7 +56,7 @@ ${urlElements}
     fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemap);
     
     console.log('Sitemap generated successfully to public/sitemap.xml');
-    console.log(`Total URLs: ${allUrls.length} (${staticRoutes.length} static + ${articleSlugs.length} articles)`);
+    console.log(`Total URLs: ${allUrls.length} (${staticRoutes.length} static + ${validSlugs.length} articles)`);
   } catch (error) {
     console.error('Error generating sitemap:', error);
     process.exit(1);
