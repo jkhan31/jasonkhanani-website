@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-sitemap.js",
     "build": "vite build",
-    "postbuild": "node scripts/generate-sitemap.js && node scripts/copy-admin.cjs",
+    "postbuild": "node scripts/copy-admin.cjs",
     "preview": "vite preview",
     "new-post": "node scripts/new-post.js",
     "convert-docx": "node scripts/convert-docx.js",
