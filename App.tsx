@@ -1,4 +1,3 @@
-
 import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import AnalyticsTracker from './src/utils/AnalyticsTracker';
@@ -8,7 +7,8 @@ const Home = lazy(() => import('./pages/Home'));
 const Evidence = lazy(() => import('./pages/Evidence'));
 const Framework = lazy(() => import('./pages/Framework'));
 const Writing = lazy(() => import('./pages/Writing'));
-const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Article = lazy(() => import('./pages/Article'));
+
 const Resume = lazy(() => import('./pages/Resume'));
 const Contact = lazy(() => import('./pages/Contact'));
 
@@ -63,7 +63,7 @@ const App: React.FC = () => {
             <Route path="/evidence" element={<Evidence />} />
             <Route path="/framework" element={<Framework />} />
             <Route path="/writing" element={<Writing />} />
-            <Route path="/writing/:slug" element={<BlogPost />} />
+            <Route path="/writing/:slug" element={<Article />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

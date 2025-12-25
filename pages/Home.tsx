@@ -1,11 +1,12 @@
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { AxisMarker } from '../components/AxisMarker';
 import { Logo } from '../components/Logo';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ARTICLES } from '../constants';
+import { client, urlFor } from '../src/client';
 import { ArrowRight, Globe, Layers, Database, ShieldCheck } from 'lucide-react';
 
 const Hero: React.FC = () => (
@@ -144,25 +145,62 @@ const Tracks: React.FC = () => (
 );
 
 const Home: React.FC = () => {
-  // Select 3 articles: prioritize featured, then most recent
-  const selectedArticles = useMemo(() => {
-    // First, get all featured articles sorted by date (most recent first)
-    const featured = ARTICLES
-      .filter(a => a.tags.includes('featured') || a.category === 'Featured')
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    
-    // If we have 3+ featured articles, return the first 3
-    if (featured.length >= 3) {
-      return featured.slice(0, 3);
-    }
-    
-    // Otherwise, combine featured articles with most recent non-featured
-    const nonFeatured = ARTICLES
-      .filter(a => !featured.includes(a))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    
-    return [...featured, ...nonFeatured].slice(0, 3);
+  // Fetch Sanity articles and select featured articles (match Writing page behavior)
+  const [sanityData, setSanityData] = useState<any[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchArticles = async () => {
+      try {
+        const query = `*[_type == "article"] | order(publishedAt desc) { title, "slug": slug.current, publishedAt, excerpt, mainImage, isFeatured, "category": category->title, "series": series->title, "tags": tags[]->title }`;
+        const res = await client.fetch(query);
+        if (!mounted) return;
+        setSanityData(res || []);
+      } catch (err) {
+        console.error('Failed to fetch Sanity articles for Home:', err);
+      }
+    };
+    fetchArticles();
+    return () => { mounted = false; };
   }, []);
+
+  const normalizedArticles = useMemo(() => {
+    if (!sanityData || sanityData.length === 0) return ARTICLES;
+    return sanityData.map((a: any, idx: number) => {
+      const tags = Array.isArray(a.tags) ? a.tags : [];
+      const slug = a.slug || `post-${idx}`;
+      const dateStr = a.publishedAt || new Date().toISOString();
+      const dateObj = new Date(dateStr);
+      const image = a.mainImage ? urlFor(a.mainImage).width(800).url() : null;
+      return {
+        id: slug,
+        slug,
+        title: a.title || slug,
+        excerpt: a.excerpt || '',
+        readTime: a.readTime || '5 min',
+        category: a.category || 'Uncategorized',
+        series: a.series || null,
+        tags,
+        date: dateObj.toISOString().slice(0,10),
+        dateObj,
+        isFeatured: a.isFeatured === true,
+        content: [] as any,
+        image,
+      } as any;
+    }).sort((x: any, y: any) => y.dateObj.getTime() - x.dateObj.getTime());
+  }, [sanityData]);
+
+  const selectedArticles = useMemo(() => {
+    const featured = normalizedArticles.filter((a: any) => a.isFeatured).slice().sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());
+    const result: any[] = [];
+    for (let i = 0; i < Math.min(3, featured.length); i++) result.push(featured[i]);
+    if (result.length < 3) {
+      const nonFeatured = normalizedArticles.filter((a: any) => !a.isFeatured && !result.find(r => r.slug === a.slug));
+      nonFeatured.sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());
+      for (let i = 0; i < nonFeatured.length && result.length < 3; i++) result.push(nonFeatured[i]);
+    }
+    return result;
+  }, [normalizedArticles]);
 
   return (
     <div className="animate-in fade-in duration-1000">
