@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { PortableText } from '@portabletext/react';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { client, urlFor } from '../src/client'; // Import from src folder
@@ -67,6 +68,7 @@ const Article: React.FC = () => {
             publishedAt,
             mainImage,
             body,
+            "slug": slug,
             "category": category->title,
             "tags": tags[]->title
           },
@@ -126,8 +128,31 @@ const Article: React.FC = () => {
   const formattedDate = new Date(current.publishedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
   const readTime = getReadTime(current.body);
 
+  // Generate social image URL for Open Graph and Twitter Cards
+  const socialImageUrl = current.mainImage 
+    ? urlFor(current.mainImage).width(1200).height(630).url() 
+    : '';
+
   return (
     <div className="px-6 py-24 md:py-32 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <Helmet>
+        <title>{current.title} | Jason K Hanani</title>
+        <meta name="description" content={current.excerpt || ''} />
+        
+        {/* Open Graph tags */}
+        <meta property="og:title" content={current.title} />
+        <meta property="og:description" content={current.excerpt || ''} />
+        <meta property="og:url" content={`https://jasonkhanani.com/#/writing/${current.slug.current}`} />
+        {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+        <meta property="og:type" content="article" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={current.title} />
+        <meta name="twitter:description" content={current.excerpt || ''} />
+        {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+      </Helmet>
+
       <Link 
         to="/writing" 
         className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors mb-12 group"
