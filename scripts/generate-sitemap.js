@@ -1,5 +1,4 @@
-import { SitemapStream, streamToPromise } from 'sitemap';
-import { Readable } from 'stream';
+import { createClient } from '@sanity/client';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -7,27 +6,61 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const hostname = 'https://jasonkhanani.com'; // Your production domain
+// Sanity client configuration
+const client = createClient({
+  projectId: 'lrta5lyp',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2023-05-03',
+});
 
-const routes = [
-  '/',
-  '/resume',
-  '/writing',
-  '/framework',
-  '/evidence',
-  '/contact',
-  // Add any other static routes here
-  // For dynamic routes (like blog articles), you'd fetch them here
-  // e.g., ...blogArticleSlugs.map(slug => `/writing/${slug}`)
-];
+const hostname = 'https://jasonkhanani.com';
 
-const links = routes.map(route => ({ url: route, changefreq: 'weekly', priority: 0.8 }));
+// Static routes
+const staticRoutes = ['/', '/evidence', '/framework', '/writing', '/resume', '/contact'];
 
-const sitemapStream = new SitemapStream({ hostname });
-const xmlBuffer = await streamToPromise(Readable.from(links).pipe(sitemapStream));
+async function generateSitemap() {
+  try {
+    // Query Sanity for all article slugs
+    const query = '*[_type == "article"].slug.current';
+    const articleSlugs = await client.fetch(query);
+    
+    // Filter out null/undefined slugs
+    const validSlugs = articleSlugs.filter(slug => slug != null && slug !== '');
+    
+    console.log(`Found ${validSlugs.length} articles from Sanity`);
+    
+    // Combine static routes with article routes
+    const allUrls = [
+      ...staticRoutes,
+      ...validSlugs.map(slug => `/writing/${slug}`)
+    ];
+    
+    // Generate XML sitemap
+    const urlElements = allUrls.map(url => {
+      return `  <url>
+    <loc>${hostname}${url}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+    }).join('\n');
+    
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlElements}
+</urlset>`;
+    
+    // Write to public/sitemap.xml
+    const outDir = path.resolve(__dirname, '..', 'public');
+    fs.mkdirSync(outDir, { recursive: true });
+    fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemap);
+    
+    console.log('Sitemap generated successfully to public/sitemap.xml');
+    console.log(`Total URLs: ${allUrls.length} (${staticRoutes.length} static + ${validSlugs.length} articles)`);
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+    process.exit(1);
+  }
+}
 
-const outDir = path.resolve(__dirname, '..', 'public');
-fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(path.join(outDir, 'sitemap.xml'), xmlBuffer.toString());
-
-console.log('Sitemap generated successfully to public/sitemap.xml');
+generateSitemap();
