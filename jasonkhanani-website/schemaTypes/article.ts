@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { UnsplashPhotographerInput, UnsplashDescriptionInput } from './unsplashComponents'
+import { CustomImageInput } from './CustomImageInput'
 
 export default defineType({
     name: 'article',
@@ -41,6 +42,9 @@ export default defineType({
             title: 'Main Image',
             type: 'image',
             options: { hotspot: true },
+            components: {
+                input: CustomImageInput,
+            },
             fields: [
                 {
                     name: 'alt',
