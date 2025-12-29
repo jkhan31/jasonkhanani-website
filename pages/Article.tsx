@@ -5,6 +5,7 @@ import { PortableText } from '@portabletext/react';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { client, urlFor } from '../src/client'; // Import from src folder
 import { ImageAttribution } from '../components/ImageAttribution';
+import { SITE_DOMAIN, SITE_URL } from '../constants';
 
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
@@ -73,13 +74,13 @@ const ptComponents = {
   marks: {
     link: ({ value, children }: any) => {
       const target = (value?.href || '');
-      const isInternal = target.startsWith('/') || target.includes('jasonkhanani.com');
+      const isInternal = target.startsWith('/') || target.includes(SITE_DOMAIN);
 
       if (isInternal) {
         // Remove domain and any hash fragments for clean internal routing
         const relativePath = target
-          .replace('https://jasonkhanani.com', '')
-          .replace('http://jasonkhanani.com', '')
+          .replace(`https://${SITE_DOMAIN}`, '')
+          .replace(`http://${SITE_DOMAIN}`, '')
           .replace('/#', '');
         
         return (
@@ -213,12 +214,12 @@ const Article: React.FC = () => {
       <Helmet>
         <title>{current.title} | Jason K Hanani</title>
         <meta name="description" content={current.excerpt || ''} />
-        <link rel="canonical" href={`https://jasonkhanani.com/writing/${current.slug.current}`} />
+        <link rel="canonical" href={`${SITE_URL}/writing/${current.slug.current}`} />
         
         {/* Open Graph tags */}
         <meta property="og:title" content={current.title} />
         <meta property="og:description" content={current.excerpt || ''} />
-        <meta property="og:url" content={`https://jasonkhanani.com/writing/${current.slug.current}`} />
+        <meta property="og:url" content={`${SITE_URL}/writing/${current.slug.current}`} />
         {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
         <meta property="og:type" content="article" />
         

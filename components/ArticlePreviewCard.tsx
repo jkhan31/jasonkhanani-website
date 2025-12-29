@@ -38,7 +38,7 @@
             <img
               src={article.image} // Fallback (already 800px from Writing.tsx)
               srcSet={`
-                ${article.image.replace('w=800', 'w=400')} 400w,
+                ${article.image.includes('w=800') ? article.image.replace('w=800', 'w=400') : article.image} 400w,
                 ${article.image} 800w
               `}
               sizes="(max-width: 640px) 400px, 800px"

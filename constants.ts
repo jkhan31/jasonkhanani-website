@@ -2,6 +2,10 @@
 import { CaseStudy, ExperienceItem } from './types';
 export { ARTICLES } from './lib/posts';
 
+// Site configuration
+export const SITE_DOMAIN = 'jasonkhanani.com';
+export const SITE_URL = `https://${SITE_DOMAIN}`;
+
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'revenue-preservation',
