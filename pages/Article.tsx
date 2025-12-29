@@ -47,6 +47,36 @@ const ptComponents = {
       );
     }
   }
+  ,
+  marks: {
+    link: ({ value, children }: any) => {
+      const target = (value?.href || '');
+      const isInternal = target.startsWith('/') || target.includes('jasonkhanani.com');
+
+      if (isInternal) {
+        const relativePath = target.replace('https://jasonkhanani.com', '').replace('/#', '');
+        return (
+          <Link 
+            to={relativePath || '/'} 
+            className="text-foxOrange underline decoration-foxOrange/30 hover:decoration-foxOrange transition-all font-medium"
+          >
+            {children}
+          </Link>
+        );
+      }
+
+      return (
+        <a 
+          href={target} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-sumiInk/80 underline decoration-sumiInk/30 hover:text-foxOrange transition-colors"
+        >
+          {children}
+        </a>
+      );
+    },
+  },
 };
 
 const Article: React.FC = () => {
