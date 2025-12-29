@@ -19,16 +19,44 @@ const hostname = 'https://jasonkhanani.com';
 // Static routes
 const staticRoutes = ['/', '/evidence', '/framework', '/writing', '/resume', '/contact'];
 
+/**
+ * Generate XML sitemap from list of URLs
+ */
+function generateSitemapXML(urls) {
+  const urlElements = urls.map(url => {
+    return `  <url>
+    <loc>${hostname}${url}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+  }).join('\n');
+  
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlElements}
+</urlset>`;
+}
+
 async function generateSitemap() {
   try {
     // Query Sanity for all article slugs
     const query = '*[_type == "article"].slug.current';
-    const articleSlugs = await client.fetch(query);
+    let articleSlugs = [];
+    
+    try {
+      articleSlugs = await client.fetch(query);
+      console.log(`Found ${articleSlugs.length} articles from Sanity`);
+    } catch (fetchError) {
+      console.warn('Failed to fetch articles from Sanity, generating sitemap with static routes only:', fetchError);
+      // Continue with empty article list - this is acceptable for build time
+    }
     
     // Filter out null/undefined slugs
-    const validSlugs = articleSlugs.filter(slug => slug != null && slug !== '');
+    const validSlugs = Array.isArray(articleSlugs) 
+      ? articleSlugs.filter(slug => slug != null && slug !== '')
+      : [];
     
-    console.log(`Found ${validSlugs.length} articles from Sanity`);
+    console.log(`Using ${validSlugs.length} valid article slugs`);
     
     // Combine static routes with article routes
     const allUrls = [
@@ -37,18 +65,7 @@ async function generateSitemap() {
     ];
     
     // Generate XML sitemap
-    const urlElements = allUrls.map(url => {
-      return `  <url>
-    <loc>${hostname}${url}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
-    }).join('\n');
-    
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlElements}
-</urlset>`;
+    const sitemap = generateSitemapXML(allUrls);
     
     // Write to public/sitemap.xml
     const outDir = path.resolve(__dirname, '..', 'public');
@@ -59,7 +76,13 @@ ${urlElements}
     console.log(`Total URLs: ${allUrls.length} (${staticRoutes.length} static + ${validSlugs.length} articles)`);
   } catch (error) {
     console.error('Error generating sitemap:', error);
-    process.exit(1);
+    // Don't fail the build - generate a basic sitemap with static routes only
+    const basicSitemap = generateSitemapXML(staticRoutes);
+    
+    const outDir = path.resolve(__dirname, '..', 'public');
+    fs.mkdirSync(outDir, { recursive: true });
+    fs.writeFileSync(path.join(outDir, 'sitemap.xml'), basicSitemap);
+    console.log('Generated basic sitemap with static routes only');
   }
 }
 

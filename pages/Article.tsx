@@ -60,7 +60,7 @@ const ptComponents = {
             alt={alt}
             className="w-full h-auto rounded-sm border-0.5 border-sumiInk/10 shadow-sm"
           />
-          {value.caption && <p className="text-center text-xs uppercase tracking-widest text-sumiInk/40 mt-3">{value.caption}</p>}
+          {value.caption && <p className="text-center text-xs uppercase tracking-widest text-sumiInk/60 mt-3">{value.caption}</p>}
           <ImageAttribution
             attribution={attribution}
             attributionUrl={attributionUrl}
@@ -192,7 +192,7 @@ const Article: React.FC = () => {
     return (
        <div className="min-h-screen flex flex-col items-center justify-center">
          <div className="w-12 h-12 border-2 border-foxOrange border-t-transparent rounded-full animate-spin mb-4"></div>
-         <p className="text-xs uppercase tracking-widest text-sumiInk/40">Retrieving Evidence...</p>
+         <p className="text-xs uppercase tracking-widest text-sumiInk/60">Retrieving Evidence...</p>
        </div>
     );
   }
@@ -239,7 +239,7 @@ const Article: React.FC = () => {
       </Link>
 
       <header className="mb-16">
-        <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-[10px] uppercase tracking-[0.2em] font-bold text-sumiInk/40 mb-6">
+        <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-[10px] uppercase tracking-[0.2em] font-bold text-sumiInk/60 mb-6">
           <span className="flex items-center gap-1.5"><Calendar size={12} /> {formattedDate}</span>
           <span className="flex items-center gap-1.5"><Clock size={12} /> {readTime} Read</span>
           <span className="px-2 py-0.5 border border-foxOrange/20 text-foxOrange">{current.category}</span>
@@ -278,9 +278,9 @@ const Article: React.FC = () => {
         
         {current.tags && current.tags.length > 0 && (
           <div className="flex flex-wrap gap-3">
-            <span className="w-full text-[10px] uppercase tracking-widest font-bold text-sumiInk/30 mb-1">Methodologies</span>
+            <span className="w-full text-[10px] uppercase tracking-widest font-bold text-sumiInk/50 mb-1">Methodologies</span>
             {current.tags.map((tag: string) => (
-              <span key={tag} className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-hankoRust/60 border border-hankoRust/10 px-2.5 py-1.5 bg-white">
+              <span key={tag} className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-hankoRust/80 border border-hankoRust/10 px-2.5 py-1.5 bg-white">
                 <Tag size={10} /> {tag}
               </span>
             ))}
@@ -295,7 +295,7 @@ const Article: React.FC = () => {
       {/* Only render if we actually have related articles */}
       {relatedArticles.length > 0 && (
         <section className="mt-24 pt-16 border-t-0.5 border-hankoRust/10">
-          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-sumiInk/30 mb-12 text-center md:text-left">Continue Reading</h3>
+          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-sumiInk/50 mb-12 text-center md:text-left">Continue Reading</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {relatedArticles.map((related) => (
               <Link key={related.slug} to={`/writing/${related.slug}`} className="group block">

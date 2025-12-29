@@ -28,7 +28,7 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
         <div className="mb-8">
           <div className="flex items-start justify-between mb-4">
             <IconComponent className="w-8 h-8 text-hankoRust" strokeWidth={1.5} />
-            <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/40">
+            <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/60">
               {study.stealthTitle}
             </span>
           </div>
@@ -51,7 +51,7 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
 
         {/* Impact Section with Hanko Rust accent */}
         <div className="pt-8 border-t-0.5 border-hankoRust/10">
-          <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/30 mb-2 block">
+          <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/50 mb-2 block">
             Outcome Impact
           </span>
           <span className="text-3xl font-serif text-hankoRust font-bold">{study.impact}</span>

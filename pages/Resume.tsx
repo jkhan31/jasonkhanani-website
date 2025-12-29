@@ -35,7 +35,7 @@ const ResumePage = () => {
             <div>
               <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">JASON KESTER HANANI</h1>
               <p className="text-xl font-medium opacity-80 whitespace-normal break-words max-w-full" style={{ color: colors.rust }}>Industrial Engineer &amp; Business Analyst</p>
-              <div className="flex flex-col md:flex-row md:items-center gap-2 mt-6 text-sm font-medium opacity-60">
+              <div className="flex flex-col md:flex-row md:items-center gap-2 mt-6 text-sm font-medium opacity-80">
                 <a href="mailto:contact@jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words"><Mail size={16} /> contact@jasonkhanani.com</a>
                 <a href="https://jasonkhanani.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words mt-2 md:mt-0"><Globe size={16} /> jasonkhanani.com</a>
                 <a href="https://www.linkedin.com/in/jasonkhanani/" target="_blank" rel="noreferrer" className="mt-2 md:ml-4 md:mt-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-shadow">
@@ -144,11 +144,11 @@ const ResumePage = () => {
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Education &amp; Certifications</h2>
             <div className="mb-6">
               <h4 className="font-bold text-base">B.S.E. Industrial &amp; Operations Engineering (Cum Laude)</h4>
-              <p className="text-sm opacity-60">University of Michigan, College of Engineering (Dec 2018)</p>
+              <p className="text-sm opacity-80">University of Michigan, College of Engineering (Dec 2018)</p>
             </div>
             <div className="mb-6">
               <h4 className="font-bold text-base">Six Sigma Green Belt</h4>
-              <p className="text-sm opacity-60">Institute of Industrial and Systems Engineers — Certification No. 2558-18401 (Apr 2017)</p>
+              <p className="text-sm opacity-80">Institute of Industrial and Systems Engineers — Certification No. 2558-18401 (Apr 2017)</p>
             </div>
           </section>
 
@@ -160,7 +160,7 @@ const ResumePage = () => {
               <p className="text-sm opacity-80 italic leading-relaxed">
                 An engineering framework for human systems design, outlining principles for vocational resilience and systemic well-being in high-pressure environments.
               </p>
-              <p className="text-sm opacity-60 mt-2">
+              <p className="text-sm opacity-80 mt-2">
                 <Link to="/framework" className="text-hankoRust hover:text-foxOrange transition-colors" style={{ color: colors.rust }}>Learn more about the PWA &amp; SFR →</Link>
               </p>
             </div>

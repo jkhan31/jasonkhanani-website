@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
@@ -7,6 +6,7 @@ import { Logo } from '../components/Logo';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ARTICLES } from '../constants';
 import { client, urlFor } from '../src/client';
+import { fetchWithRetry } from '../lib/sanityErrorHandler';
 import { ArrowRight, Globe, Layers, Database, ShieldCheck } from 'lucide-react';
 
 const Hero: React.FC = () => (
@@ -67,7 +67,7 @@ const RemoteLeverage: React.FC = () => (
               { title: "Scalable System Design", desc: "Building robust, adaptable processes and tools that reliably perform across diverse teams and evolving business needs." }
             ].map((item, i) => (
               <div key={i} className="group">
-                <h4 className="text-ricePaper font-bold text-xs uppercase tracking-widest mb-2">{item.title}</h4>
+                <h3 className="text-ricePaper font-bold text-xs uppercase tracking-widest mb-2">{item.title}</h3>
                 <p className="text-sm opacity-80">{item.desc}</p>
               </div>
             ))}
@@ -95,7 +95,7 @@ const RemoteLeverage: React.FC = () => (
         </div>
         <div className="absolute -bottom-6 -left-6 bg-hankoRust p-6 shadow-2xl">
           <span className="text-4xl font-serif">€1.5M+</span>
-          <p className="text-[9px] uppercase tracking-widest font-bold opacity-60">Quantified Impact Recovered</p>
+          <p className="text-[9px] uppercase tracking-widest font-bold opacity-80">Quantified Impact Recovered</p>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@ const Tracks: React.FC = () => (
         </p>
         <ul className="space-y-4 mb-12">
           {["Revenue Forensics", "SQL Data Modeling", "Scenario Sensitivity Analysis"].map(item => (
-            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
+            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/60">
               <span className="w-4 h-[1px] bg-hankoRust/30 mr-3" /> {item}
             </li>
           ))}
@@ -134,7 +134,7 @@ const Tracks: React.FC = () => (
         </p>
         <ul className="space-y-4 mb-12">
           {["Async Workflow Design", "Automated Ops Pipelines", "Distributed System Resilience"].map(item => (
-            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
+            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/60">
               <span className="w-4 h-[1px] bg-foxOrange/30 mr-3" /> {item}
             </li>
           ))}
@@ -151,7 +151,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     let mounted = true;
     const fetchArticles = async () => {
-      try {
+      const result = await fetchWithRetry(async () => {
         const query = `*[_type == "article"] | order(publishedAt desc) { 
           title, 
           "slug": slug.current, 
@@ -171,11 +171,17 @@ const Home: React.FC = () => {
           "series": series->title, 
           "tags": tags[]->title 
         }`;
-        const res = await client.fetch(query);
-        if (!mounted) return;
-        setSanityData(res || []);
-      } catch (err) {
-        console.error('Failed to fetch Sanity articles for Home:', err);
+        return await client.fetch(query);
+      });
+      
+      if (!mounted) return;
+      
+      if (result) {
+        setSanityData(result || []);
+      } else {
+        // If all retries failed, log but continue with fallback data
+        console.warn('Using fallback article data due to Sanity fetch failure');
+        setSanityData([]);
       }
     };
     fetchArticles();

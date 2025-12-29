@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { client, urlFor } from '../src/client';
+import { fetchWithRetry } from '../lib/sanityErrorHandler';
 import { Star } from 'lucide-react'; // Icon for the Featured filter
 import type { Article } from '../types';
 
@@ -22,7 +23,7 @@ const Writing: React.FC = () => {
   // --- 2. Fetch Data ---
   useEffect(() => {
     const fetchArticles = async () => {
-      try {
+      const result = await fetchWithRetry(async () => {
         const query = `*[_type == "article"] | order(publishedAt desc) {
           title,
           "slug": slug.current,
@@ -42,14 +43,16 @@ const Writing: React.FC = () => {
           "series": series->title,
           "tags": tags[]->title
         }`;
+        return await client.fetch(query);
+      });
 
-        const result = await client.fetch(query);
+      if (result) {
         setSanityData(result);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch articles:", error);
-        setIsLoading(false);
+      } else {
+        console.warn('Using fallback article data due to Sanity fetch failure');
+        setSanityData([]);
       }
+      setIsLoading(false);
     };
 
     fetchArticles();
@@ -185,7 +188,7 @@ const Writing: React.FC = () => {
           }`}
         >
           <span>All Insights</span>
-          <span className="opacity-60">({totalCount})</span>
+          <span className="opacity-80">({totalCount})</span>
         </button>
 
         {/* 2. Featured Filter (New) */}
@@ -200,7 +203,7 @@ const Writing: React.FC = () => {
           >
             <Star size={12} className={activeFilter === 'FEATURED' ? 'fill-ricePaper' : ''} />
             <span>Featured</span>
-            <span className="opacity-60">({featuredCount})</span>
+            <span className="opacity-80">({featuredCount})</span>
           </button>
         )}
 
@@ -216,7 +219,7 @@ const Writing: React.FC = () => {
             }`}
           >
             <span>{cat}</span>
-            <span className="opacity-60">({categoryCounts[cat]})</span>
+            <span className="opacity-80">({categoryCounts[cat]})</span>
           </button>
         ))}
 
@@ -232,7 +235,7 @@ const Writing: React.FC = () => {
             }`}
           >
             <span>{s}</span>
-            <span className="opacity-60">({seriesCounts[s]})</span>
+            <span className="opacity-80">({seriesCounts[s]})</span>
           </button>
         ))}
       </div>
@@ -292,7 +295,7 @@ const Writing: React.FC = () => {
       ) : (
         /* Empty State */
         <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
-          <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No articles found in this filter.</p>
+          <p className="text-sumiInk/60 font-serif italic text-lg mb-4">No articles found in this filter.</p>
           <button
             onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
             className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust hover:border-foxOrange hover:text-foxOrange transition-all"

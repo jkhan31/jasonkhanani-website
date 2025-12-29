@@ -90,21 +90,21 @@ const Framework: React.FC = () => {
                 <Brain className="text-foxOrange" size={20} />
                 <h4 className="text-xl font-serif">Behavioral Science</h4>
               </div>
-              <p className="text-sm opacity-60 leading-relaxed">Understanding habit architecture to design for sustained, consistent action and purposeful productivity.</p>
+              <p className="text-sm opacity-80 leading-relaxed">Understanding habit architecture to design for sustained, consistent action and purposeful productivity.</p>
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <BookOpen className="text-foxOrange" size={20} />
                 <h4 className="text-xl font-serif">Reflective Practice</h4>
               </div>
-              <p className="text-sm opacity-60 leading-relaxed">The learning loop necessary to adapt strategies. Making meaning from experience turns action into wisdom.</p>
+              <p className="text-sm opacity-80 leading-relaxed">The learning loop necessary to adapt strategies. Making meaning from experience turns action into wisdom.</p>
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <GitBranch className="text-foxOrange" size={20} />
                 <h4 className="text-xl font-serif">Systems Thinking</h4>
               </div>
-              <p className="text-sm opacity-60 leading-relaxed">Recognizing interconnectedness. A holistic lens that balances Purpose and Wellbeing within broader operational contexts.</p>
+              <p className="text-sm opacity-80 leading-relaxed">Recognizing interconnectedness. A holistic lens that balances Purpose and Wellbeing within broader operational contexts.</p>
             </div>
           </div>
         </div>
