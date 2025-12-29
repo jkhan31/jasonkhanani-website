@@ -4,7 +4,6 @@ import { SectionHeader } from '../components/SectionHeader';
 import { AxisMarker } from '../components/AxisMarker';
 import { Logo } from '../components/Logo';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
-import { ARTICLES } from '../constants';
 import { client, urlFor } from '../src/client';
 import { fetchWithRetry } from '../lib/sanityErrorHandler';
 import { ArrowRight, Globe, Layers, Database, ShieldCheck } from 'lucide-react';
@@ -145,7 +144,7 @@ const Tracks: React.FC = () => (
 );
 
 const Home: React.FC = () => {
-  // Fetch Sanity articles and select featured articles (match Writing page behavior)
+  // Fetch featured articles from Sanity (max 3 featured, fill remaining with recent)
   const [sanityData, setSanityData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -179,8 +178,8 @@ const Home: React.FC = () => {
       if (result) {
         setSanityData(result || []);
       } else {
-        // If all retries failed, log but continue with fallback data
-        console.warn('Using fallback article data due to Sanity fetch failure');
+        // If all retries failed, show empty state
+        console.warn('Failed to fetch articles from Sanity');
         setSanityData([]);
       }
     };
@@ -189,7 +188,8 @@ const Home: React.FC = () => {
   }, []);
 
   const normalizedArticles = useMemo(() => {
-    if (!sanityData || sanityData.length === 0) return ARTICLES;
+    // No fallback - only use Sanity data
+    if (!sanityData || sanityData.length === 0) return [];
     return sanityData.map((a: any, idx: number) => {
       const tags = Array.isArray(a.tags) ? a.tags : [];
       const slug = a.slug || `post-${idx}`;

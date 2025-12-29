@@ -132,6 +132,32 @@ export default defineType({
             type: 'boolean',
             initialValue: false,
             fieldset: 'taxonomy',
+            description: 'Maximum of 3 articles can be featured. If 3 are already featured, you must unfeature one first.',
+            validation: (Rule) => Rule.custom(async (value, context) => {
+                // Only validate when trying to set to true
+                if (!value) return true;
+                
+                const { document, getClient } = context;
+                const client = getClient({ apiVersion: '2023-05-03' });
+                
+                // Query to count featured articles excluding current document
+                const query = `count(*[_type == "article" && isFeatured == true && _id != $currentId])`;
+                const params = { currentId: document?._id || 'new' };
+                
+                try {
+                    const featuredCount = await client.fetch(query, params);
+                    
+                    if (featuredCount >= 3) {
+                        return 'Maximum of 3 featured articles reached. Please unfeature another article first.';
+                    }
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Error validating featured count:', error);
+                    // Allow the operation if validation fails to avoid blocking
+                    return true;
+                }
+            }),
         }),
         // --- CONTENT ---
         defineField({
@@ -159,10 +185,14 @@ export default defineType({
             title: 'title',
             media: 'mainImage',
             category: 'category.title',
+            isFeatured: 'isFeatured',
         },
         prepare(selection) {
-            const { category } = selection
-            return { ...selection, subtitle: category }
+            const { category, isFeatured } = selection
+            const subtitle = isFeatured 
+                ? `⭐ FEATURED | ${category || 'Uncategorized'}`
+                : category || 'Uncategorized'
+            return { ...selection, subtitle }
         },
     },
 })

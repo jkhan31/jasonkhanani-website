@@ -1,6 +1,5 @@
 
 import { CaseStudy, ExperienceItem } from './types';
-export { ARTICLES } from './lib/posts';
 
 // Site configuration
 export const SITE_DOMAIN = 'jasonkhanani.com';
