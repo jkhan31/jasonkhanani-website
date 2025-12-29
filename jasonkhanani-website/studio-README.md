@@ -2,6 +2,20 @@
 
 This Studio includes the `sanity-plugin-asset-source-unsplash` plugin so you can pick Unsplash images inside the image picker.
 
+## Unsplash Attribution Auto-Population
+
+When you select an Unsplash image in Sanity Studio, the following fields are automatically populated:
+
+- **attribution**: Photographer name from Unsplash metadata (`asset.source.name`)
+- **attributionUrl**: Link to photographer's Unsplash profile (`asset.source.url`)
+- **alt**: Image description from Unsplash metadata (`asset.description`)
+
+This auto-population feature works for:
+- Main images in articles (`mainImage` field)
+- Images within article body content (`body` field)
+
+The auto-population is handled by the `CustomImageInput` component in `schemaTypes/CustomImageInput.tsx`.
+
 Quick start
 
 1. Copy `.env.example` to `.env` in the Studio folder and set your Unsplash API key:
