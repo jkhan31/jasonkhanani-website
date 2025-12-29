@@ -40,7 +40,41 @@ export default defineType({
         defineArrayMember({
             type: 'image',
             options: { hotspot: true },
-            fields: [{ type: 'string', name: 'alt', title: 'Alt Text' }]
+            fields: [
+                {
+                    type: 'string',
+                    name: 'alt',
+                    title: 'Alt Text',
+                    description: 'Unsplash images auto-populate from description. Manual images require alt text for accessibility.',
+                    validation: (Rule) => Rule.custom((value, context) => {
+                        const parent = context.parent as any;
+                        const hasUnsplashSource = parent?.asset?._ref && parent?.asset?.source;
+                        // Only require alt text if it's NOT from Unsplash (no source metadata)
+                        if (!hasUnsplashSource && !value) {
+                            return 'Alt text is required for manually uploaded images for accessibility';
+                        }
+                        return true;
+                    })
+                },
+                {
+                    type: 'string',
+                    name: 'caption',
+                    title: 'Caption',
+                    description: 'Optional caption displayed below the image'
+                },
+                {
+                    type: 'string',
+                    name: 'attribution',
+                    title: 'Photo Credit',
+                    description: 'Photographer name (auto-populated for Unsplash images)',
+                },
+                {
+                    type: 'url',
+                    name: 'attributionUrl',
+                    title: 'Photographer URL',
+                    description: 'Link to photographer profile (auto-populated for Unsplash images)',
+                },
+            ]
         }),
     ],
 })

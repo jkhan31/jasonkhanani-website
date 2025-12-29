@@ -152,7 +152,25 @@ const Home: React.FC = () => {
     let mounted = true;
     const fetchArticles = async () => {
       try {
-        const query = `*[_type == "article"] | order(publishedAt desc) { title, "slug": slug.current, publishedAt, excerpt, mainImage, isFeatured, "category": category->title, "series": series->title, "tags": tags[]->title }`;
+        const query = `*[_type == "article"] | order(publishedAt desc) { 
+          title, 
+          "slug": slug.current, 
+          publishedAt, 
+          excerpt, 
+          mainImage {
+            asset,
+            alt,
+            caption,
+            attribution,
+            attributionUrl,
+            "unsplashSource": asset->source,
+            "unsplashDescription": asset->description
+          }, 
+          isFeatured, 
+          "category": category->title, 
+          "series": series->title, 
+          "tags": tags[]->title 
+        }`;
         const res = await client.fetch(query);
         if (!mounted) return;
         setSanityData(res || []);

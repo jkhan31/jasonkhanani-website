@@ -33,7 +33,9 @@ const Writing: React.FC = () => {
             alt,
             caption,
             attribution,
-            attributionUrl
+            attributionUrl,
+            "unsplashSource": asset->source,
+            "unsplashDescription": asset->description
           },
           isFeatured,
           "category": category->title,

@@ -45,7 +45,16 @@ export default defineType({
                     name: 'alt',
                     type: 'string',
                     title: 'Alternative Text',
-                    validation: (Rule) => Rule.required(),
+                    description: 'Unsplash images auto-populate from description. Manual images require alt text for accessibility.',
+                    validation: (Rule) => Rule.custom((value, context) => {
+                        const parent = context.parent as any;
+                        const hasUnsplashSource = parent?.asset?._ref && parent?.asset?.source;
+                        // Only require alt text if it's NOT from Unsplash (no source metadata)
+                        if (!hasUnsplashSource && !value) {
+                            return 'Alt text is required for manually uploaded images for accessibility';
+                        }
+                        return true;
+                    })
                 },
                 {
                     name: 'caption',
@@ -56,13 +65,13 @@ export default defineType({
                     name: 'attribution',
                     type: 'string',
                     title: 'Photo Credit',
-                    description: 'Photographer name (e.g., "John Doe")',
+                    description: 'Photographer name (auto-populated for Unsplash images)',
                 },
                 {
                     name: 'attributionUrl',
                     type: 'url',
                     title: 'Photographer URL',
-                    description: 'Link to photographer profile on Unsplash',
+                    description: 'Link to photographer profile (auto-populated for Unsplash images)',
                 },
             ],
         }),

@@ -36,14 +36,29 @@ const ptComponents = {
   types: {
     image: ({ value }: any) => {
       if (!value?.asset?._ref) return null;
+      
+      // Extract Unsplash metadata if available
+      const unsplashSource = value.unsplashSource;
+      const unsplashDescription = value.unsplashDescription;
+      
+      // Use manual fields if provided, otherwise fall back to Unsplash metadata
+      const alt = value.alt || unsplashDescription || 'Article Illustration';
+      const attribution = value.attribution || unsplashSource?.name;
+      const attributionUrl = value.attributionUrl || unsplashSource?.url;
+      
       return (
         <div className="my-10">
           <img
             src={urlFor(value).width(1200).url()}
-            alt={value.alt || 'Article Illustration'}
+            alt={alt}
             className="w-full h-auto rounded-sm border-0.5 border-sumiInk/10 shadow-sm"
           />
           {value.caption && <p className="text-center text-xs uppercase tracking-widest text-sumiInk/40 mt-3">{value.caption}</p>}
+          <ImageAttribution
+            attribution={attribution}
+            attributionUrl={attributionUrl}
+            className="text-center"
+          />
         </div>
       );
     }
@@ -102,9 +117,21 @@ const Article: React.FC = () => {
               alt,
               caption,
               attribution,
-              attributionUrl
+              attributionUrl,
+              "unsplashSource": asset->source,
+              "unsplashDescription": asset->description
             },
-            body,
+            body[]{
+              ...,
+              _type == "image" => {
+                ...,
+                "unsplashSource": asset->source,
+                "unsplashDescription": asset->description,
+                caption,
+                attribution,
+                attributionUrl
+              }
+            },
             "slug": slug,
             "category": category->title,
             "tags": tags[]->title
@@ -220,11 +247,11 @@ const Article: React.FC = () => {
               <img 
                 src={urlFor(current.mainImage).width(1000).height(600).url()} 
                 className="w-full object-cover rounded-sm"
-                alt={current.mainImage.alt || current.title}
+                alt={current.mainImage.alt || current.mainImage.unsplashDescription || current.title}
               />
               <ImageAttribution
-                attribution={current.mainImage.attribution}
-                attributionUrl={current.mainImage.attributionUrl}
+                attribution={current.mainImage.attribution || current.mainImage.unsplashSource?.name}
+                attributionUrl={current.mainImage.attributionUrl || current.mainImage.unsplashSource?.url}
                 className="text-center"
               />
            </div>
