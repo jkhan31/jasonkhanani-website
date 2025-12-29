@@ -148,7 +148,7 @@ const Header: React.FC = () => {
 };
 
 const Footer: React.FC = () => (
-  <footer className="bg-sumiInk text-ricePaper pt-24 pb-12 px-6 relative z-10 min-h-[500px]">
+  <footer className="bg-sumiInk text-ricePaper pt-24 pb-12 px-6 relative z-10 min-h-[500px] h-auto">
     <div className="max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
         <div>
