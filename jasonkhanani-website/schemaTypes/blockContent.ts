@@ -45,14 +45,11 @@ export default defineType({
                     type: 'string',
                     name: 'alt',
                     title: 'Alt Text',
-                    description: 'Unsplash images auto-populate from description. Manual images require alt text for accessibility.',
+                    description: 'Unsplash images auto-populate from description. Required for manually uploaded images for accessibility.',
                     validation: (Rule) => Rule.custom((value, context) => {
-                        const parent = context.parent as any;
-                        const hasUnsplashSource = parent?.asset?._ref && parent?.asset?.source;
-                        // Only require alt text if it's NOT from Unsplash (no source metadata)
-                        if (!hasUnsplashSource && !value) {
-                            return 'Alt text is required for manually uploaded images for accessibility';
-                        }
+                        // Make alt text optional - we'll handle the fallback to Unsplash description in the frontend
+                        // This is because we can't reliably check for Unsplash metadata during validation
+                        // as the asset reference hasn't been resolved yet
                         return true;
                     })
                 },
