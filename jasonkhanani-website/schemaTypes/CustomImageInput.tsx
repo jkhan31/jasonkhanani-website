@@ -1,6 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import { ObjectInputProps, set, unset, useClient } from 'sanity'
+import { ObjectInputProps, set, useClient } from 'sanity'
 import { ObjectInput } from 'sanity'
+
+// Sanity API version constant
+const SANITY_API_VERSION = '2024-01-01'
+
+// Type definitions for better type safety
+interface ImageValue {
+  asset?: {
+    _ref?: string
+  }
+  attribution?: string
+  attributionUrl?: string
+  alt?: string
+}
+
+interface AssetSource {
+  name?: string
+  url?: string
+}
+
+interface AssetMetadata {
+  source?: AssetSource
+  description?: string
+}
 
 /**
  * Custom Image Field Component that auto-populates attribution fields from Unsplash metadata
@@ -18,7 +41,7 @@ import { ObjectInput } from 'sanity'
  */
 export function CustomImageInput(props: ObjectInputProps) {
   const { value, onChange } = props
-  const client = useClient({ apiVersion: '2024-01-01' })
+  const client = useClient({ apiVersion: SANITY_API_VERSION })
   const [lastAssetRef, setLastAssetRef] = useState<string | null>(null)
 
   // Monitor for changes to the asset and auto-populate attribution fields
@@ -26,7 +49,7 @@ export function CustomImageInput(props: ObjectInputProps) {
     const processAsset = async () => {
       if (!value || !onChange) return
 
-      const imageValue = value as any
+      const imageValue = value as ImageValue
       const assetRef = imageValue?.asset?._ref
 
       // Only process if we have a new asset reference
@@ -36,7 +59,7 @@ export function CustomImageInput(props: ObjectInputProps) {
 
       try {
         // Fetch the asset document to get source metadata
-        const asset = await client.fetch(
+        const asset = await client.fetch<AssetMetadata>(
           `*[_id == $assetId][0]{ source, description }`,
           { assetId: assetRef }
         )
@@ -74,7 +97,7 @@ export function CustomImageInput(props: ObjectInputProps) {
         }
 
       } catch (error) {
-        console.error('Error fetching asset metadata:', error)
+        console.error(`Error fetching asset metadata for ${assetRef}:`, error)
       }
     }
 
