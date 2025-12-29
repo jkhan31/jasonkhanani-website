@@ -45,13 +45,7 @@ export default defineType({
                     name: 'alt',
                     type: 'string',
                     title: 'Alternative Text',
-                    description: 'Unsplash images auto-populate from description. Required for manually uploaded images for accessibility.',
-                    validation: (Rule) => Rule.custom((value, context) => {
-                        // Make alt text optional - we'll handle the fallback to Unsplash description in the frontend
-                        // This is because we can't reliably check for Unsplash metadata during validation
-                        // as the asset reference hasn't been resolved yet
-                        return true;
-                    })
+                    description: 'Unsplash images auto-populate from description. Recommended for manually uploaded images for accessibility.',
                 },
                 {
                     name: 'caption',
