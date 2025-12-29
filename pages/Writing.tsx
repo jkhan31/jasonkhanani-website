@@ -28,7 +28,13 @@ const Writing: React.FC = () => {
           "slug": slug.current,
           publishedAt,
           excerpt,
-          mainImage,
+          mainImage {
+            asset,
+            alt,
+            caption,
+            attribution,
+            attributionUrl
+          },
           isFeatured,
           "category": category->title,
           "series": series->title,

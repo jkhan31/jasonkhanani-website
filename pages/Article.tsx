@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { PortableText } from '@portabletext/react';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { client, urlFor } from '../src/client'; // Import from src folder
+import { ImageAttribution } from '../components/ImageAttribution';
 
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
@@ -96,7 +97,13 @@ const Article: React.FC = () => {
             title,
             excerpt,
             publishedAt,
-            mainImage,
+            mainImage {
+              asset,
+              alt,
+              caption,
+              attribution,
+              attributionUrl
+            },
             body,
             "slug": slug,
             "category": category->title,
@@ -213,7 +220,12 @@ const Article: React.FC = () => {
               <img 
                 src={urlFor(current.mainImage).width(1000).height(600).url()} 
                 className="w-full object-cover rounded-sm"
-                alt={current.title}
+                alt={current.mainImage.alt || current.title}
+              />
+              <ImageAttribution
+                attribution={current.mainImage.attribution}
+                attributionUrl={current.mainImage.attributionUrl}
+                className="text-center"
               />
            </div>
         )}
