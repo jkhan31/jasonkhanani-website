@@ -18,15 +18,15 @@
         {/* Date, Category, Read Time */}
         <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-hankoRust/60">
+            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-hankoRust/80">
                 {article.date}
             </span>
             <span className="w-1 h-1 rounded-full bg-hankoRust/20" />
-            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-sumiInk/40">
+            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-sumiInk/60">
                 {article.category}
             </span>
             </div>
-            <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-bold text-sumiInk/30">
+            <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-bold text-sumiInk/50">
             <Clock size={11} />
             {article.readTime}
             </div>
@@ -54,9 +54,9 @@
 
         {/* Title + Excerpt (growable content area to keep CTA/tags at bottom) */}
         <div className="flex-grow">
-            <h4 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-serif mb-4 text-sumiInk group-hover:text-foxOrange transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+            <h3 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-serif mb-4 text-sumiInk group-hover:text-foxOrange transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
                 {article.title}
-            </h4>
+            </h3>
 
             {/* Excerpt */}
             <p className={`text-sumiInk/60 font-serif mb-8 leading-relaxed ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
@@ -71,7 +71,7 @@
             </span>
             <div className="flex flex-wrap gap-2 justify-end">
             {article.tags.slice(0, 2).map(tag => (
-                <span key={tag} className="text-[9px] uppercase tracking-widest font-bold text-sumiInk/40">
+                <span key={tag} className="text-[9px] uppercase tracking-widest font-bold text-sumiInk/60">
                 #{tag}
                 </span>
             ))}

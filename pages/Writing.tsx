@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { client, urlFor } from '../src/client';
+import { fetchWithRetry } from '../lib/sanityErrorHandler';
 import { Star } from 'lucide-react'; // Icon for the Featured filter
 import type { Article } from '../types';
 
@@ -22,7 +23,7 @@ const Writing: React.FC = () => {
   // --- 2. Fetch Data ---
   useEffect(() => {
     const fetchArticles = async () => {
-      try {
+      const result = await fetchWithRetry(async () => {
         const query = `*[_type == "article"] | order(publishedAt desc) {
           title,
           "slug": slug.current,
@@ -42,14 +43,16 @@ const Writing: React.FC = () => {
           "series": series->title,
           "tags": tags[]->title
         }`;
+        return await client.fetch(query);
+      });
 
-        const result = await client.fetch(query);
+      if (result) {
         setSanityData(result);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch articles:", error);
-        setIsLoading(false);
+      } else {
+        console.warn('Using fallback article data due to Sanity fetch failure');
+        setSanityData([]);
       }
+      setIsLoading(false);
     };
 
     fetchArticles();
