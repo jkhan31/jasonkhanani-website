@@ -46,7 +46,24 @@ export default defineType({
                     type: 'string',
                     title: 'Alternative Text',
                     validation: (Rule) => Rule.required(),
-                }
+                },
+                {
+                    name: 'caption',
+                    type: 'string',
+                    title: 'Caption',
+                },
+                {
+                    name: 'attribution',
+                    type: 'string',
+                    title: 'Photo Credit',
+                    description: 'Photographer name (e.g., "John Doe")',
+                },
+                {
+                    name: 'attributionUrl',
+                    type: 'url',
+                    title: 'Photographer URL',
+                    description: 'Link to photographer profile on Unsplash',
+                },
             ],
         }),
         defineField({

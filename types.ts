@@ -39,6 +39,16 @@ export interface Article {
   dateObj: Date; // normalized Date instance for sorting
   isFeatured: boolean;
 
+  // Image field with attribution
+  image?: string | null; // derived URL from mainImage
+  mainImage?: {
+    asset: any;
+    alt?: string;
+    caption?: string;
+    attribution?: string;
+    attributionUrl?: string;
+  };
+
   // Preserve any existing content representation (markdown string from .md or structured blocks)
   content: string | ContentBlock[];
 }

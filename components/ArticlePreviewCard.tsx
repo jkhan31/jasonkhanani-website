@@ -2,6 +2,7 @@
     import { Link } from 'react-router-dom';
     import { Clock } from 'lucide-react';
     import type { Article } from '../types';
+    import { ImageAttribution } from './ImageAttribution';
 
     interface ArticlePreviewCardProps {
     article: Article;
@@ -30,6 +31,21 @@
             {article.readTime}
             </div>
         </div>
+
+        {/* Image with Attribution */}
+        {article.image && (
+          <div className="mb-4">
+            <img
+              src={article.image}
+              alt={article.mainImage?.alt || article.title}
+              className="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            />
+            <ImageAttribution
+              attribution={article.mainImage?.attribution}
+              attributionUrl={article.mainImage?.attributionUrl}
+            />
+          </div>
+        )}
 
         {/* Title + Excerpt (growable content area to keep CTA/tags at bottom) */}
         <div className="flex-grow">
