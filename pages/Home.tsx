@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { AxisMarker } from '../components/AxisMarker';
 import { Logo } from '../components/Logo';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
-import { ARTICLES } from '../constants';
+import { client, urlFor } from '../src/client';
+import { fetchWithRetry } from '../lib/sanityErrorHandler';
 import { ArrowRight, Globe, Layers, Database, ShieldCheck } from 'lucide-react';
 
 const Hero: React.FC = () => (
@@ -143,9 +144,75 @@ const Tracks: React.FC = () => (
 );
 
 const Home: React.FC = () => {
-  // Use static ARTICLES data for standalone home page
-  // Writing page uses Sanity for dynamic article browsing
-  const normalizedArticles = useMemo(() => ARTICLES, []);
+  // Fetch featured articles from Sanity (max 3 featured, fill remaining with recent)
+  const [sanityData, setSanityData] = useState<any[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchArticles = async () => {
+      const result = await fetchWithRetry(async () => {
+        const query = `*[_type == "article"] | order(publishedAt desc) { 
+          title, 
+          "slug": slug.current, 
+          publishedAt, 
+          excerpt, 
+          mainImage {
+            asset,
+            alt,
+            caption,
+            attribution,
+            attributionUrl,
+            "unsplashSource": asset->source,
+            "unsplashDescription": asset->description
+          }, 
+          isFeatured, 
+          "category": category->title, 
+          "series": series->title, 
+          "tags": tags[]->title 
+        }`;
+        return await client.fetch(query);
+      });
+      
+      if (!mounted) return;
+      
+      if (result) {
+        setSanityData(result || []);
+      } else {
+        // If all retries failed, show empty state
+        console.warn('Failed to fetch articles from Sanity');
+        setSanityData([]);
+      }
+    };
+    fetchArticles();
+    return () => { mounted = false; };
+  }, []);
+
+  const normalizedArticles = useMemo(() => {
+    // No fallback - only use Sanity data
+    if (!sanityData || sanityData.length === 0) return [];
+    return sanityData.map((a: any, idx: number) => {
+      const tags = Array.isArray(a.tags) ? a.tags : [];
+      const slug = a.slug || `post-${idx}`;
+      const dateStr = a.publishedAt || new Date().toISOString();
+      const dateObj = new Date(dateStr);
+      const image = a.mainImage ? urlFor(a.mainImage).width(800).url() : null;
+      return {
+        id: slug,
+        slug,
+        title: a.title || slug,
+        excerpt: a.excerpt || '',
+        readTime: a.readTime || '5 min',
+        category: a.category || 'Uncategorized',
+        series: a.series || null,
+        tags,
+        date: dateObj.toISOString().slice(0,10),
+        dateObj,
+        isFeatured: a.isFeatured === true,
+        content: [] as any,
+        image,
+      } as any;
+    }).sort((x: any, y: any) => y.dateObj.getTime() - x.dateObj.getTime());
+  }, [sanityData]);
 
   const selectedArticles = useMemo(() => {
     const featured = normalizedArticles.filter((a: any) => a.isFeatured).slice().sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());

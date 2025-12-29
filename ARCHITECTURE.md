@@ -6,15 +6,18 @@ This website uses a **hybrid content architecture** that separates static showca
 
 ## Page Types
 
-### Standalone Pages (No Sanity CMS Dependency)
-
-These pages are fully self-contained with no external data dependencies. They load instantly without network calls.
+### Hybrid Pages (Sanity CMS)
 
 #### 1. **Home Page** (`pages/Home.tsx`)
 - **Purpose**: Marketing landing page showcasing value proposition
-- **Content Source**: Static ARTICLES array from `lib/articles.ts`
-- **Rationale**: Fast first load, no network dependency, stable content
-- **Data**: Displays 3 featured articles from static data
+- **Content Source**: Sanity CMS (fetches featured articles)
+- **Rationale**: Displays latest featured content from Sanity CMS
+- **Data**: Displays up to 3 featured articles (marked with `isFeatured` in Sanity). If fewer than 3 are featured, fills remaining slots with most recent articles
+- **Constraint**: Maximum of 3 articles can be marked as featured in Sanity at any time
+
+### Standalone Pages (No Sanity CMS Dependency)
+
+These pages are fully self-contained with no external data dependencies. They load instantly without network calls.
 
 #### 2. **Framework Page** (`pages/Framework.tsx`)
 - **Purpose**: Explains the PWA (Purpose-Wellbeing Axis) and SFR (Sustainable Feedback Rhythm) frameworks
@@ -56,7 +59,6 @@ These pages fetch content from Sanity CMS for dynamic article management.
 ### Static Content
 
 ```
-lib/articles.ts          → ARTICLES array (3 articles for Home page)
 constants.ts             → CASE_STUDIES, EXPERIENCE arrays
 ```
 
@@ -65,21 +67,28 @@ constants.ts             → CASE_STUDIES, EXPERIENCE arrays
 ```
 Sanity CMS (lrta5lyp.apicdn.sanity.io)
   └── Article documents with PortableText content
+      ├── Used by Home page for featured articles (max 3)
       ├── Used by Writing page for listing
       └── Used by Article page for full content
+      
+Sanity Studio Features:
+  ├── "Featured Articles (Max 3)" view for easy management
+  ├── Visual indicators (⭐ FEATURED) in article lists
+  ├── Validation prevents more than 3 featured articles
+  └── Easy toggle on/off for featured status
 ```
 
 ## Benefits of This Architecture
 
 ### 1. **Performance**
-- Home page loads instantly (no network waterfall)
-- Critical showcase content is immediately available
-- No dependency on Sanity CDN availability for landing page
+- Home page fetches latest featured articles from Sanity
+- Framework, Evidence, and Resume pages load instantly (no network calls)
+- Optimized featured article selection (max 3)
 
 ### 2. **Reliability**
-- Landing page works even if Sanity is down
-- Core value proposition always accessible
-- Progressive enhancement: dynamic content loads separately
+- Home page shows most relevant content (featured + recent)
+- Sanity Studio validation prevents configuration errors
+- Progressive enhancement: dynamic content enhances experience when available
 
 ### 3. **SEO**
 - Static content is immediately indexable
@@ -98,8 +107,22 @@ Sanity CMS (lrta5lyp.apicdn.sanity.io)
 
 ## Content Update Workflow
 
-### For Standalone Pages (Home, Framework, Evidence, Resume)
-1. Edit the component files or data files (`lib/articles.ts`, `constants.ts`)
+### For Home Page (Featured Articles)
+1. **Access Sanity Studio**: Navigate to `/jasonkhanani-website/` or use Sanity Studio
+2. **Featured Articles View**: Use the "Featured Articles (Max 3)" view in the sidebar (marked with ⭐) to see all currently featured articles
+3. **To Feature an Article**: 
+   - Open any article and toggle the "Featured Insight?" checkbox
+   - Maximum of 3 articles can be featured at once
+   - If 3 are already featured, you'll see a validation error prompting you to unfeature another article first
+4. **To Unfeature an Article**: Open the article from the Featured Articles view and uncheck "Featured Insight?"
+5. **Visual Indicators**: Featured articles show "⭐ FEATURED" in their subtitle in all article lists
+6. **Homepage Display Logic**:
+   - Shows up to 3 featured articles (sorted by most recent)
+   - If fewer than 3 are featured, fills remaining slots with most recent non-featured articles
+   - Total of 3 articles always displayed on homepage
+
+### For Standalone Pages (Framework, Evidence, Resume)
+1. Edit the component files or data files (`constants.ts` for Evidence)
 2. Commit changes to Git
 3. Deploy via CI/CD
 4. Content updates are atomic with code deployment
@@ -115,7 +138,7 @@ Sanity CMS (lrta5lyp.apicdn.sanity.io)
 
 ```
 pages/
-  ├── Home.tsx           # Standalone (uses lib/articles.ts)
+  ├── Home.tsx           # Dynamic (Sanity featured articles)
   ├── Framework.tsx      # Standalone (hardcoded)
   ├── Evidence.tsx       # Standalone (uses constants.ts)
   ├── Resume.tsx         # Standalone (hardcoded)
@@ -124,15 +147,17 @@ pages/
   └── Contact.tsx        # Form (Netlify Forms)
 
 lib/
-  ├── articles.ts        # Static article data for Home page
   └── sanityErrorHandler.ts  # Retry logic for Sanity API calls
 
-constants.ts             # CASE_STUDIES, EXPERIENCE, exports ARTICLES
+constants.ts             # CASE_STUDIES, EXPERIENCE arrays
 
 src/
   └── client.ts          # Sanity client configuration
 
 jasonkhanani-website/    # Sanity Studio for content management
+  ├── sanity.config.ts   # Custom structure with "Featured Articles" view
+  └── schemaTypes/
+      └── article.ts     # Article schema with featured validation & preview
 ```
 
 ## Migration Notes
@@ -141,5 +166,6 @@ This architecture was established after migrating from:
 - Netlify CMS → Removed (admin/ directory deleted)
 - Markdown files → Removed (content/ directory deleted)
 - Markdown loader → Removed (lib/posts.ts deleted)
+- Static fallback articles → Removed (lib/articles.ts deleted)
 
-The static ARTICLES in `lib/articles.ts` serve as curated featured content for the home page, while the full article library lives in Sanity CMS and is accessed through the Writing page.
+The Home page dynamically fetches featured articles from Sanity CMS (using the `isFeatured` field, max 3). Sanity Studio provides a dedicated "Featured Articles" view for easy management. The full article library lives in Sanity CMS and is accessed through the Writing page.
