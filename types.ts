@@ -47,6 +47,11 @@ export interface Article {
     caption?: string;
     attribution?: string;
     attributionUrl?: string;
+    unsplashSource?: {
+      name?: string;
+      url?: string;
+    };
+    unsplashDescription?: string;
   };
 
   // Preserve any existing content representation (markdown string from .md or structured blocks)

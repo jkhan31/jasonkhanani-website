@@ -40,7 +40,32 @@ export default defineType({
         defineArrayMember({
             type: 'image',
             options: { hotspot: true },
-            fields: [{ type: 'string', name: 'alt', title: 'Alt Text' }]
+            fields: [
+                {
+                    type: 'string',
+                    name: 'alt',
+                    title: 'Alt Text',
+                    description: 'Unsplash images auto-populate from description. Recommended for manually uploaded images for accessibility.',
+                },
+                {
+                    type: 'string',
+                    name: 'caption',
+                    title: 'Caption',
+                    description: 'Optional caption displayed below the image'
+                },
+                {
+                    type: 'string',
+                    name: 'attribution',
+                    title: 'Photo Credit',
+                    description: 'Photographer name (auto-populated for Unsplash images)',
+                },
+                {
+                    type: 'url',
+                    name: 'attributionUrl',
+                    title: 'Photographer URL',
+                    description: 'Link to photographer profile (auto-populated for Unsplash images)',
+                },
+            ]
         }),
     ],
 })
