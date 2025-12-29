@@ -40,6 +40,7 @@ export interface Article {
   isFeatured: boolean;
 
   // Image field with attribution
+  image?: string | null; // derived URL from mainImage
   mainImage?: {
     asset: any;
     alt?: string;

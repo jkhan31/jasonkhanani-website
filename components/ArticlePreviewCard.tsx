@@ -33,10 +33,10 @@
         </div>
 
         {/* Image with Attribution */}
-        {(article as any).image && (
+        {article.image && (
           <div className="mb-4">
             <img
-              src={(article as any).image}
+              src={article.image}
               alt={article.mainImage?.alt || article.title}
               className="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
