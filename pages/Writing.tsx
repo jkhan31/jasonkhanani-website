@@ -188,7 +188,7 @@ const Writing: React.FC = () => {
           }`}
         >
           <span>All Insights</span>
-          <span className="opacity-60">({totalCount})</span>
+          <span className="opacity-80">({totalCount})</span>
         </button>
 
         {/* 2. Featured Filter (New) */}
@@ -203,7 +203,7 @@ const Writing: React.FC = () => {
           >
             <Star size={12} className={activeFilter === 'FEATURED' ? 'fill-ricePaper' : ''} />
             <span>Featured</span>
-            <span className="opacity-60">({featuredCount})</span>
+            <span className="opacity-80">({featuredCount})</span>
           </button>
         )}
 
@@ -219,7 +219,7 @@ const Writing: React.FC = () => {
             }`}
           >
             <span>{cat}</span>
-            <span className="opacity-60">({categoryCounts[cat]})</span>
+            <span className="opacity-80">({categoryCounts[cat]})</span>
           </button>
         ))}
 
@@ -235,7 +235,7 @@ const Writing: React.FC = () => {
             }`}
           >
             <span>{s}</span>
-            <span className="opacity-60">({seriesCounts[s]})</span>
+            <span className="opacity-80">({seriesCounts[s]})</span>
           </button>
         ))}
       </div>
@@ -295,7 +295,7 @@ const Writing: React.FC = () => {
       ) : (
         /* Empty State */
         <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
-          <p className="text-sumiInk/40 font-serif italic text-lg mb-4">No articles found in this filter.</p>
+          <p className="text-sumiInk/60 font-serif italic text-lg mb-4">No articles found in this filter.</p>
           <button
             onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
             className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust hover:border-foxOrange hover:text-foxOrange transition-all"
