@@ -1,5 +1,5 @@
 import { defineType, defineArrayMember } from 'sanity'
-import React from 'react'
+import { UnsplashPhotographerInput, UnsplashDescriptionInput } from './unsplashComponents'
 
 export default defineType({
     title: 'Block Content',
@@ -74,12 +74,7 @@ export default defineType({
                     readOnly: true,
                     hidden: ({ parent }: any) => !parent?.asset?.source?.name,
                     components: {
-                        input: (props: any) => {
-                            const photographerName = props.parent?.asset?.source?.name;
-                            return photographerName ? React.createElement('div', { 
-                                style: { padding: '0.75rem', backgroundColor: '#f3f4f6', borderRadius: '0.375rem', fontSize: '0.875rem' } 
-                            }, photographerName) : null;
-                        }
+                        input: UnsplashPhotographerInput,
                     },
                 },
                 {
@@ -91,12 +86,7 @@ export default defineType({
                     readOnly: true,
                     hidden: ({ parent }: any) => !parent?.asset?.description,
                     components: {
-                        input: (props: any) => {
-                            const description = props.parent?.asset?.description;
-                            return description ? React.createElement('div', { 
-                                style: { padding: '0.75rem', backgroundColor: '#f3f4f6', borderRadius: '0.375rem', fontSize: '0.875rem' } 
-                            }, description) : null;
-                        }
+                        input: UnsplashDescriptionInput,
                     },
                 },
             ]
