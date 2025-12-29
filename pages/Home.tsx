@@ -252,7 +252,7 @@ const Home: React.FC = () => {
          <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-serif mb-12">Let's Connect</h2>
             <p className="text-xl text-sumiInk/60 font-serif mb-16">
-              I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams.
+            {/* I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams. */}
             </p>
             <div className="flex flex-wrap justify-center gap-8">
               <Link to="/contact" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Get In Touch</Link>
