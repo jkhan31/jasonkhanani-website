@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import AnalyticsTracker from './src/utils/AnalyticsTracker';
 import { Layout } from './components/Layout';
 
@@ -52,7 +52,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { err
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <AnalyticsTracker />
       <Layout>
@@ -70,7 +70,7 @@ const App: React.FC = () => {
         </Suspense>
         </ErrorBoundary>
       </Layout>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

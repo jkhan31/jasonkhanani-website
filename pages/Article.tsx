@@ -49,7 +49,13 @@ const ptComponents = {
       return (
         <div className="my-10">
           <img
-            src={urlFor(value).width(1200).url()}
+            src={urlFor(value).width(1200).url()} // Fallback
+            srcSet={`
+              ${urlFor(value).width(400).url()} 400w,
+              ${urlFor(value).width(800).url()} 800w,
+              ${urlFor(value).width(1200).url()} 1200w
+            `}
+            sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
             alt={alt}
             className="w-full h-auto rounded-sm border-0.5 border-sumiInk/10 shadow-sm"
           />
@@ -70,7 +76,12 @@ const ptComponents = {
       const isInternal = target.startsWith('/') || target.includes('jasonkhanani.com');
 
       if (isInternal) {
-        const relativePath = target.replace('https://jasonkhanani.com', '').replace('/#', '');
+        // Remove domain and any hash fragments for clean internal routing
+        const relativePath = target
+          .replace('https://jasonkhanani.com', '')
+          .replace('http://jasonkhanani.com', '')
+          .replace('/#', '');
+        
         return (
           <Link 
             to={relativePath || '/'} 
@@ -202,11 +213,12 @@ const Article: React.FC = () => {
       <Helmet>
         <title>{current.title} | Jason K Hanani</title>
         <meta name="description" content={current.excerpt || ''} />
+        <link rel="canonical" href={`https://jasonkhanani.com/writing/${current.slug.current}`} />
         
         {/* Open Graph tags */}
         <meta property="og:title" content={current.title} />
         <meta property="og:description" content={current.excerpt || ''} />
-        <meta property="og:url" content={`https://jasonkhanani.com/#/writing/${current.slug.current}`} />
+        <meta property="og:url" content={`https://jasonkhanani.com/writing/${current.slug.current}`} />
         {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
         <meta property="og:type" content="article" />
         
@@ -245,7 +257,13 @@ const Article: React.FC = () => {
         {current.mainImage && (
            <div className="mb-10">
               <img 
-                src={urlFor(current.mainImage).width(1000).height(600).url()} 
+                src={urlFor(current.mainImage).width(1000).url()} // Fallback
+                srcSet={`
+                  ${urlFor(current.mainImage).width(400).url()} 400w,
+                  ${urlFor(current.mainImage).width(800).url()} 800w,
+                  ${urlFor(current.mainImage).width(1000).url()} 1000w
+                `}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1000px"
                 className="w-full object-cover rounded-sm"
                 alt={current.mainImage.alt || current.mainImage.unsplashDescription || current.title}
               />
@@ -273,27 +291,27 @@ const Article: React.FC = () => {
         <PortableText value={current.body} components={ptComponents} />
       </article>
 
-      <section className="mt-24 pt-16 border-t-0.5 border-hankoRust/10">
-        <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-sumiInk/30 mb-12 text-center md:text-left">Continue Reading</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {relatedArticles.map((related) => (
-            <Link key={related.slug} to={`/writing/${related.slug}`} className="group block">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-hankoRust mb-3 block">
-                {new Date(related.publishedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })} &bull; {related.category}
-              </span>
-              <h4 className="text-2xl font-serif text-sumiInk group-hover:text-foxOrange transition-colors leading-tight mb-4">
-                {related.title}
-              </h4>
-              <div className="flex items-center text-[10px] tracking-widest uppercase font-bold text-sumiInk group-hover:translate-x-1 transition-transform duration-300">
-                Read Full Essay <span className="ml-2 text-foxOrange">→</span>
-              </div>
-            </Link>
-          ))}
-          {relatedArticles.length === 0 && (
-            <p className="text-sm text-sumiInk/40 italic">More investigations are underway...</p>
-          )}
-        </div>
-      </section>
+      {/* Only render if we actually have related articles */}
+      {relatedArticles.length > 0 && (
+        <section className="mt-24 pt-16 border-t-0.5 border-hankoRust/10">
+          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-sumiInk/30 mb-12 text-center md:text-left">Continue Reading</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {relatedArticles.map((related) => (
+              <Link key={related.slug} to={`/writing/${related.slug}`} className="group block">
+                <span className="text-[10px] uppercase tracking-widest font-bold text-hankoRust mb-3 block">
+                  {new Date(related.publishedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })} &bull; {related.category}
+                </span>
+                <h4 className="text-2xl font-serif text-sumiInk group-hover:text-foxOrange transition-colors leading-tight mb-4">
+                  {related.title}
+                </h4>
+                <div className="flex items-center text-[10px] tracking-widest uppercase font-bold text-sumiInk group-hover:translate-x-1 transition-transform duration-300">
+                  Read Full Essay <span className="ml-2 text-foxOrange">→</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Footer / Resume Link */}
       <div className="mt-32 pt-12 border-t-0.5 border-hankoRust/10 text-center">

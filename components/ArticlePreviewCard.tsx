@@ -36,7 +36,12 @@
         {article.image && (
           <div className="mb-4">
             <img
-              src={article.image}
+              src={article.image} // Fallback (already 800px from Writing.tsx)
+              srcSet={`
+                ${article.image.replace('w=800', 'w=400')} 400w,
+                ${article.image} 800w
+              `}
+              sizes="(max-width: 640px) 400px, 800px"
               alt={article.mainImage?.alt || article.mainImage?.unsplashDescription || article.title}
               className="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
