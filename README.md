@@ -302,17 +302,16 @@ borderWidth: {
 ### Build Process
 
 ```bash
-# 1. Generate sitemap (fetches article slugs from Sanity CMS)
-npm run prebuild
-
-# 2. Build optimized production bundle
+# Build for production (automatically runs prebuild to generate sitemap)
 npm run build
-
-# 3. Copy admin files (if using Netlify CMS)
-npm run postbuild
 ```
 
-**Note**: The sitemap generation script (`scripts/generate-sitemap.js`) connects to Sanity CMS to fetch article slugs. Ensure network access to Sanity.io API during build.
+The build process includes:
+1. **prebuild**: Generates sitemap by fetching article slugs from Sanity CMS
+2. **build**: Creates optimized production bundle with Vite
+3. **postbuild**: Copies admin files for Netlify CMS
+
+**Note**: The sitemap generation script (`scripts/generate-sitemap.js`) connects to Sanity CMS. Ensure network access to Sanity.io API during build, or the sitemap generation will fail (though the main build will continue).
 
 Output directory: `dist/`
 
@@ -330,7 +329,7 @@ All work seamlessly with HashRouter and static builds.
 
 No environment variables required for core functionality. Optional for:
 - Google Drive API credentials - For automated content import (see [WORKFLOW.md](./WORKFLOW.md))
-- Sanity CMS configuration - For dynamic content and sitemap generation (projectId: `lrta5lyp`)
+- Sanity CMS configuration - For dynamic content and sitemap generation (configured in `scripts/generate-sitemap.js`)
 
 ---
 
