@@ -37,12 +37,12 @@
           <div className="mb-4">
             <img
               src={article.image}
-              alt={article.mainImage?.alt || article.title}
+              alt={article.mainImage?.alt || article.mainImage?.unsplashDescription || article.title}
               className="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
             <ImageAttribution
-              attribution={article.mainImage?.attribution}
-              attributionUrl={article.mainImage?.attributionUrl}
+              attribution={article.mainImage?.attribution || article.mainImage?.unsplashSource?.name}
+              attributionUrl={article.mainImage?.attributionUrl || article.mainImage?.unsplashSource?.url}
             />
           </div>
         )}
