@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import { PortableText } from '@portabletext/react';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { client, urlFor } from '../src/client'; // Import from src folder
