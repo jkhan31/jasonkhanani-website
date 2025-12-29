@@ -1,4 +1,5 @@
 import { defineType, defineArrayMember } from 'sanity'
+import { UnsplashPhotographerInput, UnsplashDescriptionInput } from './unsplashComponents'
 
 export default defineType({
     title: 'Block Content',
@@ -64,6 +65,29 @@ export default defineType({
                     name: 'attributionUrl',
                     title: 'Photographer URL',
                     description: 'Link to photographer profile (auto-populated for Unsplash images)',
+                },
+                {
+                    name: 'unsplashPhotographer',
+                    type: 'string',
+                    title: '📷 Unsplash Photographer',
+                    description: 'Read-only: Auto-populated from Unsplash metadata',
+                    readOnly: true,
+                    hidden: ({ parent }: any) => !parent?.asset?.source?.name,
+                    components: {
+                        input: UnsplashPhotographerInput,
+                    },
+                },
+                {
+                    name: 'unsplashImageDescription',
+                    type: 'text',
+                    title: '📝 Unsplash Description',
+                    description: 'Read-only: Auto-populated from Unsplash metadata',
+                    rows: 2,
+                    readOnly: true,
+                    hidden: ({ parent }: any) => !parent?.asset?.description,
+                    components: {
+                        input: UnsplashDescriptionInput,
+                    },
                 },
             ]
         }),
