@@ -13,6 +13,9 @@ export const ImageAttribution: React.FC<ImageAttributionProps> = ({
 }) => {
   if (!attribution) return null;
 
+  // Check if this is an Unsplash image by checking the attribution URL
+  const isUnsplashImage = attributionUrl?.includes('unsplash.com');
+
   return (
     <p className={`text-xs text-sumiInk/60 mt-2 ${className}`}>
       Photo by{' '}
@@ -27,16 +30,20 @@ export const ImageAttribution: React.FC<ImageAttributionProps> = ({
         </a>
       ) : (
         <span>{attribution}</span>
-      )}{' '}
-      on{' '}
-      <a
-        href="https://unsplash.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="underline hover:text-hankoRust transition-colors"
-      >
-        Unsplash
-      </a>
+      )}
+      {isUnsplashImage && (
+        <>
+          {' '}on{' '}
+          <a
+            href="https://unsplash.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-hankoRust transition-colors"
+          >
+            Unsplash
+          </a>
+        </>
+      )}
     </p>
   );
 };
