@@ -19,6 +19,24 @@ const hostname = 'https://jasonkhanani.com';
 // Static routes
 const staticRoutes = ['/', '/evidence', '/framework', '/writing', '/resume', '/contact'];
 
+/**
+ * Generate XML sitemap from list of URLs
+ */
+function generateSitemapXML(urls) {
+  const urlElements = urls.map(url => {
+    return `  <url>
+    <loc>${hostname}${url}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+  }).join('\n');
+  
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlElements}
+</urlset>`;
+}
+
 async function generateSitemap() {
   try {
     // Query Sanity for all article slugs
@@ -47,18 +65,7 @@ async function generateSitemap() {
     ];
     
     // Generate XML sitemap
-    const urlElements = allUrls.map(url => {
-      return `  <url>
-    <loc>${hostname}${url}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
-    }).join('\n');
-    
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlElements}
-</urlset>`;
+    const sitemap = generateSitemapXML(allUrls);
     
     // Write to public/sitemap.xml
     const outDir = path.resolve(__dirname, '..', 'public');
@@ -70,14 +77,7 @@ ${urlElements}
   } catch (error) {
     console.error('Error generating sitemap:', error);
     // Don't fail the build - generate a basic sitemap with static routes only
-    const basicSitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${staticRoutes.map(url => `  <url>
-    <loc>${hostname}${url}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('\n')}
-</urlset>`;
+    const basicSitemap = generateSitemapXML(staticRoutes);
     
     const outDir = path.resolve(__dirname, '..', 'public');
     fs.mkdirSync(outDir, { recursive: true });

@@ -60,10 +60,10 @@ export async function fetchWithRetry<T>(
 /**
  * Check if an error is a CORS error
  */
-export function isCorsError(error: any): boolean {
+export function isCorsError(error: Error | unknown): boolean {
   if (!error) return false;
   
-  const errorMessage = error.message || error.toString();
+  const errorMessage = error instanceof Error ? error.message : String(error);
   return (
     errorMessage.includes('CORS') ||
     errorMessage.includes('Access-Control-Allow-Origin') ||
@@ -74,10 +74,10 @@ export function isCorsError(error: any): boolean {
 /**
  * Check if an error is a network error
  */
-export function isNetworkError(error: any): boolean {
+export function isNetworkError(error: Error | unknown): boolean {
   if (!error) return false;
   
-  const errorMessage = error.message || error.toString();
+  const errorMessage = error instanceof Error ? error.message : String(error);
   return (
     errorMessage.includes('NetworkError') ||
     errorMessage.includes('Failed to fetch') ||
