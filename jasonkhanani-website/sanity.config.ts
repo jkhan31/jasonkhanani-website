@@ -11,7 +11,7 @@ export default defineConfig({
   projectId: 'lrta5lyp',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool(), unsplashImageAsset].filter(Boolean),
+  plugins: [structureTool(), visionTool(), unsplashImageAsset()].filter(Boolean),
 
   schema: {
     types: schemaTypes,
