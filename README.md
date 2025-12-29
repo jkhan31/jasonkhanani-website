@@ -125,7 +125,7 @@ The site uses a philosophy of **high contrast, tactile textures, and engineering
 # Development server (with hot reload)
 npm run dev
 
-# Production build (includes sitemap generation)
+# Production build (prebuild generates sitemap, then builds)
 npm run build
 
 # Preview production build
@@ -327,9 +327,11 @@ All work seamlessly with HashRouter and static builds.
 
 ### Environment Variables
 
-No environment variables required for core functionality. Optional for:
-- Google Drive API credentials - For automated content import (see [WORKFLOW.md](./WORKFLOW.md))
-- Sanity CMS configuration - For dynamic content and sitemap generation (configured in `scripts/generate-sitemap.js`)
+No environment variables required for core functionality. 
+
+**Optional configurations**:
+- **Google Drive API credentials** - For automated content import (see [WORKFLOW.md](./WORKFLOW.md))
+- **Sanity CMS** - Currently hardcoded in `scripts/generate-sitemap.js` for sitemap generation. Could be moved to environment variables for enhanced security if needed.
 
 ---
 
