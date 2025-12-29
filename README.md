@@ -302,7 +302,7 @@ borderWidth: {
 ### Build Process
 
 ```bash
-# 1. Generate sitemap
+# 1. Generate sitemap (fetches article slugs from Sanity CMS)
 npm run prebuild
 
 # 2. Build optimized production bundle
@@ -311,6 +311,8 @@ npm run build
 # 3. Copy admin files (if using Netlify CMS)
 npm run postbuild
 ```
+
+**Note**: The sitemap generation script (`scripts/generate-sitemap.js`) connects to Sanity CMS to fetch article slugs. Ensure network access to Sanity.io API during build.
 
 Output directory: `dist/`
 
@@ -327,8 +329,8 @@ All work seamlessly with HashRouter and static builds.
 ### Environment Variables
 
 No environment variables required for core functionality. Optional for:
-- `GEMINI_API_KEY` - If using AI features (currently unused)
-- Google Drive API credentials - For automated content import (see WORKFLOW.md)
+- Google Drive API credentials - For automated content import (see [WORKFLOW.md](./WORKFLOW.md))
+- Sanity CMS configuration - For dynamic content and sitemap generation (projectId: `lrta5lyp`)
 
 ---
 
@@ -402,7 +404,7 @@ See [PRD.md](./PRD.md) for detailed roadmap specifications.
 - **[WEBSITE_REVIEW.md](./WEBSITE_REVIEW.md)** - Comprehensive technical review (24KB)
 - **[REVIEW_SUMMARY.md](./REVIEW_SUMMARY.md)** - Executive summary of review findings
 - **[WORKFLOW.md](./WORKFLOW.md)** - Content import and publishing workflow
-- **[content/POST_AUTHORING.md](./content/POST_AUTHORING.md)** - Blog writing guidelines
+- **[content/POST_AUTHORING.md](content/POST_AUTHORING.md)** - Blog writing guidelines
 
 ---
 
