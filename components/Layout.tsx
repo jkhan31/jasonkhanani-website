@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Logo } from './Logo';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Linkedin } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,9 +77,11 @@ const Header: React.FC = () => {
               href="https://www.linkedin.com/in/jasonkhanani/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm tracking-wide text-sumiInk hover:text-foxOrange"
+              className="text-sm tracking-wide text-sumiInk hover:text-foxOrange inline-flex items-center"
+              aria-label="LinkedIn profile"
             >
-              LinkedIn
+              <Linkedin size={18} />
+              <span className="sr-only">LinkedIn</span>
             </a>
           </div>
 
@@ -132,9 +134,11 @@ const Header: React.FC = () => {
             href="https://www.linkedin.com/in/jasonkhanani/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className={`text-sm tracking-[0.3em] uppercase font-bold text-sumiInk/60 hover:text-foxOrange transition-all duration-700 delay-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
+            aria-label="LinkedIn profile"
+            className={`inline-flex items-center justify-center text-sm tracking-[0.3em] uppercase font-bold text-sumiInk/60 hover:text-foxOrange transition-all duration-700 delay-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
           >
-            LinkedIn
+            <Linkedin size={28} />
+            <span className="sr-only">LinkedIn</span>
           </a>
         </div>
         

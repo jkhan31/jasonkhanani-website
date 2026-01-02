@@ -95,7 +95,8 @@ const Evidence: React.FC = () => {
         {/* Footer Note */}
         <div className="mt-16 pt-8 border-t-0.5 border-sumiInk/10 text-center">
           <p className="text-sm text-sumiInk/50 italic max-w-2xl mx-auto leading-relaxed">
-            Detailed company history, specific project documentation, and raw data are available via resume upon request.
+            More detailed experience and project data are available on my{' '}
+            <Link to="/resume" className="text-hankoRust hover:underline">resume</Link>.
           </p>
         </div>
       </div>
