@@ -21,7 +21,13 @@ const Hero: React.FC = () => (
         Turning Messy Operations into <span className="italic text-foxOrange">Clear Decisions</span>
       </h1>
       <p className="text-sm uppercase text-sumiInk/50 mb-4 font-bold">Operational Clarity. Systemic Resilience.</p>
-      <p className="text-xl md:text-3xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16">
+      
+      {/* Enhanced Name Integration */}
+      <p className="text-2xl md:text-3xl font-serif text-sumiInk mb-4 font-semibold">
+        Jason Kester Hanani
+      </p>
+      
+      <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16">
         Specialized in deep-dive analysis to streamline complexity, process optimization, and deploying AI-augmented workflows for high-performing systems.  
       </p>
       <div className="flex flex-wrap gap-8">
@@ -54,108 +60,23 @@ const RemoteLeverage: React.FC = () => (
           titleClassName="text-5xl md:text-6xl text-ricePaper"
           eyebrowClassName="text-sm md:text-base"
         />
-        <div className="space-y-8 text-lg text-ricePaper/60 font-serif leading-relaxed">
-          <p>
-            In today's dynamic business environment, sustained impact stems from operational clarity and resilient systems. I specialize in dissecting complexity and engineering robust solutions that perform consistently, no matter the organizational structure.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            {[
-              { title: "Deep-Dive Diagnostics", desc: "Uncovering hidden inefficiencies and process leaks at the data level to inform strategic action." },
-              { title: "Asynchronous Workflow Design", desc: "Architecting seamless, documentation-driven processes that minimize dependencies and enhance cross-functional efficiency." },
-              { title: "Performance Optimization", desc: "Pinpointing friction points and bottlenecks to accelerate system throughput and maximize delivery speed." },
-              { title: "Scalable System Design", desc: "Building robust, adaptable processes and tools that reliably perform across diverse teams and evolving business needs." }
-            ].map((item, i) => (
-              <div key={i} className="group">
-                <h3 className="text-ricePaper font-bold text-xs uppercase tracking-widest mb-2">{item.title}</h3>
-                <p className="text-sm opacity-80">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="relative">
-        <div className="border-0.5 border-ricePaper/10 p-6 md:p-12 aspect-square flex flex-col justify-center items-start bg-white/5 backdrop-blur-sm">
-          <div className="w-full h-full flex flex-col justify-center gap-6 px-6">
-            {[
-              { title: "Deep-Dive Diagnostics", short: "Data-level forensics to find leaks and fix root causes." },
-              { title: "Async Workflow Design", short: "Documentation-led flows to reduce blockers and context-switching." },
-              { title: "Performance Optimization", short: "Targeted tuning of bottlenecks to speed delivery." },
-              { title: "Scalable System Design", short: "Processes and tools that adapt across teams and growth." }
-            ].map((p, idx) => (
-              <div key={idx} className="flex items-start gap-4">
-                <div className="w-3 h-3 rounded-full bg-foxOrange mt-2" />
-                <div>
-                  <h4 className="text-ricePaper font-bold text-sm uppercase tracking-widest">{p.title}</h4>
-                  <p className="text-ricePaper/70 text-sm">{p.short}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="absolute -bottom-6 -left-6 bg-hankoRust p-6 shadow-2xl">
-          <span className="text-4xl font-serif">€1.5M+</span>
-          <p className="text-[9px] uppercase tracking-widest font-bold opacity-80">Quantified Impact Recovered</p>
-        </div>
       </div>
     </div>
   </section>
 );
 
-const Tracks: React.FC = () => (
-  <section className="px-6 py-24 md:py-40 max-w-7xl mx-auto">
-    <SectionHeader 
-      eyebrow="Execution Tracks" 
-      title="How I Build Leverage." 
-      className="mb-20 text-center"
-    />
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500">
-        <div className="absolute top-0 right-0 p-8 opacity-5"><Database size={80} /></div>
-        <span className="text-hankoRust font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Investigator</span>
-        <h3 className="text-4xl font-serif mb-8 italic">The Investigator</h3>
-        <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
-          I dive into your Postgres/BigQuery instances to find where revenue is leaking and why process owners are stuck.
-        </p>
-        <ul className="space-y-4 mb-12">
-          {["Revenue Forensics", "SQL Data Modeling", "Scenario Sensitivity Analysis"].map(item => (
-            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/60">
-              <span className="w-4 h-[1px] bg-hankoRust/30 mr-3" /> {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500">
-        <div className="absolute top-0 right-0 p-8 opacity-5"><Layers size={80} /></div>
-        <span className="text-foxOrange font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Architect</span>
-        <h3 className="text-4xl font-serif mb-8 italic">The Architect</h3>
-        <p className="text-xl text-sumiInk/70 font-serif leading-relaxed mb-12">
-          Operational blueprinting. I design the automations and documentation that allow teams to scale without adding headcount.
-        </p>
-        <ul className="space-y-4 mb-12">
-          {["Async Workflow Design", "Automated Ops Pipelines", "Distributed System Resilience"].map(item => (
-            <li key={item} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/60">
-              <span className="w-4 h-[1px] bg-foxOrange/30 mr-3" /> {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-);
-
-const Home: React.FC = () => {
-  // Fetch featured articles from Sanity (max 3 featured, fill remaining with recent)
-  const [sanityData, setSanityData] = useState<any[]>([]);
+export default function Home() {
+  const [articles, setArticles] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true;
     const fetchArticles = async () => {
       const result = await fetchWithRetry(async () => {
-        const query = `*[_type == "article"] | order(publishedAt desc) { 
-          title, 
-          "slug": slug.current, 
-          publishedAt, 
-          excerpt, 
+        const query = `*[_type == "article"] | order(publishedAt desc) [0...3] {
+          title,
+          "slug": slug.current,
+          publishedAt,
+          excerpt,
           mainImage {
             asset,
             alt,
@@ -164,128 +85,76 @@ const Home: React.FC = () => {
             attributionUrl,
             "unsplashSource": asset->source,
             "unsplashDescription": asset->description
-          }, 
-          isFeatured, 
-          "category": category->title, 
-          "series": series->title, 
-          "tags": tags[]->title 
+          },
+          isFeatured,
+          "category": category->title,
+          "series": series->title,
+          "tags": tags[]->title
         }`;
         return await client.fetch(query);
       });
-      
-      if (!mounted) return;
-      
+
       if (result) {
-        setSanityData(result || []);
-      } else {
-        // If all retries failed, show empty state
-        console.warn('Failed to fetch articles from Sanity');
-        setSanityData([]);
+        setArticles(result);
       }
+      setIsLoading(false);
     };
+
     fetchArticles();
-    return () => { mounted = false; };
   }, []);
 
   const normalizedArticles = useMemo(() => {
-    // No fallback - only use Sanity data
-    if (!sanityData || sanityData.length === 0) return [];
-    return sanityData.map((a: any, idx: number) => {
-      const tags = Array.isArray(a.tags) ? a.tags : [];
-      const slug = a.slug || `post-${idx}`;
+    return articles.map((a, idx) => {
       const dateStr = a.publishedAt || new Date().toISOString();
       const dateObj = new Date(dateStr);
-      const image = a.mainImage ? urlFor(a.mainImage).width(800).url() : null;
+      
       return {
-        id: slug,
-        slug,
-        title: a.title || slug,
-        excerpt: a.excerpt || '',
-        readTime: a.readTime || '5 min',
+        ...a,
+        id: a.slug || `post-${idx}`,
+        slug: a.slug || `post-${idx}`,
+        tags: Array.isArray(a.tags) ? a.tags : [],
         category: a.category || 'Uncategorized',
         series: a.series || null,
-        tags,
-        date: dateObj.toISOString().slice(0,10),
-        dateObj,
         isFeatured: a.isFeatured === true,
-        content: [] as any,
-        image,
-      } as any;
-    }).sort((x: any, y: any) => y.dateObj.getTime() - x.dateObj.getTime());
-  }, [sanityData]);
-
-  const selectedArticles = useMemo(() => {
-    const featured = normalizedArticles.filter((a: any) => a.isFeatured).slice().sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());
-    const result: any[] = [];
-    for (let i = 0; i < Math.min(3, featured.length); i++) result.push(featured[i]);
-    if (result.length < 3) {
-      const nonFeatured = normalizedArticles.filter((a: any) => !a.isFeatured && !result.find(r => r.slug === a.slug));
-      nonFeatured.sort((a: any, b: any) => b.dateObj.getTime() - a.dateObj.getTime());
-      for (let i = 0; i < nonFeatured.length && result.length < 3; i++) result.push(nonFeatured[i]);
-    }
-    return result;
-  }, [normalizedArticles]);
+        date: dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }),
+        dateObj,
+        image: a.mainImage ? urlFor(a.mainImage).width(800).url() : null,
+      };
+    });
+  }, [articles]);
 
   return (
     <div className="animate-in fade-in duration-1000">
       <Hero />
       <RemoteLeverage />
-      <Tracks />
       
-      {/* Insights & Strategic Thinking */}
-      <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto border-t-0.5 border-hankoRust/10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div className="max-w-2xl">
-            <SectionHeader 
-              eyebrow="Insights & Strategic Thinking" 
-              title="Latest from the Operations Vault" 
-              className="mb-0" 
-            />
-            <p className="text-sumiInk/60 font-serif mt-6 leading-relaxed">
-              Deep dives into operational excellence, system design, and the future of AI-augmented business operations.
-            </p>
-          </div>
+      {/* Recent Writing Section */}
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+        <div className="flex justify-between items-end mb-16">
+          <SectionHeader 
+            eyebrow="Recent Writing" 
+            title="Latest Insights" 
+          />
           <Link 
             to="/writing" 
-            className="group flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors whitespace-nowrap"
+            className="text-sm font-bold tracking-wider uppercase text-hankoRust hover:text-foxOrange transition-colors flex items-center gap-2"
           >
-            View All Essays <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+            View All <ArrowRight size={16} />
           </Link>
         </div>
-        
-        {/* 3-Column Grid of Article Previews */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {selectedArticles.map((article) => (
-            <ArticlePreviewCard key={article.slug} article={article} compact />
-          ))}
-        </div>
-        
-        {/* View All CTA */}
-        <div className="mt-16 text-center">
-          <Link
-            to="/writing"
-            className="inline-flex items-center px-10 py-4 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange hover:shadow-lg transition-all duration-300"
-          >
-            View All Essays
-          </Link>
-        </div>
-      </section>
 
-      {/* Global Contact Hook */}
-      <section className="px-6 py-32 bg-ricePaper text-center">
-         <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-serif mb-12">Let's Connect</h2>
-            <p className="text-xl text-sumiInk/60 font-serif mb-16">
-            {/* I am currently open to Senior Product Operations or Business Analysis roles with high-leverage remote teams. */}
-            </p>
-            <div className="flex flex-wrap justify-center gap-8">
-              <Link to="/contact" className="px-12 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-widest shadow-xl hover:bg-foxOrange transition-all">Get In Touch</Link>
-              <a href="https://linkedin.com/in/jasonkhanani" target="_blank" className="px-12 py-5 border-0.5 border-sumiInk/20 text-[10px] font-bold uppercase tracking-widest hover:border-foxOrange hover:text-foxOrange transition-all">LinkedIn Profile</a>
-            </div>
-         </div>
+        {isLoading ? (
+          <div className="text-center py-12 text-sumiInk/50">Loading articles...</div>
+        ) : normalizedArticles.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {normalizedArticles.map((article) => (
+              <ArticlePreviewCard key={article.id} article={article} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-sumiInk/50">No articles available yet.</div>
+        )}
       </section>
     </div>
   );
-};
-
-export default Home;
+}
