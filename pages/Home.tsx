@@ -14,21 +14,22 @@ const Hero: React.FC = () => (
         <Logo size="xl" />
     </div>
     <div className="max-w-4xl relative z-10">
-      <p className="text-hankoRust font-bold tracking-[0.3em] text-[14px] uppercase mb-8 flex items-center">
+      <p className="text-hankoRust font-bold tracking-[0.3em] text-[14px] uppercase mb-2 flex items-center">
         INDUSTRIAL ENGINEER &bull; BUSINESS ANALYST
       </p>
-      <h1 className="text-6xl md:text-8xl lg:text-7xl font-serif text-sumiInk leading-[0.95] mb-10 tracking-tight">
+
+      <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-extrabold text-sumiInk leading-tight mt-2 mb-6 tracking-tight">
+        Jason Kester Hanani
+      </h2>
+
+      <h1 className="text-6xl md:text-8xl lg:text-7xl font-serif text-sumiInk leading-[0.95] mb-6 tracking-tight">
         Turning Messy Operations into <span className="italic text-foxOrange">Clear Decisions</span>
       </h1>
+
       <p className="text-sm uppercase text-sumiInk/50 mb-4 font-bold">Operational Clarity. Systemic Resilience.</p>
-      
-      {/* Enhanced Name Integration */}
-      <p className="text-2xl md:text-3xl font-serif text-sumiInk mb-4 font-semibold">
-        Jason Kester Hanani
-      </p>
-      
-      <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16">
-        Specialized in deep-dive analysis to streamline complexity, process optimization, and deploying AI-augmented workflows for high-performing systems.  
+
+      <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16 mt-2">
+        Specialized in deep-dive analysis to streamline complexity, process optimization, and deploying AI-augmented workflows for high-performing systems.
       </p>
       <div className="flex flex-wrap gap-8">
         <Link 
