@@ -271,7 +271,7 @@ const Framework: React.FC = () => {
               This blueprint is not a rigid cage—it is a handrail.
             </p>
             <p className="text-sumiInk/70 leading-relaxed">
-              I document the ongoing investigation of applying these principles—both personally and in product operations—in my writing series.
+              I document the ongoing investigation of applying these principles - across professional and personal domains - in my writing series.
             </p>
           </div>
           <a
