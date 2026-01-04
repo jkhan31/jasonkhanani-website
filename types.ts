@@ -4,7 +4,6 @@ export interface CaseStudy {
   title: string;
   stealthTitle: string;
   hook: string;
-  persona: 'Investigator' | 'Architect' | 'Future';
   details: string[];
   impact: string;
 }

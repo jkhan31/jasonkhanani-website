@@ -8,68 +8,63 @@ export const SITE_URL = `https://${SITE_DOMAIN}`;
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'revenue-preservation',
-    title: 'Revenue Preservation',
-    stealthTitle: 'Global E-commerce Marketplace',
-    hook: 'The Challenge — Returns were bleeding revenue without structured diagnostics.',
-    persona: 'Investigator',
-    impact: '€700K',
+    title: 'Revenue Retention Architecture',
+    stealthTitle: 'Financial Engineering',
+    hook: 'A return isn\'t necessarily a loss; it\'s often just a request for a better fit. The system was designed to reject, when it should have been designed to recover.',
     details: [
-      'The Challenge: High return rates were masking underlying friction points in the customer journey, leading to significant revenue loss.',
-      'The Diagnostic: Conducted SQL forensics to trace return patterns and identified systematic issues in the exchange process.',
-      'Outcome Impact: Engineered an optimized exchange model that preserved €700K in annual revenue.'
-    ]
+      '**The Diagnostic:** Diagnosed a systemic revenue leak caused by high return rates. The existing workflow treated returns as a binary "loss" rather than a retention opportunity.',
+      '**The Architecture:** Engineered a "Return-to-Exchange" conversion feature. Redesigned the user flow to frictionlessly offer inventory alternatives before processing refunds.',
+      '**The Outcome:** Converted 15% of would-be returns into exchanges, strictly preserving €695K in annual revenue.'
+    ],
+    impact: '€695K Revenue Preserved'
   },
   {
     id: 'logistics-optimization',
-    title: 'Logistics Optimization',
-    stealthTitle: 'Regional Logistics Network',
-    hook: 'The Challenge — Third-party logistics billing discrepancies were creating operational opacity.',
-    persona: 'Investigator',
-    impact: '€500K',
+    title: 'Routing Engine Architecture',
+    stealthTitle: 'Systems Design',
+    hook: 'Velocity is a function of logic. Hard-coding routing rules creates latency; automating them creates flow.',
     details: [
-      'The Challenge: Inconsistent 3PL billing created financial uncertainty and operational inefficiency across the distribution network.',
-      'The Diagnostic: Applied SQL-based forensics to audit billing records and trace systematic discrepancies in logistics partner invoicing.',
-      'Outcome Impact: Recovered and prevented future losses totaling € through data-driven reconciliation.'
-    ]
+      '**The Diagnostic:** Route activation had a 5-day lead time due to manual setup processes, creating a bottleneck in network scalability.',
+      '**The Architecture:** Designed "Planflow v2"—a logic-based routing system. Added an automation layer that programmatically determines package flow and routing permissions without manual intervention.',
+      '**The Outcome:** Reduced route activation lead time by 60% (5 days to 2), enabling rapid network elasticity.'
+    ],
+    impact: '60% Faster Activation'
   },
   {
     id: 'network-reengineering',
-    title: 'Network Re-Engineering',
-    stealthTitle: 'Multi-Node Distribution Network',
-    hook: 'The Challenge — Delivery lead times were exceeding competitive benchmarks by 40%.',
-    persona: 'Architect',
-    impact: '60% Gain',
+    title: 'Cost-to-Serve Engineering',
+    stealthTitle: 'DMAIC Protocol',
+    hook: 'The "Silent Bleed" of a business is always found in the unit economics. You cannot scale a system with negative gross margins.',
     details: [
-      'The Challenge: Suboptimal hub placement and routing protocols were creating delivery delays and customer dissatisfaction.',
-      'The Diagnostic: Analyzed geospatial distribution patterns and applied industrial engineering principles to identify ideal hub locations.',
-      'Outcome Impact: Relocated 7 strategic hubs, achieving a 60% reduction in delivery lead time.'
-    ]
+      '**The Diagnostic:** Shipping logistics fees were misaligned with actual cost-to-serve, creating a "Silent Bleed" on every unit sold.',
+      '**The Architecture:** Executed a full DMAIC (Define, Measure, Analyze, Improve, Control) cycle. Redesigned the fee structure based on granular margin sensitivity analysis.',
+      '**The Outcome:** Corrected the unit economics to save €520K annually without degrading service levels.'
+    ],
+    impact: '€520K Annual Savings'
   },
   {
     id: 'support-automation',
-    title: 'Support Automation',
-    stealthTitle: 'E-commerce Support Operations',
-    hook: 'The Challenge — Support volume was scaling faster than team capacity.',
-    persona: 'Architect',
-    impact: '40% Reduction',
+    title: 'Automated Support Layer',
+    stealthTitle: 'AI Implementation',
+    hook: 'Human empathy is a finite resource. It should be reserved for complex problems, not wasted on reciting FAQs.',
     details: [
-      'The Challenge: Repetitive customer inquiries were consuming agent bandwidth and slowing response times on complex issues.',
-      'The Diagnostic: Mapped customer journey touchpoints and classified support ticket patterns to identify automation opportunities.',
-      'Outcome Impact: Implemented targeted automation that reduced support volume by 40% while improving response quality.'
-    ]
+      '**The Diagnostic:** The Seller Helpdesk was bottlenecked by human availability, creating SLA breaches outside of business hours.',
+      '**The Architecture:** Deployed an AI-driven support automation layer. Mapped the "Ticket Deflection" logic to handle L1 queries autonomously 24/7.',
+      '**The Outcome:** Achieved a 60% deflection rate, effectively removing the noise so human agents could focus purely on high-complexity resolution.'
+    ],
+    impact: '60% Ticket Deflection'
   },
   {
     id: 'pmo-standardization',
-    title: 'PMO Standardization',
-    stealthTitle: 'Multinational Corporate PMO',
-    hook: 'The Challenge — Regional teams operated in silos with no unified project visibility.',
-    persona: 'Architect',
-    impact: '100% Visibility',
+    title: 'Global Workflow Unification',
+    stealthTitle: 'Process Architecture',
+    hook: 'Fragmentation is friction. A distributed team cannot run on local dialects; it needs a global protocol to ensure interoperability.',
     details: [
-      'The Challenge: Fragmented project management practices across regions created misalignment and resource inefficiencies.',
-      'The Diagnostic: Audited existing workflows and designed a unified source-of-truth framework for cross-regional priorities.',
-      'Outcome Impact: Achieved 100% portfolio visibility across all regional operations, enabling strategic resource allocation.'
-    ]
+      '**The Diagnostic:** Regional onboarding workflows were fragmented, leading to high cross-functional friction and a flood of avoidable support tickets.',
+      '**The Architecture:** Standardized disparate regional processes into a single Unified Global System. Built and codified the Global SOP (Standard Operating Procedure) to enforce consistency.',
+      '**The Outcome:** Drastically reduced cross-functional friction and support ticket volume, creating a scalable onboarding pipeline.'
+    ],
+    impact: 'Unified Global Protocol'
   }
 ];
 

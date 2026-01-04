@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from '../components/SectionHeader';
 import { CASE_STUDIES } from '../constants';
-import { TrendingUp, Search, Zap, MessageSquare, Layout, LucideIcon } from 'lucide-react';
+import { TrendingUp, Search, Zap, MessageSquare, Layout, LucideIcon, ArrowLeft, ArrowRight } from 'lucide-react';
 import { CaseStudy } from '../types';
 
 // Map case study IDs to specific icons
@@ -18,41 +17,60 @@ const getIconForStudy = (id: string): LucideIcon => {
   return iconMap[id] || Zap;
 };
 
+// Helper to parse the bold markdown from constants (e.g. "**The Diagnostic:** Text")
+const DetailItem: React.FC<{ text: string }> = ({ text }) => {
+  const parts = text.split('**');
+  // If we find the pattern **Label** Text, render it specially
+  if (parts.length >= 3) {
+    return (
+      <p className="text-sm text-sumiInk/80 leading-relaxed border-b border-sumiInk/5 pb-4 last:border-0">
+        <strong className="text-sumiInk font-bold tracking-wide text-xs uppercase block mb-1">
+          {parts[1]}
+        </strong>
+        {parts[2]}
+      </p>
+    );
+  }
+  // Fallback for plain text
+  return <p className="text-sm text-sumiInk/80 leading-relaxed border-b border-sumiInk/5 pb-4 last:border-0">{text}</p>;
+};
+
 const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
   const IconComponent = getIconForStudy(study.id);
-  
+
   return (
-    <div className="group border-0.5 border-hankoRust/20 bg-white p-8 md:p-12 hover:border-hankoRust/50 transition-all duration-500 hover:shadow-lg">
+    <div className="group border-0.5 border-hankoRust/20 bg-white p-8 md:p-12 hover:border-hankoRust/50 transition-all duration-500 hover:shadow-lg relative overflow-hidden">
+      {/* Subtle background accent on hover */}
+      <div className="absolute top-0 left-0 w-1 h-full bg-hankoRust opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
       <div className="flex flex-col h-full">
         {/* Icon and Title Section */}
         <div className="mb-8">
           <div className="flex items-start justify-between mb-4">
             <IconComponent className="w-8 h-8 text-hankoRust" strokeWidth={1.5} />
-            <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/60">
-              {study.stealthTitle}
+            <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/40 group-hover:text-hankoRust transition-colors">
+              {study.stealthTitle || 'System Architecture'}
             </span>
           </div>
-          <h3 className="text-3xl font-serif text-sumiInk mb-4 leading-tight group-hover:text-hankoRust transition-colors">
+          <h3 className="text-3xl font-serif text-sumiInk mb-4 leading-tight">
             {study.title}
           </h3>
           <p className="text-base font-serif italic text-sumiInk/60 border-l-2 border-hankoRust/30 pl-6 my-6">
-            {study.hook}
+            "{study.hook}"
           </p>
         </div>
 
         {/* Challenge → Diagnostic → Outcome Details */}
-        <div className="space-y-6 mb-12 flex-grow">
+        <div className="space-y-4 mb-12 flex-grow">
           {study.details.map((detail: string, idx: number) => (
-            <div key={idx} className="flex flex-col gap-2">
-              <p className="text-sm text-sumiInk/80 leading-relaxed">{detail}</p>
-            </div>
+            <DetailItem key={idx} text={detail} />
           ))}
         </div>
 
         {/* Impact Section with Hanko Rust accent */}
         <div className="pt-8 border-t-0.5 border-hankoRust/10">
           <span className="text-[10px] uppercase tracking-widest font-bold text-sumiInk/50 mb-2 block">
-            Outcome Impact
+            System Outcome
           </span>
           <span className="text-3xl font-serif text-hankoRust font-bold">{study.impact}</span>
         </div>
@@ -66,24 +84,35 @@ const Evidence: React.FC = () => {
     <div className="min-h-screen bg-ricePaper">
       {/* Back to Home Navigation */}
       <div className="px-6 pt-8 max-w-7xl mx-auto">
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="inline-flex items-center gap-2 text-sm text-sumiInk/60 hover:text-hankoRust transition-colors group"
         >
-          <span className="group-hover:-translate-x-1 transition-transform">←</span>
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           <span>Back to Home</span>
         </Link>
       </div>
 
       <div className="px-6 py-16 md:py-24 max-w-7xl mx-auto animate-in fade-in duration-700">
-        <SectionHeader 
-          eyebrow="Privacy-First Evidence" 
-          title="Systems in Action" 
+        <SectionHeader
+          eyebrow="Proof of Work"
+          title="The Engineering Log"
           className="mb-6"
         />
-        <p className="text-lg text-sumiInk/70 max-w-3xl mb-16 leading-relaxed">
-          Bridging technical diagnostics with human-centered project management. Each case demonstrates high-leverage interventions in complex operational environments.
-        </p>
+
+        {/* The Common Thread / Adaptive Architecture Box */}
+        <div className="max-w-3xl mb-16">
+          <p className="text-lg text-sumiInk/70 leading-relaxed mb-8">
+            Theory is cheap. Systems are expensive. Below is a catalog of systemic interventions engineered to solve specific constraints in complex environments.
+          </p>
+
+          <div className="bg-white border-l-2 border-hankoRust p-6 shadow-sm">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-hankoRust mb-2">Adaptive Architecture</h4>
+            <p className="text-sm text-sumiInk/80 italic leading-relaxed">
+              "Experience varies; systems principles do not. I apply First Principles Thinking to every challenge—stripping a problem down to its core mechanics to understand 'Why it broke.' I dive into any system—technical, financial, or human—to diagnose the bottleneck from the ground up. I bring the rigor of an Engineer, with the open mind of an Investigator."
+            </p>
+          </div>
+        </div>
 
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
@@ -92,12 +121,23 @@ const Evidence: React.FC = () => {
           ))}
         </div>
 
-        {/* Footer Note */}
+        {/* Footer Note - Redirect to Resume */}
         <div className="mt-16 pt-8 border-t-0.5 border-sumiInk/10 text-center">
-          <p className="text-sm text-sumiInk/50 italic max-w-2xl mx-auto leading-relaxed">
-            More detailed experience and project data are available on my{' '}
-            <Link to="/resume" className="text-hankoRust hover:underline">resume</Link>.
-          </p>
+          {/* Bridge to Resume */}
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-sm text-sumiInk/70">
+              These case studies represent specific architectural interventions.<br className="hidden md:block" />
+              For the full chronological context and role responsibilities:
+            </p>
+
+            <Link
+              to="/resume"
+              className="inline-flex items-center gap-2 text-sm font-bold text-hankoRust hover:text-sumiInk transition-colors group uppercase tracking-wider"
+            >
+              <span>View Full Professional Chronology</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
