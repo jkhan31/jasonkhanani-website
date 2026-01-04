@@ -3,26 +3,29 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import AnalyticsTracker from './src/utils/AnalyticsTracker';
 import { Layout } from './components/Layout';
 
+// Helper function to detect chunk loading errors
+const isChunkLoadError = (error: any): boolean => {
+  return (
+    error?.message?.includes('Failed to fetch dynamically imported module') ||
+    error?.message?.includes('Importing a module script failed') ||
+    error?.name === 'ChunkLoadError'
+  );
+};
+
 // Helper function to retry failed lazy imports with page reload
 // This fixes "Failed to fetch dynamically imported module" errors after deployments
 const lazyWithRetry = (importFunc: () => Promise<any>) => {
   return lazy(() => 
     importFunc().catch((error) => {
-      // Check if it's a chunk loading error (common after deployments)
-      const isChunkLoadError = 
-        error?.message?.includes('Failed to fetch dynamically imported module') ||
-        error?.message?.includes('Importing a module script failed') ||
-        error?.name === 'ChunkLoadError';
-      
-      if (isChunkLoadError) {
+      if (isChunkLoadError(error)) {
         console.warn('Chunk load error detected, reloading page to get latest version');
         // Check if we've already tried reloading to prevent infinite loops
         const hasReloaded = sessionStorage.getItem('page-has-been-force-reloaded');
         if (!hasReloaded) {
           sessionStorage.setItem('page-has-been-force-reloaded', 'true');
           window.location.reload();
-          // Return a never-resolving promise to prevent error from bubbling up
-          return new Promise(() => {});
+          // Return rejected promise to prevent further processing
+          return Promise.reject(new Error('Reloading page to fetch latest chunks'));
         }
       }
       // If not a chunk error or already reloaded, throw the error
@@ -70,13 +73,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, Error
   componentDidCatch(error: Error, info: any) {
     console.error('ErrorBoundary caught', error, info);
     
-    // Check if it's a chunk loading error
-    const isChunkLoadError = 
-      error?.message?.includes('Failed to fetch dynamically imported module') ||
-      error?.message?.includes('Importing a module script failed') ||
-      error?.name === 'ChunkLoadError';
-    
-    if (isChunkLoadError) {
+    if (isChunkLoadError(error)) {
       console.warn('Chunk load error detected in ErrorBoundary, attempting reload');
       const hasReloaded = sessionStorage.getItem('page-has-been-force-reloaded');
       if (!hasReloaded) {
