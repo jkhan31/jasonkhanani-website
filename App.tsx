@@ -3,19 +3,48 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import AnalyticsTracker from './src/utils/AnalyticsTracker';
 import { Layout } from './components/Layout';
 
-const Home = lazy(() => import('./pages/Home'));
-const Evidence = lazy(() => import('./pages/Evidence'));
-const Framework = lazy(() => import('./pages/Framework'));
-const Writing = lazy(() => import('./pages/Writing'));
-const Article = lazy(() => import('./pages/Article'));
+// Helper function to retry failed lazy imports with page reload
+// This fixes "Failed to fetch dynamically imported module" errors after deployments
+const lazyWithRetry = (importFunc: () => Promise<any>) => {
+  return lazy(() => 
+    importFunc().catch((error) => {
+      // Check if it's a chunk loading error (common after deployments)
+      const isChunkLoadError = 
+        error?.message?.includes('Failed to fetch dynamically imported module') ||
+        error?.message?.includes('Importing a module script failed') ||
+        error?.name === 'ChunkLoadError';
+      
+      if (isChunkLoadError) {
+        console.warn('Chunk load error detected, reloading page to get latest version');
+        // Check if we've already tried reloading to prevent infinite loops
+        const hasReloaded = sessionStorage.getItem('page-has-been-force-reloaded');
+        if (!hasReloaded) {
+          sessionStorage.setItem('page-has-been-force-reloaded', 'true');
+          window.location.reload();
+          // Return a never-resolving promise to prevent error from bubbling up
+          return new Promise(() => {});
+        }
+      }
+      // If not a chunk error or already reloaded, throw the error
+      throw error;
+    })
+  );
+};
 
-const Resume = lazy(() => import('./pages/Resume'));
-const Contact = lazy(() => import('./pages/Contact'));
+const Home = lazyWithRetry(() => import('./pages/Home'));
+const Evidence = lazyWithRetry(() => import('./pages/Evidence'));
+const Framework = lazyWithRetry(() => import('./pages/Framework'));
+const Writing = lazyWithRetry(() => import('./pages/Writing'));
+const Article = lazyWithRetry(() => import('./pages/Article'));
+const Resume = lazyWithRetry(() => import('./pages/Resume'));
+const Contact = lazyWithRetry(() => import('./pages/Contact'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    // Clear the reload flag on successful navigation
+    sessionStorage.removeItem('page-has-been-force-reloaded');
   }, [pathname]);
   return null;
 };
@@ -26,8 +55,12 @@ const Loading = () => (
   </div>
 );
 
-class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { error: Error | null }> {
-  constructor(props: any) {
+interface ErrorBoundaryState {
+  error: Error | null;
+}
+
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, ErrorBoundaryState> {
+  constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { error: null };
   }
@@ -36,6 +69,21 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { err
   }
   componentDidCatch(error: Error, info: any) {
     console.error('ErrorBoundary caught', error, info);
+    
+    // Check if it's a chunk loading error
+    const isChunkLoadError = 
+      error?.message?.includes('Failed to fetch dynamically imported module') ||
+      error?.message?.includes('Importing a module script failed') ||
+      error?.name === 'ChunkLoadError';
+    
+    if (isChunkLoadError) {
+      console.warn('Chunk load error detected in ErrorBoundary, attempting reload');
+      const hasReloaded = sessionStorage.getItem('page-has-been-force-reloaded');
+      if (!hasReloaded) {
+        sessionStorage.setItem('page-has-been-force-reloaded', 'true');
+        window.location.reload();
+      }
+    }
   }
   render() {
     if (this.state.error) {
