@@ -4,17 +4,20 @@ import AnalyticsTracker from './src/utils/AnalyticsTracker';
 import { Layout } from './components/Layout';
 
 // Helper function to detect chunk loading errors
-const isChunkLoadError = (error: any): boolean => {
-  return (
-    error?.message?.includes('Failed to fetch dynamically imported module') ||
-    error?.message?.includes('Importing a module script failed') ||
-    error?.name === 'ChunkLoadError'
-  );
+const isChunkLoadError = (error: unknown): boolean => {
+  if (error instanceof Error) {
+    return (
+      error.message.includes('Failed to fetch dynamically imported module') ||
+      error.message.includes('Importing a module script failed')
+    );
+  }
+  // Check for ChunkLoadError by name property
+  return (error as any)?.name === 'ChunkLoadError';
 };
 
 // Helper function to retry failed lazy imports with page reload
 // This fixes "Failed to fetch dynamically imported module" errors after deployments
-const lazyWithRetry = (importFunc: () => Promise<any>) => {
+const lazyWithRetry = (importFunc: () => Promise<{ default: React.ComponentType<any> }>) => {
   return lazy(() => 
     importFunc().catch((error) => {
       if (isChunkLoadError(error)) {
@@ -24,8 +27,7 @@ const lazyWithRetry = (importFunc: () => Promise<any>) => {
         if (!hasReloaded) {
           sessionStorage.setItem('page-has-been-force-reloaded', 'true');
           window.location.reload();
-          // Return rejected promise to prevent further processing
-          return Promise.reject(new Error('Reloading page to fetch latest chunks'));
+          // Note: Code after reload() is unreachable but required to satisfy TypeScript
         }
       }
       // If not a chunk error or already reloaded, throw the error
