@@ -11,11 +11,6 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, no-cache, must-revalidate"
-    
-[[headers]]
-  for = "/index.html"
-  [headers.values]
-    Cache-Control = "public, no-cache, must-revalidate"
 
 [[headers]]
   for = "/assets/*"
