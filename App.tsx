@@ -15,25 +15,46 @@ const isChunkLoadError = (error: unknown): boolean => {
   return (error as any)?.name === 'ChunkLoadError';
 };
 
-// Helper function to retry failed lazy imports with page reload
-// This fixes "Failed to fetch dynamically imported module" errors after deployments
-const lazyWithRetry = (importFunc: () => Promise<{ default: React.ComponentType<any> }>) => {
-  return lazy(() => 
-    importFunc().catch((error) => {
-      if (isChunkLoadError(error)) {
-        console.warn('Chunk load error detected, reloading page to get latest version');
-        // Check if we've already tried reloading to prevent infinite loops
-        const hasReloaded = sessionStorage.getItem('page-has-been-force-reloaded');
-        if (!hasReloaded) {
-          sessionStorage.setItem('page-has-been-force-reloaded', 'true');
-          window.location.reload();
-          // Note: Code after reload() is unreachable but required to satisfy TypeScript
+// Enhanced retry logic with exponential backoff
+const lazyWithRetry = (
+  importFunc: () => Promise<{ default: React.ComponentType<any> }>,
+  retries = 3
+) => {
+  return lazy(() => {
+    const attemptImport = async (attemptsLeft: number): Promise<{ default: React.ComponentType<any> }> => {
+      try {
+        return await importFunc();
+      } catch (error) {
+        if (isChunkLoadError(error)) {
+          console.warn(`Chunk load error detected, ${attemptsLeft} attempts remaining`);
+          
+          // If we have retries left, wait and try again with exponential backoff
+          if (attemptsLeft > 0) {
+            const delay = Math.pow(2, 3 - attemptsLeft) * 1000; // 1s, 2s, 4s
+            await new Promise(resolve => setTimeout(resolve, delay));
+            return attemptImport(attemptsLeft - 1);
+          }
+          
+          // No retries left, try reloading the page once
+          const hasReloaded = sessionStorage.getItem('page-has-been-force-reloaded');
+          if (!hasReloaded) {
+            console.warn('All retry attempts failed, reloading page to get latest version');
+            sessionStorage.setItem('page-has-been-force-reloaded', 'true');
+            window.location.reload();
+            // Return a promise that never resolves since we're reloading
+            return new Promise(() => {});
+          }
+          
+          // Already reloaded once, show error
+          console.error('Chunk load error persists after reload');
         }
+        // Re-throw the error if it's not a chunk error or we've exhausted all options
+        throw error;
       }
-      // If not a chunk error or already reloaded, throw the error
-      throw error;
-    })
-  );
+    };
+    
+    return attemptImport(retries);
+  });
 };
 
 const Home = lazyWithRetry(() => import('./pages/Home'));
@@ -86,6 +107,25 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, Error
   }
   render() {
     if (this.state.error) {
+      if (isChunkLoadError(this.state.error)) {
+        return (
+          <div className="p-12 max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold text-foxOrange mb-4">Loading Error</h2>
+            <p className="text-lg mb-6">
+              We're having trouble loading this page. This usually happens after we update the site.
+            </p>
+            <button
+              onClick={() => {
+                sessionStorage.removeItem('page-has-been-force-reloaded');
+                window.location.reload();
+              }}
+              className="px-6 py-3 bg-hankoRust text-white rounded-lg hover:bg-hankoRust/90 transition-colors"
+            >
+              Refresh Page
+            </button>
+          </div>
+        );
+      }
       return (
         <div className="p-12 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-foxOrange mb-4">Application error</h2>
