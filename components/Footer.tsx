@@ -3,7 +3,7 @@ import { Logo } from './Logo';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Copy, Check } from 'lucide-react';
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const email = "contact@jasonkhanani.com";
 
@@ -82,7 +82,7 @@ export const Footer = () => {
 
       {/* Copyright Bar - Matching Hero Tag */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-ricePaper/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-ricePaper/20">
-        <span>© 2026 Jason Kester Hanani</span>
+        <span>© {new Date().getFullYear()} Jason Kester Hanani</span>
         <span>Industrial Engineer • Systems Architect</span>
       </div>
     </footer>
