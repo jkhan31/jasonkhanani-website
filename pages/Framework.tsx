@@ -93,6 +93,16 @@ const Framework: React.FC = () => {
         </p>
       </header>
 
+      {/* Context Bridge */}
+      <div className="max-w-3xl mx-auto px-6 mb-24">
+        <div className="bg-white border-l-2 border-hankoRust p-6 shadow-sm">
+          <h4 className="text-xs font-bold tracking-widest text-hankoRust uppercase mb-2">The Operator's Manual</h4>
+          <p className="text-sm text-sumiInk/70 leading-relaxed italic">
+            "To lead complex systems effectively, <strong>we must first manage our internal capacity.</strong> A network is only as resilient as its nodes. I view this framework as <strong>Sustainable Performance</strong>—the engineered protocol I use to sustain high velocity and clarity under pressure."
+          </p>
+        </div>
+      </div>
+
       {/* PART I: PWA */}
       <section className="px-6 pb-32 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4">

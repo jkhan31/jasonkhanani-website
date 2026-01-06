@@ -27,11 +27,6 @@ const Hero: React.FC = () => (
         Turning Messy Operations into <span className="italic text-foxOrange">Clear Systems</span>.
       </h1>
 
-      {/* The Sub/Tagline */}
-      <p className="text-sm uppercase text-sumiInk/50 mb-6 font-bold tracking-widest">
-        From Root Cause to Resolution.
-      </p>
-
       {/* The Body Copy */}
       <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16 mt-2">
         I reverse-engineer bottlenecks. Using deep diagnostics and first-principles thinking, I transform friction into flow.
@@ -62,10 +57,8 @@ const SystemicResilience: React.FC = () => (
 
     <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
       <div>
-        <h4 className="text-xs font-bold tracking-widest text-foxOrange uppercase mb-6">The Engineering Philosophy</h4>
         <h2 className="text-5xl font-serif mb-8 leading-tight">
-          Systems that survive <br />
-          <span className="italic text-foxOrange">the friction of reality.</span>
+          Reality over Theory.
         </h2>
         <p className="text-lg text-ricePaper/70 leading-relaxed mb-8 max-w-md">
           Efficiency is fragile; resilience is robust. I don't optimize for "Best Case Scenarios." I engineer systems that maintain high performance even when the environment spikes (variance, churn, crisis).
@@ -105,8 +98,7 @@ const SystemicResilience: React.FC = () => (
 const ExecutionTracks: React.FC = () => (
   <section className="px-6 py-24 md:py-40 max-w-7xl mx-auto bg-ricePaper">
     <div className="text-center mb-20">
-      <h4 className="text-xs font-bold tracking-widest text-hankoRust uppercase mb-4">Modes of Operation</h4>
-      <SectionHeader eyebrow="The Dual-Engine Approach" title="How I Build Leverage." className="mb-8 justify-center items-center" />
+      <h2 className="text-4xl md:text-5xl font-serif text-sumiInk">Diagnostics & Design.</h2>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -116,13 +108,13 @@ const ExecutionTracks: React.FC = () => (
         <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Database size={80} /></div>
 
         <span className="text-hankoRust font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Engine 01</span>
-        <h3 className="text-4xl font-serif mb-8 text-sumiInk">Deep Diagnostics</h3>
+        <h3 className="text-4xl font-serif mb-8 text-sumiInk">The Investigator</h3>
         <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
           <strong>"Why is this broken?"</strong><br />
           I bypass surface symptoms to find the root cause. Using data forensics and process mapping, I audit the system to identify the single lever that moves the mountain.
         </p>
         <ul className="space-y-4 mb-12">
-          {['Root Cause Analysis', 'First Principles Thinking', 'Bottleneck Detection'].map((s) => (
+          {['Constraint Analysis', 'Data-Level Audits', 'Workflow Mapping'].map((s) => (
             <li key={s} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
               <span className="w-4 h-[1px] bg-hankoRust/30 mr-3" /> {s}
             </li>
@@ -136,13 +128,13 @@ const ExecutionTracks: React.FC = () => (
         <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Layout size={80} /></div>
 
         <span className="text-foxOrange font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Engine 02</span>
-        <h3 className="text-4xl font-serif mb-8 text-sumiInk">Contextual Design</h3>
+        <h3 className="text-4xl font-serif mb-8 text-sumiInk">The Architect</h3>
         <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
           <strong>"How do we scale this?"</strong><br />
-          A playbook is useless if it doesn't fit the terrain. I build solutions—automations, governance, and workflows—specifically designed for your team's unique context.
+          Once the leak is found, I build the pipe. I design the automations, the governance, and the culture codes that allow your team to run without you.
         </p>
         <ul className="space-y-4 mb-12">
-          {['System Governance', 'Automated Pipelines', 'Culture Protocols'].map((s) => (
+          {['Standard Operating Procedures', 'Automation & Tooling', 'Knowledge Management'].map((s) => (
             <li key={s} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
               <span className="w-4 h-[1px] bg-foxOrange/30 mr-3" /> {s}
             </li>

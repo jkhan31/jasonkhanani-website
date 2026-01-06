@@ -151,38 +151,78 @@ const Header: React.FC = () => {
   );
 };
 
-const Footer: React.FC = () => (
-  <footer className="bg-sumiInk text-ricePaper pt-24 pb-12 px-6 relative z-10 min-h-[500px] h-auto">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-        <div>
-          <Logo size="lg" className="text-ricePaper -ml-6 mb-4 opacity-80" />
-          <h3 className="text-3xl font-serif mb-6">Let's build resilient systems.</h3>
-          <p className="text-ricePaper/60 max-w-md mb-8">
-            Industrial Engineer & Business Analyst dedicated to streamlining complexity. 
-            I provide the operational clarity needed to build systems that last.
-          </p>
-          <a 
-            href="mailto:contact@jasonkhanani.com"
-            className="inline-block border-b-0.5 border-ricePaper hover:border-foxOrange hover:text-foxOrange transition-all pb-1 text-lg"
-          >
-            contact@jasonkhanani.com
-          </a>
+const Footer: React.FC = () => {
+  const [copySuccess, setCopySuccess] = useState(false);
+  const email = 'contact@jasonkhanani.com';
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  return (
+    <footer className="bg-sumiInk text-ricePaper pt-24 pb-12 px-6 relative z-10 min-h-[500px] h-auto">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div>
+            <Logo size="lg" className="text-ricePaper -ml-6 mb-8 opacity-80" />
+            <h3 className="text-4xl font-serif mb-6 leading-tight">Where is the bottleneck?</h3>
+            <p className="text-ricePaper/70 max-w-md mb-8 text-lg leading-relaxed">
+              Let's skip the small talk and look at the root cause. What is the one thing holding your team back right now?
+            </p>
+          </div>
+          <div className="flex flex-col md:items-end justify-center">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 group">
+                <a 
+                  href={`mailto:${email}`}
+                  className="inline-block text-2xl md:text-3xl font-serif hover:text-foxOrange transition-all pb-1"
+                >
+                  {email}
+                </a>
+                <button
+                  onClick={copyToClipboard}
+                  className="relative p-3 border-0.5 border-ricePaper/20 hover:border-foxOrange hover:bg-foxOrange/10 transition-all duration-300 group"
+                  aria-label="Copy email to clipboard"
+                >
+                  {copySuccess ? (
+                    <svg className="w-5 h-5 text-foxOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                  {copySuccess && (
+                    <span className="absolute -top-8 right-0 text-xs bg-foxOrange text-ricePaper px-2 py-1 rounded whitespace-nowrap">
+                      Copied!
+                    </span>
+                  )}
+                </button>
+              </div>
+              <div className="flex flex-col md:items-end space-y-3 pt-8 border-t border-ricePaper/10">
+                <a href="https://www.linkedin.com/in/jasonkhanani/" className="hover:text-foxOrange transition-colors text-sm">LinkedIn</a>
+                <Link to="/evidence" className="hover:text-foxOrange transition-colors text-sm">Evidence Vault</Link>
+                <Link to="/framework" className="hover:text-foxOrange transition-colors text-sm">Framework</Link>
+                <Link to="/resume" className="hover:text-foxOrange transition-colors text-sm">Resume</Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col md:items-end justify-center space-y-4">
-          <a href="https://www.linkedin.com/in/jasonkhanani/" className="hover:text-foxOrange transition-colors">LinkedIn</a>
-          <Link to="/evidence" className="hover:text-foxOrange transition-colors">Evidence Vault</Link>
-          <Link to="/contact" className="hover:text-foxOrange transition-colors">Contact</Link>
-          <Link to="/resume" className="hover:text-foxOrange transition-colors">Resume</Link>
+        <div className="pt-12 border-t-0.5 border-ricePaper/10 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase opacity-40">
+          <p>&copy; {new Date().getFullYear()} Jason Kester Hanani</p>
+          <p>Tactile Precision &bull; Systems Design</p>
         </div>
       </div>
-      <div className="pt-12 border-t-0.5 border-ricePaper/10 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase opacity-40">
-        <p>&copy; {new Date().getFullYear()} Jason Kester Hanani</p>
-        <p>Tactile Precision &bull; Systems Design</p>
-      </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
