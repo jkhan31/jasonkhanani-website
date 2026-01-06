@@ -7,12 +7,16 @@ export const Footer = () => {
   const [copied, setCopied] = useState(false);
   const email = "contact@jasonkhanani.com";
 
-  const handleCopy = (e: React.MouseEvent) => {
+  const handleCopy = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
   };
 
   return (
@@ -23,7 +27,7 @@ export const Footer = () => {
           {/* Left: Identity & Hook */}
           <div>
             <div className="flex items-center gap-4 mb-8">
-              <Logo size="lg" color="text-ricePaper" />
+              <Logo size="lg" className="text-ricePaper" />
               <span className="text-2xl font-serif text-ricePaper tracking-tight">Jason K Hanani</span>
             </div>
             
