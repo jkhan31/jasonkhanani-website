@@ -52,19 +52,18 @@ const Hero: React.FC = () => (
 
 const SystemicResilience: React.FC = () => (
   <section className="bg-sumiInk text-ricePaper py-32 relative overflow-hidden">
-    {/* Abstract background element */}
     <div className="absolute top-0 right-0 w-1/2 h-full bg-hankoRust/5 skew-x-12 transform origin-top-right pointer-events-none" />
-
+    
     <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
       <div>
         <h2 className="text-5xl font-serif mb-8 leading-tight">
-          Reality over Theory.
+          <span className="italic text-foxOrange">Reality</span> over <br />
+          <span className="text-ricePaper/50">Theory.</span>
         </h2>
         <p className="text-lg text-ricePaper/70 leading-relaxed mb-8 max-w-md">
-          Efficiency is fragile; resilience is robust. I don't optimize for "Best Case Scenarios." I engineer systems that maintain high performance even when the environment spikes (variance, churn, crisis).
+          You cannot optimize what you do not understand. Most teams burn cash fixing the wrong problems. I prioritize <strong>Operational Truth</strong>—mapping the territory before engineering the cure.
         </p>
-
-        {/* The Metric Box */}
+        
         <div className="bg-hankoRust/20 border border-hankoRust/30 p-6 inline-block backdrop-blur-sm">
           <span className="block text-4xl font-serif font-bold text-foxOrange mb-1">€1.5M+</span>
           <span className="text-[10px] uppercase tracking-widest font-bold opacity-70">Quantified Impact Recovered</span>
@@ -72,22 +71,25 @@ const SystemicResilience: React.FC = () => (
       </div>
 
       <div className="space-y-12 border-l border-ricePaper/10 pl-12">
+        {/* Point 1 */}
         <div>
-          <h3 className="text-xl font-serif text-foxOrange mb-3">1. Anti-Fragility</h3>
+          <h3 className="text-xl font-serif text-foxOrange mb-3">1. Strategic Clarity</h3>
           <p className="text-sm text-ricePaper/60 leading-relaxed">
-            Most systems break under load. I design for variance—building buffers, redundancy, and feedback loops that allow teams to absorb shock without breaking.
+            Growth creates fog. I identify the single structural bottleneck that actually matters to the bottom line, ignoring the noise of "busy work" and vanity metrics.
           </p>
         </div>
+        {/* Point 2 */}
         <div>
-          <h3 className="text-xl font-serif text-foxOrange mb-3">2. Domain Agnosticism</h3>
+          <h3 className="text-xl font-serif text-foxOrange mb-3">2. Contextual Fit</h3>
           <p className="text-sm text-ricePaper/60 leading-relaxed">
-            The physics of efficiency don't change. Whether it's a Supply Chain or a P&L, I strip the problem down to <strong>First Principles</strong> to find the root bottleneck.
+            A playbook is useless if it doesn't fit the terrain. I reject generic "best practices" in favor of solutions designed specifically for your team's culture and constraints.
           </p>
         </div>
+        {/* Point 3 */}
         <div>
           <h3 className="text-xl font-serif text-foxOrange mb-3">3. Sustainable Velocity</h3>
           <p className="text-sm text-ricePaper/60 leading-relaxed">
-            Burnout is a system failure. I implement the <strong>Sustainable Feedback Rhythm (SFR)</strong> to ensure that "High Performance" is biologically sustainable.
+            Burnout is an expensive system failure. I design workflows that respect human energy cycles, ensuring high performance doesn't accrue technical or cultural debt.
           </p>
         </div>
       </div>
