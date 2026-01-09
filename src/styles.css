@@ -38,6 +38,16 @@ body {
   display: none; /* Safari and Chrome */
 }
 
+/* Giscus Comment System Styling */
+.giscus-comments {
+  --giscus-color-bg-primary: #FAF5F0;
+  --giscus-color-bg-secondary: rgba(240, 127, 46, 0.05);
+  --giscus-color-text-primary: #1A1A1A;
+  --giscus-color-text-secondary: rgba(26, 26, 26, 0.6);
+  --giscus-color-border-primary: rgba(26, 26, 26, 0.1);
+  --giscus-color-accent: #F07F2E;
+}
+
 /* Article typography improvements for post content */
 .article-content {
   max-width: 65ch;

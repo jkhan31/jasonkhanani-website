@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
+import { ArticleSearch } from '../components/ArticleSearch';
 import { client, urlFor } from '../src/client';
 import { Star } from 'lucide-react';
 import type { Article } from '../types';
@@ -119,9 +120,12 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
   return (
     <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
       <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
-      <p className="text-lg text-sumiInk/60 mb-12 leading-relaxed max-w-2xl">
+      <p className="text-lg text-sumiInk/60 mb-8 leading-relaxed max-w-2xl">
         Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
       </p>
+
+      {/* Search Component */}
+      <ArticleSearch />
 
       {/* Filter Bar */}
       <div className="flex overflow-x-auto whitespace-nowrap gap-3 mb-12 py-2 border-b-0.5 border-sumiInk/10 pb-6" role="tablist">

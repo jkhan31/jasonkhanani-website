@@ -20,7 +20,9 @@ out
 
 # Local env files
 .env
-.env.*
+.env.local
+.env.*.local
+!.env.example
 
 # Editor directories and files
 .vscode/*

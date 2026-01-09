@@ -112,12 +112,32 @@ The site uses a philosophy of **high contrast, tactile textures, and engineering
    npm install
    ```
 
-3. **Run the development server**:
+3. **Set up environment variables**:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit `.env` and fill in the required values:
+   
+   - **SANITY_API_TOKEN**: Get from [Sanity Manage](https://sanity.io/manage) → Your Project → API → Tokens. Create a token with "Editor" permissions.
+   - **SANITY_PREVIEW_SECRET**: Generate with `openssl rand -base64 32` or use any random string.
+   - **REVALIDATE_SECRET**: Generate with `openssl rand -base64 32` or use any random string.
+   - **NEXT_PUBLIC_GISCUS_REPO_ID** & **NEXT_PUBLIC_GISCUS_CATEGORY_ID**: Get from [giscus.app](https://giscus.app) after enabling GitHub Discussions in this repository.
+
+4. **Run the development server**:
    ```bash
    npm run dev
    ```
    
    The site will be available at `http://localhost:3000`
+
+5. **Run Sanity Studio** (optional, for content management):
+   ```bash
+   cd jasonkhanani-website
+   npm run dev
+   ```
+   
+   The Sanity Studio will be available at `http://localhost:3333`
 
 ### Build Commands
 
@@ -327,15 +347,81 @@ All work seamlessly with HashRouter and static builds.
 
 ### Environment Variables
 
-No environment variables required for core functionality. 
+The following environment variables are required for full functionality:
 
-**Optional configurations**:
-- **Google Drive API credentials** - For automated content import (see [WORKFLOW.md](./WORKFLOW.md))
-- **Sanity CMS** - Currently hardcoded in `scripts/generate-sitemap.js` for sitemap generation. Could be moved to environment variables for enhanced security if needed.
+**Required for CMS features:**
+- `SANITY_API_TOKEN` - Sanity API token with Editor permissions (for view tracking and content updates)
+
+**Required for preview mode:**
+- `SANITY_PREVIEW_SECRET` - Secret key for enabling draft/preview mode in Sanity Studio
+
+**Required for on-demand revalidation:**
+- `REVALIDATE_SECRET` - Secret key for the revalidation API endpoint
+
+**Required for comments:**
+- `NEXT_PUBLIC_GISCUS_REPO_ID` - Giscus repository ID from giscus.app
+- `NEXT_PUBLIC_GISCUS_CATEGORY_ID` - Giscus category ID for "Article Comments" category
+
+See `.env.example` for a template with detailed instructions.
 
 ---
 
-## 📊 Quality Metrics
+## 🎯 Enhanced CMS Features
+
+### 1. Live Preview with Presentation Tool
+
+The Sanity Studio includes a **Presentation Tool** that allows content editors to see changes in real-time:
+
+- **Access**: Available in Sanity Studio sidebar (after "Structure" and "Vision")
+- **Features**: 
+  - Visual live preview of articles as you edit
+  - Side-by-side editing and preview
+  - Click elements in preview to jump to the field in the editor
+- **Setup**: Configured automatically when you start Sanity Studio
+
+### 2. View Tracking (Analytics)
+
+Server-side analytics track article views without impacting user experience:
+
+- **Location**: View count displayed in article's "Analytics" section (SEO & Social Metadata fieldset)
+- **Data Tracked**: Article reference, timestamp, user agent, referrer
+- **Privacy**: All tracking is server-side; no client-side analytics cookies
+- **View Data**: Stored in Sanity as `articleView` documents
+- **Access**: Visible only to content editors in Sanity Studio
+
+### 3. Comment System with Moderation
+
+GitHub Discussions-based comments powered by Giscus:
+
+- **Location**: Below each article, after related articles
+- **Features**:
+  - GitHub authentication for commenters
+  - Moderation through GitHub's native tools
+  - Reactions and threading support
+  - Lazy loading for performance
+- **Setup**: 
+  1. Enable GitHub Discussions in this repository
+  2. Go to [giscus.app](https://giscus.app) and configure for this repo
+  3. Add the repo ID and category ID to `.env`
+- **Styling**: Automatically matches the site's ricePaper and sumiInk design system
+
+### 4. Full-Text Search
+
+Powerful search across all published articles:
+
+- **Location**: Top of the Writing page (`/writing`)
+- **Search Scope**: Title, excerpt, body content, tags, and categories
+- **Features**:
+  - 300ms debounced input (reduces API calls)
+  - Highlighted search matches
+  - Live results dropdown
+  - "No results" state with helpful message
+  - Click result to navigate to article
+- **Performance**: Uses Sanity's GROQ queries for fast, server-side search
+
+---
+
+## 🌐 Deployment
 
 ### Latest Code Review (Dec 2025)
 

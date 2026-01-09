@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import { Helmet } from 'react-helmet';
@@ -10,6 +10,7 @@ import TableOfContents from '../../components/TableOfContents';
 import RelatedArticles from '../../components/RelatedArticles';
 import CodeBlock from '../../components/CodeBlock';
 import Callout from '../../components/Callout';
+import GiscusComments from '../../components/GiscusComments';
 import { SITE_DOMAIN, SITE_URL } from '../../constants';
 
 // --- Constants ---
@@ -219,6 +220,28 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
     return null;
   }
 
+  // Track article view on mount
+  useEffect(() => {
+    const trackView = async () => {
+      try {
+        await fetch('/api/track-view', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            slug: data.current.slug.current,
+          }),
+        });
+      } catch (error) {
+        // Silently fail - we don't want to disrupt user experience
+        console.error('Failed to track view:', error);
+      }
+    };
+
+    trackView();
+  }, [data.current.slug.current]);
+
   // --- 4. Related Articles Logic ---
   const relatedArticles = useMemo(() => {
     if (!data?.current) return [];
@@ -376,6 +399,12 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
 
       {/* Related Articles Component */}
       <RelatedArticles articles={relatedArticles} />
+
+      {/* Comments Section */}
+      <GiscusComments 
+        articleTitle={current.title}
+        articleSlug={current.slug.current}
+      />
 
       {/* Footer / Resume Link */}
       <div className="mt-32 pt-12 border-t-0.5 border-hankoRust/10 text-center">
