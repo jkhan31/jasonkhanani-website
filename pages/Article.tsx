@@ -15,8 +15,12 @@ import { SITE_DOMAIN, SITE_URL } from '../constants';
 const WORDS_PER_MINUTE = 225;
 
 // --- TOC Placement Configuration ---
-// Options: 'sidebar' (sticky on right, hidden on mobile) or 'inline' (at beginning, collapsible on mobile)
+// Options: 'sidebar' (sticky sidebar, hidden on mobile) or 'inline' (at beginning, collapsible on mobile)
 const TOC_PLACEMENT: 'sidebar' | 'inline' = 'sidebar';
+
+// --- TOC Sidebar Position Configuration ---
+// Options: 'left' or 'right' (only applies when TOC_PLACEMENT is 'sidebar')
+const TOC_SIDEBAR_POSITION: 'left' | 'right' = 'right';
 
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
@@ -372,6 +376,13 @@ const Article: React.FC = () => {
 
   return (
     <div className={`${TOC_PLACEMENT === 'sidebar' ? 'flex gap-12' : ''} px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700`}>
+      {/* Table of Contents - Left Sidebar (if configured) */}
+      {TOC_PLACEMENT === 'sidebar' && TOC_SIDEBAR_POSITION === 'left' && (
+        <aside className="hidden lg:block w-64 flex-shrink-0">
+          <TableOfContents content={current.body} placement="sidebar" />
+        </aside>
+      )}
+      
       {/* Main Content */}
       <div className="flex-1 max-w-3xl">
         <Helmet>
@@ -483,8 +494,8 @@ const Article: React.FC = () => {
       </div>
     </div>
     
-    {/* Table of Contents - Sidebar placement (if selected) */}
-    {TOC_PLACEMENT === 'sidebar' && (
+    {/* Table of Contents - Right Sidebar (if configured) */}
+    {TOC_PLACEMENT === 'sidebar' && TOC_SIDEBAR_POSITION === 'right' && (
       <aside className="hidden lg:block w-64 flex-shrink-0">
         <TableOfContents content={current.body} placement="sidebar" />
       </aside>
