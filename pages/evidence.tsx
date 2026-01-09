@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { SectionHeader } from '../components/SectionHeader';
 import { CASE_STUDIES } from '../constants';
 import { TrendingUp, Search, Zap, MessageSquare, Layout, LucideIcon, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -81,7 +82,20 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
 
 const Evidence: React.FC = () => {
   return (
-    <div className="min-h-screen bg-ricePaper">
+    <>
+      <Head>
+        <title>Systems in Action | Jason Kester Hanani</title>
+        <meta 
+          name="description" 
+          content="Real-world case studies: €700K revenue preservation, €0.5M logistics optimization, 60% lead-time reduction. Bridging technical diagnostics with human-centered project management." 
+        />
+        <meta property="og:title" content="Systems in Action - Evidence" />
+        <meta property="og:description" content="€1.5M+ quantified impact across e-commerce, logistics, and operations." />
+        <meta property="og:url" content="https://jasonkhanani.com/evidence/" />
+        <link rel="canonical" href="https://jasonkhanani.com/evidence/" />
+      </Head>
+      
+      <div className="min-h-screen bg-ricePaper">
       {/* Back to Home Navigation */}
       <div className="px-6 pt-8 max-w-7xl mx-auto">
         <Link
@@ -140,7 +154,8 @@ const Evidence: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
