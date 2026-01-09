@@ -555,7 +555,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         data,
       },
-      revalidate: 60, // ISR: Regenerate page every 60 seconds
     };
   } catch (error) {
     console.error('Error fetching article:', error);
