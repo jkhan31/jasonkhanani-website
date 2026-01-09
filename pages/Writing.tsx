@@ -24,7 +24,13 @@ const Writing: React.FC = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       const result = await fetchWithRetry(async () => {
-        const query = `*[_type == "article"] | order(publishedAt desc) {
+        const query = `*[_type == "article" 
+          && (
+            !defined(status) || 
+            status == "published" || 
+            (status == "scheduled" && scheduledPublishDate <= now())
+          )
+        ] | order(publishedAt desc) {
           title,
           "slug": slug.current,
           publishedAt,

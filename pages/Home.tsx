@@ -154,7 +154,13 @@ export default function Home() {
   useEffect(() => {
     const fetchArticles = async () => {
       const result = await fetchWithRetry(async () => {
-        const query = `*[_type == "article"] | order(publishedAt desc) [0...3] {
+        const query = `*[_type == "article"
+          && (
+            !defined(status) || 
+            status == "published" || 
+            (status == "scheduled" && scheduledPublishDate <= now())
+          )
+        ] | order(publishedAt desc) [0...3] {
           title,
           "slug": slug.current,
           publishedAt,
