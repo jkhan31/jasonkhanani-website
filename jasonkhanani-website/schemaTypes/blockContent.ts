@@ -146,7 +146,7 @@ export default defineType({
                     filename: 'filename',
                 },
                 prepare({ language, code, filename }) {
-                    const title = filename || `${language} code`
+                    const title = filename || `Code (${language})`
                     const codePreview = code ? code.substring(0, 50) + '...' : ''
                     return {
                         title,

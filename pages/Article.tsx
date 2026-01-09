@@ -11,6 +11,9 @@ import CodeBlock from '../components/CodeBlock';
 import Callout from '../components/Callout';
 import { SITE_DOMAIN, SITE_URL } from '../constants';
 
+// --- Constants ---
+const WORDS_PER_MINUTE = 225;
+
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
   if (!body) return '5 min';
@@ -23,7 +26,7 @@ const getReadTime = (body: any[]) => {
     })
     .join(' ');
   const words = text.split(/\s+/).filter(Boolean).length;
-  const minutes = Math.ceil(words / 225); // 225 words per minute
+  const minutes = Math.ceil(words / WORDS_PER_MINUTE);
   return `${minutes} min`;
 };
 
