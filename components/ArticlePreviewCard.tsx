@@ -1,5 +1,5 @@
     import React from 'react';
-    import { Link } from 'react-router-dom';
+    import Link from 'next/link';
     import { Clock } from 'lucide-react';
     import type { Article } from '../types';
     import { ImageAttribution } from './ImageAttribution';
@@ -12,7 +12,7 @@
     export const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({ article, compact = false }) => {
     return (
         <Link 
-        to={`/writing/${article.slug}`} 
+        href={`/writing/${article.slug}`} 
         className={`group block ${compact ? 'p-6' : 'p-8 md:p-12'} border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl hover:border-hankoRust/30 transition-all duration-500 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none flex flex-col h-full`}
         >
         {/* Date, Category, Read Time */}

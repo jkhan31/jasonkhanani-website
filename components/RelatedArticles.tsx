@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface RelatedArticle {
   title: string;
@@ -25,7 +25,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({ articles }) => {
         {articles.map((related) => (
           <Link 
             key={related.slug} 
-            to={`/writing/${related.slug}`} 
+            href={`/writing/${related.slug}`} 
             className="group block"
           >
             <span className="text-[10px] uppercase tracking-widest font-bold text-hankoRust mb-3 block">

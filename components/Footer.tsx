@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Logo } from './Logo';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowUpRight, Copy, Check } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -68,10 +68,10 @@ export const Footer: React.FC = () => {
 
               {/* Navigation Links - Horizontal Row for neatness */}
               <div className="flex flex-wrap gap-8 text-xs font-bold tracking-widest uppercase text-ricePaper/40">
-                <Link to="/evidence" className="hover:text-ricePaper transition-colors">Evidence</Link>
-                <Link to="/framework" className="hover:text-ricePaper transition-colors">Framework</Link>
-                <Link to="/writing" className="hover:text-ricePaper transition-colors">Writing</Link>
-                <Link to="/resume" className="hover:text-ricePaper transition-colors">Resume</Link>
+                <Link href="/evidence" className="hover:text-ricePaper transition-colors">Evidence</Link>
+                <Link href="/framework" className="hover:text-ricePaper transition-colors">Framework</Link>
+                <Link href="/writing" className="hover:text-ricePaper transition-colors">Writing</Link>
+                <Link href="/resume" className="hover:text-ricePaper transition-colors">Resume</Link>
                 <a href="https://linkedin.com/in/jasonkhanani" target="_blank" rel="noopener noreferrer" className="hover:text-ricePaper transition-colors">LinkedIn</a>
               </div>
             </div>
