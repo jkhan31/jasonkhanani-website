@@ -1,18 +1,17 @@
 import React, { useMemo, useState, useEffect } from 'react';
+import { GetStaticProps } from 'next';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { client, urlFor } from '../src/client';
-import { fetchWithRetry } from '../lib/sanityErrorHandler';
-import { Star } from 'lucide-react'; // Icon for the Featured filter
+import { Star } from 'lucide-react';
 import type { Article } from '../types';
 
-const Writing: React.FC = () => {
-  // --- 1. Sanity Data State ---
-  const [sanityData, setSanityData] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface WritingProps {
+  articles: any[];
+}
 
+const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
   // Filter State
-  // activeFilter: 'featured', 'CategoryName', 'SeriesName', or null (All)
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeFilterKind, setActiveFilterKind] = useState<'category' | 'series' | 'special' | null>(null);
   
@@ -20,56 +19,12 @@ const Writing: React.FC = () => {
   const [articlesPerPage] = useState<number>(9);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // --- 2. Fetch Data ---
-  useEffect(() => {
-    const fetchArticles = async () => {
-      const result = await fetchWithRetry(async () => {
-        const query = `*[_type == "article" 
-          && (
-            !defined(status) || 
-            status == "published" || 
-            (status == "scheduled" && scheduledPublishDate <= now())
-          )
-        ] | order(publishedAt desc) {
-          title,
-          "slug": slug.current,
-          publishedAt,
-          excerpt,
-          mainImage {
-            asset,
-            alt,
-            caption,
-            attribution,
-            attributionUrl,
-            "unsplashSource": asset->source,
-            "unsplashDescription": asset->description
-          },
-          isFeatured,
-          "category": category->title,
-          "series": series->title,
-          "tags": tags[]->title
-        }`;
-        return await client.fetch(query);
-      });
-
-      if (result) {
-        setSanityData(result);
-      } else {
-        console.warn('Using fallback article data due to Sanity fetch failure');
-        setSanityData([]);
-      }
-      setIsLoading(false);
-    };
-
-    fetchArticles();
-  }, []);
-
   // Reset page when filter changes
   useEffect(() => {
     setCurrentPage(1);
   }, [activeFilter, activeFilterKind]);
 
-  // --- 3. Normalize & Global Sort ---
+  // Normalize & Global Sort
   const normalizedArticles = useMemo(() => {
     if (!sanityData.length) return [];
 
@@ -88,6 +43,7 @@ const Writing: React.FC = () => {
         date: dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }),
         dateObj,
         image: a.mainImage ? urlFor(a.mainImage).width(800).url() : null,
+        readTime: '5 min', // Default read time
       } as any;
     }).sort((a: any, b: any) => {
       // 1. Priority Sort: Featured items ALWAYS first
@@ -98,8 +54,7 @@ const Writing: React.FC = () => {
     });
   }, [sanityData]);
 
-  // --- 4. Compute Counts (Including Featured in totals now) ---
-  
+  // Compute Counts
   const totalCount = normalizedArticles.length;
   
   const featuredCount = useMemo(() => 
@@ -135,7 +90,7 @@ const Writing: React.FC = () => {
     return counts;
   }, [normalizedArticles]);
 
-  // --- 5. Filtering Logic ---
+  // Filtering Logic
   const filteredArticles = useMemo(() => {
     let articles = normalizedArticles;
 
@@ -149,12 +104,10 @@ const Writing: React.FC = () => {
       }
     }
 
-    // Re-sort is not strictly needed because normalizedArticles is already sorted,
-    // but good for safety if filters disturb order (they shouldn't here).
     return articles;
   }, [activeFilter, activeFilterKind, normalizedArticles]);
 
-  // --- 6. Pagination Slice ---
+  // Pagination Slice
   const displayedArticles = useMemo(() => {
     const start = (currentPage - 1) * articlesPerPage;
     const end = start + articlesPerPage;
@@ -163,17 +116,6 @@ const Writing: React.FC = () => {
 
   const totalPages = Math.max(1, Math.ceil(filteredArticles.length / articlesPerPage));
 
-  // --- Render ---
-
-  if (isLoading) {
-    return (
-      <div className="px-6 py-32 md:py-48 max-w-7xl mx-auto text-center animate-pulse">
-         <div className="inline-block w-12 h-12 border-2 border-foxOrange border-t-transparent rounded-full animate-spin mb-4"></div>
-         <p className="text-sumiInk/60 font-serif">Investigating Archives...</p>
-      </div>
-    );
-  }
-
   return (
     <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
       <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
@@ -181,10 +123,10 @@ const Writing: React.FC = () => {
         Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
       </p>
 
-      {/* --- Filter Bar --- */}
+      {/* Filter Bar */}
       <div className="flex overflow-x-auto whitespace-nowrap gap-3 mb-12 py-2 border-b-0.5 border-sumiInk/10 pb-6" role="tablist">
         
-        {/* 1. All Insights Button */}
+        {/* All Insights Button */}
         <button
           onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
           className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
@@ -197,7 +139,7 @@ const Writing: React.FC = () => {
           <span className="opacity-80">({totalCount})</span>
         </button>
 
-        {/* 2. Featured Filter (New) */}
+        {/* Featured Filter */}
         {featuredCount > 0 && (
           <button
             onClick={() => { setActiveFilter('FEATURED'); setActiveFilterKind('special'); }}
@@ -213,7 +155,7 @@ const Writing: React.FC = () => {
           </button>
         )}
 
-        {/* 3. Category Filters */}
+        {/* Category Filters */}
         {allCategories.map(cat => (
           <button
             key={cat}
@@ -229,7 +171,7 @@ const Writing: React.FC = () => {
           </button>
         ))}
 
-        {/* 4. Series Filters */}
+        {/* Series Filters */}
         {allSeries.map(s => (
           <button
             key={s}
@@ -246,7 +188,7 @@ const Writing: React.FC = () => {
         ))}
       </div>
 
-      {/* --- Main Grid (Unified) --- */}
+      {/* Main Grid */}
       {displayedArticles.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -312,6 +254,53 @@ const Writing: React.FC = () => {
       )}
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps<WritingProps> = async () => {
+  try {
+    const query = `*[_type == "article" 
+      && (
+        !defined(status) || 
+        status == "published" || 
+        (status == "scheduled" && scheduledPublishDate <= now())
+      )
+    ] | order(publishedAt desc) {
+      title,
+      "slug": slug.current,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset,
+        alt,
+        caption,
+        attribution,
+        attributionUrl,
+        "unsplashSource": asset->source,
+        "unsplashDescription": asset->description
+      },
+      isFeatured,
+      "category": category->title,
+      "series": series->title,
+      "tags": tags[]->title
+    }`;
+    
+    const articles = await client.fetch(query);
+
+    return {
+      props: {
+        articles: articles || [],
+      },
+      revalidate: 60, // ISR: Regenerate page every 60 seconds
+    };
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    return {
+      props: {
+        articles: [],
+      },
+      revalidate: 60,
+    };
+  }
 };
 
 export default Writing;

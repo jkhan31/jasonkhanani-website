@@ -1,26 +1,27 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { GetStaticProps, GetStaticPaths } from 'next';
+import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 import { PortableText } from '@portabletext/react';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
-import { client, urlFor } from '../src/client'; // Import from src folder
-import { ImageAttribution } from '../components/ImageAttribution';
-import TableOfContents from '../components/TableOfContents';
-import RelatedArticles from '../components/RelatedArticles';
-import CodeBlock from '../components/CodeBlock';
-import Callout from '../components/Callout';
-import { SITE_DOMAIN, SITE_URL } from '../constants';
+import { client, urlFor } from '../../src/client'; // Import from src folder
+import { ImageAttribution } from '../../components/ImageAttribution';
+import TableOfContents from '../../components/TableOfContents';
+import RelatedArticles from '../../components/RelatedArticles';
+import CodeBlock from '../../components/CodeBlock';
+import Callout from '../../components/Callout';
+import { SITE_DOMAIN, SITE_URL } from '../../constants';
 
 // --- Constants ---
 const WORDS_PER_MINUTE = 225;
 
 // --- TOC Placement Configuration ---
 // Options: 'sidebar' (sticky sidebar, hidden on mobile) or 'inline' (at beginning, collapsible on mobile)
-const TOC_PLACEMENT: 'sidebar' | 'inline' = 'sidebar';
+const TOC_PLACEMENT = 'sidebar' as 'sidebar' | 'inline';
 
 // --- TOC Sidebar Position Configuration ---
 // Options: 'left' or 'right' (only applies when TOC_PLACEMENT is 'sidebar')
-const TOC_SIDEBAR_POSITION: 'left' | 'right' = 'right';
+const TOC_SIDEBAR_POSITION = 'right' as 'left' | 'right';
 
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
@@ -187,7 +188,7 @@ const ptComponents = {
         
         return (
           <Link 
-            to={relativePath || '/'} 
+            href={relativePath || '/'} 
             className="text-foxOrange underline decoration-foxOrange/30 hover:decoration-foxOrange transition-all font-medium"
           >
             {children}
@@ -209,104 +210,14 @@ const ptComponents = {
   },
 };
 
-const Article: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
-  
-  // State: 'current' is the main post, 'allOthers' is for related suggestions
-  const [data, setData] = useState<{ current: any; allOthers: any[] } | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+interface ArticleProps {
+  data: { current: any; allOthers: any[] };
+}
 
-  // --- 3. Data Fetching ---
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const query = `{
-          "current": *[_type == "article" 
-            && slug.current == $slug
-            && (
-              !defined(status) || 
-              status == "published" || 
-              (status == "scheduled" && scheduledPublishDate <= now())
-            )
-          ][0]{
-            title,
-            excerpt,
-            publishedAt,
-            status,
-            scheduledPublishDate,
-            mainImage {
-              asset,
-              alt,
-              caption,
-              attribution,
-              attributionUrl,
-              "unsplashSource": asset->source,
-              "unsplashDescription": asset->description
-            },
-            body[]{
-              ...,
-              _type == "image" => {
-                ...,
-                "unsplashSource": asset->source,
-                "unsplashDescription": asset->description,
-                caption,
-                attribution,
-                attributionUrl
-              }
-            },
-            "slug": slug,
-            "category": category->title,
-            "categorySlug": category->slug.current,
-            "tags": tags[]->title,
-            relatedArticles[]->{
-              title,
-              "slug": slug.current,
-              excerpt,
-              publishedAt,
-              "category": category->title,
-              mainImage {
-                asset,
-                "unsplashDescription": asset->description
-              }
-            },
-            seoTitle,
-            seoDescription,
-            metaTitle,
-            metaDescription,
-            ogImage {
-              asset,
-              "unsplashDescription": asset->description
-            },
-            keywords
-          },
-          "allOthers": *[_type == "article" 
-            && slug.current != $slug
-            && (
-              !defined(status) || 
-              status == "published" || 
-              (status == "scheduled" && scheduledPublishDate <= now())
-            )
-          ]{
-            title,
-            "slug": slug.current,
-            publishedAt,
-            "category": category->title,
-            "tags": tags[]->title
-          }
-        }`;
-
-        const result = await client.fetch(query, { slug });
-        setData(result);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Investigation failed:", error);
-        setIsLoading(false);
-      }
-    };
-
-    if (slug) fetchData();
-  }, [slug]);
+const Article: React.FC<ArticleProps> = ({ data }) => {
+  if (!data?.current) {
+    return null;
+  }
 
   // --- 4. Related Articles Logic ---
   const relatedArticles = useMemo(() => {
@@ -342,20 +253,9 @@ const Article: React.FC = () => {
         return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
       })
       .slice(0, 3);
-  }, [data]);
-
-  // Loading State
-  if (isLoading) {
-    return (
-       <div className="min-h-screen flex flex-col items-center justify-center">
-         <div className="w-12 h-12 border-2 border-foxOrange border-t-transparent rounded-full animate-spin mb-4"></div>
-         <p className="text-xs uppercase tracking-widest text-sumiInk/60">Retrieving Evidence...</p>
-       </div>
-    );
-  }
-
+  }, [data]);  // Data is pre-fetched
   // Error/Not Found
-  if (!data?.current) return <Navigate to="/writing" replace />;
+  
 
   const { current } = data;
   const formattedDate = new Date(current.publishedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
@@ -410,7 +310,7 @@ const Article: React.FC = () => {
       </Helmet>
 
       <Link 
-        to="/writing" 
+        href="/writing" 
         className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors mb-12 group"
       >
         <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
@@ -487,7 +387,7 @@ const Article: React.FC = () => {
           <p className="text-sumiInk/50 text-sm max-w-sm mb-8">
             Interested in how these principles apply to your specific operational bottlenecks?
           </p>
-          <Link to="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-sumiInk hover:text-foxOrange hover:border-foxOrange transition-all pb-1">
+          <Link href="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-sumiInk hover:text-foxOrange hover:border-foxOrange transition-all pb-1">
             Review my full experience
           </Link>
         </div>
@@ -505,3 +405,133 @@ const Article: React.FC = () => {
 };
 
 export default Article;
+// Next.js Static Generation
+export const getStaticPaths: GetStaticPaths = async () => {
+  try {
+    const query = `*[_type == "article" 
+      && (
+        !defined(status) || 
+        status == "published" || 
+        (status == "scheduled" && scheduledPublishDate <= now())
+      )
+    ]{ "slug": slug.current }`;
+    
+    const articles = await client.fetch(query);
+    
+    const paths = articles.map((article: any) => ({
+      params: { slug: article.slug },
+    }));
+
+    return {
+      paths,
+      fallback: 'blocking', // Generate pages on-demand for new slugs
+    };
+  } catch (error) {
+    console.error('Error fetching article slugs:', error);
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const slug = params?.slug as string;
+    
+    const query = `{
+      "current": *[_type == "article" 
+        && slug.current == $slug
+        && (
+          !defined(status) || 
+          status == "published" || 
+          (status == "scheduled" && scheduledPublishDate <= now())
+        )
+      ][0]{
+        title,
+        excerpt,
+        publishedAt,
+        status,
+        scheduledPublishDate,
+        mainImage {
+          asset,
+          alt,
+          caption,
+          attribution,
+          attributionUrl,
+          "unsplashSource": asset->source,
+          "unsplashDescription": asset->description
+        },
+        body[]{
+          ...,
+          _type == "image" => {
+            ...,
+            "unsplashSource": asset->source,
+            "unsplashDescription": asset->description,
+            caption,
+            attribution,
+            attributionUrl
+          }
+        },
+        "slug": slug,
+        "category": category->title,
+        "categorySlug": category->slug.current,
+        "tags": tags[]->title,
+        relatedArticles[]->{
+          title,
+          "slug": slug.current,
+          excerpt,
+          publishedAt,
+          "category": category->title,
+          mainImage {
+            asset,
+            "unsplashDescription": asset->description
+          }
+        },
+        seoTitle,
+        seoDescription,
+        metaTitle,
+        metaDescription,
+        ogImage {
+          asset,
+          "unsplashDescription": asset->description
+        },
+        keywords
+      },
+      "allOthers": *[_type == "article" 
+        && slug.current != $slug
+        && (
+          !defined(status) || 
+          status == "published" || 
+          (status == "scheduled" && scheduledPublishDate <= now())
+        )
+      ]{
+        title,
+        "slug": slug.current,
+        publishedAt,
+        "category": category->title,
+        "tags": tags[]->title
+      }
+    }`;
+
+    const data = await client.fetch(query, { slug });
+
+    if (!data?.current) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        data,
+      },
+      revalidate: 60, // ISR: Regenerate page every 60 seconds
+    };
+  } catch (error) {
+    console.error('Error fetching article:', error);
+    return {
+      notFound: true,
+    };
+  }
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { SectionHeader } from '../components/SectionHeader';
 import { CASE_STUDIES } from '../constants';
 import { TrendingUp, Search, Zap, MessageSquare, Layout, LucideIcon, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -85,7 +85,7 @@ const Evidence: React.FC = () => {
       {/* Back to Home Navigation */}
       <div className="px-6 pt-8 max-w-7xl mx-auto">
         <Link
-          to="/"
+          href="/"
           className="inline-flex items-center gap-2 text-sm text-sumiInk/60 hover:text-hankoRust transition-colors group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
@@ -131,7 +131,7 @@ const Evidence: React.FC = () => {
             </p>
 
             <Link
-              to="/resume"
+              href="/resume"
               className="inline-flex items-center gap-2 text-sm font-bold text-hankoRust hover:text-sumiInk transition-colors group uppercase tracking-wider"
             >
               <span>View Full Professional Chronology</span>

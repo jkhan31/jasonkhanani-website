@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 declare global {
   interface Window {
@@ -9,22 +9,35 @@ declare global {
 }
 
 const AnalyticsTracker: React.FC = () => {
-  const location = useLocation();
+  const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      try {
-        window.gtag('event', 'page_view', {
-          page_path: location.pathname + location.search,
-          page_location: window.location.href,
-          page_title: document.title,
-        });
-      } catch (e) {
-        // swallow errors to avoid crashing app if gtag misbehaves
-        // console.debug('gtag error', e);
+    const handleRouteChange = (url: string) => {
+      if (typeof window !== 'undefined' && window.gtag) {
+        try {
+          window.gtag('event', 'page_view', {
+            page_path: url,
+            page_location: window.location.href,
+            page_title: document.title,
+          });
+        } catch (e) {
+          // swallow errors to avoid crashing app if gtag misbehaves
+          // console.debug('gtag error', e);
+        }
       }
-    }
-  }, [location]);
+    };
+
+    // Track the initial page load
+    handleRouteChange(router.asPath);
+
+    // Subscribe to route changes
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // Cleanup subscription on unmount
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.asPath, router.events]);
 
   return null;
 };

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Logo } from './Logo';
 import { Footer } from './Footer';
 import { Menu, X, Linkedin } from 'lucide-react';
@@ -8,7 +9,7 @@ import { Menu, X, Linkedin } from 'lucide-react';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const router = useRouter();
   
   const links = [
     { label: 'Evidence', path: '/evidence' },
@@ -45,16 +46,16 @@ const Header: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 h-12">
-          <Link to="/" onClick={closeMenu} className="flex items-center gap-3 hover:opacity-80 transition-opacity text-sumiInk relative z-[70]">
+          <Link href="/" onClick={closeMenu} className="flex items-center gap-3 hover:opacity-80 transition-opacity text-sumiInk relative z-[70]">
             <Logo size="md" className="-ml-4" />
             <span className="hidden md:inline-block font-serif text-lg font-semibold tracking-tight text-sumiInk">Jason K Hanani</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
-            {location.pathname !== '/' && (
+            {router.pathname !== '/' && (
               <Link
-                to="/"
+                href="/"
                 className={`text-sm tracking-wide transition-colors text-sumiInk hover:text-foxOrange`}
               >
                 Home
@@ -63,9 +64,9 @@ const Header: React.FC = () => {
             {links.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`text-sm tracking-wide transition-colors ${
-                  location.pathname === link.path 
+                  router.pathname === link.path 
                     ? 'text-hankoRust font-semibold' 
                     : 'text-sumiInk hover:text-foxOrange'
                 }`}
@@ -105,9 +106,9 @@ const Header: React.FC = () => {
         `}
       >
         <div className="flex flex-col justify-center items-center flex-grow p-8 space-y-10 text-center">
-          {location.pathname !== '/' && (
+          {router.pathname !== '/' && (
             <Link
-              to="/"
+              href="/"
               onClick={closeMenu}
               className={`text-4xl font-serif transition-all duration-500 delay-0ms ${
                 'text-sumiInk hover:text-foxOrange'
@@ -119,10 +120,10 @@ const Header: React.FC = () => {
           {links.map((link, idx) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               onClick={closeMenu}
               className={`text-4xl font-serif transition-all duration-500 delay-[${idx * 100}ms] ${
-                location.pathname === link.path 
+                router.pathname === link.path 
                   ? 'text-hankoRust scale-110' 
                   : 'text-sumiInk hover:text-foxOrange'
               } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}

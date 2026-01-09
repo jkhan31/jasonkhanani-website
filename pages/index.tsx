@@ -1,10 +1,10 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import { SectionHeader } from '../components/SectionHeader';
 import { Logo } from '../components/Logo';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { client, urlFor } from '../src/client';
-import { fetchWithRetry } from '../lib/sanityErrorHandler';
 import { ArrowRight, Database, Layout } from 'lucide-react';
 
 const Hero: React.FC = () => (
@@ -34,13 +34,13 @@ const Hero: React.FC = () => (
 
       <div className="flex flex-wrap gap-8">
         <Link
-          to="/evidence"
+          href="/evidence"
           className="px-10 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
         >
           Explore the Evidence
         </Link>
         <Link
-          to="/framework"
+          href="/framework"
           className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
         >
           View The Blueprint
@@ -147,50 +147,23 @@ const ExecutionTracks: React.FC = () => (
   </section>
 );
 
-export default function Home() {
-  const [articles, setArticles] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface Article {
+  title: string;
+  slug: string;
+  publishedAt: string;
+  excerpt?: string;
+  mainImage?: any;
+  isFeatured?: boolean;
+  category?: string;
+  series?: string;
+  tags?: string[];
+}
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      const result = await fetchWithRetry(async () => {
-        const query = `*[_type == "article"
-          && (
-            !defined(status) || 
-            status == "published" || 
-            (status == "scheduled" && scheduledPublishDate <= now())
-          )
-        ] | order(publishedAt desc) [0...3] {
-          title,
-          "slug": slug.current,
-          publishedAt,
-          excerpt,
-          mainImage {
-            asset,
-            alt,
-            caption,
-            attribution,
-            attributionUrl,
-            "unsplashSource": asset->source,
-            "unsplashDescription": asset->description
-          },
-          isFeatured,
-          "category": category->title,
-          "series": series->title,
-          "tags": tags[]->title
-        }`;
-        return await client.fetch(query);
-      });
+interface HomeProps {
+  articles: Article[];
+}
 
-      if (result) {
-        setArticles(result);
-      }
-      setIsLoading(false);
-    };
-
-    fetchArticles();
-  }, []);
-
+export default function Home({ articles }: HomeProps) {
   const normalizedArticles = useMemo(() => {
     return articles.map((a, idx) => {
       const dateStr = a.publishedAt || new Date().toISOString();
@@ -207,6 +180,7 @@ export default function Home() {
         date: dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }),
         dateObj,
         image: a.mainImage ? urlFor(a.mainImage).width(800).url() : null,
+        readTime: '5 min', // Default read time since we don't have body content at this level
       };
     });
   }, [articles]);
@@ -225,16 +199,14 @@ export default function Home() {
             title="Latest Insights"
           />
           <Link
-            to="/writing"
+            href="/writing"
             className="text-sm font-bold tracking-wider uppercase text-hankoRust hover:text-foxOrange transition-colors flex items-center gap-2"
           >
             View All <ArrowRight size={16} />
           </Link>
         </div>
 
-        {isLoading ? (
-          <div className="text-center py-12 text-sumiInk/50">Loading articles...</div>
-        ) : normalizedArticles.length > 0 ? (
+        {normalizedArticles.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {normalizedArticles.map((article) => (
               <ArticlePreviewCard key={article.id} article={article} />
@@ -247,3 +219,50 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  try {
+    const query = `*[_type == "article"
+      && (
+        !defined(status) || 
+        status == "published" || 
+        (status == "scheduled" && scheduledPublishDate <= now())
+      )
+    ] | order(publishedAt desc) [0...3] {
+      title,
+      "slug": slug.current,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset,
+        alt,
+        caption,
+        attribution,
+        attributionUrl,
+        "unsplashSource": asset->source,
+        "unsplashDescription": asset->description
+      },
+      isFeatured,
+      "category": category->title,
+      "series": series->title,
+      "tags": tags[]->title
+    }`;
+
+    const articles = await client.fetch(query);
+
+    return {
+      props: {
+        articles: articles || [],
+      },
+      revalidate: 60, // ISR: Regenerate page every 60 seconds
+    };
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    return {
+      props: {
+        articles: [],
+      },
+      revalidate: 60,
+    };
+  }
+};
