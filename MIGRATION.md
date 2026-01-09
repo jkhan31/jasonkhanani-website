@@ -219,6 +219,25 @@ If issues arise, the old Vite setup can be restored:
 - [Sanity Webhooks Documentation](https://www.sanity.io/docs/webhooks)
 - [Current Sanity Project](https://www.sanity.io/manage/personal/project/lrta5lyp)
 
+## Post-Migration Cleanup (Completed)
+
+After migrating to Next.js + Sanity, the following files were removed:
+
+### Removed Files
+- `.htaccess` - Empty file, not needed for Next.js deployment
+- `scripts/git-commit-and-pr.sh` - Google Docs import automation (obsolete)
+- `scripts/n8n_contact_workflow.md` - n8n not in use
+- `scripts/n8n_import_workflow_template.json` - n8n not in use
+- `content/` directory - Replaced by Sanity CMS
+- `admin/` directory - Netlify CMS removed
+- `lib/posts.ts` - Markdown loader replaced by Sanity client
+
+### Removed Dependencies
+- `react-router-dom` - Replaced by Next.js routing
+- `vite` - Replaced by Next.js build system
+- `react-markdown`, `remark-gfm`, `gray-matter` - No longer needed (Sanity uses PortableText)
+- `googleapis` - Google Docs import automation removed
+
 ## Support
 
 For questions about this migration, refer to:
