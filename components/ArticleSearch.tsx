@@ -47,11 +47,11 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
           (status == "scheduled" && scheduledPublishDate <= now())
         )
         && (
-          title match $query
-          || excerpt match $query
-          || pt::text(body) match $query
-          || category->title match $query
-          || tags[]->title match $query
+          title match $searchQuery
+          || excerpt match $searchQuery
+          || pt::text(body) match $searchQuery
+          || category->title match $searchQuery
+          || tags[]->title match $searchQuery
         )
       ] | order(publishedAt desc) [0...10] {
         _id,
@@ -62,7 +62,11 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
         publishedAt
       }`;
 
-      const results = await client.fetch<SearchResult[]>(groqQuery, { query: `*${query}*` } as any);
+      // Use client.fetch with explicit any typing for params to work around strict Sanity types
+      const results: SearchResult[] = await (client.fetch as any)(
+        groqQuery, 
+        { searchQuery: `*${query}*` }
+      );
       setSearchResults(results);
       setShowResults(true);
       onResultsChange?.(results.length > 0);

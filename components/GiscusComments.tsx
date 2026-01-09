@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Giscus from '@giscus/react';
 
 interface GiscusCommentsProps {
   articleTitle: string;
@@ -8,6 +9,16 @@ interface GiscusCommentsProps {
 export const GiscusComments: React.FC<GiscusCommentsProps> = ({ articleTitle, articleSlug }) => {
   const commentsRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
+
+  // Get environment variables and validate
+  const repoId = process.env.NEXT_PUBLIC_GISCUS_REPO_ID;
+  const categoryId = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID;
+
+  // Don't render if required config is missing
+  if (!repoId || !categoryId) {
+    console.warn('Giscus configuration missing. Comments disabled.');
+    return null;
+  }
 
   useEffect(() => {
     // Only load Giscus when the component is in viewport (lazy loading)
@@ -35,55 +46,31 @@ export const GiscusComments: React.FC<GiscusCommentsProps> = ({ articleTitle, ar
     };
   }, [isLoaded]);
 
-  useEffect(() => {
-    if (!isLoaded) return;
-
-    const script = document.createElement('script');
-    script.src = 'https://giscus.app/client.js';
-    script.setAttribute('data-repo', 'jkhan31/jasonkhanani-website');
-    script.setAttribute('data-repo-id', process.env.NEXT_PUBLIC_GISCUS_REPO_ID || '');
-    script.setAttribute('data-category', 'Article Comments');
-    script.setAttribute('data-category-id', process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || '');
-    script.setAttribute('data-mapping', 'specific');
-    script.setAttribute('data-term', articleSlug);
-    script.setAttribute('data-strict', '0');
-    script.setAttribute('data-reactions-enabled', '1');
-    script.setAttribute('data-emit-metadata', '0');
-    script.setAttribute('data-input-position', 'top');
-    script.setAttribute('data-theme', 'light');
-    script.setAttribute('data-lang', 'en');
-    script.setAttribute('data-loading', 'lazy');
-    script.crossOrigin = 'anonymous';
-    script.async = true;
-
-    if (commentsRef.current) {
-      commentsRef.current.appendChild(script);
-    }
-
-    return () => {
-      if (commentsRef.current && commentsRef.current.contains(script)) {
-        commentsRef.current.removeChild(script);
-      }
-    };
-  }, [isLoaded, articleSlug]);
-
   return (
     <div className="mt-16 pt-12 border-t border-sumiInk/10">
       <h2 className="text-2xl font-serif text-sumiInk mb-8">Discussion</h2>
       <div 
         ref={commentsRef}
         className="giscus-comments"
-        style={{
-          // Custom CSS variables to match design system
-          '--color-text-primary': '#1A1A1A',
-          '--color-text-secondary': 'rgba(26, 26, 26, 0.6)',
-          '--color-bg-primary': '#FAF5F0',
-          '--color-bg-secondary': 'rgba(240, 127, 46, 0.05)',
-          '--color-border-primary': 'rgba(26, 26, 26, 0.1)',
-          '--color-accent': '#F07F2E',
-        } as React.CSSProperties}
       >
-        {!isLoaded && (
+        {isLoaded ? (
+          <Giscus
+            id="comments"
+            repo="jkhan31/jasonkhanani-website"
+            repoId={repoId}
+            category="Article Comments"
+            categoryId={categoryId}
+            mapping="specific"
+            term={articleSlug}
+            strict="0"
+            reactionsEnabled="1"
+            emitMetadata="0"
+            inputPosition="top"
+            theme="light"
+            lang="en"
+            loading="lazy"
+          />
+        ) : (
           <div className="text-center py-8 text-sumiInk/50 text-sm">
             Loading comments...
           </div>
