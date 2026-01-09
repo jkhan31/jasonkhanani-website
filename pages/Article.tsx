@@ -14,6 +14,10 @@ import { SITE_DOMAIN, SITE_URL } from '../constants';
 // --- Constants ---
 const WORDS_PER_MINUTE = 225;
 
+// --- TOC Placement Configuration ---
+// Options: 'sidebar' (sticky on right, hidden on mobile) or 'inline' (at beginning, collapsible on mobile)
+const TOC_PLACEMENT: 'sidebar' | 'inline' = 'sidebar';
+
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
   if (!body) return '5 min';
@@ -367,7 +371,7 @@ const Article: React.FC = () => {
     : '';
 
   return (
-    <div className="flex gap-12 px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className={`${TOC_PLACEMENT === 'sidebar' ? 'flex gap-12' : ''} px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700`}>
       {/* Main Content */}
       <div className="flex-1 max-w-3xl">
         <Helmet>
@@ -452,6 +456,9 @@ const Article: React.FC = () => {
         )}
       </header>
 
+      {/* Table of Contents - Inline placement (if selected) */}
+      {TOC_PLACEMENT === 'inline' && <TableOfContents content={current.body} placement="inline" />}
+
       <article className="article-content max-w-none">
         <PortableText value={current.body} components={ptComponents} />
       </article>
@@ -476,10 +483,12 @@ const Article: React.FC = () => {
       </div>
     </div>
     
-    {/* Table of Contents - Sticky Sidebar */}
-    <aside className="hidden lg:block w-64 flex-shrink-0">
-      <TableOfContents content={current.body} />
-    </aside>
+    {/* Table of Contents - Sidebar placement (if selected) */}
+    {TOC_PLACEMENT === 'sidebar' && (
+      <aside className="hidden lg:block w-64 flex-shrink-0">
+        <TableOfContents content={current.body} placement="sidebar" />
+      </aside>
+    )}
   </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface Heading {
   id: string;
@@ -8,11 +9,13 @@ interface Heading {
 
 interface TableOfContentsProps {
   content: any[];
+  placement?: 'sidebar' | 'inline';
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
+const TableOfContents: React.FC<TableOfContentsProps> = ({ content, placement = 'sidebar' }) => {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     // Extract headings from the portable text content
@@ -71,11 +74,70 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
         top: elementPosition - offset,
         behavior: 'smooth'
       });
+      
+      // On mobile, collapse after clicking
+      if (placement === 'inline') {
+        setIsExpanded(false);
+      }
     }
   };
 
   if (headings.length === 0) return null;
 
+  // Inline placement (beginning of article) - collapsible on mobile, always visible on desktop
+  if (placement === 'inline') {
+    return (
+      <nav className="mb-12 border border-hankoRust/10 rounded-sm bg-ricePaper/50">
+        {/* Mobile: Collapsible header */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="lg:hidden w-full flex items-center justify-between px-6 py-4 text-left"
+        >
+          <h4 className="text-xs uppercase tracking-widest font-bold text-sumiInk/70">
+            Table of Contents
+          </h4>
+          {isExpanded ? (
+            <ChevronUp size={16} className="text-sumiInk/50" />
+          ) : (
+            <ChevronDown size={16} className="text-sumiInk/50" />
+          )}
+        </button>
+
+        {/* Desktop: Always visible header */}
+        <div className="hidden lg:block px-6 py-4 border-b border-hankoRust/10">
+          <h4 className="text-xs uppercase tracking-widest font-bold text-sumiInk/70">
+            Table of Contents
+          </h4>
+        </div>
+
+        {/* Content: Collapsible on mobile, always visible on desktop */}
+        <ul
+          className={`
+            px-6 py-4 space-y-3
+            lg:block
+            ${isExpanded ? 'block' : 'hidden'}
+          `}
+        >
+          {headings.map((heading) => (
+            <li key={heading.id}>
+              <button
+                onClick={() => handleClick(heading.id)}
+                className={`
+                  text-left text-sm transition-colors hover:text-foxOrange
+                  ${heading.level === 3 ? 'pl-4' : ''}
+                  ${activeId === heading.id ? 'text-foxOrange font-semibold' : 'text-sumiInk/60'}
+                `}
+              >
+                {heading.text}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+  }
+
+  // Sidebar placement (sticky on desktop, hidden on mobile/tablet)
   return (
     <nav className="hidden lg:block sticky top-24 max-h-[calc(100vh-200px)] overflow-y-auto">
       <div className="border-l-2 border-hankoRust/10 pl-6">
