@@ -590,7 +590,8 @@ This is a personal portfolio website. The code structure and architecture may be
 - **Design Philosophy**: Inspired by industrial minimalism and Japanese aesthetic principles
 - **Typography**: Source Serif 4 by Adobe, Inter by Rasmus Andersson
 - **Icons**: Lucide React icon library
-- **Build Tools**: Vite team for incredible DX
+- **Build Tools**: Next.js and Vercel teams for incredible DX
+- **CMS**: Sanity.io for powerful content management
 - **Community**: React, TypeScript, and Tailwind CSS ecosystems
 
 ---
