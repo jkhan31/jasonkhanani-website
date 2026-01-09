@@ -18,10 +18,11 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
     // Extract headings from the portable text content
     const extractedHeadings: Heading[] = [];
     
-    content?.forEach((block, index) => {
+    content?.forEach((block) => {
       if (block._type === 'block' && (block.style === 'h2' || block.style === 'h3')) {
         const text = block.children?.map((child: any) => child.text).join('') || '';
-        const id = `heading-${index}-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+        // Generate ID to match the one created in Article.tsx
+        const id = `heading-${text.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         const level = block.style === 'h2' ? 2 : 3;
         
         extractedHeadings.push({ id, text, level });
@@ -34,21 +35,25 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
   useEffect(() => {
     // Track scroll position to highlight active heading
     const handleScroll = () => {
-      const headingElements = headings.map(h => document.getElementById(h.id)).filter(Boolean);
+      // Get all heading elements that exist in the DOM
+      const headingElementsMap = headings.map(h => ({
+        heading: h,
+        element: document.getElementById(h.id)
+      })).filter(item => item.element !== null);
+      
+      if (headingElementsMap.length === 0) return;
       
       // Find the heading that's currently in view
-      for (let i = headingElements.length - 1; i >= 0; i--) {
-        const element = headingElements[i];
+      for (let i = headingElementsMap.length - 1; i >= 0; i--) {
+        const { heading, element } = headingElementsMap[i];
         if (element && element.getBoundingClientRect().top <= 100) {
-          setActiveId(headings[i].id);
+          setActiveId(heading.id);
           return;
         }
       }
       
-      // If no heading is in view, clear active
-      if (headingElements.length > 0) {
-        setActiveId(headings[0].id);
-      }
+      // If no heading is in view, set first heading as active
+      setActiveId(headingElementsMap[0].heading.id);
     };
 
     window.addEventListener('scroll', handleScroll);
