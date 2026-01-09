@@ -1,0 +1,62 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+import { client } from '../../src/client';
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  // Only allow POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
+
+  try {
+    const { articleId, slug } = req.body;
+    
+    if (!articleId && !slug) {
+      return res.status(400).json({ message: 'Article ID or slug is required' });
+    }
+
+    // Get article reference if slug is provided
+    let articleRef = articleId;
+    if (!articleRef && slug) {
+      const article = await client.fetch(
+        `*[_type == "article" && slug.current == $slug][0]._id`,
+        { slug }
+      );
+      articleRef = article;
+    }
+
+    if (!articleRef) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+
+    // Extract user agent and referrer from headers
+    const userAgent = req.headers['user-agent'] || 'Unknown';
+    const referrer = req.headers['referer'] || req.headers['referrer'] || 'Direct';
+
+    // Create a new view record in Sanity
+    const viewRecord = await client.create({
+      _type: 'articleView',
+      article: {
+        _type: 'reference',
+        _ref: articleRef,
+      },
+      timestamp: new Date().toISOString(),
+      userAgent,
+      referrer,
+    });
+
+    return res.status(200).json({ 
+      success: true, 
+      message: 'View tracked successfully',
+      id: viewRecord._id 
+    });
+  } catch (error) {
+    console.error('Error tracking view:', error);
+    return res.status(500).json({ 
+      message: 'Error tracking view',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+}

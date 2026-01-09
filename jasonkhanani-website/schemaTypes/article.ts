@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { UnsplashPhotographerInput, UnsplashDescriptionInput } from './unsplashComponents'
 import { CustomImageInput } from './CustomImageInput'
+import { AnalyticsDisplay } from './AnalyticsDisplay'
 
 export default defineType({
     name: 'article',
@@ -258,6 +259,9 @@ export default defineType({
             fieldset: 'metadata',
             readOnly: true,
             description: 'View statistics (populated by frontend tracking)',
+            components: {
+                input: AnalyticsDisplay,
+            },
             fields: [
                 {
                     name: 'views',

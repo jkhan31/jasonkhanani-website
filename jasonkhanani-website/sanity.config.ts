@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { presentationTool } from '@sanity/presentation'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { media } from 'sanity-plugin-media'
 import { schemaTypes } from './schemaTypes'
@@ -61,6 +62,13 @@ export default defineConfig({
               (listItem) => !['article'].includes(listItem.getId() || '')
             ),
           ]),
+    }),
+    presentationTool({
+      previewUrl: {
+        draftMode: {
+          enable: '/api/draft',
+        },
+      },
     }),
     visionTool(),
     unsplashImageAsset(),
