@@ -17,11 +17,11 @@ const WORDS_PER_MINUTE = 225;
 
 // --- TOC Placement Configuration ---
 // Options: 'sidebar' (sticky sidebar, hidden on mobile) or 'inline' (at beginning, collapsible on mobile)
-const TOC_PLACEMENT: 'sidebar' | 'inline' = 'sidebar';
+const TOC_PLACEMENT = 'sidebar' as 'sidebar' | 'inline';
 
 // --- TOC Sidebar Position Configuration ---
 // Options: 'left' or 'right' (only applies when TOC_PLACEMENT is 'sidebar')
-const TOC_SIDEBAR_POSITION: 'left' | 'right' = 'right';
+const TOC_SIDEBAR_POSITION = 'right' as 'left' | 'right';
 
 // --- 1. Helper: Estimate Read Time ---
 const getReadTime = (body: any[]) => {
@@ -188,7 +188,7 @@ const ptComponents = {
         
         return (
           <Link 
-            to={relativePath || '/'} 
+            href={relativePath || '/'} 
             className="text-foxOrange underline decoration-foxOrange/30 hover:decoration-foxOrange transition-all font-medium"
           >
             {children}
@@ -310,7 +310,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
       </Helmet>
 
       <Link 
-        to="/writing" 
+        href="/writing" 
         className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors mb-12 group"
       >
         <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
@@ -387,7 +387,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
           <p className="text-sumiInk/50 text-sm max-w-sm mb-8">
             Interested in how these principles apply to your specific operational bottlenecks?
           </p>
-          <Link to="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-sumiInk hover:text-foxOrange hover:border-foxOrange transition-all pb-1">
+          <Link href="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-sumiInk hover:text-foxOrange hover:border-foxOrange transition-all pb-1">
             Review my full experience
           </Link>
         </div>
