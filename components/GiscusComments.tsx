@@ -22,6 +22,7 @@ export const GiscusComments: React.FC<GiscusCommentsProps> = ({ articleTitle, ar
 
   useEffect(() => {
     // Only load Giscus when the component is in viewport (lazy loading)
+    const currentRef = commentsRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,13 +36,13 @@ export const GiscusComments: React.FC<GiscusCommentsProps> = ({ articleTitle, ar
       }
     );
 
-    if (commentsRef.current) {
-      observer.observe(commentsRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (commentsRef.current) {
-        observer.unobserve(commentsRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [isLoaded]);

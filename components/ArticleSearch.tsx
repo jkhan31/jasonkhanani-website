@@ -88,7 +88,9 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
   const highlightMatch = (text: string, query: string) => {
     if (!query || !text) return text;
     
-    const regex = new RegExp(`(${query})`, 'gi');
+    // Escape special regex characters in the query
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
     const parts = text.split(regex);
     
     return parts.map((part, i) => 

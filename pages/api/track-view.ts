@@ -32,8 +32,15 @@ export default async function handler(
     }
 
     // Extract user agent and referrer from headers
-    const userAgent = req.headers['user-agent'] || 'Unknown';
-    const referrer = req.headers['referer'] || req.headers['referrer'] || 'Direct';
+    const userAgentHeader = req.headers['user-agent'];
+    const referrerHeader = req.headers['referer'] || req.headers['referrer'];
+    
+    const userAgent = Array.isArray(userAgentHeader) ? userAgentHeader[0] : (userAgentHeader || 'Unknown');
+    const referrer = Array.isArray(referrerHeader) ? referrerHeader[0] : (referrerHeader || 'Direct');
+
+    // Sanitize headers - limit length and remove any potentially harmful characters
+    const sanitizedUserAgent = userAgent.slice(0, 500).replace(/[<>]/g, '');
+    const sanitizedReferrer = referrer.slice(0, 500).replace(/[<>]/g, '');
 
     // Create a new view record in Sanity
     const viewRecord = await client.create({
@@ -43,8 +50,8 @@ export default async function handler(
         _ref: articleRef,
       },
       timestamp: new Date().toISOString(),
-      userAgent,
-      referrer,
+      userAgent: sanitizedUserAgent,
+      referrer: sanitizedReferrer,
     });
 
     return res.status(200).json({ 
