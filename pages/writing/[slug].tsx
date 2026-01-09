@@ -109,6 +109,7 @@ const ptComponents = {
             `}
             sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
             alt={alt}
+            loading="lazy"
             className="w-full h-auto rounded-sm border-0.5 border-sumiInk/10 shadow-sm"
           />
           {value.caption && <p className="text-center text-xs uppercase tracking-widest text-sumiInk/60 mt-3">{value.caption}</p>}
@@ -367,8 +368,9 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
                   ${urlFor(current.mainImage).width(1000).url()} 1000w
                 `}
                 sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1000px"
-                className="w-full object-cover rounded-sm"
                 alt={current.mainImage.alt || current.mainImage.unsplashDescription || current.title}
+                loading="eager"
+                className="w-full object-cover rounded-sm"
               />
               <ImageAttribution
                 attribution={current.mainImage.attribution || current.mainImage.unsplashSource?.name}

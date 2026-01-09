@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { SectionHeader } from '../components/SectionHeader';
 import { Logo } from '../components/Logo';
@@ -186,10 +187,23 @@ export default function Home({ articles }: HomeProps) {
   }, [articles]);
 
   return (
-    <div className="animate-in fade-in duration-1000">
-      <Hero />
-      <SystemicResilience />
-      <ExecutionTracks />
+    <>
+      <Head>
+        <title>Jason Kester Hanani | Industrial Engineer & Systems Architect</title>
+        <meta 
+          name="description" 
+          content="Industrial Engineer & Systems Architect. Reverse-engineering bottlenecks with deep diagnostics and first-principles thinking. €1.5M+ quantified impact." 
+        />
+        <meta property="og:title" content="Jason Kester Hanani - Systems Architect" />
+        <meta property="og:description" content="Turning messy operations into clear systems." />
+        <meta property="og:url" content="https://jasonkhanani.com/" />
+        <link rel="canonical" href="https://jasonkhanani.com/" />
+      </Head>
+      
+      <div className="animate-in fade-in duration-1000">
+        <Hero />
+        <SystemicResilience />
+        <ExecutionTracks />
 
       {/* Recent Writing Section */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
@@ -216,7 +230,8 @@ export default function Home({ articles }: HomeProps) {
           <div className="text-center py-12 text-sumiInk/50">No articles available yet.</div>
         )}
       </section>
-    </div>
+      </div>
+    </>
   );
 }
 

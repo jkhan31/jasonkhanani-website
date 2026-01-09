@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ArticleSearch } from '../components/ArticleSearch';
@@ -118,7 +119,20 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
   const totalPages = Math.max(1, Math.ceil(filteredArticles.length / articlesPerPage));
 
   return (
-    <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
+    <>
+      <Head>
+        <title>Writing | Jason Kester Hanani</title>
+        <meta 
+          name="description" 
+          content="Essays on systems thinking, operational excellence, and resilient performance. Deep-dives into diagnostics, design, and engineering sustainable velocity." 
+        />
+        <meta property="og:title" content="Writing & Essays" />
+        <meta property="og:description" content="Systems thinking, diagnostics, and operational excellence." />
+        <meta property="og:url" content="https://jasonkhanani.com/writing/" />
+        <link rel="canonical" href="https://jasonkhanani.com/writing/" />
+      </Head>
+      
+      <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
       <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
       <p className="text-lg text-sumiInk/60 mb-8 leading-relaxed max-w-2xl">
         Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
@@ -256,7 +270,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
           </button>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

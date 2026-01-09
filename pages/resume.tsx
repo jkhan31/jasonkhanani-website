@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { Download, Mail, Linkedin, Globe, Shield, Search, Zap, Code, Terminal, Clock } from 'lucide-react';
 
 const Badge: React.FC<{ children: React.ReactNode; color: string; icon?: any }> = ({ children, color, icon: Icon }) => (
@@ -23,7 +24,19 @@ const ResumePage = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8 lg:p-12 animate-in slide-in-from-bottom-4 duration-700">
+    <>
+      <Head>
+        <title>Resume | Jason Kester Hanani</title>
+        <meta 
+          name="description" 
+          content="Industrial Engineer specializing in operations optimization, technical project management, and systems architecture. Experience across e-commerce, logistics, and SaaS." 
+        />
+        <meta property="og:title" content="Resume - Jason Kester Hanani" />
+        <meta property="og:url" content="https://jasonkhanani.com/resume/" />
+        <link rel="canonical" href="https://jasonkhanani.com/resume/" />
+      </Head>
+      
+      <div className="min-h-screen p-4 md:p-8 lg:p-12 animate-in slide-in-from-bottom-4 duration-700">
       <div 
         className="max-w-4xl mx-auto border-0.5 p-8 md:p-16 shadow-2xl bg-white relative overflow-hidden" 
         style={{ borderColor: `${colors.rust}20` }}
@@ -216,7 +229,8 @@ const ResumePage = () => {
           button { display: none !important; }
         }
       `}} />
-    </div>
+      </div>
+    </>
   );
 };
 

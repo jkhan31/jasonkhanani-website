@@ -12,7 +12,10 @@ export const client = createClient({
 const builder = createImageUrlBuilder(client)
 
 export function urlFor(source: any) {
-  return builder.image(source)
+  return builder
+    .image(source)
+    .auto('format')  // Serves WebP/AVIF automatically
+    .quality(85);     // Optimize quality/size balance
 }
 
 export default client

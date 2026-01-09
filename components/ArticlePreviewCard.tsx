@@ -43,6 +43,7 @@
               `}
               sizes="(max-width: 640px) 400px, 800px"
               alt={article.mainImage?.alt || article.mainImage?.unsplashDescription || article.title}
+              loading="lazy"
               className="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
             <ImageAttribution
