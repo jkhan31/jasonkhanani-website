@@ -5,7 +5,9 @@ import React from 'react'
  * Shows the photographer name in a read-only styled div
  */
 export const UnsplashPhotographerInput = (props: any) => {
-    const photographerName = props.parent?.asset?.source?.name;
+    const sourceName = props.parent?.asset?.source?.name
+    const userName = props.parent?.asset?.user?.name || props.parent?.asset?.user?.username
+    const photographerName = sourceName && sourceName.toLowerCase() !== 'unsplash' ? sourceName : userName
     return photographerName ? React.createElement('div', { 
         style: { 
             padding: '0.75rem', 
@@ -21,7 +23,7 @@ export const UnsplashPhotographerInput = (props: any) => {
  * Shows the description in a read-only styled div
  */
 export const UnsplashDescriptionInput = (props: any) => {
-    const description = props.parent?.asset?.description;
+    const description = props.parent?.asset?.description || props.parent?.asset?.alt_description || props.parent?.asset?.metadata?.description;
     return description ? React.createElement('div', { 
         style: { 
             padding: '0.75rem', 

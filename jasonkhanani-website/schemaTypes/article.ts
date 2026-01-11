@@ -42,6 +42,7 @@ export default defineType({
             title: 'Main Image',
             type: 'image',
             options: { hotspot: true },
+            description: 'Select an image from uploads or use the Media Library Unsplash asset source to search Unsplash images.',
             components: {
                 input: CustomImageInput,
             },

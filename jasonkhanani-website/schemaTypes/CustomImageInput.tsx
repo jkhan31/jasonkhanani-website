@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { ObjectInputProps, set, useClient } from 'sanity'
-import { ObjectInput } from 'sanity'
+import { set, useClient, ImageInput, PatchEvent } from 'sanity'
+
+// Quick runtime traces to verify Studio loads this module/component
+// Look for lines that start with "[CustomImageInput]" in the browser console.
+console.log('[CustomImageInput] module loaded')
 
 // Sanity API version constant
 const SANITY_API_VERSION = '2024-01-01'
@@ -39,8 +42,10 @@ interface AssetMetadata {
  * 4. Automatically patches attribution = asset.source.name
  * 5. Automatically patches attributionUrl = asset.source.url
  */
-export function CustomImageInput(props: ObjectInputProps) {
+export function CustomImageInput(props: any) {
   const { value, onChange } = props
+  // Render-time trace to confirm the custom input is actually mounted for the field
+  console.log('[CustomImageInput] rendered with value:', value)
   const client = useClient({ apiVersion: SANITY_API_VERSION })
   const [lastAssetRef, setLastAssetRef] = useState<string | null>(null)
 
@@ -58,42 +63,148 @@ export function CustomImageInput(props: ObjectInputProps) {
       setLastAssetRef(assetRef)
 
       try {
-        // Fetch the asset document to get source metadata
-        const asset = await client.fetch<AssetMetadata>(
-          `*[_id == $assetId][0]{ source, description }`,
-          { assetId: assetRef }
-        )
+        // Fetch the full asset document to inspect possible metadata fields
+        // Use getDocument for a direct fetch by id (more reliable than a GROQ query here)
+        let asset: any = null
+        try {
+          if (typeof client.getDocument === 'function') {
+            asset = await client.getDocument(assetRef)
+          } else {
+            asset = await client.fetch(`*[_id == $assetId][0]`, { assetId: assetRef })
+          }
+        } catch (err) {
+          console.warn('[CustomImageInput] getDocument/fetch failed', err)
+          asset = await client.fetch(`*[_id == $assetId][0]`, { assetId: assetRef })
+        }
+        // Serialize the asset to make sure browser console prints full shape
+        let assetSerialized = null
+        try {
+          assetSerialized = JSON.stringify(asset, null, 2)
+        } catch (e) {
+          // Fallback if circular or too large
+          assetSerialized = String(asset)
+        }
+        console.log('[CustomImageInput] fetched asset for', assetRef, assetSerialized)
+        if (!asset) return
 
-        if (!asset || !asset.source) return
+        // Try several places for photographer/name and url
+        const sourceName = asset?.source?.name
+        const sourceUrl = asset?.source?.url
+        const userName = asset?.user?.name || asset?.user?.username
+        const userLink = asset?.user?.links?.html || (asset?.user?.username ? `https://unsplash.com/@${asset.user.username}` : undefined)
+        const description = asset?.description || asset?.alt_description || asset?.metadata?.description || asset?.metadata?.caption || asset?.caption || null
 
-        // Check if this is an Unsplash image (has source.name and source.url)
-        const { name, url } = asset.source
-        if (!name || !url) return
+        // Use creditLine if present (e.g. "Dan Begel by Unsplash") to extract photographer
+        const creditLine = asset?.creditLine || asset?.metadata?.creditLine || null
+        const creditPhotographer = creditLine ? String(creditLine).split(' by ')[0] : null
 
-        // Only auto-populate if the fields are currently empty
+        // Prefer photographer name from asset.source if it contains a real name; otherwise fallback to user.name or creditLine
+        const photographerName = sourceName && sourceName.toLowerCase() !== 'unsplash' ? sourceName : (userName || null)
+        const finalPhotographerName = photographerName || creditPhotographer || null
+        const photographerUrl = sourceUrl || userLink || null
+
+        // Debug: log computed metadata so we can see why certain fields may not be set
+        console.log('[CustomImageInput] computed metadata:', {
+          finalPhotographerName,
+          photographerUrl,
+          creditLine,
+          creditPhotographer,
+          description,
+        })
+
+        // Only auto-populate if we have meaningful data
+        if (!finalPhotographerName && !photographerUrl && !description && !creditLine) return
+
+        const patches: any[] = []
+        const rawPatches: any[] = []
         const currentAttribution = imageValue?.attribution
         const currentAttributionUrl = imageValue?.attributionUrl
+        console.log('[CustomImageInput] currentAttribution (before):', currentAttribution)
 
-        const patches = []
-
-        // Set attribution if empty
-        if (!currentAttribution) {
-          patches.push(set(name, ['attribution']))
+        // Attribution (photographer)
+        const shouldReplaceAttribution = !currentAttribution || String(currentAttribution).trim().toLowerCase() === 'unsplash'
+        if (shouldReplaceAttribution && finalPhotographerName) {
+          patches.push(set(finalPhotographerName, ['attribution']))
+          rawPatches.push({ op: 'set', path: ['attribution'], value: finalPhotographerName })
+        }
+        if (!currentAttributionUrl && photographerUrl) {
+          patches.push(set(photographerUrl, ['attributionUrl']))
+          rawPatches.push({ op: 'set', path: ['attributionUrl'], value: photographerUrl })
         }
 
-        // Set attributionUrl if empty
-        if (!currentAttributionUrl) {
-          patches.push(set(url, ['attributionUrl']))
+        // Caption: prefer creditLine, then description
+        const captionValue = creditLine || description || null
+        const currentCaption = (imageValue as any)?.caption
+        const shouldSetCaption = !currentCaption || (typeof currentCaption === 'string' && currentCaption.trim() === '')
+        if (shouldSetCaption && captionValue) {
+          patches.push(set(captionValue, ['caption']))
+          rawPatches.push({ op: 'set', path: ['caption'], value: captionValue })
         }
 
-        // Also populate alt text from Unsplash description if empty
-        if (!imageValue?.alt && asset.description) {
-          patches.push(set(asset.description, ['alt']))
+        // Alt text / Unsplash description: prefer explicit description, then caption, then a short photographer fallback
+        const currentAlt = (imageValue as any)?.alt
+        const photographerFallback = finalPhotographerName ? `Photo by ${finalPhotographerName}` : null
+
+        // Try to derive a useful alt text from the Unsplash URL slug (e.g. "vendor-hands-lamb-skewers-...")
+        let slugFromUrl: string | null = null
+        try {
+          if (sourceUrl) {
+            const u = new URL(sourceUrl)
+            const parts = u.pathname.split('/').filter(Boolean)
+            // look for the segment after "photos" or fall back to final segment
+            const photosIndex = parts.indexOf('photos')
+            const rawSlug = (photosIndex >= 0 && parts[photosIndex + 1]) ? parts[photosIndex + 1] : parts[parts.length - 1]
+            if (rawSlug) {
+              const tokens = rawSlug.split('-')
+              const last = tokens[tokens.length - 1]
+              // strip trailing id-like token (alphanumeric, >=6 chars)
+              if (/^[A-Za-z0-9]{6,}$/.test(last)) tokens.pop()
+              slugFromUrl = tokens.join(' ').replace(/_/g, ' ').trim()
+              if (!slugFromUrl) slugFromUrl = null
+            }
+          }
+        } catch (e) {
+          slugFromUrl = null
+        }
+        console.log('[CustomImageInput] derived slugFromUrl:', slugFromUrl)
+
+        // Prefer a real description, then caption (or credit), then slug-derived text, then photographer fallback
+        const altValue = description || captionValue || slugFromUrl || photographerFallback
+        console.log('[CustomImageInput] chosen alt value:', { currentAlt, altValue })
+        const shouldSetAlt = (!currentAlt || (typeof currentAlt === 'string' && currentAlt.trim() === '')) && altValue
+        if (shouldSetAlt) {
+          patches.push(set(altValue, ['alt']))
+          rawPatches.push({ op: 'set', path: ['alt'], value: altValue })
         }
 
-        // Apply all patches
-        if (patches.length > 0) {
-          onChange(patches)
+        // Populate read-only helper fields used by the Studio UI
+        // Populate read-only helper fields used by the Studio UI (only if missing)
+        const currentUnsplashPhotographer = (imageValue as any)?.unsplashPhotographer
+        const currentUnsplashDesc = (imageValue as any)?.unsplashImageDescription
+        if ((!currentUnsplashPhotographer || String(currentUnsplashPhotographer).trim() === '') && finalPhotographerName) {
+          patches.push(set(finalPhotographerName, ['unsplashPhotographer']))
+          rawPatches.push({ op: 'set', path: ['unsplashPhotographer'], value: finalPhotographerName })
+        }
+        if ((!currentUnsplashDesc || String(currentUnsplashDesc).trim() === '') && description) {
+          patches.push(set(description, ['unsplashImageDescription']))
+          rawPatches.push({ op: 'set', path: ['unsplashImageDescription'], value: description })
+        }
+
+        if (patches.length > 0 && onChange) {
+          try {
+            console.log('[CustomImageInput] applying patches (sanity PatchEvent):', patches)
+            console.log('[CustomImageInput] raw patch preview:', rawPatches)
+            onChange(PatchEvent.from(patches))
+            console.log('[CustomImageInput] onChange called with PatchEvent')
+          } catch (err) {
+            // Fallback for older Studio versions that accept raw patch arrays
+            console.warn('[CustomImageInput] PatchEvent.from failed, falling back to raw patches', err)
+            try {
+              onChange(patches as any)
+            } catch (err2) {
+              console.error('[CustomImageInput] onChange failed for both PatchEvent and raw patches', err2)
+            }
+          }
         }
 
       } catch (error) {
@@ -104,5 +215,8 @@ export function CustomImageInput(props: ObjectInputProps) {
     processAsset()
   }, [value, onChange, client, lastAssetRef])
 
-  return <ObjectInput {...props} />
+  // Use createElement instead of JSX to avoid TSX parsing issues in some environments
+  return React.createElement(ImageInput, props)
 }
+
+export default CustomImageInput;
