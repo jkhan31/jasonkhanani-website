@@ -60,35 +60,32 @@ The site uses a philosophy of **high contrast, tactile textures, and engineering
 
 ### Core Technologies
 
-- **Framework**: React 19.2.3 (ESM modules)
-- **Router**: React Router DOM 7.11.0 with HashRouter (zero-config deployment)
-- **Build Tool**: Vite 6.2.0 (fast builds, HMR)
+- **Framework**: Next.js 14 (Pages Router)
+- **Content Management**: Sanity CMS with PortableText
 - **Styling**: Tailwind CSS 3.4.0 with custom configuration
 - **Language**: TypeScript 5.8.2 (full type safety)
+- **Rendering**: Static Site Generation (SSG) with Incremental Static Regeneration (ISR)
 
 ### Key Dependencies
 
-- **Content Processing**:
-  - `react-markdown` - Markdown rendering
-  - `remark-gfm` - GitHub Flavored Markdown support
-  - `rehype-highlight` - Syntax highlighting for code blocks
-  - `gray-matter` - YAML frontmatter parsing
-  - `reading-time` - Automatic reading time estimation
+- **Sanity Integration**:
+  - `@sanity/client` - Sanity API client
+  - `@sanity/image-url` - Image URL builder for Sanity CDN
+  - `@portabletext/react` - PortableText rendering
 
-- **Icons & UI**:
+- **UI Components**:
   - `lucide-react` - Modern icon system
-  - `react-helmet-async` - SEO metadata management
+  - `react-syntax-highlighter` - Code syntax highlighting
+  - `prismjs` - Additional syntax highlighting support
 
-- **Content Management**:
-  - `mammoth` - DOCX to HTML conversion
-  - `turndown` - HTML to Markdown conversion
-  - `googleapis` - Google Drive API integration
+- **Comments & Analytics**:
+  - `@giscus/react` - GitHub Discussions-based comments
 
 ### Development Tools
 
 - **PostCSS** with Autoprefixer
 - **Tailwind CSS Line Clamp** plugin
-- **Vite React Plugin** for optimized builds
+- **Next.js** for build and development
 
 ---
 
@@ -112,12 +109,32 @@ The site uses a philosophy of **high contrast, tactile textures, and engineering
    npm install
    ```
 
-3. **Run the development server**:
+3. **Set up environment variables**:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit `.env` and fill in the required values:
+   
+   - **SANITY_API_TOKEN**: Get from [Sanity Manage](https://sanity.io/manage) → Your Project → API → Tokens. Create a token with "Editor" permissions.
+   - **SANITY_PREVIEW_SECRET**: Generate with `openssl rand -base64 32` or use any random string.
+   - **REVALIDATE_SECRET**: Generate with `openssl rand -base64 32` or use any random string.
+   - **NEXT_PUBLIC_GISCUS_REPO_ID** & **NEXT_PUBLIC_GISCUS_CATEGORY_ID**: Get from [giscus.app](https://giscus.app) after enabling GitHub Discussions in this repository.
+
+4. **Run the development server**:
    ```bash
    npm run dev
    ```
    
    The site will be available at `http://localhost:3000`
+
+5. **Run Sanity Studio** (optional, for content management):
+   ```bash
+   cd jasonkhanani-website
+   npm run dev
+   ```
+   
+   The Sanity Studio will be available at `http://localhost:3333`
 
 ### Build Commands
 
@@ -128,17 +145,12 @@ npm run dev
 # Production build (prebuild generates sitemap, then builds)
 npm run build
 
-# Preview production build
-npm run preview
+# Start production server
+npm run start
 
-# Create a new blog post
-npm run new-post
-
-# Convert DOCX to Markdown
-npm run convert-docx -- path/to/file.docx "Post Title"
-
-# Convert HTML to Markdown
-npm run convert-html
+# Run Sanity Studio locally (in separate terminal)
+cd jasonkhanani-website
+npm run dev
 ```
 
 ---
@@ -152,32 +164,39 @@ jasonkhanani-website/
 │   ├── Logo.tsx         # Brand signature component
 │   ├── SectionHeader.tsx # Consistent page header pattern
 │   └── ArticlePreviewCard.tsx # Blog post card component
-├── pages/               # Route-level page components
-│   ├── Home.tsx         # Landing page with hero & value props
-│   ├── Evidence.tsx     # Case studies showcase
-│   ├── Framework.tsx    # PWA/SFR interactive visualization
-│   ├── Writing.tsx      # Blog listing with filters
-│   ├── Article.tsx      # Individual blog post rendering
-│   ├── Resume.tsx       # Print-optimized resume
-│   └── Contact.tsx      # Contact form and info
-├── content/
-│   ├── posts/           # Markdown blog posts
-│   ├── posts.ts         # Post metadata and loading logic
-│   └── POST_AUTHORING.md # Content creation guidelines
-├── scripts/             # Build and content management scripts
-│   ├── generate-sitemap.js # SEO sitemap generation
-│   ├── convert-docx.js  # DOCX to Markdown converter
-│   └── new-post.js      # Interactive post creation
+├── pages/               # Next.js pages (routes)
+│   ├── _app.tsx         # Global app wrapper
+│   ├── _document.tsx    # HTML document structure
+│   ├── index.tsx        # Landing page with hero & value props
+│   ├── evidence.tsx     # Case studies showcase
+│   ├── framework.tsx    # PWA/SFR interactive visualization
+│   ├── writing.tsx      # Blog listing with filters
+│   ├── writing/
+│   │   └── [slug].tsx   # Individual blog post rendering
+│   ├── resume.tsx       # Print-optimized resume
+│   ├── contact.tsx      # Contact form and info
+│   └── api/             # API routes
+│       ├── draft.ts     # Draft mode for Sanity preview
+│       ├── exit-draft.ts # Exit draft mode
+│       ├── revalidate.ts # ISR webhook endpoint
+│       └── track-view.ts # Article view tracking
+├── jasonkhanani-website/ # Sanity Studio configuration
+│   ├── schemas/         # Sanity schema definitions
+│   ├── sanity.config.ts # Studio configuration
+│   └── package.json     # Studio dependencies
 ├── lib/                 # Utility functions
+│   ├── sanity.ts        # Sanity client setup
+│   └── sanityQueries.ts # GROQ queries
+├── scripts/             # Build and automation scripts
+│   └── generate-sitemap.js # SEO sitemap generation
 ├── src/
 │   ├── styles.css       # Global styles and tactile elements
 │   └── utils/           # Analytics and helpers
 ├── public/              # Static assets
-├── App.tsx              # Root application with routing
 ├── constants.ts         # Case studies and experience data
 ├── types.ts             # TypeScript type definitions
 ├── tailwind.config.js   # Design system configuration
-├── vite.config.ts       # Build configuration
+├── next.config.js       # Next.js configuration
 ├── PRD.md               # Product Requirements Document
 └── README.md            # This file
 ```
@@ -186,45 +205,61 @@ jasonkhanani-website/
 
 ## 📝 Content Management
 
-### Adding Blog Posts
+### Managing Articles with Sanity CMS
 
-#### Method 1: Interactive CLI
+This website uses **Sanity CMS** for content management. Articles are created, edited, and published through Sanity Studio.
 
-```bash
-npm run new-post
-```
+#### Quick Start
 
-Follow the prompts to create a post with proper frontmatter.
+1. **Access Sanity Studio**:
+   ```bash
+   cd jasonkhanani-website
+   npm run dev
+   ```
+   Open `http://localhost:3333`
 
-#### Method 2: Manual Creation
+2. **Create an Article**:
+   - Click "Articles" in sidebar
+   - Click "Create" button
+   - Fill in required fields (title, slug, excerpt, body, category, published date)
+   - Add optional fields (featured image, tags, series)
+   - Click "Publish"
 
-Create a new file in `content/posts/` with the following frontmatter:
+3. **Featured Articles**:
+   - Toggle "Featured Insight?" to show on homepage
+   - Maximum 3 articles can be featured
+   - Use "Featured Articles (Max 3)" view to manage
 
-```markdown
----
-title: "Your Post Title"
-date: "2025-12-29"
-excerpt: "A compelling summary that appears in listings"
-category: "Operations" # Operations, Engineering, or Analysis
-tags: ["remote work", "systems thinking", "SQL"]
-author: "Jason Kester Hanani"
-readingTime: "8 min read"
----
+#### Key Features
 
-Your content here...
-```
+- **PortableText Editor**: Rich content with headings, formatting, code blocks, callouts, images
+- **Image Management**: Upload directly or use Unsplash integration
+- **Live Preview**: Presentation tool for real-time preview while editing
+- **View Tracking**: Automatic analytics for article views
+- **Comments**: GitHub Discussions integration via Giscus
+- **Search**: Full-text search across all published articles
 
-#### Method 3: Import from Google Docs
+#### Content Publishing
 
-See [WORKFLOW.md](./WORKFLOW.md) for automated import from Google Drive.
+**Automatic Updates (ISR)**:
+- Pages regenerate automatically every 60 seconds after changes
+- No manual deployment needed
+
+**Instant Updates (Optional)**:
+- Configure Sanity webhook for immediate revalidation
+- See [WORKFLOW.md](./WORKFLOW.md) for webhook setup
+
+For detailed content management instructions, see:
+- **[WORKFLOW.md](./WORKFLOW.md)** - Complete Sanity Studio workflow
+- **[CONTENT_MANAGEMENT.md](./CONTENT_MANAGEMENT.md)** - Comprehensive content guide (if available)
 
 ### Content Guidelines
 
 - **Writing Style**: Technical but accessible, use concrete examples
-- **Code Blocks**: Include syntax highlighting language specifiers
+- **Article Length**: 1000-2000 words recommended
 - **Metrics**: Quantify impact wherever possible
 - **Persona Alignment**: Tag content with Investigator or Architect focus
-- **Maintenance**: Minimum 1 tactical post every 3 weeks (per PRD)
+- **Maintenance**: Minimum 1 article every 3 weeks (per PRD)
 
 ---
 
@@ -232,36 +267,56 @@ See [WORKFLOW.md](./WORKFLOW.md) for automated import from Google Drive.
 
 ### Routing Strategy
 
-The site uses **HashRouter** for zero-config static deployment:
+The site uses **Next.js Pages Router** for server-side rendering with static generation:
 
-- ✅ Works with GitHub Pages, Netlify, Vercel without server configuration
-- ✅ No rewrite rules needed
-- ✅ Client-side routing with clean URLs via hash fragments
+- ✅ Full SEO support with pre-rendered HTML
+- ✅ Fast page loads with Static Site Generation (SSG)
+- ✅ Automatic updates with Incremental Static Regeneration (ISR)
+- ✅ On-demand revalidation via webhooks
 
 **Routes**:
-- `/` - Home page
-- `/evidence` - Case studies
-- `/framework` - PWA/SFR framework
-- `/writing` - Blog listing
-- `/writing/:slug` - Individual posts
-- `/resume` - Resume/CV
-- `/contact` - Contact information
+- `/` - Home page (SSG with ISR)
+- `/evidence` - Case studies (Static)
+- `/framework` - PWA/SFR framework (Static)
+- `/writing` - Blog listing (SSG with ISR)
+- `/writing/[slug]` - Individual articles (SSG with ISR)
+- `/resume` - Resume/CV (Static)
+- `/contact` - Contact information (Static)
+- `/api/*` - API routes for webhooks and tracking
+
+### Data Fetching Strategy
+
+**Static Site Generation (SSG)**:
+- Pages are pre-rendered at build time
+- Content fetched from Sanity CMS during build
+- Full HTML delivered to users (instant load)
+
+**Incremental Static Regeneration (ISR)**:
+- Pages automatically regenerate every 60 seconds
+- Background regeneration after the revalidation period
+- Stale-while-revalidate strategy for optimal performance
+
+**On-Demand Revalidation**:
+- Webhook endpoint (`/api/revalidate`) for instant updates
+- Triggered by Sanity webhooks when content changes
+- Updates appear within 1-3 seconds
 
 ### Performance Optimizations
 
-- **Lazy Loading**: All pages are lazy-loaded with React.lazy()
-- **Code Splitting**: Automatic route-based chunking via Vite
-- **Suspense Boundaries**: Loading states and error handling
-- **Image Optimization**: Lazy loading with proper aspect ratios
+- **Pre-rendering**: All pages generated as static HTML at build time
+- **ISR**: Content stays fresh without full rebuilds
+- **Code Splitting**: Automatic route-based chunking via Next.js
+- **Image Optimization**: Sanity CDN handles automatic optimization
 - **CSS Purging**: Tailwind removes unused styles in production
 
 ### SEO Features
 
 - Auto-generated `sitemap.xml` on every build
 - `robots.txt` for search engine guidance
-- Meta descriptions via React Helmet
+- Meta descriptions via Next.js Head component
 - Semantic HTML structure
-- Reading time estimation for posts
+- Pre-rendered content for all pages (SSG)
+- Open Graph tags for social sharing
 
 ---
 
@@ -288,12 +343,12 @@ borderWidth: {
 }
 ```
 
-### Vite Configuration
+### Next.js Configuration
 
-- **Port**: Development server runs on port 3000
-- **Aliases**: `@/` maps to project root
-- **PostCSS**: Integrated with Tailwind
-- **TypeScript**: Full type checking enabled
+- **Output**: Static export for deployment
+- **Images**: Unoptimized (served via Sanity CDN)
+- **Trailing Slash**: Enabled for compatibility
+- **ESLint**: Disabled during builds
 
 ---
 
@@ -308,34 +363,115 @@ npm run build
 
 The build process includes:
 1. **prebuild**: Generates sitemap by fetching article slugs from Sanity CMS
-2. **build**: Creates optimized production bundle with Vite
-3. **postbuild**: Copies admin files for Netlify CMS
+2. **build**: Creates optimized production bundle with Next.js
+3. **export**: Exports static HTML files for deployment
 
 **Note**: The sitemap generation script (`scripts/generate-sitemap.js`) connects to Sanity CMS. Ensure network access to Sanity.io API during build, or the sitemap generation will fail (though the main build will continue).
 
-Output directory: `dist/`
+Output directory: `out/`
 
 ### Deployment Platforms
 
 **Recommended**:
 - Netlify (current)
 - Vercel
-- GitHub Pages
 - Cloudflare Pages
+- Any static hosting service
 
-All work seamlessly with HashRouter and static builds.
+All work seamlessly with Next.js static export.
+
+### Incremental Static Regeneration (ISR)
+
+**How it works**:
+- Pages revalidate every 60 seconds
+- First visitor after 60s triggers background regeneration
+- Subsequent visitors get the fresh page
+- No full rebuild required
+
+**Webhook for instant updates** (optional):
+1. Create Sanity webhook: `https://yourdomain.com/api/revalidate?secret=YOUR_SECRET`
+2. Set `REVALIDATE_SECRET` in environment variables
+3. Content updates appear within 1-3 seconds
+
+See [MIGRATION.md](./MIGRATION.md) for detailed ISR documentation.
 
 ### Environment Variables
 
-No environment variables required for core functionality. 
+The following environment variables are required for full functionality:
 
-**Optional configurations**:
-- **Google Drive API credentials** - For automated content import (see [WORKFLOW.md](./WORKFLOW.md))
-- **Sanity CMS** - Currently hardcoded in `scripts/generate-sitemap.js` for sitemap generation. Could be moved to environment variables for enhanced security if needed.
+**Required for CMS features:**
+- `SANITY_API_TOKEN` - Sanity API token with Editor permissions (for view tracking and content updates)
+
+**Required for preview mode:**
+- `SANITY_PREVIEW_SECRET` - Secret key for enabling draft/preview mode in Sanity Studio
+
+**Required for on-demand revalidation:**
+- `REVALIDATE_SECRET` - Secret key for the revalidation API endpoint
+
+**Required for comments:**
+- `NEXT_PUBLIC_GISCUS_REPO_ID` - Giscus repository ID from giscus.app
+- `NEXT_PUBLIC_GISCUS_CATEGORY_ID` - Giscus category ID for "Article Comments" category
+
+See `.env.example` for a template with detailed instructions.
 
 ---
 
-## 📊 Quality Metrics
+## 🎯 Enhanced CMS Features
+
+### 1. Live Preview with Presentation Tool
+
+The Sanity Studio includes a **Presentation Tool** that allows content editors to see changes in real-time:
+
+- **Access**: Available in Sanity Studio sidebar (after "Structure" and "Vision")
+- **Features**: 
+  - Visual live preview of articles as you edit
+  - Side-by-side editing and preview
+  - Click elements in preview to jump to the field in the editor
+- **Setup**: Configured automatically when you start Sanity Studio
+
+### 2. View Tracking (Analytics)
+
+Server-side analytics track article views without impacting user experience:
+
+- **Location**: View count displayed in article's "Analytics" section (SEO & Social Metadata fieldset)
+- **Data Tracked**: Article reference, timestamp, user agent, referrer
+- **Privacy**: All tracking is server-side; no client-side analytics cookies
+- **View Data**: Stored in Sanity as `articleView` documents
+- **Access**: Visible only to content editors in Sanity Studio
+
+### 3. Comment System with Moderation
+
+GitHub Discussions-based comments powered by Giscus:
+
+- **Location**: Below each article, after related articles
+- **Features**:
+  - GitHub authentication for commenters
+  - Moderation through GitHub's native tools
+  - Reactions and threading support
+  - Lazy loading for performance
+- **Setup**: 
+  1. Enable GitHub Discussions in this repository
+  2. Go to [giscus.app](https://giscus.app) and configure for this repo
+  3. Add the repo ID and category ID to `.env`
+- **Styling**: Automatically matches the site's ricePaper and sumiInk design system
+
+### 4. Full-Text Search
+
+Powerful search across all published articles:
+
+- **Location**: Top of the Writing page (`/writing`)
+- **Search Scope**: Title, excerpt, body content, tags, and categories
+- **Features**:
+  - 300ms debounced input (reduces API calls)
+  - Highlighted search matches
+  - Live results dropdown
+  - "No results" state with helpful message
+  - Click result to navigate to article
+- **Performance**: Uses Sanity's GROQ queries for fast, server-side search
+
+---
+
+## 🌐 Deployment
 
 ### Latest Code Review (Dec 2025)
 
@@ -402,10 +538,11 @@ See [PRD.md](./PRD.md) for detailed roadmap specifications.
 ## 📄 Documentation
 
 - **[PRD.md](./PRD.md)** - Complete product requirements and vision
+- **[MIGRATION.md](./MIGRATION.md)** - Next.js + Sanity migration details
+- **[WORKFLOW.md](./WORKFLOW.md)** - Sanity Studio content workflow
+- **[ENHANCED_CMS_TESTING.md](./ENHANCED_CMS_TESTING.md)** - Advanced CMS features
 - **[WEBSITE_REVIEW.md](./WEBSITE_REVIEW.md)** - Comprehensive technical review (24KB)
 - **[REVIEW_SUMMARY.md](./REVIEW_SUMMARY.md)** - Executive summary of review findings
-- **[WORKFLOW.md](./WORKFLOW.md)** - Content import and publishing workflow
-- **[content/POST_AUTHORING.md](content/POST_AUTHORING.md)** - Blog writing guidelines
 
 ---
 
@@ -430,11 +567,11 @@ Interested in:
 ### For Developers
 
 This is a personal portfolio site, but the codebase demonstrates:
-- Clean React 19 architecture
+- Next.js 14 with SSG/ISR architecture
 - TypeScript best practices
 - Tailwind CSS custom design systems
-- Static site generation with Vite
-- Markdown-based content management
+- Sanity CMS integration
+- PortableText rendering
 
 Feel free to reference the code for learning purposes. For questions, reach out via GitHub issues.
 
@@ -453,7 +590,8 @@ This is a personal portfolio website. The code structure and architecture may be
 - **Design Philosophy**: Inspired by industrial minimalism and Japanese aesthetic principles
 - **Typography**: Source Serif 4 by Adobe, Inter by Rasmus Andersson
 - **Icons**: Lucide React icon library
-- **Build Tools**: Vite team for incredible DX
+- **Build Tools**: Next.js and Vercel teams for incredible DX
+- **CMS**: Sanity.io for powerful content management
 - **Community**: React, TypeScript, and Tailwind CSS ecosystems
 
 ---

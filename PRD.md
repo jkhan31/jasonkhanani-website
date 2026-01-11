@@ -27,10 +27,11 @@ The site uses a "Rice Paper and Sumi Ink" philosophy—high contrast, tactile te
 - **Decision Rigor** (Writing): A "Block-System" blog supporting tables, callouts, and grayscale-to-color interactive imagery.
 - **The Dossier** (Resume): A print-optimized, high-density professional history with an integrated "Operational Stack" (n8n, SQL, Python).
 ## 3. Technical Implementation
-- **Engine**: React 19 (ESM) with HashRouter for zero-config deployment.
+- **Engine**: Next.js 14 with SSG/ISR for optimized performance and SEO.
+- **Content Management**: Sanity CMS with PortableText for rich article content.
 - **Styling**: Tailwind CSS with custom configuration for border-widths (0.5px) and tracking.
 - **Components**: Modular architecture (Logo, SectionHeader, AxisMarker) for rapid page assembly.
-- **Rendering**: Optimized lazy-loading for heavy content pages (Writing/Evidence) to maintain a sub-1s "Time to Interactive."
+- **Rendering**: Static Site Generation with 60-second Incremental Static Regeneration for automatic content updates.
 ## 4. The Roadmap: What's Next?
 ### Phase 3: Interactive Authority **(Short **Term)
 - **The "Diagnostic Tool"**: A mini React-based calculator or questionnaire that allows potential clients/employers to input their team size and meeting frequency to estimate **their "Operational Friction Score."**

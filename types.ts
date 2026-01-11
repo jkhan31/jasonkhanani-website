@@ -29,7 +29,7 @@ export interface Article {
   id: string;
   slug: string;
   title: string;
-  excerpt: string;
+  excerpt?: string;
   readTime: string;
   category: string;
   series: string | null;
@@ -54,5 +54,5 @@ export interface Article {
   };
 
   // Preserve any existing content representation (markdown string from .md or structured blocks)
-  content: string | ContentBlock[];
+  content?: string | ContentBlock[];
 }

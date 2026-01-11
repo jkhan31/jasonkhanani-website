@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 const encode = (data: Record<string, string>) => {
   return Object.keys(data)
@@ -56,10 +56,19 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center px-6 py-24">
-      <Helmet>
-        <title>Contact – Jason Khanani</title>
-      </Helmet>
+    <>
+      <Head>
+        <title>Contact | Jason Kester Hanani</title>
+        <meta 
+          name="description" 
+          content="Get in touch for systems diagnostics, operational consulting, or technical project management inquiries." 
+        />
+        <meta property="og:title" content="Contact Jason Kester Hanani" />
+        <meta property="og:url" content="https://jasonkhanani.com/contact/" />
+        <link rel="canonical" href="https://jasonkhanani.com/contact/" />
+      </Head>
+      
+      <div className="min-h-[60vh] flex items-center justify-center px-6 py-24">
 
       <div className="w-full max-w-3xl bg-zinc-900 border border-zinc-700 p-12 rounded-md">
         <h1 className="text-3xl font-serif mb-4 text-ricePaper">Contact</h1>
@@ -120,7 +129,8 @@ const Contact: React.FC = () => {
           </div>
         </form>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

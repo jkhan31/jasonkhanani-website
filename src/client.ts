@@ -1,17 +1,21 @@
 import { createClient } from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
+import { createImageUrlBuilder } from '@sanity/image-url'
 
 export const client = createClient({
   projectId: 'lrta5lyp',
   dataset: 'production',
   useCdn: true,
-  apiVersion: '2025-12-25',
+  apiVersion: '2023-05-03',
+  token: process.env.SANITY_API_TOKEN, // Add token for write operations
 })
 
-const builder = imageUrlBuilder(client)
+const builder = createImageUrlBuilder(client)
 
 export function urlFor(source: any) {
-  return builder.image(source)
+  return builder
+    .image(source)
+    .auto('format')  // Serves WebP/AVIF automatically
+    .quality(85);     // Optimize quality/size balance
 }
 
 export default client

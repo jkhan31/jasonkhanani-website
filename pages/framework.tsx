@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { SectionHeader } from '../components/SectionHeader';
 import { Brain, Search, GitBranch, Anchor, Zap, BookOpen, RefreshCw, Shield, ArrowRight, ExternalLink } from 'lucide-react';
 
@@ -67,6 +68,12 @@ const StaticCard: React.FC<{
 
 const Framework: React.FC = () => {
   const [openSfrSections, setOpenSfrSections] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  // Wait for client-side mount before enabling interactivity
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleSfr = (id: string) => {
     setOpenSfrSections(prev =>
@@ -79,8 +86,22 @@ const Framework: React.FC = () => {
   const isSfrOpen = (id: string) => openSfrSections.includes(id);
 
   return (
-    <div className="animate-in fade-in duration-1000 scroll-smooth">
-      {/* Header Intro */}
+    <>
+      <Head>
+        <title>The Flourishing Framework | Jason Kester Hanani</title>
+        <meta 
+          name="description" 
+          content="A thermal management system for the human operating system. Purpose-Wellbeing Axis and Sustainable Feedback Rhythm for resilient performance without burnout." 
+        />
+        <meta property="og:title" content="The Flourishing Framework" />
+        <meta property="og:description" content="Engineering resilience through Purpose-Wellbeing Axis and Sustainable Feedback Rhythm." />
+        <meta property="og:url" content="https://jasonkhanani.com/framework/" />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href="https://jasonkhanani.com/framework/" />
+      </Head>
+      
+      <div className="animate-in fade-in duration-1000 scroll-smooth">
+        {/* Header Intro */}
       <header className="px-6 py-24 text-center max-w-3xl mx-auto">
         <SectionHeader title="The Flourishing Framework" eyebrow="Blueprint for Resilience" className="mb-8" />
 
@@ -92,6 +113,16 @@ const Framework: React.FC = () => {
           I developed this framework to reverse-engineer a recovery strategy after a systemic burnout. It treats resilience not as a character trait, but as an engineering problem: <strong className="text-hankoRust">How do we maintain high-performance output (Purpose) without overheating the biological hardware (Wellbeing)?</strong>
         </p>
       </header>
+
+      {/* Context Bridge */}
+      <div className="max-w-3xl mx-auto px-6 mb-24">
+        <div className="bg-white border-l-2 border-hankoRust p-6 shadow-sm">
+          <h4 className="text-xs font-bold tracking-widest text-hankoRust uppercase mb-2">The Operator's Manual</h4>
+          <p className="text-sm text-sumiInk/70 leading-relaxed italic">
+            "To lead complex systems effectively, <strong>we must first manage our internal capacity.</strong> A network is only as resilient as its nodes. I view this framework as <strong>Sustainable Performance</strong>—the engineered protocol I use to sustain high velocity and clarity under pressure."
+          </p>
+        </div>
+      </div>
 
       {/* PART I: PWA */}
       <section className="px-6 pb-32 max-w-7xl mx-auto">
@@ -229,8 +260,10 @@ const Framework: React.FC = () => {
             ].map((step) => (
               <div
                 key={step.id}
-                className={`bg-ricePaper p-10 group cursor-pointer transition-all duration-500 hover:bg-white overflow-hidden`}
-                onClick={() => toggleSfr(step.id)}
+                className={`bg-ricePaper p-10 group transition-all duration-500 hover:bg-white overflow-hidden ${
+                  mounted ? 'cursor-pointer' : ''
+                }`}
+                onClick={() => mounted && toggleSfr(step.id)}
               >
                 <div className="flex justify-between items-center mb-8">
                   <div className={`w-10 h-10 ${step.accent} rounded-full flex items-center justify-center text-ricePaper shadow-sm`}>
@@ -248,7 +281,14 @@ const Framework: React.FC = () => {
                 <h4 className="text-xl font-serif mb-4 text-sumiInk group-hover:text-hankoRust">
                   {step.num}. {step.title}
                 </h4>
-                <div className={`transition-all duration-500 overflow-hidden ${isSfrOpen(step.id) ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'}`}>
+                <div 
+                  suppressHydrationWarning
+                  className={`transition-all duration-500 overflow-hidden ${
+                    mounted && isSfrOpen(step.id)
+                      ? 'max-h-64 opacity-100'
+                      : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
+                  }`}
+                >
                   <p className="text-sm text-sumiInk/60 leading-relaxed mb-8">{step.text}</p>
                   <div className="pt-6 border-t-0.5 border-hankoRust/10">
                     <p className="text-[11px] font-serif italic text-hankoRust opacity-70">"{step.motto}"</p>
@@ -347,7 +387,8 @@ const Framework: React.FC = () => {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 };
 

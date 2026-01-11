@@ -1,7 +1,9 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { presentationTool } from '@sanity/presentation'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import { media } from 'sanity-plugin-media'
 import { schemaTypes } from './schemaTypes'
 
 export default defineConfig({
@@ -28,6 +30,27 @@ export default defineConfig({
                   .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
               ),
             S.divider(),
+            // Draft Articles
+            S.listItem()
+              .title('Draft Articles')
+              .icon(() => '📝')
+              .child(
+                S.documentList()
+                  .title('Draft Articles')
+                  .filter('_type == "article" && status == "draft"')
+                  .defaultOrdering([{ field: '_updatedAt', direction: 'desc' }])
+              ),
+            // Scheduled Articles
+            S.listItem()
+              .title('Scheduled Articles')
+              .icon(() => '🕐')
+              .child(
+                S.documentList()
+                  .title('Scheduled Articles')
+                  .filter('_type == "article" && status == "scheduled"')
+                  .defaultOrdering([{ field: 'scheduledPublishDate', direction: 'asc' }])
+              ),
+            S.divider(),
             // All Articles
             S.listItem()
               .title('All Articles')
@@ -40,8 +63,16 @@ export default defineConfig({
             ),
           ]),
     }),
+    presentationTool({
+      previewUrl: {
+        draftMode: {
+          enable: '/api/draft',
+        },
+      },
+    }),
     visionTool(),
     unsplashImageAsset(),
+    media(),
   ].filter(Boolean),
 
   schema: {

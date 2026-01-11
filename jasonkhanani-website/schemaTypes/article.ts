@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { UnsplashPhotographerInput, UnsplashDescriptionInput } from './unsplashComponents'
 import { CustomImageInput } from './CustomImageInput'
+import { AnalyticsDisplay } from './AnalyticsDisplay'
 
 export default defineType({
     name: 'article',
@@ -36,6 +37,29 @@ export default defineType({
             title: 'Published At',
             type: 'datetime',
             initialValue: () => new Date().toISOString(),
+        }),
+        // --- PUBLISHING STATUS ---
+        defineField({
+            name: 'status',
+            title: 'Status',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Draft', value: 'draft' },
+                    { title: 'Published', value: 'published' },
+                    { title: 'Scheduled', value: 'scheduled' },
+                ],
+                layout: 'radio',
+            },
+            initialValue: 'published',
+            description: 'Control article visibility. Draft articles won\'t appear on the frontend.',
+        }),
+        defineField({
+            name: 'scheduledPublishDate',
+            title: 'Scheduled Publish Date',
+            type: 'datetime',
+            description: 'Article will only appear on frontend after this date (when status is "scheduled")',
+            hidden: ({ document }: any) => document?.status !== 'scheduled',
         }),
         defineField({
             name: 'mainImage',
@@ -166,12 +190,29 @@ export default defineType({
             title: 'Body',
             type: 'blockContent',
         }),
+        defineField({
+            name: 'readingTime',
+            title: 'Reading Time',
+            type: 'number',
+            readOnly: true,
+            description: 'Auto-calculated based on word count (~200-250 words per minute)',
+            hidden: true, // We'll calculate this on the frontend
+        }),
+        defineField({
+            name: 'relatedArticles',
+            title: 'Related Articles',
+            type: 'array',
+            of: [{ type: 'reference', to: { type: 'article' } }],
+            validation: (Rule) => Rule.max(3),
+            description: 'Manually select up to 3 related articles. If none selected, articles from the same category will be auto-suggested.',
+        }),
         // --- SEO ---
         defineField({
             name: 'seoTitle',
             title: 'SEO Title',
             type: 'string',
             fieldset: 'metadata',
+            description: 'Optional: Override the article title for SEO purposes',
         }),
         defineField({
             name: 'seoDescription',
@@ -179,6 +220,62 @@ export default defineType({
             type: 'text',
             rows: 3,
             fieldset: 'metadata',
+            description: 'Optional: Override the excerpt for SEO meta description',
+        }),
+        defineField({
+            name: 'metaTitle',
+            title: 'Social Share Title',
+            type: 'string',
+            fieldset: 'metadata',
+            description: 'Optional: Override title for Open Graph and Twitter Cards',
+        }),
+        defineField({
+            name: 'metaDescription',
+            title: 'Social Share Description',
+            type: 'text',
+            rows: 3,
+            fieldset: 'metadata',
+            description: 'Optional: Override excerpt for social media previews',
+        }),
+        defineField({
+            name: 'ogImage',
+            title: 'Social Share Image',
+            type: 'image',
+            fieldset: 'metadata',
+            description: 'Optional: Override main image for Open Graph and Twitter Cards (1200x630 recommended)',
+            options: { hotspot: true },
+        }),
+        defineField({
+            name: 'keywords',
+            title: 'SEO Keywords',
+            type: 'array',
+            of: [{ type: 'string' }],
+            fieldset: 'metadata',
+            description: 'Keywords for SEO purposes',
+        }),
+        defineField({
+            name: 'analytics',
+            title: 'Analytics (Read-Only)',
+            type: 'object',
+            fieldset: 'metadata',
+            readOnly: true,
+            description: 'View statistics (populated by frontend tracking)',
+            components: {
+                input: AnalyticsDisplay,
+            },
+            fields: [
+                {
+                    name: 'views',
+                    title: 'Total Views',
+                    type: 'number',
+                    initialValue: 0,
+                },
+                {
+                    name: 'lastViewed',
+                    title: 'Last Viewed',
+                    type: 'datetime',
+                },
+            ],
         }),
     ],
     preview: {
@@ -187,12 +284,23 @@ export default defineType({
             media: 'mainImage',
             category: 'category.title',
             isFeatured: 'isFeatured',
+            status: 'status',
+            scheduledPublishDate: 'scheduledPublishDate',
         },
         prepare(selection) {
-            const { category, isFeatured } = selection
-            const subtitle = isFeatured 
-                ? `⭐ FEATURED | ${category || 'Uncategorized'}`
-                : category || 'Uncategorized'
+            const { category, isFeatured, status, scheduledPublishDate } = selection
+            
+            let statusIcon = ''
+            if (status === 'draft') {
+                statusIcon = '📝 DRAFT | '
+            } else if (status === 'scheduled') {
+                const date = scheduledPublishDate ? new Date(scheduledPublishDate).toLocaleDateString() : 'Date TBD'
+                statusIcon = `🕐 SCHEDULED (${date}) | `
+            }
+            
+            const featuredText = isFeatured ? '⭐ FEATURED | ' : ''
+            const subtitle = `${statusIcon}${featuredText}${category || 'Uncategorized'}`
+            
             return { ...selection, subtitle }
         },
     },

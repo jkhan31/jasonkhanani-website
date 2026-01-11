@@ -1,13 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Logo } from './Logo';
+import { Footer } from './Footer';
 import { Menu, X, Linkedin } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const router = useRouter();
   
   const links = [
     { label: 'Evidence', path: '/evidence' },
@@ -44,16 +46,16 @@ const Header: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 h-12">
-          <Link to="/" onClick={closeMenu} className="flex items-center gap-3 hover:opacity-80 transition-opacity text-sumiInk relative z-[70]">
+          <Link href="/" onClick={closeMenu} className="flex items-center gap-3 hover:opacity-80 transition-opacity text-sumiInk relative z-[70]">
             <Logo size="md" className="-ml-4" />
             <span className="hidden md:inline-block font-serif text-lg font-semibold tracking-tight text-sumiInk">Jason K Hanani</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
-            {location.pathname !== '/' && (
+            {router.pathname !== '/' && (
               <Link
-                to="/"
+                href="/"
                 className={`text-sm tracking-wide transition-colors text-sumiInk hover:text-foxOrange`}
               >
                 Home
@@ -62,9 +64,9 @@ const Header: React.FC = () => {
             {links.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`text-sm tracking-wide transition-colors ${
-                  location.pathname === link.path 
+                  router.pathname === link.path 
                     ? 'text-hankoRust font-semibold' 
                     : 'text-sumiInk hover:text-foxOrange'
                 }`}
@@ -104,9 +106,9 @@ const Header: React.FC = () => {
         `}
       >
         <div className="flex flex-col justify-center items-center flex-grow p-8 space-y-10 text-center">
-          {location.pathname !== '/' && (
+          {router.pathname !== '/' && (
             <Link
-              to="/"
+              href="/"
               onClick={closeMenu}
               className={`text-4xl font-serif transition-all duration-500 delay-0ms ${
                 'text-sumiInk hover:text-foxOrange'
@@ -118,10 +120,10 @@ const Header: React.FC = () => {
           {links.map((link, idx) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               onClick={closeMenu}
               className={`text-4xl font-serif transition-all duration-500 delay-[${idx * 100}ms] ${
-                location.pathname === link.path 
+                router.pathname === link.path 
                   ? 'text-hankoRust scale-110' 
                   : 'text-sumiInk hover:text-foxOrange'
               } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
@@ -150,39 +152,6 @@ const Header: React.FC = () => {
     </>
   );
 };
-
-const Footer: React.FC = () => (
-  <footer className="bg-sumiInk text-ricePaper pt-24 pb-12 px-6 relative z-10 min-h-[500px] h-auto">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-        <div>
-          <Logo size="lg" className="text-ricePaper -ml-6 mb-4 opacity-80" />
-          <h3 className="text-3xl font-serif mb-6">Let's build resilient systems.</h3>
-          <p className="text-ricePaper/60 max-w-md mb-8">
-            Industrial Engineer & Business Analyst dedicated to streamlining complexity. 
-            I provide the operational clarity needed to build systems that last.
-          </p>
-          <a 
-            href="mailto:contact@jasonkhanani.com"
-            className="inline-block border-b-0.5 border-ricePaper hover:border-foxOrange hover:text-foxOrange transition-all pb-1 text-lg"
-          >
-            contact@jasonkhanani.com
-          </a>
-        </div>
-        <div className="flex flex-col md:items-end justify-center space-y-4">
-          <a href="https://www.linkedin.com/in/jasonkhanani/" className="hover:text-foxOrange transition-colors">LinkedIn</a>
-          <Link to="/evidence" className="hover:text-foxOrange transition-colors">Evidence Vault</Link>
-          <Link to="/contact" className="hover:text-foxOrange transition-colors">Contact</Link>
-          <Link to="/resume" className="hover:text-foxOrange transition-colors">Resume</Link>
-        </div>
-      </div>
-      <div className="pt-12 border-t-0.5 border-ricePaper/10 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase opacity-40">
-        <p>&copy; {new Date().getFullYear()} Jason Kester Hanani</p>
-        <p>Tactile Precision &bull; Systems Design</p>
-      </div>
-    </div>
-  </footer>
-);
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
