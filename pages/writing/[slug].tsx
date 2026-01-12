@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { PortableText } from '@portabletext/react';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { client, urlFor } from '../../src/client'; // Import from src folder
@@ -286,9 +286,9 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
   const readTime = getReadTime(current.body);
 
   // SEO: Use override fields if available, otherwise fall back to defaults
-  const pageTitle = current.seoTitle || current.metaTitle || current.title;
+  const pageTitle = current.seoTitle || current.metaTitle || current.title || current.slug?.current || 'Untitled Article';
   const pageDescription = current.seoDescription || current.metaDescription || current.excerpt || '';
-  const socialTitle = current.metaTitle || current.seoTitle || current.title;
+  const socialTitle = current.metaTitle || current.seoTitle || current.title || current.slug?.current || 'Jason K Hanani';
   const socialDescription = current.metaDescription || current.seoDescription || current.excerpt || '';
   
   // Generate social image URL for Open Graph and Twitter Cards
@@ -309,29 +309,29 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
       
       {/* Main Content */}
       <div className="flex-1 max-w-3xl">
-        <Helmet>
-          <title>{pageTitle} | Jason K Hanani</title>
-          <meta name="description" content={pageDescription} />
-          <link rel="canonical" href={`${SITE_URL}/writing/${current.slug.current}`} />
-          
-          {/* Keywords */}
-          {current.keywords && current.keywords.length > 0 && (
-            <meta name="keywords" content={current.keywords.join(', ')} />
-          )}
-          
-          {/* Open Graph tags */}
-          <meta property="og:title" content={socialTitle} />
-          <meta property="og:description" content={socialDescription} />
-          <meta property="og:url" content={`${SITE_URL}/writing/${current.slug.current}`} />
-          {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
-          <meta property="og:type" content="article" />
-          
-          {/* Twitter Card tags */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={socialTitle} />
-          <meta name="twitter:description" content={socialDescription} />
-          {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
-      </Helmet>
+        <Head>
+            <title>{pageTitle} | Jason K Hanani</title>
+            <meta name="description" content={pageDescription} />
+            <link rel="canonical" href={`${SITE_URL}/writing/${current.slug.current}`} />
+
+            {/* Keywords */}
+            {current.keywords && current.keywords.length > 0 && (
+              <meta name="keywords" content={current.keywords.join(', ')} />
+            )}
+
+            {/* Open Graph tags */}
+            <meta property="og:title" content={socialTitle} />
+            <meta property="og:description" content={socialDescription} />
+            <meta property="og:url" content={`${SITE_URL}/writing/${current.slug.current}`} />
+            {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+            <meta property="og:type" content="article" />
+
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={socialTitle} />
+            <meta name="twitter:description" content={socialDescription} />
+            {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+        </Head>
 
       <Link 
         href="/writing" 
