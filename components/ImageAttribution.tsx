@@ -4,12 +4,14 @@ interface ImageAttributionProps {
   attribution?: string;
   attributionUrl?: string;
   className?: string;
+  suppressLink?: boolean;
 }
 
 export const ImageAttribution: React.FC<ImageAttributionProps> = ({
   attribution,
   attributionUrl,
   className = '',
+  suppressLink = false,
 }) => {
   if (!attribution) return null;
 
@@ -29,29 +31,43 @@ export const ImageAttribution: React.FC<ImageAttributionProps> = ({
   return (
     <p className={`text-xs text-sumiInk/60 mt-2 ${className}`}>
       Photo by{' '}
-      {attributionUrl ? (
-        <a
-          href={attributionUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-hankoRust transition-colors"
-        >
-          {attribution}
-        </a>
-      ) : (
-        <span>{attribution}</span>
-      )}
-      {isUnsplashImage && (
+      {suppressLink ? (
         <>
-          {' '}on{' '}
-          <a
-            href="https://unsplash.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-hankoRust transition-colors"
-          >
-            Unsplash
-          </a>
+          <span>{attribution}</span>
+          {isUnsplashImage && (
+            <>
+              {' '}on{' '}
+              <span className="underline hover:text-hankoRust transition-colors">Unsplash</span>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          {attributionUrl ? (
+            <a
+              href={attributionUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-hankoRust transition-colors"
+            >
+              {attribution}
+            </a>
+          ) : (
+            <span>{attribution}</span>
+          )}
+          {isUnsplashImage && (
+            <>
+              {' '}on{' '}
+              <a
+                href="https://unsplash.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-hankoRust transition-colors"
+              >
+                Unsplash
+              </a>
+            </>
+          )}
         </>
       )}
     </p>

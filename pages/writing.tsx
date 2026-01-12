@@ -297,9 +297,9 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
       {displayedArticles.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {displayedArticles.map((article: any) => (
+            {displayedArticles.map((article: any, idx: number) => (
               <ArticlePreviewCard 
-                key={article.slug} 
+                key={`${article.slug ?? 'post'}-${(currentPage - 1) * articlesPerPage + idx}`} 
                 article={article} 
                 compact={false} 
               />

@@ -49,6 +49,7 @@
             <ImageAttribution
               attribution={article.mainImage?.attribution || article.mainImage?.unsplashSource?.name}
               attributionUrl={article.mainImage?.attributionUrl || article.mainImage?.unsplashSource?.url}
+              suppressLink={true}
             />
           </div>
         )}
