@@ -176,10 +176,15 @@ const ptComponents = {
     ),
   }
   ,
-  marks: {
+    marks: {
     link: ({ value, children }: any) => {
       const target = (value?.href || '');
       const isInternal = target.startsWith('/') || target.includes(SITE_DOMAIN);
+
+      // Wrap children in a deterministic inline element to avoid
+      // server/client hydration mismatches when children contain
+      // variable or block-level nodes coming from Portable Text.
+      const inlineChildren = <span className="inline">{children}</span>;
 
       if (isInternal) {
         // Remove domain and any hash fragments for clean internal routing
@@ -187,13 +192,13 @@ const ptComponents = {
           .replace(`https://${SITE_DOMAIN}`, '')
           .replace(`http://${SITE_DOMAIN}`, '')
           .replace('/#', '');
-        
+
         return (
           <Link 
             href={relativePath || '/'} 
             className="text-foxOrange underline decoration-foxOrange/30 hover:decoration-foxOrange transition-all font-medium"
           >
-            {children}
+            {inlineChildren}
           </Link>
         );
       }
@@ -205,7 +210,7 @@ const ptComponents = {
           rel="noopener noreferrer" 
           className="text-sumiInk/80 underline decoration-sumiInk/30 hover:text-foxOrange transition-colors"
         >
-          {children}
+          {inlineChildren}
         </a>
       );
     },
