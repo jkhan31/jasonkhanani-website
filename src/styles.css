@@ -145,3 +145,43 @@ body {
   margin: 1rem 0;
   font-style: italic;
 }
+
+/* Shiki Code Block Styles */
+.shiki-code-block pre {
+  margin: 0 !important;
+  padding: 1.5rem !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  overflow-x: auto;
+  background-color: #1E1E1E !important;
+}
+
+.shiki-code-block code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Cascadia Code', 'Courier New', monospace !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.shiki-code-block .line {
+  display: inline-block;
+  width: 100%;
+}
+
+/* Scrollbar styling */
+.shiki-code-block pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.shiki-code-block pre::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.shiki-code-block pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.shiki-code-block pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
