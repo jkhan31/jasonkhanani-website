@@ -30,9 +30,4 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://jasonkhanani.com/writing/burnout-is-a-design-flaw-re-engineering-the-system-for-resilience</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
 </urlset>
