@@ -39,7 +39,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ code, language, filename }) => {
         setHtml(highlighted);
       } catch (error) {
         console.error('Shiki highlighting error:', error);
-        setHtml(`<pre><code>${code}</code></pre>`);
+        // Escape HTML to prevent XSS
+        const escapeHtml = (text: string) => {
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        };
+        setHtml(`<pre><code>${escapeHtml(code)}</code></pre>`);
       } finally {
         setIsLoading(false);
       }

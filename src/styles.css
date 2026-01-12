@@ -148,19 +148,19 @@ body {
 
 /* Shiki Code Block Styles */
 .shiki-code-block pre {
-  margin: 0 !important;
-  padding: 1.5rem !important;
-  font-size: 0.875rem !important;
-  line-height: 1.5 !important;
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
   overflow-x: auto;
-  background-color: #1E1E1E !important;
+  background-color: #1E1E1E;
 }
 
 .shiki-code-block code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Cascadia Code', 'Courier New', monospace !important;
-  background: transparent !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Cascadia Code', 'Courier New', monospace;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
 .shiki-code-block .line {
