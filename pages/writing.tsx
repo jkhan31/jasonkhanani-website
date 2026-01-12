@@ -5,17 +5,19 @@ import { SectionHeader } from '../components/SectionHeader';
 import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
 import { ArticleSearch } from '../components/ArticleSearch';
 import { client, urlFor } from '../src/client';
-import { Star } from 'lucide-react';
+import { Star, ChevronDown, ChevronUp, Filter, Info, BookOpen, Layers, X } from 'lucide-react';
 import type { Article } from '../types';
 
 interface WritingProps {
   articles: any[];
+  seriesData: any[];
 }
 
-const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
+const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) => {
   // Filter State
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeFilterKind, setActiveFilterKind] = useState<'category' | 'series' | 'special' | null>(null);
+  const [showFilters, setShowFilters] = useState<boolean>(true);
   
   // Pagination
   const [articlesPerPage] = useState<number>(9);
@@ -92,6 +94,20 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
     return counts;
   }, [normalizedArticles]);
 
+  // Get active series description
+  const activeSeriesDescription = useMemo(() => {
+    if (activeFilterKind === 'series' && activeFilter) {
+      const series = seriesData.find(s => s.title === activeFilter);
+      return series?.description || null;
+    }
+    return null;
+  }, [activeFilter, activeFilterKind, seriesData]);
+
+  // Helper function to check if a filter is active
+  const isActiveFilter = (filter: string | null, kind: 'category' | 'series' | 'special' | null) => {
+    return activeFilter === filter && activeFilterKind === kind;
+  };
+
   // Filtering Logic
   const filteredArticles = useMemo(() => {
     let articles = normalizedArticles;
@@ -141,70 +157,141 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData }) => {
       {/* Search Component */}
       <ArticleSearch />
 
-      {/* Filter Bar */}
-      <div className="flex overflow-x-auto whitespace-nowrap gap-3 mb-12 py-2 border-b-0.5 border-sumiInk/10 pb-6" role="tablist">
-        
-        {/* All Insights Button */}
+      {/* Toggle Button and Active Filter Indicator */}
+      <div className="flex items-center justify-between mb-6">
         <button
-          onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
-          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-            !activeFilter 
-              ? 'bg-hankoRust text-ricePaper border-hankoRust shadow-md' 
-              : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
-          }`}
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest text-sumiInk/80 border border-sumiInk/20 rounded-md hover:border-hankoRust/50 hover:text-sumiInk transition-all"
         >
-          <span>All Insights</span>
-          <span className="opacity-80">({totalCount})</span>
+          <Filter size={14} />
+          <span>Show/Hide Filters</span>
+          {showFilters ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
         </button>
 
-        {/* Featured Filter */}
-        {featuredCount > 0 && (
-          <button
-            onClick={() => { setActiveFilter('FEATURED'); setActiveFilterKind('special'); }}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-              activeFilter === 'FEATURED'
-                ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md'
-                : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
-            }`}
-          >
-            <Star size={12} className={activeFilter === 'FEATURED' ? 'fill-ricePaper' : ''} />
-            <span>Featured</span>
-            <span className="opacity-80">({featuredCount})</span>
-          </button>
+        {activeFilter && (
+          <div className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest bg-sumiInk/5 border border-sumiInk/20 rounded-md">
+            <span className="text-sumiInk/60">Active:</span>
+            <span className="text-sumiInk">{activeFilter}</span>
+            <button
+              onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
+              className="ml-2 text-sumiInk/60 hover:text-hankoRust transition-colors"
+              aria-label="Clear filter"
+            >
+              <X size={14} />
+            </button>
+          </div>
         )}
-
-        {/* Category Filters */}
-        {allCategories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-              activeFilter === cat
-                ? 'bg-sumiInk text-ricePaper border-sumiInk shadow-md'
-                : 'text-sumiInk/60 border-sumiInk/20 hover:border-sumiInk/50 hover:text-sumiInk'
-            }`}
-          >
-            <span>{cat}</span>
-            <span className="opacity-80">({categoryCounts[cat]})</span>
-          </button>
-        ))}
-
-        {/* Series Filters */}
-        {allSeries.map(s => (
-          <button
-            key={s}
-            onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
-            className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-              activeFilter === s
-                ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md'
-                : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
-            }`}
-          >
-            <span>{s}</span>
-            <span className="opacity-80">({seriesCounts[s]})</span>
-          </button>
-        ))}
       </div>
+
+      {/* Collapsible Filter Section */}
+      <div 
+        className="overflow-hidden transition-all duration-300"
+        style={{
+          maxHeight: showFilters ? '1000px' : '0',
+          opacity: showFilters ? 1 : 0
+        }}
+      >
+        <div className="mb-8 pb-6 border-b-0.5 border-sumiInk/10">
+          {/* Quick Filters Section */}
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-3">
+              {/* All Insights Button */}
+              <button
+                onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
+                className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+                  !activeFilter 
+                    ? 'bg-hankoRust text-ricePaper border-hankoRust shadow-md' 
+                    : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
+                }`}
+              >
+                <span>All Insights</span>
+                <span className="opacity-80">({totalCount})</span>
+              </button>
+
+              {/* Featured Filter */}
+              {featuredCount > 0 && (
+                <button
+                  onClick={() => { setActiveFilter('FEATURED'); setActiveFilterKind('special'); }}
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+                    isActiveFilter('FEATURED', 'special')
+                      ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md'
+                      : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
+                  }`}
+                >
+                  <Star size={12} className={isActiveFilter('FEATURED', 'special') ? 'fill-ricePaper' : ''} />
+                  <span>Featured</span>
+                  <span className="opacity-80">({featuredCount})</span>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Categories Section */}
+          {allCategories.length > 0 && (
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <BookOpen size={16} className="text-sumiInk/60" />
+                <h3 className="text-xs font-bold uppercase tracking-widest text-sumiInk/60">Categories</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {allCategories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+                      isActiveFilter(cat, 'category')
+                        ? 'bg-sumiInk text-ricePaper border-sumiInk shadow-md'
+                        : 'text-sumiInk/60 border-sumiInk/20 hover:border-sumiInk/50 hover:text-sumiInk'
+                    }`}
+                  >
+                    <span>{cat}</span>
+                    <span className="opacity-80">({categoryCounts[cat]})</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Series Section */}
+          {allSeries.length > 0 && (
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <Layers size={16} className="text-sumiInk/60" />
+                <h3 className="text-xs font-bold uppercase tracking-widest text-sumiInk/60">Series</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {allSeries.map(s => (
+                  <button
+                    key={s}
+                    onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
+                      isActiveFilter(s, 'series')
+                        ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md'
+                        : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
+                    }`}
+                  >
+                    <span>{s}</span>
+                    <span className="opacity-80">({seriesCounts[s]})</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Series Description Banner */}
+      {activeSeriesDescription && (
+        <div className="mb-8 p-4 bg-foxOrange/10 border-l-4 border-foxOrange rounded-r-lg">
+          <div className="flex items-start gap-3">
+            <Info size={20} className="text-foxOrange flex-shrink-0 mt-0.5" />
+            <div>
+              <h4 className="text-sm font-bold uppercase tracking-widest text-sumiInk mb-2">About This Series</h4>
+              <p className="text-sm text-sumiInk/80 leading-relaxed">{activeSeriesDescription}</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Grid */}
       {displayedArticles.length > 0 ? (
@@ -303,11 +390,18 @@ export const getStaticProps: GetStaticProps<WritingProps> = async () => {
       "tags": tags[]->title
     }`;
     
+    const seriesQuery = `*[_type == "series"] {
+      title,
+      description
+    }`;
+    
     const articles = await client.fetch(query);
+    const seriesData = await client.fetch(seriesQuery);
 
     return {
       props: {
         articles: articles || [],
+        seriesData: seriesData || [],
       },
       revalidate: 60, // Regenerate page every 60 seconds
     };
@@ -316,6 +410,7 @@ export const getStaticProps: GetStaticProps<WritingProps> = async () => {
     return {
       props: {
         articles: [],
+        seriesData: [],
       },
       revalidate: 60, // Still revalidate on error
     };
