@@ -103,6 +103,11 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
     return null;
   }, [activeFilter, activeFilterKind, seriesData]);
 
+  // Helper function to check if a filter is active
+  const isActiveFilter = (filter: string | null, kind: 'category' | 'series' | 'special' | null) => {
+    return activeFilter === filter && activeFilterKind === kind;
+  };
+
   // Filtering Logic
   const filteredArticles = useMemo(() => {
     let articles = normalizedArticles;
@@ -208,12 +213,12 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                 <button
                   onClick={() => { setActiveFilter('FEATURED'); setActiveFilterKind('special'); }}
                   className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-                    activeFilter === 'FEATURED' && activeFilterKind === 'special'
+                    isActiveFilter('FEATURED', 'special')
                       ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md'
                       : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
                   }`}
                 >
-                  <Star size={12} className={activeFilter === 'FEATURED' && activeFilterKind === 'special' ? 'fill-ricePaper' : ''} />
+                  <Star size={12} className={isActiveFilter('FEATURED', 'special') ? 'fill-ricePaper' : ''} />
                   <span>Featured</span>
                   <span className="opacity-80">({featuredCount})</span>
                 </button>
@@ -234,7 +239,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                     key={cat}
                     onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
                     className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-                      activeFilter === cat && activeFilterKind === 'category'
+                      isActiveFilter(cat, 'category')
                         ? 'bg-sumiInk text-ricePaper border-sumiInk shadow-md'
                         : 'text-sumiInk/60 border-sumiInk/20 hover:border-sumiInk/50 hover:text-sumiInk'
                     }`}
@@ -260,7 +265,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                     key={s}
                     onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
                     className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
-                      activeFilter === s && activeFilterKind === 'series'
+                      isActiveFilter(s, 'series')
                         ? 'bg-foxOrange text-ricePaper border-foxOrange shadow-md'
                         : 'text-sumiInk/60 border-sumiInk/20 hover:border-foxOrange/50 hover:text-sumiInk'
                     }`}
