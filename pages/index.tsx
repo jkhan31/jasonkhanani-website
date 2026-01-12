@@ -269,6 +269,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         articles: articles || [],
       },
+      revalidate: 60, // Regenerate page every 60 seconds
     };
   } catch (error) {
     console.error('Error fetching articles:', error);
@@ -276,6 +277,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         articles: [],
       },
+      revalidate: 60, // Still revalidate on error
     };
   }
 };

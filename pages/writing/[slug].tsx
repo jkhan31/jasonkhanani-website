@@ -550,6 +550,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     if (!data?.current) {
       return {
         notFound: true,
+        revalidate: 60, // Revalidate even when not found
       };
     }
 
@@ -557,11 +558,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         data,
       },
+      revalidate: 60, // Regenerate page every 60 seconds
     };
   } catch (error) {
     console.error('Error fetching article:', error);
     return {
       notFound: true,
+      revalidate: 60, // Revalidate on error
     };
   }
 };

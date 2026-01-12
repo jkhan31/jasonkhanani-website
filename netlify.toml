@@ -1,12 +1,10 @@
 [build]
   command = "npm run build"
-  publish = "out"  # Changed from "dist" to "out"
+  publish = ".next"  # Changed from "out" to ".next" for ISR support
 
-# SPA fallback for client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Next.js Runtime Plugin for ISR support
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 # Cache HTML with revalidation for fresh content
 [[headers]]
