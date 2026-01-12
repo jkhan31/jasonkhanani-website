@@ -285,8 +285,10 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
   const formattedDate = new Date(current.publishedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
   const readTime = getReadTime(current.body);
 
-  // SEO: Use override fields if available, otherwise fall back to defaults
-  const pageTitle = current.seoTitle || current.metaTitle || current.title || current.slug?.current || 'Untitled Article';
+  // Page title shown in browser tabs: prefer the canonical `title` field
+  // Use SEO/meta fields for description and social tags, but avoid using them
+  // as the primary page title to prevent accidental overrides from CMS meta fields.
+  const pageTitle = current.title || current.seoTitle || current.metaTitle || current.slug?.current || 'Untitled Article';
   const pageDescription = current.seoDescription || current.metaDescription || current.excerpt || '';
   const socialTitle = current.metaTitle || current.seoTitle || current.title || current.slug?.current || 'Jason K Hanani';
   const socialDescription = current.metaDescription || current.seoDescription || current.excerpt || '';
@@ -309,8 +311,8 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
       
       {/* Main Content */}
       <div className="flex-1 max-w-3xl">
-        <Head>
-            <title>{pageTitle} | Jason K Hanani</title>
+          <Head>
+            <title>{`${pageTitle} | Jason K Hanani`}</title>
             <meta name="description" content={pageDescription} />
             <link rel="canonical" href={`${SITE_URL}/writing/${current.slug.current}`} />
 
