@@ -42,6 +42,13 @@ export default async function handler(
     const sanitizedUserAgent = userAgent.slice(0, 500).replace(/[<>]/g, '');
     const sanitizedReferrer = referrer.slice(0, 500).replace(/[<>]/g, '');
 
+    // If no server token is configured, skip writes in dev to avoid 403s
+    if (!process.env.SANITY_API_TOKEN) {
+      // Log a short message for local debugging, but don't fail the request
+      console.warn('SANITY_API_TOKEN not set — skipping view tracking (dev mode)');
+      return res.status(200).json({ success: true, message: 'Tracking skipped (no server token)' });
+    }
+
     // Create a new view record in Sanity
     const viewRecord = await client.create({
       _type: 'articleView',
