@@ -188,7 +188,6 @@ jasonkhanani-website/
 │   ├── sanity.ts        # Sanity client setup
 │   └── sanityQueries.ts # GROQ queries
 ├── scripts/             # Build and automation scripts
-│   └── generate-sitemap.js # SEO sitemap generation
 ├── src/
 │   ├── styles.css       # Global styles and tactile elements
 │   └── utils/           # Analytics and helpers
@@ -311,11 +310,14 @@ The site uses **Next.js Pages Router** for server-side rendering with static gen
 
 ### SEO Features
 
-- Auto-generated `sitemap.xml` on every build
+- **Dynamic `sitemap.xml`**: Auto-generated on each request, always up-to-date with Sanity content
+  - Cached for 1 hour for performance (CDN-friendly)
+  - Queries Sanity on-demand for published articles
+  - No redeployment needed for new content
 - `robots.txt` for search engine guidance
 - Meta descriptions via Next.js Head component
 - Semantic HTML structure
-- Pre-rendered content for all pages (SSG)
+- Pre-rendered content for all pages (SSG + ISR)
 - Open Graph tags for social sharing
 
 ---
@@ -357,18 +359,16 @@ borderWidth: {
 ### Build Process
 
 ```bash
-# Build for production (automatically runs prebuild to generate sitemap)
+# Build for production
 npm run build
 ```
 
-The build process includes:
-1. **prebuild**: Generates sitemap by fetching article slugs from Sanity CMS
-2. **build**: Creates optimized production bundle with Next.js
-3. **export**: Exports static HTML files for deployment
+The build process:
+1. Creates optimized production bundle with Next.js
+2. Exports static files for deployment
+3. Sitemap is generated dynamically at runtime (no build step required)
 
-**Note**: The sitemap generation script (`scripts/generate-sitemap.js`) connects to Sanity CMS. Ensure network access to Sanity.io API during build, or the sitemap generation will fail (though the main build will continue).
-
-Output directory: `out/`
+Output directory: `out/` or served via Next.js server (depending on deployment)
 
 ### Deployment Platforms
 
