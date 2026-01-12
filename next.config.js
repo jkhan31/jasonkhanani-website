@@ -8,7 +8,6 @@ const nextConfig = {
     domains: ['cdn.sanity.io'],
   },
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
-  trailingSlash: true,     // Better compatibility for static sites
 }
 
 module.exports = nextConfig
