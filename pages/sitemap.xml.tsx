@@ -19,16 +19,17 @@ function generateSiteMap(articleSlugs: string[]) {
     <priority>0.8</priority>
   </url>`).join('\n');
 
-  const articleUrls = articleSlugs.map(slug => `  <url>
+  const articleUrls = articleSlugs.length > 0 
+    ? '\n' + articleSlugs.map(slug => `  <url>
     <loc>${HOSTNAME}/writing/${slug}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>`).join('\n');
+  </url>`).join('\n')
+    : '';
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${staticUrls}
-${articleUrls}
+${staticUrls}${articleUrls}
 </urlset>`;
 }
 
@@ -42,8 +43,14 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       )
     ].slug.current`;
     
-    const articleSlugs = await client.fetch(query);
-    const sitemap = generateSiteMap(articleSlugs || []);
+    const result = await client.fetch(query);
+    
+    // Validate and sanitize the result
+    const articleSlugs = Array.isArray(result) 
+      ? result.filter((slug): slug is string => typeof slug === 'string' && slug.length > 0)
+      : [];
+    
+    const sitemap = generateSiteMap(articleSlugs);
 
     res.setHeader('Content-Type', 'text/xml; charset=utf-8');
     res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
