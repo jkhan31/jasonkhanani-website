@@ -15,7 +15,7 @@ const Hero: React.FC = () => (
     </div>
     <div className="max-w-4xl relative z-10">
       {/* Professional Title Tag */}
-      <p className="text-hankoRust font-bold tracking-[0.3em] text-[14px] uppercase mb-2 flex items-center">
+      <p className="text-hankoRust font-bold tracking-[0.3em] text-[20px] uppercase mb-2 flex items-center">
         Product Analytics &amp; Operations Lead
       </p>
 
@@ -25,22 +25,21 @@ const Hero: React.FC = () => (
 
       {/* The Body Copy */}
       <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16 mt-2">
-        6+ years across product analytics, operations, and systems design — delivering €1.5M+ in quantified impact across e-commerce and logistics.
-        Designing data-driven systems that turn operational complexity into measurable business outcomes.
+        Product analytics and operations leader who designs data-driven systems that convert operational complexity into measurable business outcomes. 6+ years; €1.5M+ quantified impact across e-commerce and logistics.
       </p>
 
       <div className="flex flex-wrap gap-8">
         <Link
-          href="/evidence"
-          className="px-10 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
+          href="/resume"
+          className="px-10 py-5 bg-hankoRust text-ricePaper text-[14px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
         >
-          Explore the Evidence
+          View Resume
         </Link>
         <Link
-          href="/framework"
-          className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
+          href="/evidence"
+          className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[14px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
         >
-          View The Blueprint
+          View Evidence
         </Link>
       </div>
     </div>
@@ -58,7 +57,7 @@ const SystemicResilience: React.FC = () => (
           <span className="text-ricePaper/50">Theory.</span>
         </h2>
         <p className="text-lg text-ricePaper/70 leading-relaxed mb-8 max-w-md">
-          You cannot optimize what you do not understand. Most teams burn cash fixing the wrong problems. I prioritize <strong>Operational Truth</strong>—mapping the territory before engineering the cure.
+          Selected outcomes from operations and systems work.
         </p>
         
         <div className="bg-hankoRust/20 border border-hankoRust/30 p-6 inline-block backdrop-blur-sm">
@@ -111,11 +110,11 @@ const ExecutionTracks: React.FC = () => (
         <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Database size={80} /></div>
 
         <h3 className="text-4xl font-serif mb-8 text-sumiInk">How I Work</h3>
-        <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
-          I operate at the intersection of data analysis, systems design, and cross-functional execution.
+          <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
+          Execution posture: run diagnostics, make system-level design decisions, and lead cross-functional delivery to measurable outcomes.
         </p>
         <ul className="space-y-4 mb-12">
-          {['Designing how systems and processes should work', 'Translating requirements into decision-ready solutions', 'Aligning stakeholders around constraints and trade-offs', 'Optimizing for durability, not short-term output'].map((s) => (
+          {['Define system problems and failure modes', 'Translate requirements into decision-ready solutions', 'Set constraints and trade-offs for stakeholders', 'Design for durability and measurable outcomes'].map((s) => (
             <li key={s} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
               <span className="w-4 h-[1px] bg-hankoRust/30 mr-3" /> {s}
             </li>
@@ -130,10 +129,10 @@ const ExecutionTracks: React.FC = () => (
 
         <h3 className="text-4xl font-serif mb-8 text-sumiInk">Focus Areas</h3>
         <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
-          {/* Intentionally concise to keep focus on list below */}
+          
         </p>
         <ul className="space-y-4 mb-12">
-          {['Product and operational analytics', 'Process and system-level solution design', 'Cross-functional execution in high-ambiguity environments', 'Multi-market and platform-scale operations'].map((s) => (
+          {['Product and operational analytics', 'System and process design', 'Cross-functional execution in ambiguous contexts', 'Multi-market operations at scale'].map((s) => (
             <li key={s} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
               <span className="w-4 h-[1px] bg-foxOrange/30 mr-3" /> {s}
             </li>

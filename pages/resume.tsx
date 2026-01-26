@@ -47,7 +47,7 @@ const ResumePage = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div>
               <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">JASON KESTER HANANI</h1>
-              <p className="text-xl font-medium opacity-80 whitespace-normal break-words max-w-full" style={{ color: colors.rust }}>Industrial Engineer &amp; Business Analyst</p>
+              <p className="text-xl font-medium opacity-80 whitespace-normal break-words max-w-full" style={{ color: colors.rust }}>Product Analytics &amp; Operations Lead</p>
               <div className="flex flex-col md:flex-row md:items-center gap-2 mt-6 text-sm font-medium opacity-80">
                 <a href="mailto:contact@jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words"><Mail size={16} /> contact@jasonkhanani.com</a>
                 <a href="https://jasonkhanani.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words mt-2 md:mt-0"><Globe size={16} /> jasonkhanani.com</a>
@@ -71,7 +71,7 @@ const ResumePage = () => {
         <section className="mb-12 relative z-10">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Professional Summary</h2>
           <p className="text-lg leading-relaxed font-serif italic opacity-80 border-l-2 pl-6" style={{ borderColor: colors.orange }}>
-            Industrial Engineer &amp; Business Analyst with 6+ years of experience specializing in deep-dive analysis to streamline complexity and architect resilient operational systems. Proven <strong>€1.5M+ in quantified impact</strong> through process engineering, AI-augmented workflows, and human systems design in e-commerce and logistics. Fosters systemic resilience and high-performing operations.
+            Product analytics and operations leader with 6+ years delivering €1.5M+ in quantified impact through process engineering, AI-augmented workflows, and system-level design for e-commerce and logistics. Focused on diagnostics, system decisions, and measurable outcomes.
           </p>
         </section>
 
@@ -82,7 +82,7 @@ const ResumePage = () => {
             <li><strong>Operational Clarity &amp; Analysis:</strong> SQL (for data extraction &amp; EDA), Python (AI-Augmented EDA), Tableau, Looker, Advanced Excel Modeling (scenario planning).</li>
             <li><strong>Systems Architecture &amp; Optimization:</strong> Lean Six Sigma Green Belt, Process Mapping &amp; Optimization, DMAIC, Workflow Automation (n8n/Python), Human Systems Design.</li>
             <li><strong>AI Integration:</strong> AI-Augmented Workflows, Prompt Engineering for Operations, AI-Driven Diagnostics, Prototyping Product Requirements.</li>
-            <li><strong>Strategic Impact:</strong> Root Cause Analysis, Business Requirement Documentation (BRD), Supply Chain Optimization, Business Process Improvement, Decision Leverage.</li>
+            <li><strong>Strategic Impact &amp; Decision Design:</strong> Root cause analysis, BRD development, supply chain optimization, and measurable process improvements.</li>
           </ul>
         </section>
 
@@ -96,9 +96,9 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Apr 2025 – Present</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li><span className="text-hankoRust">•</span> Standardized fragmented regional onboarding workflows into a unified global system, significantly reducing cross-functional friction and support ticket volume.</li>
-              <li><span className="text-hankoRust">•</span> Designed cross-border inventory optimization model, maximizing stock availability and regional throughput.</li>
-              <li><span className="text-hankoRust">•</span> Developed business case &amp; drafted BRDs for multi-warehouse fulfillment, projecting <strong style={{ color: colors.rust }}>€300K annual revenue increase</strong> (10% sales growth).</li>
+              <li><span className="text-hankoRust">•</span> Standardized fragmented regional onboarding workflows into a unified global system, reducing cross-functional friction and support volume.</li>
+              <li><span className="text-hankoRust">•</span> Designed cross-border inventory optimization model to improve stock availability and regional throughput.</li>
+              <li><span className="text-hankoRust">•</span> Built business case and BRDs for multi-warehouse fulfillment; business case estimated a €300K annual revenue uplift (10% sales growth).</li>
             </ul>
           </div>
           {/* Operations Manager (ZALORA Group) */}
@@ -108,9 +108,9 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Oct 2024 – Apr 2025</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li><span className="text-hankoRust">•</span> Performed margin sensitivity analysis; designed fee structure projected to deliver <strong style={{ color: colors.rust }}>€200K revenue uplift</strong>.</li>
-              <li><span className="text-hankoRust">•</span> Deployed <strong>AI-driven support automation</strong> (Seller Helpdesk); achieved 24/7 coverage, increased ticket deflection, and improved SLA.</li>
-              <li><span className="text-hankoRust">•</span> Optimized end-to-end marketplace workflows, enhancing buyer/seller interactions and driving process efficiency.</li>
+              <li><span className="text-hankoRust">•</span> Performed margin sensitivity analysis and designed a fee structure supported by a business case estimating €200K revenue uplift.</li>
+              <li><span className="text-hankoRust">•</span> Deployed AI-driven support automation for the Seller Helpdesk; achieved 24/7 coverage, increased ticket deflection, and improved SLA adherence.</li>
+              <li><span className="text-hankoRust">•</span> Optimized end-to-end marketplace workflows to improve buyer/seller interactions and process efficiency.</li>
             </ul>
           </div>
           {/* Associate Project Manager (ZALORA Group) */}
@@ -120,9 +120,9 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2022 – Sep 2024</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li><span className="text-hankoRust">•</span> Executed DMAIC cycle on shipping logistics; redesigned fee structure to <strong style={{ color: colors.rust }}>save €520K annually</strong>.</li>
+              <li><span className="text-hankoRust">•</span> Executed a DMAIC cycle on shipping logistics and redesigned the fee structure to save €520K annually.</li>
               <li><span className="text-hankoRust">•</span> Migrated return logistics to a cashless chargeback system, eliminating cash-on-pickup fraud and reducing failed pickup attempts.</li>
-              <li><span className="text-hankoRust">•</span> Conducted deep data diagnostics (SQL, Tableau, Looker, Python) modeling warehouse &amp; logistics performance for executive decision-making.</li>
+              <li><span className="text-hankoRust">•</span> Performed deep data diagnostics (SQL, Tableau, Looker, Python) to model warehouse and logistics performance for executive decisions.</li>
             </ul>
           </div>
           {/* Graduate Management Trainee (ZALORA Group) */}
@@ -132,8 +132,8 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2021 – Oct 2022</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li><span className="text-hankoRust">•</span> Diagnosed revenue erosion from high return rates; launched exchange feature converting 15% of returns, <strong style={{ color: colors.rust }}>preserving €695K in revenue</strong>.</li>
-              <li><span className="text-hankoRust">•</span> Analyzed weekly NPS &amp; customer feedback loops, providing quantitative data for Operational Clarity.</li>
+              <li><span className="text-hankoRust">•</span> Diagnosed revenue erosion from high return rates and launched an exchange feature that converted 15% of returns, preserving €695K in revenue.</li>
+              <li><span className="text-hankoRust">•</span> Analyzed weekly NPS and customer feedback to produce quantitative inputs for operational decision-making.</li>
             </ul>
           </div>
           {/* Product Operations - Paxel */}
@@ -143,9 +143,9 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Jan 2020 – Oct 2021</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
-              <li><span className="text-hankoRust">•</span> Re-engineered core routing engine workflows, reducing route activation lead time by <strong style={{ color: colors.rust }}>60% (5 to 2 days)</strong>.</li>
-              <li><span className="text-hankoRust">•</span> Optimized 130-node supply chain network; achieved &lt;1 year payback period for hub relocations via capacity/cost analysis.</li>
-              <li><span className="text-hankoRust">•</span> Authored BRDs for strategic system enhancements, ensuring clear specifications.</li>
+              <li><span className="text-hankoRust">•</span> Re-engineered routing engine workflows, reducing route activation lead time by 60% (5 to 2 days).</li>
+              <li><span className="text-hankoRust">•</span> Optimized a 130-node supply chain network and produced capacity/cost analyses supporting hub relocations with under 1-year payback.</li>
+              <li><span className="text-hankoRust">•</span> Authored BRDs for strategic system enhancements to enable clear engineering and operational execution.</li>
             </ul>
           </div>
         </section>
@@ -167,16 +167,13 @@ const ResumePage = () => {
 
           {/* My Methodology (PWA & SFR) */}
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">My Methodology</h2>
-            <div className="border-l-2 pl-4" style={{ borderColor: colors.sage }}>
-              <h3 className="font-bold text-base" style={{ color: colors.sage, marginBottom: '0.5rem' }}>The Purpose-Wellbeing Axis (PWA) &amp; The Sustainable Feedback Rhythm (SFR)</h3>
-              <p className="text-sm opacity-80 italic leading-relaxed">
-                An engineering framework for human systems design, outlining principles for vocational resilience and systemic well-being in high-pressure environments.
-              </p>
-              <p className="text-sm opacity-80 mt-2">
-                <Link href="/framework" className="text-hankoRust hover:text-foxOrange transition-colors" style={{ color: colors.rust }}>Learn more about the PWA &amp; SFR →</Link>
-              </p>
-            </div>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Methodology</h2>
+              <div className="border-l-2 pl-4" style={{ borderColor: colors.sage }}>
+                <h3 className="font-bold text-base" style={{ color: colors.sage, marginBottom: '0.5rem' }}>Diagnostic-first, outcome-driven</h3>
+                <p className="text-sm opacity-80 leading-relaxed">
+                  Map failure modes, quantify impact, run DMAIC cycles, build BRDs, and deliver system designs that engineering and operations can execute against.
+                </p>
+              </div>
           </section>
 
           {/* The Stack (categorized) */}
