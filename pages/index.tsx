@@ -15,7 +15,7 @@ const Hero: React.FC = () => (
     </div>
     <div className="max-w-4xl relative z-10">
       {/* Professional Title Tag */}
-      <p className="text-hankoRust font-bold tracking-[0.3em] text-[14px] uppercase mb-2 flex items-center">
+      <p className="text-hankoRust font-bold tracking-[0.3em] text-[20px] uppercase mb-2 flex items-center">
         Product Analytics &amp; Operations Lead
       </p>
 
@@ -31,13 +31,13 @@ const Hero: React.FC = () => (
       <div className="flex flex-wrap gap-8">
         <Link
           href="/resume"
-          className="px-10 py-5 bg-hankoRust text-ricePaper text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
+          className="px-10 py-5 bg-hankoRust text-ricePaper text-[14px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
         >
           View Resume
         </Link>
         <Link
           href="/evidence"
-          className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[10px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
+          className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[14px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
         >
           View Evidence
         </Link>
