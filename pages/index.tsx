@@ -127,13 +127,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jason K Hanani | Industrial Engineer & Systems Architect</title>
+        <title>Jason K Hanani | Operations & Product Analytics</title>
         <meta 
           name="description" 
-          content="Industrial Engineer & Systems Architect. Reverse-engineering bottlenecks with deep diagnostics and first-principles thinking. €1.5M+ quantified impact." 
+          content="Operations & Product Analytics leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms through diagnostics, system redesign, and cross-functional execution." 
         />
-        <meta property="og:title" content="Jason K Hanani - Systems Architect" />
-        <meta property="og:description" content="Turning messy operations into clear systems." />
+        <meta property="og:title" content="Jason K Hanani | Operations & Product Analytics" />
+        <meta property="og:description" content="Operations & Product Analytics leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms." />
         <meta property="og:url" content="https://jasonkhanani.com/" />
         <link rel="canonical" href="https://jasonkhanani.com/" />
       </Head>
