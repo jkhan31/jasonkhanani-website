@@ -70,7 +70,6 @@ export const Footer: React.FC = () => {
               <div className="flex flex-wrap gap-8 text-xs font-bold tracking-widest uppercase text-ricePaper/40">
                 <Link href="/evidence" className="hover:text-ricePaper transition-colors">Evidence</Link>
                 <Link href="/framework" className="hover:text-ricePaper transition-colors">Framework</Link>
-                <Link href="/writing" className="hover:text-ricePaper transition-colors">Writing</Link>
                 <Link href="/resume" className="hover:text-ricePaper transition-colors">Resume</Link>
                 <a href="https://linkedin.com/in/jasonkhanani" target="_blank" rel="noopener noreferrer" className="hover:text-ricePaper transition-colors">LinkedIn</a>
               </div>

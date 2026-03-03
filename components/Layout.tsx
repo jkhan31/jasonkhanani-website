@@ -16,7 +16,7 @@ const Header: React.FC = () => {
     { label: 'Resume', path: '/resume' },
     { label: 'Evidence', path: '/evidence' },
     // Framework intentionally hidden from top-level navigation
-    { label: 'Writing', path: '/writing' },
+    // Writing intentionally hidden until articles are published
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

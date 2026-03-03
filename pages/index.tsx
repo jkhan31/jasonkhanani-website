@@ -1,12 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
-import { SectionHeader } from '../components/SectionHeader';
 import { Logo } from '../components/Logo';
-import { ArticlePreviewCard } from '../components/ArticlePreviewCard';
-import { client, urlFor } from '../src/client';
-import { ArrowRight, Database, Layout } from 'lucide-react';
+import { Database, Layout } from 'lucide-react';
 
 const Hero: React.FC = () => (
   <section className="px-6 py-24 md:py-32 lg:py-48 max-w-7xl mx-auto relative overflow-hidden">
@@ -143,44 +139,7 @@ const ExecutionTracks: React.FC = () => (
   </section>
 );
 
-interface Article {
-  title: string;
-  slug: string;
-  publishedAt: string;
-  excerpt?: string;
-  mainImage?: any;
-  isFeatured?: boolean;
-  category?: string;
-  series?: string;
-  tags?: string[];
-}
-
-interface HomeProps {
-  articles: Article[];
-}
-
-export default function Home({ articles }: HomeProps) {
-  const normalizedArticles = useMemo(() => {
-    return articles.map((a, idx) => {
-      const dateStr = a.publishedAt || new Date().toISOString();
-      const dateObj = new Date(dateStr);
-
-      return {
-        ...a,
-        id: a.slug || `post-${idx}`,
-        slug: a.slug || `post-${idx}`,
-        tags: Array.isArray(a.tags) ? a.tags : [],
-        category: a.category || 'Uncategorized',
-        series: a.series || null,
-        isFeatured: a.isFeatured === true,
-        date: dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }),
-        dateObj,
-        image: a.mainImage ? urlFor(a.mainImage).width(800).url() : null,
-        readTime: '5 min', // Default read time since we don't have body content at this level
-      };
-    });
-  }, [articles]);
-
+export default function Home() {
   return (
     <>
       <Head>
@@ -199,80 +158,7 @@ export default function Home({ articles }: HomeProps) {
         <Hero />
         <SystemicResilience />
         <ExecutionTracks />
-
-      {/* Recent Writing Section */}
-      <section className="px-6 py-24 max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-16">
-          <SectionHeader
-            eyebrow="Recent Writing"
-            title="Latest Insights"
-          />
-          <Link
-            href="/writing"
-            className="text-sm font-bold tracking-wider uppercase text-hankoRust hover:text-foxOrange transition-colors flex items-center gap-2"
-          >
-            View All <ArrowRight size={16} />
-          </Link>
-        </div>
-
-        {normalizedArticles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {normalizedArticles.map((article) => (
-              <ArticlePreviewCard key={article.id} article={article} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 text-sumiInk/50">No articles available yet.</div>
-        )}
-      </section>
       </div>
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  try {
-    const query = `*[_type == "article"
-      && (
-        !defined(status) || 
-        status == "published" || 
-        (status == "scheduled" && scheduledPublishDate <= now())
-      )
-    ] | order(publishedAt desc) [0...3] {
-      title,
-      "slug": slug.current,
-      publishedAt,
-      excerpt,
-      mainImage {
-        asset,
-        alt,
-        caption,
-        attribution,
-        attributionUrl,
-        "unsplashSource": asset->source,
-        "unsplashDescription": asset->description
-      },
-      isFeatured,
-      "category": category->title,
-      "series": series->title,
-      "tags": tags[]->title
-    }`;
-
-    const articles = await client.fetch(query);
-
-    return {
-      props: {
-        articles: articles || [],
-      },
-      revalidate: 60, // Regenerate page every 60 seconds
-    };
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-    return {
-      props: {
-        articles: [],
-      },
-      revalidate: 60, // Still revalidate on error
-    };
-  }
-};
