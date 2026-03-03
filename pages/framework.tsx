@@ -88,7 +88,7 @@ const Framework: React.FC = () => {
   return (
     <>
       <Head>
-        <title>The Flourishing Framework | Jason Kester Hanani</title>
+        <title>The Flourishing Framework | Jason K Hanani</title>
         <meta 
           name="description" 
           content="A thermal management system for the human operating system. Purpose-Wellbeing Axis and Sustainable Feedback Rhythm for resilient performance without burnout." 

@@ -11,12 +11,12 @@ export default function Document() {
         {/* Default Description */}
         <meta 
           name="description" 
-          content="Jason Kester Hanani - Industrial Engineer & Systems Architect. Turning messy operations into clear systems through diagnostics and design." 
+          content="Jason K Hanani - Industrial Engineer & Systems Architect. Turning messy operations into clear systems through diagnostics and design." 
         />
         
         {/* Open Graph Defaults */}
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Jason Kester Hanani" />
+        <meta property="og:site_name" content="Jason K Hanani" />
         <meta property="og:locale" content="en_US" />
         
         {/* Twitter Card Defaults */}

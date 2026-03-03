@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   const links = [
 
     { label: 'Resume', path: '/resume' },
-    { label: 'Evidence', path: '/evidence' },
+    { label: 'Case Studies', path: '/case-studies' },
     // Framework intentionally hidden from top-level navigation
     // Writing intentionally hidden until articles are published
   ];

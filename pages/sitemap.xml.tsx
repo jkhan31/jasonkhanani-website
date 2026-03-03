@@ -6,7 +6,7 @@ const HOSTNAME = 'https://jasonkhanani.com';
 // Static routes that should always be in sitemap
 const staticRoutes = [
   '/',
-  '/evidence',
+  '/case-studies',
   '/framework',
   '/writing',
   '/resume',

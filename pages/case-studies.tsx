@@ -80,19 +80,19 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
   );
 };
 
-const Evidence: React.FC = () => {
+const CaseStudies: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Systems in Action | Jason Kester Hanani</title>
+        <title>Systems in Action | Jason K Hanani</title>
         <meta 
           name="description" 
           content="Real-world case studies with explicit Context, Diagnostic, Design decision, and Outcome labels. Quantified operational outcomes and current statuses included." 
         />
-        <meta property="og:title" content="Systems in Action - Evidence" />
+        <meta property="og:title" content="Systems in Action - Case Studies" />
         <meta property="og:description" content="€1.5M+ quantified impact across e-commerce, logistics, and operations." />
-        <meta property="og:url" content="https://jasonkhanani.com/evidence/" />
-        <link rel="canonical" href="https://jasonkhanani.com/evidence/" />
+        <meta property="og:url" content="https://jasonkhanani.com/case-studies/" />
+        <link rel="canonical" href="https://jasonkhanani.com/case-studies/" />
       </Head>
       
       <div className="min-h-screen bg-ricePaper">
@@ -163,4 +163,4 @@ const Evidence: React.FC = () => {
   );
 };
 
-export default Evidence;
+export default CaseStudies;

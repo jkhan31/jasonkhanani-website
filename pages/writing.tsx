@@ -137,7 +137,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
   return (
     <>
       <Head>
-        <title>Writing | Jason Kester Hanani</title>
+        <title>Writing | Jason K Hanani</title>
         <meta 
           name="description" 
           content="Essays on systems thinking, operational excellence, and resilient performance. Deep-dives into diagnostics, design, and engineering sustainable velocity." 

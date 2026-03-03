@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Logo } from '../components/Logo';
-import { Database, Layout } from 'lucide-react';
 
 const Hero: React.FC = () => (
   <section className="px-6 py-24 md:py-32 lg:py-48 max-w-7xl mx-auto relative overflow-hidden">
@@ -12,30 +11,30 @@ const Hero: React.FC = () => (
     <div className="max-w-4xl relative z-10">
       {/* Professional Title Tag */}
       <p className="text-hankoRust font-bold tracking-[0.3em] text-[20px] uppercase mb-2 flex items-center">
-        Product Analytics &amp; Operations Lead
+        Operations &amp; Product Analytics
       </p>
 
       <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-extrabold text-sumiInk leading-tight mt-2 mb-6 tracking-tight">
-        Jason Kester Hanani
+        Jason K Hanani
       </h2>
 
       {/* The Body Copy */}
       <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16 mt-2">
-        Product analytics and operations leader who designs data-driven systems that convert operational complexity into measurable business outcomes. 6+ years; €1.5M+ quantified impact across e-commerce and logistics.
+        I improve how multi-market platforms operate — through structured diagnostics, system-level redesign, and cross-functional execution.
       </p>
 
       <div className="flex flex-wrap gap-8">
         <Link
           href="/resume"
-          className="px-10 py-5 bg-hankoRust text-ricePaper text-[14px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
+          className="px-10 py-5 rounded-lg bg-hankoRust text-ricePaper text-[14px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
         >
           View Resume
         </Link>
         <Link
-          href="/evidence"
-          className="px-10 py-5 border-0.5 border-hankoRust text-hankoRust text-[14px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
+          href="/case-studies"
+          className="px-10 py-5 rounded-lg border-0.5 border-hankoRust text-hankoRust text-[14px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
         >
-          View Evidence
+          View Case Studies
         </Link>
       </div>
     </div>
@@ -52,42 +51,46 @@ const SystemicResilience: React.FC = () => (
           <span className="italic text-foxOrange">Reality</span> over <br />
           <span className="text-ricePaper/50">Theory.</span>
         </h2>
-        <p className="text-lg text-ricePaper/70 leading-relaxed mb-8 max-w-md">
-          Selected outcomes from operations and systems work.
+        <p className="text-lg text-ricePaper leading-relaxed mb-8 max-w-md">
+          Measurable results delivered across platform operations.
         </p>
         
         <div className="bg-hankoRust/20 border border-hankoRust/30 p-6 inline-block backdrop-blur-sm">
           <span className="block text-4xl font-serif font-bold text-foxOrange mb-1">€1.5M+</span>
-          <span className="text-[10px] uppercase tracking-widest font-bold opacity-70">Quantified Impact Recovered</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold text-ricePaper">Quantified Impact Delivered</span>
         </div>
       </div>
 
       <div className="space-y-12 border-l border-ricePaper/10 pl-12">
         <div>
-          <h3 className="text-xl font-serif text-foxOrange mb-3">Inventory and fee structure redesign</h3>
-          <p className="text-sm text-ricePaper/60 leading-relaxed">
+          <h3 className="text-2xl font-serif text-foxOrange mb-3">Unit Economics Correction</h3>
+          <p className="text-base text-ricePaper leading-relaxed">
+            Realigned shipping fee logic with cost structure.<br />
             €520K annual cost savings
           </p>
         </div>
 
         <div>
-          <h3 className="text-xl font-serif text-foxOrange mb-3">Exchange and return flow redesign</h3>
-          <p className="text-sm text-ricePaper/60 leading-relaxed">
+          <h3 className="text-2xl font-serif text-foxOrange mb-3">Retention Mechanism Launch</h3>
+          <p className="text-base text-ricePaper leading-relaxed">
+            Transformed return flow into retained revenue.<br />
             €695K revenue preserved
           </p>
         </div>
 
         <div>
-          <h3 className="text-xl font-serif text-foxOrange mb-3">Cross-border assortment and delivery alignment</h3>
-          <p className="text-sm text-ricePaper/60 leading-relaxed">
-            sell-through improvement across markets
+          <h3 className="text-2xl font-serif text-foxOrange mb-3">Routing Logic Automation</h3>
+          <p className="text-base text-ricePaper leading-relaxed">
+            Eliminated manual configuration bottlenecks at scale.<br />
+            60% reduction in route activation lead time
           </p>
         </div>
 
         <div>
-          <h3 className="text-xl font-serif text-foxOrange mb-3">Routing and sorting system redesign</h3>
-          <p className="text-sm text-ricePaper/60 leading-relaxed">
-            60% reduction in route activation lead time
+          <h3 className="text-2xl font-serif text-foxOrange mb-3">AI Support Automation Rollout</h3>
+          <p className="text-base text-ricePaper leading-relaxed">
+            Expanded 24/7 self-service coverage without additional headcount.<br />
+            68% ticket deflection
           </p>
         </div>
       </div>
@@ -95,45 +98,26 @@ const SystemicResilience: React.FC = () => (
   </section>
 );
 
-const ExecutionTracks: React.FC = () => (
+const ExploreFurther: React.FC = () => (
   <section className="px-6 py-24 md:py-40 max-w-7xl mx-auto bg-ricePaper">
-    
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      {/* Engine 1: The Investigator */}
-      <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500 hover:shadow-lg overflow-hidden">
-        <div className="absolute top-0 left-0 w-1 h-full bg-hankoRust transition-opacity opacity-100" />
-        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Database size={80} /></div>
-
-        <h3 className="text-4xl font-serif mb-8 text-sumiInk">How I Work</h3>
-          <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
-          Execution posture: run diagnostics, make system-level design decisions, and lead cross-functional delivery to measurable outcomes.
-        </p>
-        <ul className="space-y-4 mb-12">
-          {['Define system problems and failure modes', 'Translate requirements into decision-ready solutions', 'Set constraints and trade-offs for stakeholders', 'Design for durability and measurable outcomes'].map((s) => (
-            <li key={s} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
-              <span className="w-4 h-[1px] bg-hankoRust/30 mr-3" /> {s}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Engine 2: The Architect */}
-      <div className="p-12 md:p-20 border-0.5 border-hankoRust/20 bg-white relative group hover:border-hankoRust/60 transition-all duration-500 hover:shadow-lg overflow-hidden">
-        <div className="absolute top-0 left-0 w-1 h-full bg-foxOrange transition-opacity opacity-100" />
-        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Layout size={80} /></div>
-
-        <h3 className="text-4xl font-serif mb-8 text-sumiInk">Focus Areas</h3>
-        <p className="text-lg text-sumiInk/70 font-serif leading-relaxed mb-12">
-          
-        </p>
-        <ul className="space-y-4 mb-12">
-          {['Product and operational analytics', 'System and process design', 'Cross-functional execution in ambiguous contexts', 'Multi-market operations at scale'].map((s) => (
-            <li key={s} className="flex items-center text-xs font-bold uppercase tracking-widest text-sumiInk/40">
-              <span className="w-4 h-[1px] bg-foxOrange/30 mr-3" /> {s}
-            </li>
-          ))}
-        </ul>
+    <div className="max-w-2xl">
+      <h2 className="text-4xl font-serif text-sumiInk mb-6">Explore Further</h2>
+      <p className="text-lg text-sumiInk/70 leading-relaxed mb-12">
+        Explore detailed case breakdowns or review full professional experience.
+      </p>
+      <div className="flex flex-wrap gap-8">
+        <Link
+          href="/resume"
+          className="px-10 py-5 rounded-lg bg-hankoRust text-ricePaper text-[14px] font-bold tracking-[0.3em] uppercase hover:bg-foxOrange transition-all duration-500 shadow-xl active:scale-95"
+        >
+          View Resume
+        </Link>
+        <Link
+          href="/case-studies"
+          className="px-10 py-5 rounded-lg border-0.5 border-hankoRust text-hankoRust text-[14px] font-bold tracking-[0.3em] uppercase hover:text-foxOrange hover:border-foxOrange transition-all duration-300"
+        >
+          View Case Studies
+        </Link>
       </div>
     </div>
   </section>
@@ -143,12 +127,12 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jason Kester Hanani | Industrial Engineer & Systems Architect</title>
+        <title>Jason K Hanani | Industrial Engineer & Systems Architect</title>
         <meta 
           name="description" 
           content="Industrial Engineer & Systems Architect. Reverse-engineering bottlenecks with deep diagnostics and first-principles thinking. €1.5M+ quantified impact." 
         />
-        <meta property="og:title" content="Jason Kester Hanani - Systems Architect" />
+        <meta property="og:title" content="Jason K Hanani - Systems Architect" />
         <meta property="og:description" content="Turning messy operations into clear systems." />
         <meta property="og:url" content="https://jasonkhanani.com/" />
         <link rel="canonical" href="https://jasonkhanani.com/" />
@@ -157,7 +141,7 @@ export default function Home() {
       <div className="animate-in fade-in duration-1000">
         <Hero />
         <SystemicResilience />
-        <ExecutionTracks />
+        <ExploreFurther />
       </div>
     </>
   );

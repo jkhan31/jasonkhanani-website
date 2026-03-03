@@ -30,7 +30,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", size = 'md' }) => {
   return (
     <div 
       className={`inline-flex items-center select-none transition-transform hover:scale-105 duration-500 will-change-transform ${className}`}
-      aria-label="Jason Kester Hanani Signature"
+      aria-label="Jason K Hanani Signature"
     >
       <img 
         src={logoUrl} 

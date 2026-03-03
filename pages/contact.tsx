@@ -58,12 +58,12 @@ const Contact: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Contact | Jason Kester Hanani</title>
+        <title>Contact | Jason K Hanani</title>
         <meta 
           name="description" 
           content="Get in touch for systems diagnostics, operational consulting, or technical project management inquiries." 
         />
-        <meta property="og:title" content="Contact Jason Kester Hanani" />
+        <meta property="og:title" content="Contact Jason K Hanani" />
         <meta property="og:url" content="https://jasonkhanani.com/contact/" />
         <link rel="canonical" href="https://jasonkhanani.com/contact/" />
       </Head>
