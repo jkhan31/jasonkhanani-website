@@ -20,7 +20,7 @@ const Hero: React.FC = () => (
 
       {/* The Body Copy */}
       <p className="text-xl md:text-2xl text-sumiInk/70 max-w-2xl font-serif leading-relaxed mb-16 mt-2">
-        I improve how multi-market platforms operate — through structured diagnostics, system-level redesign, and cross-functional execution.
+        I improve how multi-market platforms operate through structured diagnostics, system-level redesign, and cross-functional execution.
       </p>
 
       <div className="flex flex-wrap gap-8">
