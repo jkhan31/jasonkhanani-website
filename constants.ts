@@ -8,63 +8,63 @@ export const SITE_URL = `https://${SITE_DOMAIN}`;
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'revenue-preservation',
-    title: 'Revenue Retention Architecture',
-    stealthTitle: 'Financial Engineering',
-    hook: 'A return isn\'t necessarily a loss; it\'s often just a request for a better fit. The system was designed to reject, when it should have been designed to recover.',
+    title: 'Return-to-Exchange Feature Launch',
+    stealthTitle: 'Revenue Retention',
     details: [
-      '**The Diagnostic:** Diagnosed a systemic revenue leak caused by high return rates. The existing workflow treated returns as a binary "loss" rather than a retention opportunity.',
-      '**The Architecture:** Engineered a "Return-to-Exchange" conversion feature. Redesigned the user flow to frictionlessly offer inventory alternatives before processing refunds.',
-      '**The Outcome:** Converted 15% of would-be returns into exchanges, strictly preserving €695K in annual revenue.'
+      '**Context:** High return rates were driving revenue erosion and customer dissatisfaction in Indonesia.',
+      '**Problem:** The existing workflow treated returns as a loss instead of a retention opportunity.',
+      '**Decision:** Launched an exchange feature that surfaced alternative inventory options before refund processing. Coordinated rollout across marketplace, support, and operations teams.',
+      '**Result:** Converted ~15% of returns into exchanges, preserving €695K in annual revenue.'
     ],
     impact: '€695K Revenue Preserved'
   },
   {
-    id: 'logistics-optimization',
-    title: 'Routing Engine Architecture',
-    stealthTitle: 'Systems Design',
-    hook: 'Velocity is a function of logic. Hard-coding routing rules creates latency; automating them creates flow.',
-    details: [
-      '**The Diagnostic:** Route activation had a 5-day lead time due to manual setup processes, creating a bottleneck in network scalability.',
-      '**The Architecture:** Designed "Planflow v2"—a logic-based routing system. Added an automation layer that programmatically determines package flow and routing permissions without manual intervention.',
-      '**The Outcome:** Reduced route activation lead time by 60% (5 days to 2), enabling rapid network elasticity.'
-    ],
-    impact: '60% Faster Activation'
-  },
-  {
     id: 'network-reengineering',
-    title: 'Cost-to-Serve Engineering',
-    stealthTitle: 'DMAIC Protocol',
-    hook: 'The "Silent Bleed" of a business is always found in the unit economics. You cannot scale a system with negative gross margins.',
+    title: 'Cost-to-Serve Optimization',
+    stealthTitle: 'Unit Economics',
     details: [
-      '**The Diagnostic:** Shipping logistics fees were misaligned with actual cost-to-serve, creating a "Silent Bleed" on every unit sold.',
-      '**The Architecture:** Executed a full DMAIC (Define, Measure, Analyze, Improve, Control) cycle. Redesigned the fee structure based on granular margin sensitivity analysis.',
-      '**The Outcome:** Corrected the unit economics to save €520K annually without degrading service levels.'
+      '**Context:** Shipping fees were misaligned with underlying logistics costs, creating margin leakage across transactions.',
+      '**Problem:** Flat discount logic failed to account for cost-per-kg structure, eroding unit economics.',
+      '**Decision:** Executed a full cost diagnostic and margin sensitivity analysis. Redesigned shipping fee logic within system constraints to realign pricing with cost structure.',
+      '**Result:** Delivered €520K in annual cost savings without degrading service levels.'
     ],
     impact: '€520K Annual Savings'
   },
   {
     id: 'support-automation',
-    title: 'Automated Support Layer',
+    title: 'AI Support Automation',
     stealthTitle: 'AI Implementation',
-    hook: 'Human empathy is a finite resource. It should be reserved for complex problems, not wasted on reciting FAQs.',
     details: [
-      '**The Diagnostic:** The Seller Helpdesk was bottlenecked by human availability, creating SLA breaches outside of business hours.',
-      '**The Architecture:** Deployed an AI-driven support automation layer. Mapped the "Ticket Deflection" logic to handle L1 queries autonomously 24/7.',
-      '**The Outcome:** Achieved a 60% deflection rate, effectively removing the noise so human agents could focus purely on high-complexity resolution.'
+      '**Context:** Seller support coverage was limited to business hours, leading to SLA breaches and inefficient L1 handling.',
+      '**Problem:** Human availability constrained response times and created backlog during peak periods.',
+      '**Decision:** Led regional pilot of AI-powered chatbot integration. Defined KPIs, structured rollout plan, and monitored deflection performance.',
+      '**Result:** Expanded support to 24/7 self-service coverage and achieved ~65% ticket deflection without additional headcount.'
     ],
-    impact: '60% Ticket Deflection'
+    impact: '65% Ticket Deflection'
+  },
+  {
+    id: 'logistics-optimization',
+    title: 'Routing Automation Initiative',
+    stealthTitle: 'Systems Design',
+    details: [
+      '**Context:** Route activation required manual configuration, creating a 5-day lead time and limiting network scalability.',
+      '**Problem:** Manual setup dependencies introduced delays and operational bottlenecks.',
+      '**Decision:** Designed and implemented a logic-based routing system with automated activation rules, removing manual configuration dependencies.',
+      '**Result:** Reduced route activation lead time by 60% (5 days → 2 days), enabling faster network expansion.'
+    ],
+    impact: '60% Faster Activation'
   },
   {
     id: 'pmo-standardization',
-    title: 'Global Workflow Unification',
-    stealthTitle: 'Process Architecture',
-    hook: 'Fragmentation is friction. A distributed team cannot run on local dialects; it needs a global protocol to ensure interoperability.',
+    title: 'Global Onboarding Standardization',
+    stealthTitle: 'Process Standardization',
     details: [
-      '**The Diagnostic:** Regional onboarding workflows were fragmented, leading to high cross-functional friction and a flood of avoidable support tickets.',
-      '**The Architecture:** Standardized disparate regional processes into a single Unified Global System. Built and codified the Global SOP (Standard Operating Procedure) to enforce consistency.',
-      '**The Outcome:** Drastically reduced cross-functional friction and support ticket volume, creating a scalable onboarding pipeline.'
+      '**Context:** Regional seller onboarding workflows were fragmented, creating cross-functional friction and avoidable support volume.',
+      '**Problem:** Inconsistent processes across markets limited scalability and created operational confusion.',
+      '**Decision:** Standardized regional onboarding into a unified global model. Clarified ownership boundaries and codified shared operating procedures.',
+      '**Result:** Reduced cross-functional friction and support ticket volume, enabling scalable onboarding across markets.'
     ],
-    impact: 'Unified Global Protocol'
+    impact: 'Unified Global Operating Model'
   }
 ];
 

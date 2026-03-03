@@ -1,7 +1,8 @@
 
 import React from 'react';
+import Link from 'next/link';
 import Head from 'next/head';
-import { Download, Mail, Linkedin } from 'lucide-react';
+import { Download, Mail, Linkedin, ArrowRight } from 'lucide-react';
 
 const ResumePage = () => {
   const colors = {
@@ -216,6 +217,21 @@ const ResumePage = () => {
                 </span>
               ))}
             </div>
+          </section>
+
+          {/* Case Studies CTA */}
+          <section className="relative z-10 border-t-0.5 pt-12 mt-12" style={{ borderColor: `${colors.ink}10` }}>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-foxOrange">Case Studies</h2>
+            <p className="text-base opacity-70 leading-relaxed mb-6 max-w-lg">
+              Selected platform initiatives with measurable impact across revenue, cost structure, automation, and multi-market operations.
+            </p>
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-2 text-sm font-bold text-hankoRust hover:text-sumiInk transition-colors group uppercase tracking-wider"
+            >
+              <span>View Case Studies</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </section>
 
         </div>

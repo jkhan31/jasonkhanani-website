@@ -3,7 +3,7 @@ export interface CaseStudy {
   id: string;
   title: string;
   stealthTitle: string;
-  hook: string;
+  hook?: string;
   details: string[];
   impact: string;
 }
