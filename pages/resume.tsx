@@ -47,7 +47,7 @@ const ResumePage = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div>
               <h1 className="text-5xl font-serif font-bold tracking-tight mb-2">JASON KESTER HANANI</h1>
-              <p className="text-xl font-medium opacity-80 whitespace-normal break-words max-w-full" style={{ color: colors.rust }}>Industrial Engineer &amp; Business Analyst</p>
+              <p className="text-xl font-medium opacity-80 whitespace-normal break-words max-w-full" style={{ color: colors.rust }}>Product Analytics &amp; Operations Lead</p>
               <div className="flex flex-col md:flex-row md:items-center gap-2 mt-6 text-sm font-medium opacity-80">
                 <a href="mailto:contact@jasonkhanani.com" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words"><Mail size={16} /> contact@jasonkhanani.com</a>
                 <a href="https://jasonkhanani.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-foxOrange transition w-full md:w-auto break-words mt-2 md:mt-0"><Globe size={16} /> jasonkhanani.com</a>
@@ -71,7 +71,11 @@ const ResumePage = () => {
         <section className="mb-12 relative z-10">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Professional Summary</h2>
           <p className="text-lg leading-relaxed font-serif italic opacity-80 border-l-2 pl-6" style={{ borderColor: colors.orange }}>
+<<<<<<< HEAD
             Industrial Engineer &amp; Business Analyst with 6+ years of experience specializing in deep-dive analysis to streamline complexity and build resilient operational systems. Proven track record of delivering <strong>€1.5M+ in quantified impact</strong> through process engineering, systems architecture, and AI-augmented insights in e-commerce and logistics. Developer of <strong>The Purpose-Wellbeing Axis (PWA)</strong>, an engineering-based framework for human systems design, used to architect workflows that prevent burnout and foster <strong>Systemic Resilience</strong> in high-pressure remote environments.
+=======
+            Product analytics and operations leader with 6+ years delivering €1.5M+ in quantified impact through process engineering, AI-augmented workflows, and system-level design for e-commerce and logistics. Focused on diagnostics, system decisions, and measurable outcomes.
+>>>>>>> origin/main
           </p>
         </section>
 
@@ -79,10 +83,17 @@ const ResumePage = () => {
         <section className="mb-12 relative z-10">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-40">Core Competencies</h2>
           <ul className="list-disc pl-6 text-sm opacity-80 leading-relaxed">
+<<<<<<< HEAD
             <li><strong>Operational Analysis:</strong> Deep-dive diagnostics, Process Mapping &amp; Optimization, Capacity Planning, A/B Testing, Funnel Analysis, Metric Design (Retention, Conversion).</li>
             <li><strong>Systems Architecture:</strong> Lean Six Sigma (Green Belt), Human Systems Design (PWA/SFR), Business Requirement Documentation (BRD), Systems Thinking.</li>
             <li><strong>AI &amp; Data:</strong> SQL (MySQL, PostgreSQL), Python (AI-Augmented Workflows), Looker, Tableau, Advanced Excel Modeling, Prompt Engineering for Operations.</li>
             <li><strong>Methodology:</strong> Industrial Engineering Principles, DMAIC, Strategic Cost &amp; Efficiency Modeling.</li>
+=======
+            <li><strong>Operational Clarity &amp; Analysis:</strong> SQL (for data extraction &amp; EDA), Python (AI-Augmented EDA), Tableau, Looker, Advanced Excel Modeling (scenario planning).</li>
+            <li><strong>Systems Architecture &amp; Optimization:</strong> Lean Six Sigma Green Belt, Process Mapping &amp; Optimization, DMAIC, Workflow Automation (n8n/Python), Human Systems Design.</li>
+            <li><strong>AI Integration:</strong> AI-Augmented Workflows, Prompt Engineering for Operations, AI-Driven Diagnostics, Prototyping Product Requirements.</li>
+            <li><strong>Strategic Impact &amp; Decision Design:</strong> Root cause analysis, BRD development, supply chain optimization, and measurable process improvements.</li>
+>>>>>>> origin/main
           </ul>
         </section>
 
@@ -96,9 +107,15 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Apr 2025 – Present</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
+<<<<<<< HEAD
               <li><span className="text-hankoRust">•</span> <strong>Complexity Streamlining:</strong> Standardized fragmented regional onboarding workflows into a unified global system, significantly reducing cross-functional friction and support ticket volume.</li>
               <li><span className="text-hankoRust">•</span> <strong>Systemic Resilience:</strong> Applied <strong>PWA/SFR principles</strong> to team workflows during organizational restructuring, maintaining delivery momentum and reducing burnout-related attrition.</li>
               <li><span className="text-hankoRust">•</span> <strong>Inventory Optimization:</strong> Developed SKU-level performance models to optimize cross-border inventory allocation and size fill across Southeast Asian markets, enhancing efficiency.</li>
+=======
+              <li><span className="text-hankoRust">•</span> Standardized fragmented regional onboarding workflows into a unified global system, reducing cross-functional friction and support volume.</li>
+              <li><span className="text-hankoRust">•</span> Designed cross-border inventory optimization model to improve stock availability and regional throughput.</li>
+              <li><span className="text-hankoRust">•</span> Built business case and BRDs for multi-warehouse fulfillment; business case estimated a €300K annual revenue uplift (10% sales growth).</li>
+>>>>>>> origin/main
             </ul>
           </div>
           {/* Operations Manager (Growth & Business Analytics) */}
@@ -108,9 +125,15 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Oct 2024 – Apr 2025</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
+<<<<<<< HEAD
               <li><span className="text-hankoRust">•</span> <strong>Process Engineering:</strong> Performed margin sensitivity analysis across payment methods; designed a targeted handling fee structure projected to deliver <strong style={{ color: colors.rust }}>€200K in annual revenue</strong>.</li>
               <li><span className="text-hankoRust">•</span> <strong>AI-Augmented Efficiency:</strong> Analyzed ticket patterns to design an <strong>AI-driven helpdesk</strong>; achieved 24/7 coverage and significantly improved SLA performance through automated routing logic.</li>
               <li><span className="text-hankoRust">•</span> <strong>Team Leadership &amp; Rhythm:</strong> Managed a cross-functional team of 8; implemented OKR frameworks and <strong>Sustainable Feedback Rhythm (SFR)</strong> principles to improve alignment and delivery on key operational metrics.</li>
+=======
+              <li><span className="text-hankoRust">•</span> Performed margin sensitivity analysis and designed a fee structure supported by a business case estimating €200K revenue uplift.</li>
+              <li><span className="text-hankoRust">•</span> Deployed AI-driven support automation for the Seller Helpdesk; achieved 24/7 coverage, increased ticket deflection, and improved SLA adherence.</li>
+              <li><span className="text-hankoRust">•</span> Optimized end-to-end marketplace workflows to improve buyer/seller interactions and process efficiency.</li>
+>>>>>>> origin/main
             </ul>
           </div>
           {/* Associate Project Manager (Investigator Track) */}
@@ -120,10 +143,16 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2022 – Sep 2024</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
+<<<<<<< HEAD
               <li><span className="text-hankoRust">•</span> <strong>Deep-Dive Analysis:</strong> Identified logistics subsidy leakage via SQL diagnostics; redesigned fee structures and minimum spend thresholds to drive a <strong style={{ color: colors.rust }}>31% increase in shipping revenue (€500K impact)</strong>.</li>
               <li><span className="text-hankoRust">•</span> <strong>Cost Optimization:</strong> Modeled 3PL billing discrepancies and implemented a flat-fee trucking model, resulting in a <strong style={{ color: colors.rust }}>58% reduction in subsidies</strong>.</li>
               <li><span className="text-hankoRust">•</span> <strong>Systemic Integrity:</strong> Migrated return logistics to a cashless chargeback system, eliminating cash-on-pickup fraud and reducing failed pickup attempts.</li>
               <li><span className="text-hankoRust">•</span> <strong>Strategic Modeling:</strong> Performed deep-dive diagnostics on warehouse performance and logistics datasets (SQL, Tableau) to guide executive leadership on network performance and strategic cost drivers.</li>
+=======
+              <li><span className="text-hankoRust">•</span> Executed a DMAIC cycle on shipping logistics and redesigned the fee structure to save €520K annually.</li>
+              <li><span className="text-hankoRust">•</span> Migrated return logistics to a cashless chargeback system, eliminating cash-on-pickup fraud and reducing failed pickup attempts.</li>
+              <li><span className="text-hankoRust">•</span> Performed deep data diagnostics (SQL, Tableau, Looker, Python) to model warehouse and logistics performance for executive decisions.</li>
+>>>>>>> origin/main
             </ul>
           </div>
           {/* Graduate Management Trainee (Product/Business Analyst) */}
@@ -133,8 +162,13 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Nov 2021 – Oct 2022</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
+<<<<<<< HEAD
               <li><span className="text-hankoRust">•</span> <strong>Problem Identification:</strong> Diagnosed revenue erosion from high return rates; launched a marketplace exchange feature that preserved <strong style={{ color: colors.rust }}>€695K in revenue</strong> with a 15% exchange rate.</li>
               <li><span className="text-hankoRust">•</span> <strong>Operational Clarity:</strong> Utilized NPS and customer feedback loops to provide quantitative service-level diagnostics to regional operations teams.</li>
+=======
+              <li><span className="text-hankoRust">•</span> Diagnosed revenue erosion from high return rates and launched an exchange feature that converted 15% of returns, preserving €695K in revenue.</li>
+              <li><span className="text-hankoRust">•</span> Analyzed weekly NPS and customer feedback to produce quantitative inputs for operational decision-making.</li>
+>>>>>>> origin/main
             </ul>
           </div>
           {/* Product Operations (Systems Architect) - Regional Tech-Logistics Startup */}
@@ -144,8 +178,14 @@ const ResumePage = () => {
               <span className="text-xs font-bold opacity-40 uppercase tracking-widest">Jan 2020 – Oct 2021</span>
             </div>
             <ul className="space-y-3 text-sm opacity-80 leading-relaxed list-none">
+<<<<<<< HEAD
               <li><span className="text-hankoRust">•</span> <strong>Network Optimization:</strong> Optimized a 130-node supply chain network; relocated 7 major hubs with a <strong style={{ color: colors.rust }}>&lt;1 year payback period</strong> through rigorous capacity and cost modeling.</li>
               <li><span className="text-hankoRust">•</span> <strong>Process Redesign:</strong> Authored BRDs for the core routing engine, reducing fleet setup and route activation lead time by <strong style={{ color: colors.rust }}>60% (from 5 days to 2 days)</strong>.</li>
+=======
+              <li><span className="text-hankoRust">•</span> Re-engineered routing engine workflows, reducing route activation lead time by 60% (5 to 2 days).</li>
+              <li><span className="text-hankoRust">•</span> Optimized a 130-node supply chain network and produced capacity/cost analyses supporting hub relocations with under 1-year payback.</li>
+              <li><span className="text-hankoRust">•</span> Authored BRDs for strategic system enhancements to enable clear engineering and operational execution.</li>
+>>>>>>> origin/main
             </ul>
           </div>
         </section>
@@ -171,16 +211,13 @@ const ResumePage = () => {
 
           {/* My Methodology (PWA & SFR) */}
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">My Methodology</h2>
-            <div className="border-l-2 pl-4" style={{ borderColor: colors.sage }}>
-              <h3 className="font-bold text-base" style={{ color: colors.sage, marginBottom: '0.5rem' }}>The Purpose-Wellbeing Axis (PWA) &amp; The Sustainable Feedback Rhythm (SFR)</h3>
-              <p className="text-sm opacity-80 italic leading-relaxed">
-                An engineering framework for human systems design, outlining principles for vocational resilience and systemic well-being in high-pressure environments.
-              </p>
-              <p className="text-sm opacity-80 mt-2">
-                <Link href="/framework" className="text-hankoRust hover:text-foxOrange transition-colors" style={{ color: colors.rust }}>Learn more about the PWA &amp; SFR →</Link>
-              </p>
-            </div>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-40">Methodology</h2>
+              <div className="border-l-2 pl-4" style={{ borderColor: colors.sage }}>
+                <h3 className="font-bold text-base" style={{ color: colors.sage, marginBottom: '0.5rem' }}>Diagnostic-first, outcome-driven</h3>
+                <p className="text-sm opacity-80 leading-relaxed">
+                  Map failure modes, quantify impact, run DMAIC cycles, build BRDs, and deliver system designs that engineering and operations can execute against.
+                </p>
+              </div>
           </section>
 
           {/* The Stack */}

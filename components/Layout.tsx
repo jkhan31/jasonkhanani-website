@@ -12,10 +12,11 @@ const Header: React.FC = () => {
   const router = useRouter();
   
   const links = [
-    { label: 'Evidence', path: '/evidence' },
-    { label: 'Framework', path: '/framework' },
-    { label: 'Writing', path: '/writing' },
+
     { label: 'Resume', path: '/resume' },
+    { label: 'Evidence', path: '/evidence' },
+    // Framework intentionally hidden from top-level navigation
+    { label: 'Writing', path: '/writing' },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

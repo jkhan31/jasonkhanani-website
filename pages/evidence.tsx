@@ -87,7 +87,7 @@ const Evidence: React.FC = () => {
         <title>Systems in Action | Jason Kester Hanani</title>
         <meta 
           name="description" 
-          content="Real-world case studies: €700K revenue preservation, €0.5M logistics optimization, 60% lead-time reduction. Bridging technical diagnostics with human-centered project management." 
+          content="Real-world case studies with explicit Context, Diagnostic, Design decision, and Outcome labels. Quantified operational outcomes and current statuses included." 
         />
         <meta property="og:title" content="Systems in Action - Evidence" />
         <meta property="og:description" content="€1.5M+ quantified impact across e-commerce, logistics, and operations." />
@@ -116,14 +116,18 @@ const Evidence: React.FC = () => {
 
         {/* The Common Thread / Adaptive Architecture Box */}
         <div className="max-w-3xl mb-16">
-          <p className="text-lg text-sumiInk/70 leading-relaxed mb-8">
-            Theory is cheap. Systems are expensive. Below is a catalog of systemic interventions engineered to solve specific constraints in complex environments.
+          <p className="text-lg text-sumiInk/70 leading-relaxed mb-4">
+            Below is a catalog of systemic interventions engineered to address specific operational constraints.
+          </p>
+
+          <p className="text-sm text-sumiInk/70 leading-relaxed mb-6">
+            Each case is organized with explicit labels: Context; Diagnostic/Problem; Constraints; Design/Decision; Outcome or Current Status. Outcomes described as "projected" are forecasts; other outcomes are executed results.
           </p>
 
           <div className="bg-white border-l-2 border-hankoRust p-6 shadow-sm">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-hankoRust mb-2">Adaptive Architecture</h4>
-            <p className="text-sm text-sumiInk/80 italic leading-relaxed">
-              "Experience varies; systems principles do not. I apply First Principles Thinking to every challenge—stripping a problem down to its core mechanics to understand 'Why it broke.' I dive into any system—technical, financial, or human—to diagnose the bottleneck from the ground up. I bring the rigor of an Engineer, with the open mind of an Investigator."
+            <h4 className="text-xs font-bold uppercase tracking-widest text-hankoRust mb-2">Approach</h4>
+            <p className="text-sm text-sumiInk/80 leading-relaxed">
+              Run diagnostic analysis to identify failure modes, quantify impact, make system-level design decisions, and deliver implementable changes with measurable outcomes.
             </p>
           </div>
         </div>
