@@ -8,15 +8,6 @@ export interface CaseStudy {
   impact: string;
 }
 
-export interface ExperienceItem {
-  company: string;
-  stealthCompany: string;
-  role: string;
-  period: string;
-  tracks: ('Investigator' | 'Architect')[];
-  bullets: string[];
-}
-
 export type ContentBlock = 
   | { type: 'paragraph'; value: string }
   | { type: 'heading'; value: string }

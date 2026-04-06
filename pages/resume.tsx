@@ -48,7 +48,7 @@ const ResumePage = () => {
                 </div>
               </div>
               <a
-                href="https://drive.google.com/file/d/1M0PIV5PrjMEQj6eHwWteO-9LILUQ2wOp/view?usp=sharing"
+                href="/jasonkhanani-resume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 px-8 py-4 rounded-lg bg-hankoRust text-ricePaper text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-foxOrange transition-all shadow-xl active:scale-95"

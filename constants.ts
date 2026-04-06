@@ -1,5 +1,5 @@
 
-import { CaseStudy, ExperienceItem } from './types';
+import { CaseStudy } from './types';
 
 // Site configuration
 export const SITE_DOMAIN = 'jasonkhanani.com';
@@ -38,9 +38,21 @@ export const CASE_STUDIES: CaseStudy[] = [
       '**Context:** Seller support coverage was limited to business hours, leading to SLA breaches and inefficient L1 handling.',
       '**Problem:** Human availability constrained response times and created backlog during peak periods.',
       '**Decision:** Led regional pilot of AI-powered chatbot integration. Defined KPIs, structured rollout plan, and monitored deflection performance.',
-      '**Result:** Expanded support to 24/7 self-service coverage and achieved ~65% ticket deflection without additional headcount.'
+      '**Result:** Expanded support to 24/7 self-service coverage and achieved 68% ticket deflection without additional headcount.'
     ],
-    impact: '65% Ticket Deflection'
+    impact: '68% Ticket Deflection'
+  },
+  {
+    id: 'handling-fee-design',
+    title: 'Payment Handling Fee Design',
+    stealthTitle: 'Pricing Architecture',
+    details: [
+      '**Context:** Payment processing costs were fully absorbed by the platform while charging a handling fee had become standard practice across the e-commerce market, creating an unfavorable cost-income ratio.',
+      '**Problem:** Introducing a handling fee risked customer churn if rates were misaligned with market norms. The design required balancing cost recovery against customer experience — including whether to differentiate fees by payment method.',
+      '**Decision:** Benchmarked handling fee structures across major regional platforms and mapped them against internal processing costs by payment method. Recommended a tiered structure with differentiated rates for standard and COD payments, staying within market range while recovering meaningful margin.',
+      '**Result:** Projected €200K in annual revenue uplift. Proposal went live after handover to successor team.'
+    ],
+    impact: '€200K Projected Revenue Uplift'
   },
   {
     id: 'logistics-optimization',
@@ -68,29 +80,3 @@ export const CASE_STUDIES: CaseStudy[] = [
   }
 ];
 
-export const EXPERIENCE: ExperienceItem[] = [
-  {
-    company: 'ZALORA Group',
-    stealthCompany: 'Top E-commerce Platform',
-    role: 'Operations Analyst',
-    period: '2021 - Present',
-    tracks: ['Investigator', 'Architect'],
-    bullets: [
-      'Lead deep-dive diagnostics for revenue leakage (Investigator).',
-      'Designed architectural blueprints for marketplace systems (Architect).',
-      'Saved €695K in operational revenue through data-driven intervention.'
-    ]
-  },
-  {
-    company: 'Paxel',
-    stealthCompany: 'Last-mile Logistics Firm',
-    role: 'Product Operations Analyst',
-    period: '2019 - 2021',
-    tracks: ['Architect'],
-    bullets: [
-      'Engineered routing protocols for high-density delivery zones.',
-      'Implemented Six Sigma methodologies to reduce waste by 15%.',
-      'Redesigned warehouse layouts for optimized pick-path efficiency.'
-    ]
-  }
-];
