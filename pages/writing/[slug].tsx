@@ -222,12 +222,11 @@ interface ArticleProps {
 }
 
 const Article: React.FC<ArticleProps> = ({ data }) => {
-  if (!data?.current) {
-    return null;
-  }
+  const current = data?.current ?? null;
 
   // Track article view on mount
   useEffect(() => {
+    if (!current) return;
     const trackView = async () => {
       try {
         await fetch('/api/track-view', {
@@ -236,7 +235,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            slug: data.current.slug.current,
+            slug: current.slug.current,
           }),
         });
       } catch (error) {
@@ -246,47 +245,48 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
     };
 
     trackView();
-  }, [data.current.slug.current]);
+  }, [current]);
 
   // --- 4. Related Articles Logic ---
   const relatedArticles = useMemo(() => {
-    if (!data?.current) return [];
-    
+    if (!current) return [];
+
     // If manual related articles are selected, use those
-    if (data.current.relatedArticles && data.current.relatedArticles.length > 0) {
-      return data.current.relatedArticles.slice(0, 3);
+    if (current.relatedArticles && current.relatedArticles.length > 0) {
+      return current.relatedArticles.slice(0, 3);
     }
-    
+
     // Otherwise, auto-suggest based on same category and tags
     if (!data?.allOthers) return [];
-    
-    const currentTags = data.current.tags || [];
-    const currentCategory = data.current.category;
+
+    const currentTags = current.tags || [];
+    const currentCategory = current.category;
 
     return data.allOthers
-      .sort((a, b) => {
+      .sort((a: any, b: any) => {
         const aTags = a.tags || [];
         const bTags = b.tags || [];
-        
+
         // Prioritize same category
         const aSameCategory = a.category === currentCategory ? 1 : 0;
         const bSameCategory = b.category === currentCategory ? 1 : 0;
         if (bSameCategory !== aSameCategory) return bSameCategory - aSameCategory;
-        
+
         // Then by tag matches
         const aMatches = aTags.filter((t: string) => currentTags.includes(t)).length;
         const bMatches = bTags.filter((t: string) => currentTags.includes(t)).length;
         if (bMatches !== aMatches) return bMatches - aMatches;
-        
+
         // Finally by date (newest first)
         return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
       })
       .slice(0, 3);
-  }, [data]);  // Data is pre-fetched
-  // Error/Not Found
-  
+  }, [current, data]);
 
-  const { current } = data;
+  if (!current) {
+    return null;
+  }
+
   const formattedDate = new Date(current.publishedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
   const readTime = getReadTime(current.body);
 
