@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -28,6 +29,9 @@
     "@types/node": "^22.14.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "husky": "^9.1.7",
     "typescript": "~5.8.2"
   }
 }

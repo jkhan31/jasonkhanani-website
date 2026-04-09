@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { SectionHeader } from '../components/SectionHeader';
 import { Brain, Search, GitBranch, Anchor, Zap, BookOpen, RefreshCw, Shield, ArrowRight, ExternalLink } from 'lucide-react';
 
@@ -314,13 +315,13 @@ const Framework: React.FC = () => {
               I document the ongoing investigation of applying these principles - across professional and personal domains - in my writing series.
             </p>
           </div>
-          <a
+          <Link
             href="/writing"
             className="group flex items-center gap-4 px-8 py-4 bg-sumiInk text-ricePaper hover:bg-hankoRust transition-colors duration-300 rounded-sm"
           >
             <span className="text-sm font-bold tracking-wider uppercase">Explore the Series</span>
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
       </section>
 

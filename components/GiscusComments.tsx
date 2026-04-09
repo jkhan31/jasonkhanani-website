@@ -14,12 +14,6 @@ export const GiscusComments: React.FC<GiscusCommentsProps> = ({ articleTitle, ar
   const repoId = process.env.NEXT_PUBLIC_GISCUS_REPO_ID;
   const categoryId = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID;
 
-  // Don't render if required config is missing
-  if (!repoId || !categoryId) {
-    console.warn('Giscus configuration missing. Comments disabled.');
-    return null;
-  }
-
   useEffect(() => {
     // Only load Giscus when the component is in viewport (lazy loading)
     const currentRef = commentsRef.current;
@@ -46,6 +40,12 @@ export const GiscusComments: React.FC<GiscusCommentsProps> = ({ articleTitle, ar
       }
     };
   }, [isLoaded]);
+
+  // Don't render if required config is missing
+  if (!repoId || !categoryId) {
+    console.warn('Giscus configuration missing. Comments disabled.');
+    return null;
+  }
 
   return (
     <div className="mt-16 pt-12 border-t border-sumiInk/10">
