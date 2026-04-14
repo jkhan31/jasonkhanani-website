@@ -126,13 +126,18 @@ Always use `urlFor(imageRef).width(N).url()` from `src/client.ts`. Do not constr
 
 ---
 
-## Git Branch
+## Private Reference Documents
 
-Active development branch: `claude/review-repo-improvements-VkvHD`
+**`master-experience-bank.md`** — Complete experience inventory (NOT published to website)
+- Source of truth for resume content and website copy
+- Contains expanded bullets, earlier roles, projects, skills inventory, leadership evidence
+- Read before any resume tailoring or fit analysis
 
-```bash
-git push -u origin claude/review-repo-improvements-VkvHD
-```
+**`career-target.md`** — Job search strategy and positioning context (NOT published to website)
+- Target: Product Operations / Systems / Execution Clarity Leader (product-adjacent)
+- Core value prop: "I design and implement systems that turn product strategy into clear execution and measurable outcomes"
+- Website and resume should frame Jason as a **system builder**, not an operations manager
+- Read before writing any copy, framing narratives, or advising on role fit
 
 ---
 

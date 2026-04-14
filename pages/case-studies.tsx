@@ -40,9 +40,7 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
   const IconComponent = getIconForStudy(study.id);
 
   return (
-    <div className="group border-0.5 border-hankoRust/20 bg-white rounded-xl p-6 md:p-8 hover:border-hankoRust/40 transition-all duration-500 hover:shadow-lg relative overflow-hidden">
-      {/* Subtle background accent on hover */}
-      <div className="absolute top-0 left-0 w-1 h-full bg-hankoRust opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <div className="group border-0.5 border-hankoRust/20 bg-white rounded-xl p-6 md:p-8 hover:border-hankoRust/40 hover:bg-hankoRust/[0.015] transition-all duration-500 hover:shadow-lg">
 
       <div className="flex flex-col h-full">
         {/* Icon and Title Section */}
@@ -54,7 +52,7 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
           </div>
           <div className="flex items-center gap-3 mb-2">
             <IconComponent className="w-6 h-6 text-hankoRust/80 shrink-0" strokeWidth={1.5} />
-            <h3 className="text-2xl font-serif font-bold text-sumiInk leading-snug">
+            <h3 className="text-2xl font-sans font-bold text-sumiInk leading-snug">
               {study.title}
             </h3>
           </div>
@@ -72,7 +70,7 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
           <span className="text-[11px] uppercase tracking-widest font-semibold text-sumiInk/50 mb-2 block">
             Impact
           </span>
-          <span className="text-2xl font-serif text-hankoRust font-semibold">{study.impact}</span>
+          <span className="text-2xl font-sans font-bold text-hankoRust">{study.impact}</span>
         </div>
       </div>
     </div>

@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
         <title>Contact | Jason K Hanani</title>
         <meta 
           name="description" 
-          content="Get in touch for systems diagnostics, operational consulting, or technical project management inquiries." 
+          content="Get in touch with Jason K Hanani — Operations & Product Systems leader. Open to consulting, collaboration, and professional inquiries."
         />
         <meta property="og:title" content="Contact Jason K Hanani" />
         <meta property="og:url" content="https://jasonkhanani.com/contact/" />
@@ -70,8 +70,8 @@ const Contact: React.FC = () => {
       
       <div className="min-h-[60vh] flex items-center justify-center px-6 py-24">
 
-      <div className="w-full max-w-3xl bg-zinc-900 border border-zinc-700 p-12 rounded-md">
-        <h1 className="text-3xl font-serif mb-4 text-ricePaper">Contact</h1>
+      <div className="w-full max-w-3xl bg-zinc-900 border border-zinc-700/50 p-12 rounded-3xl">
+        <h1 className="text-3xl font-sans font-bold mb-4 text-ricePaper">Contact</h1>
         <p className="text-sm text-ricePaper/60 mb-8">Send a short note — I typically reply within a few business days.</p>
 
         <form name="contact" data-netlify="true" onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const Contact: React.FC = () => {
               value={form.name}
               onChange={handleChange}
               required
-              className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700 rounded text-ricePaper focus:ring-0"
+              className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700/60 rounded-xl text-ricePaper focus:ring-0 focus:border-hankoRust/60 transition-colors"
             />
             {errors.name && <div className="text-foxOrange text-xs mt-1">{errors.name}</div>}
           </label>
@@ -97,7 +97,7 @@ const Contact: React.FC = () => {
               value={form.email}
               onChange={handleChange}
               required
-              className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700 rounded text-ricePaper focus:ring-0"
+              className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700/60 rounded-xl text-ricePaper focus:ring-0 focus:border-hankoRust/60 transition-colors"
             />
             {errors.email && <div className="text-foxOrange text-xs mt-1">{errors.email}</div>}
           </label>
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
               onChange={handleChange}
               required
               rows={6}
-              className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700 rounded text-ricePaper focus:ring-0 resize-none"
+              className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700/60 rounded-xl text-ricePaper focus:ring-0 focus:border-hankoRust/60 transition-colors resize-none"
             />
             {errors.message && <div className="text-foxOrange text-xs mt-1">{errors.message}</div>}
           </label>
@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
           <div className="flex items-center gap-4">
             <button
               type="submit"
-              className="px-6 py-3 bg-hankoRust text-ricePaper font-bold uppercase tracking-widest text-[12px] rounded shadow-sm hover:bg-foxOrange transition-all"
+              className="px-8 py-3 bg-hankoRust text-ricePaper font-bold uppercase tracking-widest text-[12px] rounded-full hover:bg-sumiInk transition-colors duration-300"
             >
               Send
             </button>

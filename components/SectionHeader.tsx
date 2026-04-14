@@ -15,7 +15,7 @@ export const SectionHeader: React.FC<Props> = ({ eyebrow, title, className = "",
         {eyebrow}
       </p>
     )}
-    <h2 className={`text-4xl md:text-5xl font-serif ${titleClassName}`}>
+    <h2 className={`text-4xl md:text-5xl font-sans font-bold ${titleClassName}`}>
       {title}
     </h2>
   </div>
