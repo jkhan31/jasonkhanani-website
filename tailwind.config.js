@@ -10,12 +10,11 @@ module.exports = {
       colors: {
         ricePaper: '#FAF5F0',
         sumiInk: '#1A1A1A',
-        hankoRust: '#802B0A',
+        hankoRust: '#C73E1D',
         foxOrange: '#F07F2E',
-        sage: '#4D6B57',
       },
       fontFamily: {
-        serif: ['"Source Serif 4"', 'serif'],
+        serif: ['"Archivo"', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
         signature: ['Caveat', 'cursive'],
       },

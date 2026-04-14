@@ -5,16 +5,16 @@ body {
 }
 .bg-grid {
   background-size: 30px 30px;
-  background-image: radial-gradient(circle, #802B0A08 1px, transparent 1px);
+  background-image: radial-gradient(circle, #C73E1D08 1px, transparent 1px);
 }
 .bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.04;
+  /* Noise texture removed for cleaner aesthetic */
+  opacity: 0;
   pointer-events: none;
 }
 ::selection {
-  background-color: #F07F2E30;
-  color: #802B0A;
+  background-color: #C73E1D30;
+  color: #C73E1D;
 }
 ::-webkit-scrollbar {
   width: 6px;
@@ -23,10 +23,10 @@ body {
   background: #FAF5F0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #802B0A30;
+  background: #C73E1D30;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #802B0A60;
+  background: #C73E1D60;
 }
 
 /* Utility to hide scrollbars while preserving scrollability */
@@ -41,11 +41,11 @@ body {
 /* Giscus Comment System Styling */
 .giscus-comments {
   --giscus-color-bg-primary: #FAF5F0;
-  --giscus-color-bg-secondary: rgba(240, 127, 46, 0.05);
+  --giscus-color-bg-secondary: rgba(199, 62, 29, 0.05);
   --giscus-color-text-primary: #1A1A1A;
   --giscus-color-text-secondary: rgba(26, 26, 26, 0.6);
   --giscus-color-border-primary: rgba(26, 26, 26, 0.1);
-  --giscus-color-accent: #F07F2E;
+  --giscus-color-accent: #C73E1D;
 }
 
 /* Article typography improvements for post content */
@@ -62,20 +62,22 @@ body {
 .article-content h2,
 .article-content h3,
 .article-content h4 {
-  font-family: 'Source Serif 4', serif;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
   line-height: 1.2;
   margin-top: 1.6em;
   margin-bottom: 0.5em;
   color: #111827;
 }
 .article-content h1 { /* in case full-width headings are used */
-  font-family: 'Source Serif 4', serif;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
   line-height: 1.08;
   margin-top: 0.6em;
   margin-bottom: 0.6em;
 }
 .article-content blockquote {
-  border-left: 4px solid #F07F2E;
+  border-left: 4px solid #C73E1D;
   padding-left: 1rem;
   color: #374151;
   background: #FFFBF7;
@@ -128,7 +130,7 @@ body {
   text-align: left;
 }
 .article-content a {
-  color: #F07F2E;
+  color: #C73E1D;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -138,7 +140,7 @@ body {
 }
 .article-content .callout {
   display: block;
-  border-left: 4px solid #F07F2E;
+  border-left: 4px solid #C73E1D;
   background: #FFFCF8;
   padding: 0.75rem 1rem;
   border-radius: 6px;
