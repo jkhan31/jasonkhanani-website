@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m 'design: modernize aesthetic with rounded corners and softer surfaces:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
