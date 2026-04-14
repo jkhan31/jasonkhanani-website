@@ -24,10 +24,6 @@ out
 .env.*.local
 !.env.example
 
-# Private planning documents
-career-target.md
-master-experience-bank.md
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
