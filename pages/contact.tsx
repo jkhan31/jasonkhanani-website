@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
         <title>Contact | Jason K Hanani</title>
         <meta 
           name="description" 
-          content="Get in touch for systems diagnostics, operational consulting, or technical project management inquiries." 
+          content="Get in touch with Jason K Hanani — Operations & Product Systems leader. Open to consulting, collaboration, and professional inquiries."
         />
         <meta property="og:title" content="Contact Jason K Hanani" />
         <meta property="og:url" content="https://jasonkhanani.com/contact/" />

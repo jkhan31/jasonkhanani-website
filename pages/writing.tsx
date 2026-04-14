@@ -282,7 +282,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
 
       {/* Series Description Banner */}
       {activeSeriesDescription && (
-        <div className="mb-8 p-4 bg-foxOrange/10 border-l-4 border-foxOrange rounded-r-lg">
+        <div className="mb-8 p-5 bg-foxOrange/8 border border-foxOrange/25 rounded-xl">
           <div className="flex items-start gap-3">
             <Info size={20} className="text-foxOrange flex-shrink-0 mt-0.5" />
             <div>
@@ -348,7 +348,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
       ) : (
         /* Empty State */
         <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
-          <p className="text-sumiInk/60 font-serif italic text-lg mb-4">No articles found in this filter.</p>
+          <p className="text-sumiInk/60 font-sans text-lg mb-4">No articles found in this filter.</p>
           <button
             onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
             className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust hover:border-foxOrange hover:text-foxOrange transition-all"

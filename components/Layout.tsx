@@ -111,7 +111,7 @@ const Header: React.FC = () => {
             <Link
               href="/"
               onClick={closeMenu}
-              className={`text-4xl font-serif transition-all duration-500 delay-0ms ${
+              className={`text-4xl font-sans font-bold transition-all duration-500 delay-0ms ${
                 'text-sumiInk hover:text-foxOrange'
               } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
@@ -123,9 +123,9 @@ const Header: React.FC = () => {
               key={link.path}
               href={link.path}
               onClick={closeMenu}
-              className={`text-4xl font-serif transition-all duration-500 delay-[${idx * 100}ms] ${
-                router.pathname === link.path 
-                  ? 'text-hankoRust scale-110' 
+              className={`text-4xl font-sans font-bold transition-all duration-500 delay-[${idx * 100}ms] ${
+                router.pathname === link.path
+                  ? 'text-hankoRust scale-110'
                   : 'text-sumiInk hover:text-foxOrange'
               } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
