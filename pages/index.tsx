@@ -72,18 +72,23 @@ const Capabilities: React.FC = () => (
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+      <div>
         {capabilities.map((cap, idx) => (
-          <div key={idx} className="border-t border-sumiInk/10 pt-8">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-hankoRust/50 mb-3 block">
+          <div
+            key={idx}
+            className="grid grid-cols-[4rem_1fr] md:grid-cols-[8rem_1fr] gap-x-8 md:gap-x-16 py-10 border-t border-sumiInk/10 last:border-b"
+          >
+            <span className="text-4xl md:text-5xl font-sans font-bold text-hankoRust/20 leading-none pt-1 tabular-nums">
               {String(idx + 1).padStart(2, '0')}
             </span>
-            <h3 className="text-xl font-sans font-bold text-sumiInk mb-2">
-              {cap.title}
-            </h3>
-            <p className="text-sm text-sumiInk/60 leading-relaxed">
-              {cap.description}
-            </p>
+            <div>
+              <h3 className="text-xl md:text-2xl font-sans font-bold text-sumiInk mb-2 leading-snug">
+                {cap.title}
+              </h3>
+              <p className="text-sm md:text-base text-sumiInk/60 leading-relaxed max-w-2xl">
+                {cap.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>
