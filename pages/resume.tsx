@@ -19,7 +19,7 @@ const ResumePage = () => {
       </Head>
 
       <div className="min-h-screen p-4 md:p-8 lg:p-12 animate-in slide-in-from-bottom-4 duration-700">
-        <div className="max-w-4xl mx-auto border border-sumiInk/10 p-8 md:p-16 bg-white relative overflow-hidden">
+        <div className="max-w-4xl mx-auto border border-sumiInk/8 p-8 md:p-16 bg-white rounded-3xl shadow-lg relative overflow-hidden">
 
           {/* Header */}
           <header className="border-b border-sumiInk/10 pb-10 mb-12">
@@ -39,7 +39,7 @@ const ResumePage = () => {
                 href="/jasonkhanani-resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-8 py-4 bg-hankoRust text-ricePaper text-xs font-bold uppercase tracking-[0.2em] hover:bg-sumiInk transition-colors"
+                className="flex items-center gap-2 px-8 py-4 bg-hankoRust text-ricePaper text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-sumiInk transition-colors"
               >
                 <Download size={16} /> Download PDF
               </a>
@@ -200,7 +200,7 @@ const ResumePage = () => {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 border border-hankoRust/20 text-hankoRust/70 bg-hankoRust/5"
+                  className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-hankoRust/20 text-hankoRust/80 bg-hankoRust/5 hover:bg-hankoRust/10 transition-colors"
                 >
                   {tag}
                 </span>

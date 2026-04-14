@@ -13,7 +13,8 @@ const Hero: React.FC = () => (
 
       {/* Name Heading - Geometric Sans */}
       <h1 className="text-6xl md:text-7xl lg:text-8xl font-sans font-bold text-sumiInk leading-tight mb-6 tracking-tight">
-        Jason K<br />Hanani
+        <span className="md:hidden">Jason K<br />Hanani</span>
+        <span className="hidden md:inline">Jason K Hanani</span>
       </h1>
 
       {/* Value Proposition */}
@@ -22,22 +23,22 @@ const Hero: React.FC = () => (
       </p>
 
       {/* Key Metric - Make Evidence Dominant */}
-      <div className="mb-12 p-8 bg-hankoRust text-ricePaper inline-block">
+      <div className="mb-12 p-8 bg-hankoRust text-ricePaper inline-block rounded-2xl">
         <span className="block text-6xl md:text-7xl font-sans font-bold mb-2">€1.5M+</span>
-        <span className="text-sm uppercase tracking-widest font-bold">Quantified Impact Delivered</span>
+        <span className="text-sm uppercase tracking-widest font-bold opacity-80">Quantified Impact Delivered</span>
       </div>
 
       {/* CTAs */}
       <div className="flex flex-wrap gap-4">
         <Link
           href="/resume"
-          className="px-10 py-4 bg-hankoRust text-ricePaper text-sm font-bold tracking-[0.15em] uppercase hover:bg-sumiInk transition-colors duration-300"
+          className="px-8 py-4 bg-hankoRust text-ricePaper text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk transition-colors duration-300"
         >
           View Resume
         </Link>
         <Link
           href="/case-studies"
-          className="px-10 py-4 border border-sumiInk text-sumiInk text-sm font-bold tracking-[0.15em] uppercase hover:bg-sumiInk hover:text-ricePaper transition-colors duration-300"
+          className="px-8 py-4 border border-sumiInk/30 text-sumiInk text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk hover:text-ricePaper hover:border-sumiInk transition-colors duration-300"
         >
           View Case Studies
         </Link>
@@ -58,40 +59,40 @@ const SystemicResilience: React.FC = () => (
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Case Study 1 */}
-        <div className="p-8 border border-sumiInk/15">
+        <div className="p-8 bg-white rounded-2xl shadow-sm border border-sumiInk/8 hover:shadow-md transition-shadow duration-300">
           <span className="block text-4xl font-sans font-bold text-hankoRust mb-2">€520K</span>
-          <h3 className="text-xl font-sans font-bold text-sumiInk mb-3">Unit Economics Correction</h3>
-          <p className="text-base text-sumiInk/70 leading-relaxed">
-            Realigned shipping fee logic with cost structure. Annual cost savings.
+          <h3 className="text-lg font-sans font-bold text-sumiInk mb-3">Unit Economics Correction</h3>
+          <p className="text-sm text-sumiInk/60 leading-relaxed">
+            Diagnosed SKU-level cost misalignment and rebuilt the fee model. €520K recovered annually.
           </p>
         </div>
 
         {/* Case Study 2 */}
-        <div className="p-8 border border-sumiInk/15">
+        <div className="p-8 bg-white rounded-2xl shadow-sm border border-sumiInk/8 hover:shadow-md transition-shadow duration-300">
           <span className="block text-4xl font-sans font-bold text-hankoRust mb-2">€695K</span>
-          <h3 className="text-xl font-sans font-bold text-sumiInk mb-3">Retention Mechanism Launch</h3>
-          <p className="text-base text-sumiInk/70 leading-relaxed">
-            Transformed return flow into retained revenue. Revenue preserved.
+          <h3 className="text-lg font-sans font-bold text-sumiInk mb-3">Retention Mechanism Launch</h3>
+          <p className="text-sm text-sumiInk/60 leading-relaxed">
+            Turned the return flow into a retention mechanism. €695K in revenue preserved.
           </p>
         </div>
 
         {/* Case Study 3 */}
-        <div className="p-8 border border-sumiInk/15">
+        <div className="p-8 bg-white rounded-2xl shadow-sm border border-sumiInk/8 hover:shadow-md transition-shadow duration-300">
           <span className="block text-4xl font-sans font-bold text-hankoRust mb-2">60%</span>
-          <h3 className="text-xl font-sans font-bold text-sumiInk mb-3">Routing Logic Automation</h3>
-          <p className="text-base text-sumiInk/70 leading-relaxed">
-            Eliminated manual configuration bottlenecks at scale. Reduction in activation lead time.
+          <h3 className="text-lg font-sans font-bold text-sumiInk mb-3">Routing Logic Automation</h3>
+          <p className="text-sm text-sumiInk/60 leading-relaxed">
+            Designed the routing logic that took activation from 5 days to 2.
           </p>
         </div>
 
         {/* Case Study 4 */}
-        <div className="p-8 border border-sumiInk/15">
+        <div className="p-8 bg-white rounded-2xl shadow-sm border border-sumiInk/8 hover:shadow-md transition-shadow duration-300">
           <span className="block text-4xl font-sans font-bold text-hankoRust mb-2">68%</span>
-          <h3 className="text-xl font-sans font-bold text-sumiInk mb-3">AI Support Automation</h3>
-          <p className="text-base text-sumiInk/70 leading-relaxed">
-            Expanded 24/7 self-service coverage without additional headcount. Ticket deflection.
+          <h3 className="text-lg font-sans font-bold text-sumiInk mb-3">AI Support Automation</h3>
+          <p className="text-sm text-sumiInk/60 leading-relaxed">
+            Deployed AI chatbot into seller support. 68% ticket deflection, 24/7 coverage, zero new headcount.
           </p>
         </div>
       </div>
@@ -109,13 +110,13 @@ const ExploreFurther: React.FC = () => (
       <div className="flex flex-wrap gap-4">
         <Link
           href="/resume"
-          className="px-10 py-4 bg-hankoRust text-ricePaper text-sm font-bold tracking-[0.15em] uppercase hover:bg-sumiInk transition-colors duration-300"
+          className="px-8 py-4 bg-hankoRust text-ricePaper text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk transition-colors duration-300"
         >
           View Resume
         </Link>
         <Link
           href="/case-studies"
-          className="px-10 py-4 border border-sumiInk text-sumiInk text-sm font-bold tracking-[0.15em] uppercase hover:bg-sumiInk hover:text-ricePaper transition-colors duration-300"
+          className="px-8 py-4 border border-sumiInk/30 text-sumiInk text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk hover:text-ricePaper hover:border-sumiInk transition-colors duration-300"
         >
           View Case Studies
         </Link>

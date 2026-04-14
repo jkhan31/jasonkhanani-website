@@ -13,7 +13,7 @@
     return (
         <Link 
         href={`/writing/${article.slug}`} 
-        className={`group block ${compact ? 'p-6' : 'p-8 md:p-12'} border-0.5 border-hankoRust/10 bg-white hover:shadow-2xl hover:border-hankoRust/30 transition-all duration-500 focus-visible:ring-2 focus-visible:ring-foxOrange/50 focus-visible:ring-offset-2 focus:outline-none flex flex-col h-full`}
+        className={`group block ${compact ? 'p-6' : 'p-8 md:p-10'} rounded-2xl border border-sumiInk/8 bg-white shadow-sm hover:shadow-md hover:border-sumiInk/15 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-hankoRust/40 focus-visible:ring-offset-2 focus:outline-none flex flex-col h-full`}
         >
         {/* Date, Category, Read Time */}
         <div className="flex items-center justify-between mb-4">
@@ -56,12 +56,12 @@
 
         {/* Title + Excerpt (growable content area to keep CTA/tags at bottom) */}
         <div className="flex-grow">
-            <h3 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-serif mb-4 text-sumiInk group-hover:text-foxOrange transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+            <h3 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-sans font-bold mb-4 text-sumiInk group-hover:text-hankoRust transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
                 {article.title}
             </h3>
 
             {/* Excerpt */}
-            <p className={`text-sumiInk/60 font-serif mb-8 leading-relaxed ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+            <p className={`text-sumiInk/60 mb-8 leading-relaxed ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
                 {article.excerpt}
             </p>
         </div>
