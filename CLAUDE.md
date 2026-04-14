@@ -129,10 +129,15 @@ Always use `urlFor(imageRef).width(N).url()` from `src/client.ts`. Do not constr
 ## Private Reference Documents
 
 **`master-experience-bank.md`** — Complete experience inventory (NOT published to website)
-- Supplementary to the main resume
-- Contains expanded bullet details, earlier roles, projects, skills inventory, and leadership evidence
-- Source of truth when updating resume or website copy
+- Source of truth for resume content and website copy
+- Contains expanded bullets, earlier roles, projects, skills inventory, leadership evidence
 - Read before any resume tailoring or fit analysis
+
+**`career-target.md`** — Job search strategy and positioning context (NOT published to website)
+- Target: Product Operations / Systems / Execution Clarity Leader (product-adjacent)
+- Core value prop: "I design and implement systems that turn product strategy into clear execution and measurable outcomes"
+- Website and resume should frame Jason as a **system builder**, not an operations manager
+- Read before writing any copy, framing narratives, or advising on role fit
 
 ---
 
