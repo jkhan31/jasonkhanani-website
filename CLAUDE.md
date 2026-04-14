@@ -126,13 +126,13 @@ Always use `urlFor(imageRef).width(N).url()` from `src/client.ts`. Do not constr
 
 ---
 
-## Git Branch
+## Private Reference Documents
 
-Active development branch: `claude/review-repo-improvements-VkvHD`
-
-```bash
-git push -u origin claude/review-repo-improvements-VkvHD
-```
+**`master-experience-bank.md`** — Complete experience inventory (NOT published to website)
+- Supplementary to the main resume
+- Contains expanded bullet details, earlier roles, projects, skills inventory, and leadership evidence
+- Source of truth when updating resume or website copy
+- Read before any resume tailoring or fit analysis
 
 ---
 
