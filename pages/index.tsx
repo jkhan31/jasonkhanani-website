@@ -38,7 +38,7 @@ const Hero: React.FC = () => (
 
       {/* Value Proposition */}
       <p className="text-lg md:text-xl text-sumiInk max-w-2xl leading-relaxed mb-12">
-        I build the systems that make multi-market platforms run — fee architecture, routing logic, AI-augmented support. €1.5M+ in documented outcomes.
+        I build the systems that make multi-market platforms run — fee architecture, routing logic, AI-augmented workflows. €1.5M+ in documented outcomes.
       </p>
 
       {/* CTAs */}
