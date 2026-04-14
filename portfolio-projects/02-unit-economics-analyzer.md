@@ -12,7 +12,7 @@
 | Persona | The Investigator |
 | Key Skills | Unit economics modeling, SQL-style data analysis (Pandas), data visualization, DMAIC diagnostic framework |
 | Stack | Python, Pandas, Plotly, Streamlit |
-| Dataset | Olist Brazilian E-Commerce Dataset — Kaggle (100K orders, 73K products, 3K sellers) |
+| Dataset | [Olist Brazilian E-Commerce Dataset — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (100K orders, 73K products, 3K sellers) |
 | Deployment | Streamlit Community Cloud (free) |
 | Repo | Planned |
 
@@ -114,7 +114,7 @@ src/
 
 ## Data
 
-**Olist Brazilian E-Commerce Dataset** — Kaggle, publicly available, no license restrictions for non-commercial use.
+**[Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)** — Kaggle, publicly available, no license restrictions for non-commercial use.
 
 | File | Rows | Key Fields Used |
 |------|------|-----------------|

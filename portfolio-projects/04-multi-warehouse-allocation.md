@@ -12,7 +12,7 @@
 | Persona | The Architect |
 | Key Skills | Inventory optimization, demand forecasting, operations research, Python data modeling, Streamlit |
 | Stack | Python, Pandas, Plotly, PuLP (linear programming), Streamlit |
-| Datasets | M5 Forecasting Competition (Walmart daily sales, Kaggle 2020) + USAID Supply Chain Shipment Pricing Data (data.gov) |
+| Datasets | [M5 Forecasting Competition — Kaggle 2020](https://www.kaggle.com/competitions/m5-forecasting-accuracy) (Walmart daily sales) + [USAID Supply Chain Shipment Pricing Data — data.gov](https://catalog.data.gov/dataset/supply-chain-shipment-pricing-data) |
 | Deployment | Streamlit Community Cloud (free) |
 | Repo | Planned |
 
@@ -107,13 +107,13 @@ src/
 
 ## Data
 
-### M5 Forecasting Competition — Kaggle 2020
+### [M5 Forecasting Competition — Kaggle 2020](https://www.kaggle.com/competitions/m5-forecasting-accuracy)
 - **Source:** Walmart real daily unit sales data, 2011–2016
 - **Coverage:** 30,490 time series across 3,049 products, 10 stores, 3 states (CA, TX, WI)
 - **Mapping to use case:** Store → Warehouse, State → Region, Product categories → mapped to Nexara SKU categories
 - **Key files:** `sales_train_evaluation.csv` (unit sales by day), `calendar.csv` (dates + events), `sell_prices.csv` (prices)
 
-### USAID Supply Chain Shipment Pricing Data — data.gov
+### [USAID Supply Chain Shipment Pricing Data — data.gov](https://catalog.data.gov/dataset/supply-chain-shipment-pricing-data)
 - **Source:** USAID SCMS (Supply Chain Management System) actual delivery cost data
 - **Coverage:** ~10,000 shipment records with origin, destination, weight, freight cost, mode
 - **Mapping to use case:** Shipment freight cost / weight → cost-per-kg by corridor → scaled to Nexara's typical SKU weights

@@ -8,11 +8,11 @@ A collection of public-facing projects that demonstrate the analytical and syste
 
 | # | Project | Status | Persona | Key Skill Demonstrated | Stack | Dataset |
 |---|---------|--------|---------|----------------------|-------|---------|
-| 01 | [Fashion Intelligence Tagger](#01-fashion-intelligence-tagger) | V1 Live · V2 Planned | The Architect | LLM prompt engineering, eval metrics | React, n8n, OpenRouter | H&M (Kaggle 2022, 105K articles) |
-| 02 | [Unit Economics Analyzer](#02-unit-economics-analyzer) | Planned | The Investigator | Unit economics, margin diagnostics | Python, Pandas, Plotly, Streamlit | Olist Brazilian E-Commerce (Kaggle, 100K orders) |
-| 03 | [Operations Maturity Scorecard](#03-operations-maturity-scorecard) | Planned | Both | Framework design, Six Sigma, interactive viz | Next.js, Recharts (in portfolio) | World Bank LPI (reference only) |
-| 04 | [Multi-Warehouse Allocation Model](#04-multi-warehouse-allocation-model) | Planned | The Architect | Inventory optimization, linear programming | Python, PuLP, Plotly, Streamlit | M5/Walmart (Kaggle) + USAID data.gov |
-| 05 | [AI Operations Assistant](#05-ai-operations-assistant) | Planned | The Architect | Conversation design, intent routing, n8n | React, n8n, OpenRouter/Gemini | Customer Support Twitter (Kaggle) |
+| 01 | [Fashion Intelligence Tagger](#01-fashion-intelligence-tagger) | V1 Live · V2 Planned | The Architect | LLM prompt engineering, eval metrics | React, n8n, OpenRouter | [H&M Personalization Dataset — Kaggle 2022](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) |
+| 02 | [Unit Economics Analyzer](#02-unit-economics-analyzer) | Planned | The Investigator | Unit economics, margin diagnostics | Python, Pandas, Plotly, Streamlit | [Olist Brazilian E-Commerce — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
+| 03 | [Operations Maturity Scorecard](#03-operations-maturity-scorecard) | Planned | Both | Framework design, Six Sigma, interactive viz | Next.js, Recharts (in portfolio) | [World Bank LPI](https://lpi.worldbank.org/) (reference only) |
+| 04 | [Multi-Warehouse Allocation Model](#04-multi-warehouse-allocation-model) | Planned | The Architect | Inventory optimization, linear programming | Python, PuLP, Plotly, Streamlit | [M5 Forecasting — Kaggle](https://www.kaggle.com/competitions/m5-forecasting-accuracy) + [USAID Shipment Pricing — data.gov](https://catalog.data.gov/dataset/supply-chain-shipment-pricing-data) |
+| 05 | [AI Operations Assistant](#05-ai-operations-assistant) | Planned | The Architect | Conversation design, intent routing, n8n | React, n8n, OpenRouter/Gemini | [Customer Support on Twitter — Kaggle](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) |
 | 06 | [Second Brain OS](#06-second-brain-os) | Planned | The Architect | Knowledge architecture, personal automation | Obsidian, n8n, Gemini, GitHub | Personal vault (no public data) |
 
 ---

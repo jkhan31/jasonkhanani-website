@@ -12,7 +12,7 @@
 | Persona | The Architect |
 | Key Skills | LLM prompt engineering, intent classification, conversation design, n8n workflow architecture, support system design |
 | Stack | n8n (self-hosted), OpenRouter API, React + Tailwind frontend, Netlify |
-| Dataset | Customer Support on Twitter — Kaggle (3M+ real support conversations from e-commerce brands) |
+| Dataset | [Customer Support on Twitter — Kaggle](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) (3M+ real support conversations from e-commerce brands) |
 | Deployment | Netlify (frontend) + n8n VPS (backend) |
 | Repo | Planned |
 
@@ -123,7 +123,7 @@ n8n logs intent + outcome + latency
 
 ## Data
 
-**Customer Support on Twitter — Kaggle**
+**[Customer Support on Twitter — Kaggle](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter)**
 - 3M+ real customer support tweets from major brands including Amazon, Apple, Uber, Airbnb, and others
 - Columns: `tweet_id`, `author_id`, `inbound` (bool), `created_at`, `text`, `response_tweet_id`, `in_response_to_tweet_id`
 - **Usage in this project:** Used to extract real examples of shipping, payment, and return queries for prompt engineering and intent taxonomy validation. Specifically: filter for Amazon and Airbnb inbound tweets to extract realistic seller/buyer support language patterns.

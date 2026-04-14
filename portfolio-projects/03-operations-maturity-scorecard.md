@@ -12,7 +12,7 @@
 | Persona | Both — The Investigator (diagnostic) + The Architect (framework design) |
 | Key Skills | Operations framework design, Six Sigma DMAIC, Next.js, data visualization, thought leadership |
 | Stack | Next.js 14 (Pages Router), Recharts, Tailwind CSS — embedded in existing portfolio |
-| Dataset | World Bank Logistics Performance Index (LPI) for benchmarking context; scorecard framework self-defined |
+| Dataset | [World Bank Logistics Performance Index (LPI)](https://lpi.worldbank.org/) for benchmarking context; scorecard framework self-defined |
 | Deployment | Netlify (existing portfolio pipeline) |
 | Repo | jkhan31/jasonkhanani-website (new page: `/scorecard`) |
 
@@ -114,7 +114,7 @@ constants/
 
 ## Data
 
-**World Bank Logistics Performance Index (LPI)** — publicly available at lpi.worldbank.org. Used for benchmark context text only (e.g., "SEA median LPI score: 3.1 — your fulfillment score of 2.4 is below regional median"). No API integration required — static reference values embedded in `scorecardData.ts`.
+**[World Bank Logistics Performance Index (LPI)](https://lpi.worldbank.org/)** — publicly available. Used for benchmark context text only (e.g., "SEA median LPI score: 3.1 — your fulfillment score of 2.4 is below regional median"). No API integration required — static reference values embedded in `scorecardData.ts`.
 
 **Scorecard framework:** Self-defined, based on Six Sigma DMAIC methodology, ZALORA operational experience, and industry best practice. This is the intellectual property component — the questions and weighting reflect genuine domain expertise.
 

@@ -12,7 +12,7 @@
 | Persona | The Architect |
 | Key Skills | LLM prompt engineering, evaluation metrics, n8n workflow design, React |
 | Stack | React + Vite + Tailwind, n8n (self-hosted), OpenRouter API, Netlify |
-| Dataset | H&M Personalization Dataset — Kaggle 2022 (105K articles, 28.8M transactions) |
+| Dataset | [H&M Personalization Dataset — Kaggle 2022](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) (105K articles, 28.8M transactions) |
 | V1 Repo | [github.com/jkhan31/ai-tagging-tool](https://github.com/jkhan31/ai-tagging-tool) |
 | V2 Repo | Planned |
 
@@ -106,7 +106,7 @@ Response → React Frontend → ResultsTable + SummaryPanel
 
 ## Data
 
-**H&M Personalization Dataset** — Kaggle 2022 competition dataset.
+**[H&M Personalization Dataset](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations)** — Kaggle 2022 competition dataset.
 
 | File | Rows | Key Columns |
 |------|------|-------------|
