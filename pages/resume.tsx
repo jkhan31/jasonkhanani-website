@@ -11,7 +11,7 @@ const ResumePage = () => {
         <title>Resume | Jason K Hanani</title>
         <meta
           name="description"
-          content="Operations & Product Analytics leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms."
+          content="Operations & Product Systems leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms — logistics architecture, marketplace operations, and AI-augmented execution."
         />
         <meta property="og:title" content="Resume - Jason K Hanani" />
         <meta property="og:url" content="https://jasonkhanani.com/resume/" />

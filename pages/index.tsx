@@ -8,7 +8,7 @@ const Hero: React.FC = () => (
     <div className="max-w-4xl relative z-10">
       {/* Role Tag */}
       <p className="text-hankoRust font-bold tracking-[0.2em] text-sm uppercase mb-4">
-        Operations &amp; Product Analytics
+        Operations &amp; Product Systems
       </p>
 
       {/* Name Heading - Geometric Sans */}
@@ -18,7 +18,7 @@ const Hero: React.FC = () => (
 
       {/* Value Proposition */}
       <p className="text-lg md:text-xl text-sumiInk max-w-2xl leading-relaxed mb-16">
-        I improve how multi-market platforms operate through structured diagnostics, system-level redesign, and cross-functional execution.
+        I design and build operating systems for multi-market platforms — turning complex logistics, marketplace, and product problems into structured execution with measurable outcomes.
       </p>
 
       {/* Key Metric - Make Evidence Dominant */}
@@ -128,13 +128,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jason K Hanani | Operations & Product Analytics</title>
-        <meta 
-          name="description" 
-          content="Operations & Product Analytics leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms through diagnostics, system redesign, and cross-functional execution." 
+        <title>Jason K Hanani | Operations & Product Systems</title>
+        <meta
+          name="description"
+          content="Operations & Product Systems leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms — logistics architecture, marketplace operations, and AI-augmented execution."
         />
-        <meta property="og:title" content="Jason K Hanani | Operations & Product Analytics" />
-        <meta property="og:description" content="Operations & Product Analytics leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms." />
+        <meta property="og:title" content="Jason K Hanani | Operations & Product Systems" />
+        <meta property="og:description" content="Operations & Product Systems leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms." />
         <meta property="og:url" content="https://jasonkhanani.com/" />
         <link rel="canonical" href="https://jasonkhanani.com/" />
       </Head>
