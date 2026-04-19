@@ -6,7 +6,7 @@ Web tool that converts messy notes, bullet points, or process descriptions into 
 ## Stack
 - Frontend: React 18 + Vite + Tailwind CSS → Netlify
 - Backend: n8n (self-hosted VPS) webhook
-- LLM: OpenRouter API (called from n8n)
+- LLM: Claude Code on VPS via n8n SSH Execute node (Claude Pro subscription — no API cost)
 - Output: Markdown rendered in UI + copy to clipboard + download as .md
 - Key env var: `VITE_N8N_URL`
 
@@ -33,7 +33,7 @@ src/
 ```
 POST body: { input: string, doc_type: string }
 → Switch node routes by doc_type
-→ Each branch: inject matching prompt template → OpenRouter call
+→ Each branch: build prompt → n8n SSH Execute → claude -p "{prompt}" on VPS
 → Return { output: string, doc_type: string }
 ```
 
@@ -55,8 +55,7 @@ POST body: { input: string, doc_type: string }
 - Tailwind only — no inline styles
 
 ## API Connections
-- **OpenRouter API** — one call per document generation (via n8n)
-- Gemini Flash (Google AI Studio) usable as direct alternative in n8n HTTP node
+- **Claude Code (SSH)** — one SSH call per document generation, via n8n SSH Execute node; uses Claude Pro subscription (no billing)
 
 ## Useful Claude Skills
 - `/design-review` — after building DocTypeSelector + OutputPreview
