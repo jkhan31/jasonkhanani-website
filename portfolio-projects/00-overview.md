@@ -8,12 +8,16 @@ A collection of public-facing projects that demonstrate the analytical and syste
 
 | # | Project | Status | Persona | Key Skill Demonstrated | Stack | Dataset |
 |---|---------|--------|---------|----------------------|-------|---------|
-| 01 | [Fashion Intelligence Tagger](#01-fashion-intelligence-tagger) | V1 Live · V2 Planned | The Architect | LLM prompt engineering, eval metrics | React, n8n, OpenRouter | [H&M Personalization Dataset — Kaggle 2022](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) |
+| 01 | [Fashion Intelligence Tagger](#01-fashion-intelligence-tagger) | V1 Live · V2 Planned | The Architect | LLM prompt engineering, eval metrics | React, n8n, Claude Code SSH | [H&M Personalization Dataset — Kaggle 2022](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) |
 | 02 | [Unit Economics Analyzer](#02-unit-economics-analyzer) | Planned | The Investigator | Unit economics, margin diagnostics | Python, Pandas, Plotly, Streamlit | [Olist Brazilian E-Commerce — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |
 | 03 | [Operations Maturity Scorecard](#03-operations-maturity-scorecard) | Planned | Both | Framework design, Six Sigma, interactive viz | Next.js, Recharts (in portfolio) | [World Bank LPI](https://lpi.worldbank.org/) (reference only) |
 | 04 | [Multi-Warehouse Allocation Model](#04-multi-warehouse-allocation-model) | Planned | The Architect | Inventory optimization, linear programming | Python, PuLP, Plotly, Streamlit | [M5 Forecasting — Kaggle](https://www.kaggle.com/competitions/m5-forecasting-accuracy) + [USAID Shipment Pricing — data.gov](https://catalog.data.gov/dataset/supply-chain-shipment-pricing-data) |
-| 05 | [AI Operations Assistant](#05-ai-operations-assistant) | Planned | The Architect | Conversation design, intent routing, n8n | React, n8n, OpenRouter/Gemini | [Customer Support on Twitter — Kaggle](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) |
-| 06 | [Second Brain OS](#06-second-brain-os) | Planned | The Architect | Knowledge architecture, personal automation | Obsidian, n8n, Gemini, GitHub | Personal vault (no public data) |
+| 05 | [AI Operations Assistant](#05-ai-operations-assistant) | Planned | The Architect | Conversation design, intent routing, n8n | React, n8n, Claude Code SSH | [Customer Support on Twitter — Kaggle](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) |
+| 06 | [Second Brain OS](#06-second-brain-os) | ✅ Done | The Architect | Knowledge architecture, Obsidian + Claude Code | Obsidian, GitHub, Claude Code | Personal vault (no public data) |
+| 07 | [OpsDoc Generator](#07-opsdoc-generator) | Planned | The Architect | Prompt templates, document generation, n8n | React, n8n, Claude Code SSH | None |
+| 08 | [Content Repurposing Engine](#08-content-repurposing-engine) | Planned | The Architect | Claude Code skills, workflow automation | Claude Code skill, n8n SSH | None |
+| 09 | [Generalized Second Brain](#09-generalized-second-brain) | Planned | The Architect | Knowledge system design, Claude Code skills | Obsidian, GitHub, Claude Code | Synthetic (generated) |
+| 10 | [Mental Check-in Workflow](#10-mental-check-in-workflow) | Planned | The Architect | Telegram bot, n8n, SSH orchestration | Telegram, n8n, Claude Code SSH | Personal vault |
 
 ---
 
@@ -23,10 +27,9 @@ All projects use zero or minimal-additional-cost tools:
 
 | Tool | Use |
 |------|-----|
-| **Claude Code** | Primary builder — scaffolding, pipelines, components |
-| **n8n** (self-hosted VPS) | Backend workflows, webhooks, LLM orchestration |
-| **OpenRouter API** | LLM calls (pay per use, low cost) |
-| **Gemini API** (Google AI Studio free tier) | Alternative LLM — generous free limits |
+| **Claude Code** | Primary builder — scaffolding, pipelines, components, AI interaction |
+| **Claude Code (SSH via n8n VPS)** | AI execution for all LLM tasks — uses Claude Pro subscription, zero API cost |
+| **n8n** (self-hosted VPS) | Backend workflows, webhooks, SSH orchestration |
 | **Google Workspace** | Sheets (metrics logging), Forms, Docs |
 | **Netlify** | Frontend deployment (free tier) |
 | **GitHub** | Repo hosting, vault sync (free) |
@@ -103,9 +106,11 @@ All projects use zero or minimal-additional-cost tools:
 
 **Use case:** Personal knowledge infrastructure. Notes, frameworks, meeting outputs, and research scattered across apps with no synthesis layer and unreliable cross-device access.
 
-**What it does:** Obsidian vault synced across all devices via Git (GitHub private repo + Obsidian Git plugin). n8n workflows handle: weekly digest synthesis (Gemini API), web clipper to vault, "ask my notes" query endpoint, and meeting note formatter. Zero additional cost using existing VPS, GitHub free tier, and Gemini free tier.
+**What it does:** Obsidian vault synced across all devices via Git (GitHub private repo + Obsidian Git plugin). Claude Code is the AI interaction layer — open in the vault directory and query notes directly. Zero additional cost.
 
-**Cross-device sync:** Mac/Windows via Obsidian Git plugin; iPhone/iPad via Working Copy + Obsidian mobile; Android via GitJournal.
+**Cross-device sync:** Mac/Windows via Obsidian Git plugin; iPhone/iPad via Working Copy + Obsidian mobile.
+
+**Status: ✅ Done — actively used.**
 
 **Mirrors:** "Logic Architect" operating model — design the system, automate the repetitive, use AI for synthesis.
 
@@ -113,13 +118,66 @@ All projects use zero or minimal-additional-cost tools:
 
 ---
 
+## 07. OpsDoc Generator
+
+**Fictional case:** Ops teams waste hours formatting messy notes into structured SOPs, project charters, and RACI matrices. A single input → clean document in the right template saves 2+ hours per doc.
+
+**What it does:** React web app with n8n backend. User pastes messy notes and selects a document type (SOP / Charter / Risk Register / RACI / Comm Plan). n8n SSHes to VPS and runs Claude Code to generate the structured document. Output rendered as Markdown.
+
+**Mirrors:** PMO standardization work — the same logic behind turning messy process notes into repeatable frameworks.
+
+→ [Full PRD](./claude-mds/07-sop-pmp-generator.md)
+
+---
+
+## 08. Content Repurposing Engine
+
+**Use case:** After publishing a case study or analysis, manually repurposing it for LinkedIn, Twitter, and email is a 1–2 hour task. A Claude Code skill reduces it to under 5 minutes.
+
+**What it does:** Claude Code skill (`/repurpose`) that reads any article markdown file and outputs three formats: a LinkedIn post (hook + insights + CTA), a Twitter/X thread (5–8 tweets), and a TL;DR (3 bullets). Optionally triggered automatically post-publish via n8n SSH.
+
+**No web UI — Claude Code native.**
+
+→ [CLAUDE.md](./claude-mds/08-content-repurposing.md)
+
+---
+
+## 09. Generalized Second Brain
+
+**Use case:** Public forkable version of the personal Second Brain setup — so others can replicate the same Obsidian + Claude Code workflow with a pre-populated dummy vault.
+
+**What it does:** GitHub template repo with: PARA vault structure, synthetic ops professional notes (generated by a Claude Code script), and Claude Code skill files for common vault queries (`/week-summary`, `/open-actions`, `/project-brief`, `/meeting-format`).
+
+**Mirrors:** The personal Second Brain OS — made shareable and reproducible.
+
+→ [CLAUDE.md](./claude-mds/09-generalized-second-brain.md)
+
+---
+
+## 10. Mental Check-in Workflow
+
+**Use case:** Daily or weekly reflections sent via Telegram → automatically structured into a Second Brain note with mood, themes, open questions, and action items extracted by Claude Code.
+
+**What it does:** Telegram bot → n8n workflow → SSH to VPS → Claude Code processes the message → structured markdown note committed to Obsidian vault. n8n replies to Telegram with the extracted summary.
+
+**Mirrors:** Personal operating system — capturing reflection state and converting it to structured knowledge.
+
+→ [CLAUDE.md](./claude-mds/10-mental-checkin.md)
+
+---
+
 ## Build Priority
 
-| Priority | Project | Rationale |
-|----------|---------|-----------|
-| 1 | **Fashion Intelligence Tagger (V2)** | Already have V1 live — upgrade is incremental, highest authenticity |
-| 2 | **Operations Maturity Scorecard** | Lowest effort, highest visibility — lives on existing portfolio, no new deployment |
-| 3 | **Unit Economics Analyzer** | Strongest data skills anchor — mirrors two major case studies |
-| 4 | **Second Brain OS** | Personal infrastructure first — enables better work on everything else |
-| 5 | **AI Operations Assistant** | Strongest long-term differentiator — most complex to build |
-| 6 | **Multi-Warehouse Allocation Model** | Most technically impressive — build after the others to avoid scope creep |
+| Priority | Project | Status | Rationale |
+|----------|---------|--------|-----------|
+| ✅ | **Second Brain OS** | Done | Personal infrastructure — active daily use |
+| ✅ | **Expedia Case Study** | Done (publish pending) | Re-enable Writing section to publish |
+| 1 | **Fashion Intelligence Tagger (V2)** | V1 Live | V1 exists — upgrade to fashion data is incremental, highest authenticity |
+| 2 | **Content Repurposing Engine** | Planned | Claude Code skill — fastest to build, immediate utility for publishing workflow |
+| 3 | **Mental Check-in Workflow** | Planned | Telegram + n8n + SSH — extends Second Brain with daily capture |
+| 4 | **Unit Economics Analyzer** | Planned | Strongest data skills anchor — mirrors two major case studies |
+| 5 | **Generalized Second Brain** | Planned | Public template version of personal system — shareable portfolio artifact |
+| 6 | **AI Operations Assistant** | Planned | Strongest long-term differentiator — most complex to build |
+| 7 | **OpsDoc Generator** | Planned | Useful demo but lower differentiation |
+| 8 | **Multi-Warehouse Allocation Model** | Planned | Most technically impressive — build last to avoid scope creep |
+| — | **Operations Maturity Scorecard** | On hold | Needs copy/content before building |

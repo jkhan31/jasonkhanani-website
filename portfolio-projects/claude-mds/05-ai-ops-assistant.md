@@ -6,7 +6,7 @@ Seller support chatbot. React chat UI → n8n webhook → LLM intent classificat
 ## Stack
 - Frontend: React 18 + Vite + Tailwind CSS → Netlify
 - Backend: n8n (self-hosted VPS) — 2 LLM calls per turn
-- LLM: OpenRouter API (intent classification + response generation)
+- LLM: Claude Code on VPS via n8n SSH Execute node (Claude Pro subscription — no API cost)
 - Metrics: Google Sheets via n8n Google Sheets node
 - Key env var: `VITE_N8N_URL`
 
@@ -28,19 +28,20 @@ src/
 └── App.jsx
 ```
 
-## n8n Workflow (2 calls per turn)
+## n8n Workflow (2 SSH calls per turn)
 ```
 Step 1 — Intent classification
-  POST to OpenRouter → return { intent, confidence }
+  n8n SSH Execute → claude -p "Classify intent: {message}" → return { intent, confidence }
   Intents: shipping | payment | return | listing | account | dispute | unknown
 
 Step 2 — Route by intent
   confidence ≥ 0.7 + deflectable intent → fill response template → return { message, deflected: true }
-  confidence < 0.7 OR non-deflectable → generate escalation summary → return { message, deflected: false, summary }
+  confidence < 0.7 OR non-deflectable → n8n SSH Execute → claude -p "Summarise for escalation: {context}" → return { message, deflected: false, summary }
 
 Step 3 — Log to Google Sheet
   session_id, intent, deflected (bool), latency_ms, timestamp
 ```
+Note: combining intent + response into a single SSH call reduces latency — worth testing.
 
 ## Deflectable Intents
 shipping, payment, return, listing → deflect if confidence ≥ 0.7
@@ -56,12 +57,10 @@ Stored as n8n expression variables — not in frontend code. One template per de
 - All prompt templates in n8n, not frontend
 
 ## API Connections
-- **OpenRouter API** — 2 calls per user turn (intent + response)
+- **Claude Code (SSH)** — called from n8n SSH Execute node; uses Claude Pro subscription (no billing)
 - **Google Sheets API** — write-only, via n8n node (requires Google OAuth in n8n credentials)
-- Gemini Flash (Google AI Studio free tier) usable as OpenRouter alternative for intent classification
 
 ## Useful Claude Skills
 - `/design-review` — after building ChatWindow + intent badge UI
 - `/simplify` — after completing n8n workflow logic
 - `/deploy-check` — before pushing to Netlify
-- `/claude-api` — if switching from OpenRouter to Anthropic SDK directly

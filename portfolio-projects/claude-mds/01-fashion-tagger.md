@@ -6,7 +6,7 @@ React web app: input fashion product names → n8n webhook → LLM assigns categ
 ## Stack
 - Frontend: React 18 + Vite + Tailwind CSS → Netlify
 - Backend: n8n (self-hosted VPS) webhook at `VITE_API_URL`
-- LLM: OpenRouter API (called from n8n, not frontend)
+- LLM: Claude Code on VPS via n8n SSH Execute node (Claude Pro subscription — no API cost)
 - Ground truth: H&M Personalization Dataset (`articles.csv`, Kaggle 2022)
 
 ## Commands
