@@ -381,6 +381,68 @@ section.dark .accent-bar { background: var(--orange); }
   overflow: hidden; max-width: 100%;
 }
 section { overflow: hidden; }
+
+/* ── NAVIGATION FOOTER ── */
+.nav-footer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 80px;
+  background: var(--paper);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+
+.slide-counter {
+  font-size: 12px; color: var(--mid); font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.nav-buttons {
+  display: flex; gap: 14px;
+}
+
+.nav-buttons button {
+  padding: 10px 24px;
+  background: var(--rust);
+  color: var(--paper);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.nav-buttons button:hover:not(:disabled) {
+  background: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(199, 62, 29, 0.3);
+}
+
+.nav-buttons button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.nav-buttons button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .nav-footer {
+    padding: 16px 40px;
+    flex-direction: column-reverse;
+    gap: 14px;
+  }
+  .nav-buttons {
+    width: 100%;
+  }
+  .nav-buttons button {
+    flex: 1;
+  }
+}
 </style>
 </head>
 <body>
@@ -892,14 +954,59 @@ section { overflow: hidden; }
   </div>
 </section>
 
+<footer class="nav-footer">
+  <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">15</span></span>
+  <div class="nav-buttons">
+    <button id="prev-btn" onclick="previousSlide()">← Previous</button>
+    <button id="next-btn" onclick="nextSlide()">Next →</button>
+  </div>
+</footer>
+
 </deck-stage>
 
 <script>
-// Chart rendering after deck is mounted
-document.querySelector('deck-stage').addEventListener('slidechange', (e) => {
+const deck = document.querySelector('deck-stage');
+const TOTAL_SLIDES = 15;
+let currentSlide = 0;
+
+// Update slide counter and button states
+function updateNavigation() {
+  const sections = document.querySelectorAll('section');
+  currentSlide = Array.from(sections).findIndex(s => s.matches(':target')) || 0;
+
+  document.getElementById('current-slide').textContent = currentSlide + 1;
+  document.getElementById('prev-btn').disabled = currentSlide === 0;
+  document.getElementById('next-btn').disabled = currentSlide === sections.length - 1;
+}
+
+// Navigation functions
+function nextSlide() {
+  const sections = document.querySelectorAll('section');
+  if (currentSlide < sections.length - 1) {
+    currentSlide++;
+    deck.next();
+    updateNavigation();
+  }
+}
+
+function previousSlide() {
+  if (currentSlide > 0) {
+    currentSlide--;
+    deck.previous();
+    updateNavigation();
+  }
+}
+
+// Update navigation on slide change
+deck.addEventListener('slidechange', (e) => {
   const idx = e.detail.index;
+  currentSlide = idx;
+  updateNavigation();
   setTimeout(() => initChart(idx), 80);
 });
+
+// Initialize navigation on load
+setTimeout(updateNavigation, 100);
 
 const rendered = new Set();
 
