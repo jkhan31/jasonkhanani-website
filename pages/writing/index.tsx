@@ -192,7 +192,7 @@ const WritingIndex: React.FC<WritingIndexProps> = ({ articles }) => {
                 <ArticleEntry
                   key={article._id}
                   article={article}
-                  readTime={getReadTime(article.body)}
+                  readTime={getReadTime(article.body || [])}
                 />
               ))
             ) : (
