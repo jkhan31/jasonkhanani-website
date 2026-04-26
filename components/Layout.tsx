@@ -12,11 +12,10 @@ const Header: React.FC = () => {
   const router = useRouter();
   
   const links = [
-
     { label: 'Resume', path: '/resume' },
     { label: 'Case Studies', path: '/case-studies' },
+    { label: 'Writing', path: '/writing' },
     // Framework intentionally hidden from top-level navigation
-    // Writing intentionally hidden until articles are published
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
