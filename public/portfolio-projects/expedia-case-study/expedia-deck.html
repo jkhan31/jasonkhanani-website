@@ -18,15 +18,36 @@
   --border: rgba(26,26,26,0.1);
   --paper-dark: #F0E9E1;
 }
-body { background: #000; font-family: 'Inter', sans-serif; }
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+/* ── PRESENTATION VIEWPORT ── */
+deck-stage {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
 
 /* ── SLIDE BASE ── */
 section {
   background: var(--paper);
   color: var(--ink);
-  width: 100%; height: 100%;
-  position: relative;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
+  display: block;
 }
 
 /* ── COMMON LAYOUT ── */
@@ -384,11 +405,18 @@ section { overflow: hidden; }
 
 /* ── NAVIGATION FOOTER ── */
 .nav-footer {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 16px 80px;
   background: var(--paper);
   border-top: 1px solid var(--border);
+  height: 60px;
+  box-sizing: border-box;
   z-index: 100;
 }
 
@@ -954,6 +982,8 @@ section { overflow: hidden; }
   </div>
 </section>
 
+</deck-stage>
+
 <footer class="nav-footer">
   <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">15</span></span>
   <div class="nav-buttons">
@@ -962,18 +992,24 @@ section { overflow: hidden; }
   </div>
 </footer>
 
-</deck-stage>
-
 <script>
-const deck = document.querySelector('deck-stage');
 const TOTAL_SLIDES = 15;
 let currentSlide = 0;
+
+// Show/hide slides
+function showSlide(idx) {
+  const sections = document.querySelectorAll('section');
+  sections.forEach((s, i) => {
+    s.style.display = i === idx ? 'block' : 'none';
+  });
+  currentSlide = idx;
+  updateNavigation();
+  setTimeout(() => initChart(idx), 80);
+}
 
 // Update slide counter and button states
 function updateNavigation() {
   const sections = document.querySelectorAll('section');
-  currentSlide = Array.from(sections).findIndex(s => s.matches(':target')) || 0;
-
   document.getElementById('current-slide').textContent = currentSlide + 1;
   document.getElementById('prev-btn').disabled = currentSlide === 0;
   document.getElementById('next-btn').disabled = currentSlide === sections.length - 1;
@@ -983,30 +1019,20 @@ function updateNavigation() {
 function nextSlide() {
   const sections = document.querySelectorAll('section');
   if (currentSlide < sections.length - 1) {
-    currentSlide++;
-    deck.next();
-    updateNavigation();
+    showSlide(currentSlide + 1);
   }
 }
 
 function previousSlide() {
   if (currentSlide > 0) {
-    currentSlide--;
-    deck.previous();
-    updateNavigation();
+    showSlide(currentSlide - 1);
   }
 }
 
-// Update navigation on slide change
-deck.addEventListener('slidechange', (e) => {
-  const idx = e.detail.index;
-  currentSlide = idx;
-  updateNavigation();
-  setTimeout(() => initChart(idx), 80);
-});
-
-// Initialize navigation on load
-setTimeout(updateNavigation, 100);
+// Initialize on load
+setTimeout(() => {
+  showSlide(0);
+}, 100);
 
 const rendered = new Set();
 
