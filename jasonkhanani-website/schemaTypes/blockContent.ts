@@ -285,5 +285,46 @@ export default defineType({
                 },
             },
         }),
+        // Embed Block (for iframes, interactive content)
+        defineArrayMember({
+            name: 'embed',
+            type: 'object',
+            title: 'Embed',
+            icon: () => '🔗',
+            fields: [
+                {
+                    name: 'url',
+                    type: 'url',
+                    title: 'URL',
+                    description: 'Full URL to the external content (HTML file, interactive deck, etc.)',
+                    validation: (Rule) => Rule.required(),
+                },
+                {
+                    name: 'caption',
+                    type: 'string',
+                    title: 'Caption (optional)',
+                    description: 'Brief description of the embedded content',
+                },
+                {
+                    name: 'height',
+                    type: 'number',
+                    title: 'Height (px)',
+                    description: 'Height of the iframe. Default: 600px',
+                    initialValue: 600,
+                },
+            ],
+            preview: {
+                select: {
+                    url: 'url',
+                    caption: 'caption',
+                },
+                prepare({ url, caption }) {
+                    return {
+                        title: caption || 'Embedded Content',
+                        subtitle: url,
+                    }
+                },
+            },
+        }),
     ],
 })

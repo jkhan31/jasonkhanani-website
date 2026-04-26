@@ -174,6 +174,27 @@ const ptComponents = {
         </div>
       </div>
     ),
+    embed: ({ value }: any) => {
+      const height = value.height || 600;
+
+      return (
+        <div className="my-12">
+          <iframe
+            src={value.url}
+            className="w-full rounded-sm border-0.5 border-sumiInk/10"
+            style={{ height: `${height}px` }}
+            title={value.caption || 'Embedded content'}
+            frameBorder="0"
+            allowFullScreen
+          />
+          {value.caption && (
+            <p className="text-center text-xs uppercase tracking-widest text-sumiInk/60 mt-3">
+              {value.caption}
+            </p>
+          )}
+        </div>
+      );
+    },
   }
   ,
     marks: {
