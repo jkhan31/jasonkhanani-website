@@ -16,10 +16,10 @@
   ],
   "dependencies": {
     "@sanity/presentation": "^2.0.0",
-    "@sanity/vision": "^5.2.0",
+    "@sanity/vision": "^5.22.0",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^5.2.0",
+    "sanity": "^5.22.0",
     "sanity-plugin-asset-source-unsplash": "^7.0.0",
     "sanity-plugin-media": "^4.1.1",
     "styled-components": "^6.1.18"
@@ -27,7 +27,9 @@
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
     "@types/react": "^19.1",
+    "autoprefixer": "^10.5.0",
     "eslint": "^9.28",
+    "postcss": "^8.5.10",
     "prettier": "^3.5",
     "typescript": "^5.8"
   },

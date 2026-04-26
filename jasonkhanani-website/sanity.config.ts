@@ -19,6 +19,17 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            // Case Studies
+            S.listItem()
+              .title('Case Studies')
+              .icon(() => '📊')
+              .schemaType('caseStudy')
+              .child(
+                S.documentTypeList('caseStudy')
+                  .title('Case Studies')
+                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+              ),
+            S.divider(),
             // Featured Articles view
             S.listItem()
               .title('Featured Articles (Max 3)')
@@ -59,7 +70,7 @@ export default defineConfig({
             S.divider(),
             // Other document types
             ...S.documentTypeListItems().filter(
-              (listItem) => !['article'].includes(listItem.getId() || '')
+              (listItem) => !['article', 'caseStudy'].includes(listItem.getId() || '')
             ),
           ]),
     }),
