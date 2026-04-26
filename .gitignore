@@ -34,3 +34,7 @@ out
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code settings (local to user)
+.claude/
+.claudeignore
