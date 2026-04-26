@@ -178,10 +178,10 @@ const ptComponents = {
       const height = value.height || 600;
 
       return (
-        <div className="my-12">
+        <div className="my-12 -mx-6 md:mx-0 overflow-x-auto">
           <iframe
             src={value.url}
-            className="w-full rounded-sm border-0.5 border-sumiInk/10"
+            className="w-full min-w-full md:rounded-sm md:border-0.5 border-sumiInk/10"
             style={{ height: `${height}px` }}
             title={value.caption || 'Embedded content'}
             frameBorder="0"
