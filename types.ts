@@ -6,6 +6,8 @@ export interface CaseStudy {
   hook?: string;
   details: string[];
   impact: string;
+  diagnosis?: string;
+  learned?: string;
 }
 
 export type ContentBlock = 

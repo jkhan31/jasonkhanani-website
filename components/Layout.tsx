@@ -12,9 +12,10 @@ const Header: React.FC = () => {
   const router = useRouter();
   
   const links = [
-    { label: 'Resume', path: '/resume' },
-    { label: 'Case Studies', path: '/case-studies' },
+    { label: 'Work', path: '/work' },
     { label: 'Writing', path: '/writing' },
+    { label: 'About', path: '/about' },
+    { label: 'Resume', path: '/resume' },
     // Framework intentionally hidden from top-level navigation
   ];
 

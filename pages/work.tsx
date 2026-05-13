@@ -58,12 +58,30 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
           </div>
         </div>
 
+        {/* Diagnosis Section */}
+        {study.diagnosis && (
+          <div className="mb-5 pb-4 border-b border-hankoRust/10">
+            <p className="text-sm italic text-sumiInk/70 leading-relaxed">
+              <span className="font-semibold text-sumiInk/80">The Challenge:</span> {study.diagnosis}
+            </p>
+          </div>
+        )}
+
         {/* Details */}
         <div className="space-y-3 mb-4 flex-grow">
           {study.details.map((detail: string, idx: number) => (
             <DetailItem key={idx} text={detail} />
           ))}
         </div>
+
+        {/* Learning Section */}
+        {study.learned && (
+          <div className="mb-3 pt-3 border-t border-sumiInk/5">
+            <p className="text-xs text-sumiInk/60 leading-relaxed italic">
+              {study.learned}
+            </p>
+          </div>
+        )}
 
         {/* Impact Section */}
         <div className="pt-3 border-t-0.5 border-hankoRust/10">
@@ -77,31 +95,31 @@ const CaseCard: React.FC<{ study: CaseStudy }> = ({ study }) => {
   );
 };
 
-const CaseStudies: React.FC = () => {
+const Work: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Case Studies | Jason K Hanani</title>
+        <title>Work | Jason K Hanani</title>
         <meta
           name="description"
-          content="Selected platform initiatives with measurable business impact. Context, decision, and outcome for each case."
+          content="Selected projects with measurable business impact. Problem diagnosis, design approach, and outcomes."
         />
-        <meta property="og:title" content="Case Studies - Jason K Hanani" />
+        <meta property="og:title" content="Work - Jason K Hanani" />
         <meta property="og:description" content="€1.5M+ quantified impact across e-commerce, logistics, and operations." />
-        <meta property="og:url" content="https://jasonkhanani.com/case-studies/" />
-        <link rel="canonical" href="https://jasonkhanani.com/case-studies/" />
+        <meta property="og:url" content="https://jasonkhanani.com/work/" />
+        <link rel="canonical" href="https://jasonkhanani.com/work/" />
       </Head>
 
       <div className="min-h-screen bg-ricePaper">
       <div className="px-6 py-16 md:py-24 max-w-7xl mx-auto animate-in fade-in duration-700">
         <SectionHeader
-          title="Case Studies"
+          title="Work"
           className="mb-6"
         />
 
         <div className="max-w-3xl mb-16">
           <p className="text-lg text-sumiInk/70 leading-relaxed mb-6">
-            Platform initiatives with measurable impact.
+            Selected projects demonstrating how I diagnose problems and design solutions.
           </p>
         </div>
 
@@ -134,4 +152,4 @@ const CaseStudies: React.FC = () => {
   );
 };
 
-export default CaseStudies;
+export default Work;

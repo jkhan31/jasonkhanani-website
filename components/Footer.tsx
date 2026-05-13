@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
               Jason K Hanani
             </h2>
             <p className="text-xs font-bold tracking-widest uppercase text-foxOrange mb-8">
-              Operations &amp; Product Systems
+              Business Analyst &amp; Systems Designer
             </p>
             <p className="text-ricePaper/60 max-w-md leading-relaxed text-lg">
               For inquiries, reach out via email or LinkedIn.
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
       {/* Copyright Bar */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-ricePaper/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-ricePaper/20">
         <span>© {new Date().getFullYear()} Jason K Hanani</span>
-        <span>Operations &amp; Product Systems</span>
+        <span>Business Analyst &amp; Systems Designer</span>
       </div>
     </footer>
   );
