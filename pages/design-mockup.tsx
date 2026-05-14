@@ -119,44 +119,44 @@ export default function DesignMockup() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
             <h1 className="text-4xl font-bold mb-4 text-gray-900">Color Palette Mockups</h1>
-            <p className="text-lg text-gray-600">See how each palette looks applied across the site</p>
+            <p className="text-lg text-gray-600">Jewel tone palettes with emerald green and deep sapphire blue</p>
             <p className="text-sm text-gray-500 mt-4">
               <Link href="/" className="text-blue-600 hover:underline">← Back to home</Link>
             </p>
           </div>
 
-          {/* Option 1: Deep Warm Earth */}
+          {/* Option 1: Emerald & Sapphire */}
           <PalettePreview
-            name="Option 1: Deep Warm Earth (Recommended)"
-            bg="#F5F1EC"
-            text="#2B2520"
-            accent1="#6B4423"
-            accent2="#4A6B5F"
-            accent3="#2C3E50"
+            name="Option 1: Emerald & Sapphire (Recommended)"
+            bg="#F8FAFB"
+            text="#1A3A2E"
+            accent1="#2D6A4F"
+            accent2="#0F3460"
+            accent3="#E0F2F1"
           />
 
-          {/* Option 2: Warm Rich Earth */}
+          {/* Option 2: Rich Emerald Focus */}
           <PalettePreview
-            name="Option 2: Warm Rich Earth"
-            bg="#FAF8F3"
-            text="#3E3835"
-            accent1="#8B5A2B"
-            accent2="#556B5A"
-            accent3="#3D5A6C"
+            name="Option 2: Rich Emerald & Navy"
+            bg="#F9FBFA"
+            text="#0D2818"
+            accent1="#1B4332"
+            accent2="#1B3A57"
+            accent3="#D1E8E4"
           />
 
-          {/* Option 3: Earthy Modern */}
+          {/* Option 3: Sapphire Focus with Emerald */}
           <PalettePreview
-            name="Option 3: Earthy Modern"
-            bg="#F9F6F1"
-            text="#1F1B17"
-            accent1="#7A5D4A"
-            accent2="#5B7A6B"
-            accent3="#34495E"
+            name="Option 3: Deep Sapphire & Emerald"
+            bg="#FAFBFC"
+            text="#0E1B2C"
+            accent1="#1E3A8A"
+            accent2="#2D6A4F"
+            accent3="#E0E7FF"
           />
 
           <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-            <p className="text-gray-600 mb-4">Which palette do you prefer?</p>
+            <p className="text-gray-600 mb-4">Which jewel tone palette feels right?</p>
             <p className="text-sm text-gray-500">
               Visit <code className="bg-gray-200 px-2 py-1 rounded">/design-mockup</code> and share your choice.
             </p>
