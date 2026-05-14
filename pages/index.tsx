@@ -42,7 +42,7 @@ const Hero: React.FC = () => (
           I help businesses figure out what's actually broken — and design what needs to be built to fix it. I work at the intersection of business and technology: translating messy problems into clear requirements, structured decisions, and systems that work.
         </p>
         <p className="text-base text-sumiInk/70 leading-relaxed">
-          4.5 years across ZALORA Group. €1.5M+ in documented outcomes across 6 markets.
+          €1.5M+ in quantified impact across e-commerce operations and logistics.
         </p>
       </div>
 
