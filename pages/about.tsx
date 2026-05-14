@@ -20,18 +20,18 @@ const AboutPage = () => {
       <div className="min-h-screen p-4 md:p-8 lg:p-12 animate-in slide-in-from-bottom-4 duration-700">
         <div className="max-w-3xl mx-auto">
           {/* Opening Statement */}
-          <section className="mb-16">
+          <div className="mb-20">
             <p className="text-xl leading-relaxed text-sumiInk mb-6">
               I'm a business analyst and systems designer. I work at the intersection of business and technology—diagnosing what's actually broken, designing what needs to be built, and coordinating stakeholders to turn that design into something that works.
             </p>
             <p className="text-base leading-relaxed text-sumiInk/75">
               I'm not interested in outputs. I'm interested in outcomes—what actually changed, what it cost, why it matters. If a system is broken, I want to find the root cause, not patch the symptom.
             </p>
-          </section>
+          </div>
 
           {/* How I Work */}
-          <section className="mb-16 pb-12 border-b border-0.5 border-sumiInk/10">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-6">How I Work</h2>
+          <div className="mb-20">
+            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-8">How I Work</h2>
             <div className="space-y-4 text-base leading-relaxed text-sumiInk/75">
               <p>
                 I do deep diagnostic work before recommending solutions. That means asking questions—a lot of them—looking at data, and understanding the actual constraints before designing the fix. Most business problems aren't what they first appear to be.
@@ -43,31 +43,31 @@ const AboutPage = () => {
                 I work best when the problem is clear and I have autonomy to design the solution. I don't need constant approval loops. I need context, constraints, and deadlines—then I'll deliver something that works.
               </p>
             </div>
-          </section>
+          </div>
 
           {/* Background */}
-          <section className="mb-16 pb-12 border-b border-0.5 border-sumiInk/10">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-6">Background</h2>
+          <div className="mb-20">
+            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-8">Background</h2>
             <div className="space-y-4 text-base leading-relaxed text-sumiInk/75">
               <p>
                 I'm a systems thinker by training—B.S. from the University of Michigan in Industrial & Operations Engineering. That education shaped how I see problems: everything is a system, every system has constraints, and understanding the constraints is how you improve the system.
               </p>
               <p>
-                I spent 4.5 years at ZALORA Group, a multi-market e-commerce platform across Southeast Asia. I moved through four roles—from Graduate Trainee through Commercial PMO—working on marketplace operations, logistics architecture, payments, and seller operations across Indonesia, Malaysia, Singapore, Philippines, Vietnam, and Taiwan.
+                I've spent the last several years working in e-commerce operations and logistics, across multi-market platforms in Southeast Asia. I've owned work spanning marketplace architecture, fulfillment systems, pricing logic, and seller operations. Over that time, I've designed and implemented solutions that delivered €1.5M+ in quantified impact.
               </p>
               <p>
-                Before that, I worked at Paxel on the product operations side, designing routing logic and network optimization for a regional last-mile network. I've also spent time in earlier-stage work—microcredit in Michigan, airport operations in Jakarta, and startup environments where you have to wear every hat.
+                I've also worked on the product operations side, designing routing logic and network optimization for logistics networks, and in earlier-stage environments where you have to wear every hat—startup work in multiple contexts, operational roles in different industries.
               </p>
             </div>
-          </section>
+          </div>
 
           {/* What I'm Looking For */}
-          <section className="mb-16 pb-12 border-b border-0.5 border-sumiInk/10">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-6">What I'm Looking For</h2>
-            <p className="text-base leading-relaxed text-sumiInk/75 mb-4">
+          <div className="mb-20">
+            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-8">What I'm Looking For</h2>
+            <p className="text-base leading-relaxed text-sumiInk/75 mb-6">
               I'm currently open to two paths:
             </p>
-            <ul className="space-y-3 list-none text-base text-sumiInk/75">
+            <ul className="space-y-3 list-none text-base text-sumiInk/75 mb-8">
               <li className="flex gap-3 leading-relaxed">
                 <span className="text-hankoRust shrink-0 mt-0.5 font-bold">•</span>
                 <span><strong>Full-time roles</strong> in Business Analysis, Product Operations, or Systems design—roles where I own diagnostic work, design solutions, and can measure outcomes.</span>
@@ -77,18 +77,18 @@ const AboutPage = () => {
                 <span><strong>Freelance engagements</strong> in scoped requirements design, business case development, or process diagnostics—I can work with your team on specific problems and hand off clear deliverables.</span>
               </li>
             </ul>
-            <p className="text-base leading-relaxed text-sumiInk/75 mt-6">
+            <p className="text-base leading-relaxed text-sumiInk/75">
               I'm remote-first and Jakarta-based. I work best on deep projects with clear ownership, not reactive fire-fighting or constant status meetings.
             </p>
-          </section>
+          </div>
 
           {/* Personal */}
-          <section className="mb-16 pb-12 border-b border-0.5 border-sumiInk/10">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-6">A Human Note</h2>
+          <div className="mb-20">
+            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-hankoRust mb-8">A Human Note</h2>
             <p className="text-base leading-relaxed text-sumiInk/75">
               I've been based in Jakarta for the last five years. I'm fascinated by systems and how people actually use them—why they break, how to fix them, what makes some processes elegant and others chaotic. Outside of work, I read a lot, spend time on the water, and work on small projects that let me think deeply about problems.
             </p>
-          </section>
+          </div>
 
           {/* CTA Section */}
           <section className="py-12" id="contact">
