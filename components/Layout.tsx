@@ -57,7 +57,7 @@ const Header: React.FC = () => {
             {router.pathname !== '/' && (
               <Link
                 href="/"
-                className={`text-sm tracking-wide transition-colors text-sumiInk hover:text-foxOrange`}
+                className={`text-sm tracking-wide transition-colors text-sumiInk hover:text-sageBridge`}
               >
                 Home
               </Link>
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                 className={`text-sm tracking-wide transition-colors ${
                   router.pathname === link.path 
                     ? 'text-hankoRust font-semibold' 
-                    : 'text-sumiInk hover:text-foxOrange'
+                    : 'text-sumiInk hover:text-sageBridge'
                 }`}
               >
                 {link.label}
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
               href="https://www.linkedin.com/in/jasonkhanani/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm tracking-wide text-sumiInk hover:text-foxOrange inline-flex items-center"
+              className="text-sm tracking-wide text-sumiInk hover:text-sageBridge inline-flex items-center"
               aria-label="LinkedIn profile"
             >
               <Linkedin size={18} />
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
               href="/"
               onClick={closeMenu}
               className={`text-4xl font-sans font-bold transition-all duration-500 delay-0ms ${
-                'text-sumiInk hover:text-foxOrange'
+                'text-sumiInk hover:text-sageBridge'
               } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
               Home
@@ -126,7 +126,7 @@ const Header: React.FC = () => {
               className={`text-4xl font-sans font-bold transition-all duration-500 delay-[${idx * 100}ms] ${
                 router.pathname === link.path
                   ? 'text-hankoRust scale-110'
-                  : 'text-sumiInk hover:text-foxOrange'
+                  : 'text-sumiInk hover:text-sageBridge'
               } ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
               {link.label}
@@ -138,7 +138,7 @@ const Header: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
-            className={`inline-flex items-center justify-center text-sm tracking-[0.3em] uppercase font-bold text-sumiInk/60 hover:text-foxOrange transition-all duration-700 delay-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
+            className={`inline-flex items-center justify-center text-sm tracking-[0.3em] uppercase font-bold text-sumiInk/60 hover:text-sageBridge transition-all duration-700 delay-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
           >
             <Linkedin size={28} />
             <span className="sr-only">LinkedIn</span>
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="relative min-h-screen selection:bg-foxOrange/20">
+    <div className="relative min-h-screen selection:bg-sageBridge/20">
       {/* Texture Overlay */}
       <div className="fixed inset-0 bg-noise z-[9999]" />
       

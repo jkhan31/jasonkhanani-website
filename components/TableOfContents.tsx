@@ -123,9 +123,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content, placement = 
               <button
                 onClick={() => handleClick(heading.id)}
                 className={`
-                  text-left text-sm transition-colors hover:text-foxOrange
+                  text-left text-sm transition-colors hover:text-sageBridge
                   ${heading.level === 3 ? 'pl-4' : ''}
-                  ${activeId === heading.id ? 'text-foxOrange font-semibold' : 'text-sumiInk/60'}
+                  ${activeId === heading.id ? 'text-sageBridge font-semibold' : 'text-sumiInk/60'}
                 `}
               >
                 {heading.text}
@@ -149,11 +149,11 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content, placement = 
             <li key={heading.id}>
               <button
                 onClick={() => handleClick(heading.id)}
-                className={`text-left text-sm transition-colors hover:text-foxOrange ${
+                className={`text-left text-sm transition-colors hover:text-sageBridge ${
                   heading.level === 3 ? 'pl-4' : ''
                 } ${
                   activeId === heading.id
-                    ? 'text-foxOrange font-semibold'
+                    ? 'text-sageBridge font-semibold'
                     : 'text-sumiInk/60'
                 }`}
               >

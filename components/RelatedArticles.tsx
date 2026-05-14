@@ -32,7 +32,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({ articles }) => {
                   day: 'numeric',
                 })} {related.category && `• ${related.category}`}
               </span>
-              <h4 className="text-2xl font-serif text-sumiInk group-hover:text-foxOrange transition-colors leading-tight mb-4">
+              <h4 className="text-2xl font-serif text-sumiInk group-hover:text-sageBridge transition-colors leading-tight mb-4">
                 {related.title}
               </h4>
               {related.excerpt && (
@@ -41,7 +41,7 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({ articles }) => {
                 </p>
               )}
               <div className="flex items-center text-[10px] tracking-widest uppercase font-bold text-sumiInk group-hover:translate-x-1 transition-transform duration-300">
-                Read Full Essay <span className="ml-2 text-foxOrange">→</span>
+                Read Full Essay <span className="ml-2 text-sageBridge">→</span>
               </div>
             </article>
           </Link>

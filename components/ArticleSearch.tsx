@@ -95,7 +95,7 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
     
     return parts.map((part, i) => 
       regex.test(part) ? (
-        <mark key={i} className="bg-foxOrange/20 text-sumiInk font-semibold">
+        <mark key={i} className="bg-sageBridge/20 text-sumiInk font-semibold">
           {part}
         </mark>
       ) : (
@@ -118,7 +118,7 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search articles by title, content, tags, or category..."
           className="w-full pl-12 pr-12 py-4 text-base border border-sumiInk/20 rounded-md 
-                     focus:outline-none focus:ring-2 focus:ring-foxOrange/50 focus:border-foxOrange
+                     focus:outline-none focus:ring-2 focus:ring-sageBridge/50 focus:border-sageBridge
                      bg-white text-sumiInk placeholder-sumiInk/40"
         />
         {searchQuery && (
@@ -151,7 +151,7 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
                 <a
                   key={result._id}
                   href={`/writing/${result.slug}`}
-                  className="block px-4 py-4 hover:bg-foxOrange/5 border-b border-sumiInk/5 
+                  className="block px-4 py-4 hover:bg-sageBridge/5 border-b border-sumiInk/5 
                              last:border-b-0 transition-colors"
                   onClick={clearSearch}
                 >
@@ -164,7 +164,7 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
                     </p>
                   )}
                   <div className="flex items-center gap-3 text-xs text-sumiInk/50">
-                    <span className="px-2 py-0.5 border border-foxOrange/20 text-foxOrange">
+                    <span className="px-2 py-0.5 border border-sageBridge/20 text-sageBridge">
                       {result.category}
                     </span>
                     <span>

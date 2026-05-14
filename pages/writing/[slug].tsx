@@ -77,7 +77,7 @@ const ptComponents = {
       );
     },
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-2 border-foxOrange pl-6 py-2 my-10 italic text-xl text-sumiInk/80 bg-foxOrange/5">
+      <blockquote className="border-l-2 border-sageBridge pl-6 py-2 my-10 italic text-xl text-sumiInk/80 bg-sageBridge/5">
         {children}
       </blockquote>
     ),
@@ -157,7 +157,7 @@ const ptComponents = {
       );
     },
     quoteBlock: ({ value }: any) => (
-      <div className="my-12 px-8 py-6 border-l-4 border-foxOrange bg-foxOrange/5">
+      <div className="my-12 px-8 py-6 border-l-4 border-sageBridge bg-sageBridge/5">
         <p className="text-xl italic text-sumiInk/90 leading-relaxed mb-4">
           "{value.quote}"
         </p>
@@ -166,7 +166,7 @@ const ptComponents = {
           {value.source && (
             <>
               {value.sourceUrl ? (
-                <>, <a href={value.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-foxOrange hover:underline">{value.source}</a></>
+                <>, <a href={value.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-sageBridge hover:underline">{value.source}</a></>
               ) : (
                 <>, {value.source}</>
               )}
@@ -198,7 +198,7 @@ const ptComponents = {
         return (
           <Link 
             href={relativePath || '/'} 
-            className="text-foxOrange underline decoration-foxOrange/30 hover:decoration-foxOrange transition-all font-medium"
+            className="text-sageBridge underline decoration-sageBridge/30 hover:decoration-sageBridge transition-all font-medium"
           >
             {inlineChildren}
           </Link>
@@ -210,7 +210,7 @@ const ptComponents = {
           href={target} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="text-sumiInk/80 underline decoration-sumiInk/30 hover:text-foxOrange transition-colors"
+          className="text-sumiInk/80 underline decoration-sumiInk/30 hover:text-sageBridge transition-colors"
         >
           {inlineChildren}
         </a>
@@ -344,7 +344,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
 
       <Link 
         href="/writing" 
-        className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-foxOrange transition-colors mb-12 group"
+        className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-hankoRust hover:text-sageBridge transition-colors mb-12 group"
       >
         <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
         Back to Writing
@@ -354,7 +354,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
         <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-[10px] uppercase tracking-[0.2em] font-bold text-sumiInk/60 mb-6">
           <span className="flex items-center gap-1.5"><Calendar size={12} /> {formattedDate}</span>
           <span className="flex items-center gap-1.5"><Clock size={12} /> {readTime} Read</span>
-          <span className="px-2 py-0.5 border border-foxOrange/20 text-foxOrange">{current.category}</span>
+          <span className="px-2 py-0.5 border border-sageBridge/20 text-sageBridge">{current.category}</span>
         </div>
         
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-sumiInk leading-[1.1] mb-8">
@@ -362,7 +362,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
         </h1>
         
         {current.excerpt && (
-          <p className="text-xl text-hankoRust italic font-serif leading-relaxed border-l-2 border-foxOrange/30 pl-8 mb-10">
+          <p className="text-xl text-hankoRust italic font-serif leading-relaxed border-l-2 border-sageBridge/30 pl-8 mb-10">
             {current.excerpt}
           </p>
         )}
@@ -427,7 +427,7 @@ const Article: React.FC<ArticleProps> = ({ data }) => {
           <p className="text-sumiInk/50 text-sm max-w-sm mb-8">
             Interested in how these principles apply to your specific operational bottlenecks?
           </p>
-          <Link href="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-sumiInk hover:text-foxOrange hover:border-foxOrange transition-all pb-1">
+          <Link href="/resume" className="text-xs font-bold uppercase tracking-widest border-b border-sumiInk hover:text-sageBridge hover:border-sageBridge transition-all pb-1">
             Review my full experience
           </Link>
         </div>

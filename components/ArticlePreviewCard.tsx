@@ -68,7 +68,7 @@
 
         {/* CTA and Tags */}
         <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold tracking-widest text-hankoRust border-b border-hankoRust/20 pb-0.5 group-hover:border-foxOrange group-hover:text-foxOrange transition-all">
+            <span className="text-[10px] uppercase font-bold tracking-widest text-hankoRust border-b border-hankoRust/20 pb-0.5 group-hover:border-sageBridge group-hover:text-sageBridge transition-all">
             Read Essay
             </span>
             <div className="flex flex-wrap gap-2 justify-end">

@@ -11,7 +11,7 @@ module.exports = {
         ricePaper: '#FAF5F0',
         sumiInk: '#1A1A1A',
         hankoRust: '#C73E1D',
-        foxOrange: '#F07F2E',
+        sageBridge: '#5A7A6F',
       },
       fontFamily: {
         serif: ['"Archivo"', 'sans-serif'],
