@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
   const email = "contact@jasonkhanani.com";
 
   return (
-    <footer className="bg-sumiInk text-ricePaper pt-24 pb-12 px-6 border-t border-ricePaper/5">
+    <footer className="bg-diagnosticBlue text-ricePaper pt-24 pb-12 px-6 border-t border-ricePaper/5">
       <div className="max-w-7xl mx-auto mb-32">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-sans font-bold mb-4 text-ricePaper leading-tight">
               Jason K Hanani
             </h2>
-            <p className="text-xs font-bold tracking-widest uppercase text-sageBridge mb-8">
+            <p className="text-xs font-bold tracking-widest uppercase text-warmAmber mb-8">
               Business Analyst &amp; Systems Designer
             </p>
             <p className="text-ricePaper/60 max-w-md leading-relaxed text-lg">
@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
           <div className="lg:pl-24 pt-4 lg:pt-20">
             <div className="flex flex-col gap-8">
               <div>
-                <span className="text-xs font-bold tracking-widest uppercase text-sageBridge mb-4 block">Get in Touch</span>
+                <span className="text-xs font-bold tracking-widest uppercase text-warmAmber mb-4 block">Get in Touch</span>
                 <a
                   href={`mailto:${email}`}
                   className="group flex items-center gap-3 text-lg md:text-xl font-sans text-ricePaper hover:text-sageBridge transition-colors"
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
                 href="https://linkedin.com/in/jasonkhanani"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-sageBridge hover:text-ricePaper transition-colors w-fit"
+                className="group flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-warmAmber hover:text-ricePaper transition-colors w-fit"
               >
                 <span>LinkedIn</span>
                 <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

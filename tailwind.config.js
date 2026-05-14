@@ -12,6 +12,14 @@ module.exports = {
         sumiInk: '#1A1A1A',
         hankoRust: '#C73E1D',
         sageBridge: '#5A7A6F',
+        // Palette 1: Diagnostic Blue + Warm Amber
+        pageBg: '#F5F5F5',
+        cardBg: '#FFFFFF',
+        diagnosticBlue: '#1E3A5F',
+        warmAmber: '#D4891A',
+        softTeal: '#2E8B8B',
+        darkText: '#2C2C2C',
+        bodyText: '#5A5550',
       },
       fontFamily: {
         serif: ['"Archivo"', 'sans-serif'],

@@ -150,7 +150,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
       
       <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
       <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
-      <p className="text-lg text-sumiInk/60 mb-8 leading-relaxed max-w-2xl">
+      <p className="text-lg text-darkText/60 mb-8 leading-relaxed max-w-2xl">
         Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
       </p>
 
@@ -161,7 +161,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest text-sumiInk/80 border border-sumiInk/20 rounded-md hover:border-hankoRust/50 hover:text-sumiInk transition-all"
+          className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest text-darkText/80 border border-darkText/20 rounded-md hover:border-warmAmber/50 hover:text-darkText transition-all"
         >
           <Filter size={14} />
           <span>Show/Hide Filters</span>
@@ -169,12 +169,12 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
         </button>
 
         {activeFilter && (
-          <div className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest bg-sumiInk/5 border border-sumiInk/20 rounded-md">
-            <span className="text-sumiInk/60">Active:</span>
-            <span className="text-sumiInk">{activeFilter}</span>
+          <div className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest bg-darkText/5 border border-darkText/20 rounded-md">
+            <span className="text-darkText/60">Active:</span>
+            <span className="text-darkText">{activeFilter}</span>
             <button
               onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
-              className="ml-2 text-sumiInk/60 hover:text-hankoRust transition-colors"
+              className="ml-2 text-darkText/60 hover:text-warmAmber transition-colors"
               aria-label="Clear filter"
             >
               <X size={14} />
@@ -191,7 +191,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
           opacity: showFilters ? 1 : 0
         }}
       >
-        <div className="mb-8 pb-6 border-b-0.5 border-sumiInk/10">
+        <div className="mb-8 pb-6 border-b-0.5 border-darkText/10">
           {/* Quick Filters Section */}
           <div className="mb-6">
             <div className="flex flex-wrap gap-3">
@@ -200,8 +200,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                 onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
                 className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
                   !activeFilter 
-                    ? 'bg-hankoRust text-ricePaper border-hankoRust shadow-md' 
-                    : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
+                    ? 'bg-warmAmber text-cardBg border-warmAmber shadow-md' 
+                    : 'text-darkText/60 border-darkText/20 hover:border-warmAmber/50 hover:text-darkText'
                 }`}
               >
                 <span>All Insights</span>
@@ -214,11 +214,11 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                   onClick={() => { setActiveFilter('FEATURED'); setActiveFilterKind('special'); }}
                   className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
                     isActiveFilter('FEATURED', 'special')
-                      ? 'bg-sageBridge text-ricePaper border-sageBridge shadow-md'
-                      : 'text-sumiInk/60 border-sumiInk/20 hover:border-sageBridge/50 hover:text-sumiInk'
+                      ? 'bg-sageBridge text-cardBg border-sageBridge shadow-md'
+                      : 'text-darkText/60 border-darkText/20 hover:border-sageBridge/50 hover:text-darkText'
                   }`}
                 >
-                  <Star size={12} className={isActiveFilter('FEATURED', 'special') ? 'fill-ricePaper' : ''} />
+                  <Star size={12} className={isActiveFilter('FEATURED', 'special') ? 'fill-cardBg' : ''} />
                   <span>Featured</span>
                   <span className="opacity-80">({featuredCount})</span>
                 </button>
@@ -230,8 +230,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
           {allCategories.length > 0 && (
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-3">
-                <BookOpen size={16} className="text-sumiInk/60" />
-                <h3 className="text-xs font-bold uppercase tracking-widest text-sumiInk/60">Categories</h3>
+                <BookOpen size={16} className="text-darkText/60" />
+                <h3 className="text-xs font-bold uppercase tracking-widest text-darkText/60">Categories</h3>
               </div>
               <div className="flex flex-wrap gap-3">
                 {allCategories.map(cat => (
@@ -240,8 +240,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                     onClick={() => { setActiveFilter(cat); setActiveFilterKind('category'); }}
                     className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
                       isActiveFilter(cat, 'category')
-                        ? 'bg-sumiInk text-ricePaper border-sumiInk shadow-md'
-                        : 'text-sumiInk/60 border-sumiInk/20 hover:border-sumiInk/50 hover:text-sumiInk'
+                        ? 'bg-darkText text-cardBg border-darkText shadow-md'
+                        : 'text-darkText/60 border-darkText/20 hover:border-darkText/50 hover:text-darkText'
                     }`}
                   >
                     <span>{cat}</span>
@@ -256,8 +256,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
           {allSeries.length > 0 && (
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Layers size={16} className="text-sumiInk/60" />
-                <h3 className="text-xs font-bold uppercase tracking-widest text-sumiInk/60">Series</h3>
+                <Layers size={16} className="text-darkText/60" />
+                <h3 className="text-xs font-bold uppercase tracking-widest text-darkText/60">Series</h3>
               </div>
               <div className="flex flex-wrap gap-3">
                 {allSeries.map(s => (
@@ -266,8 +266,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                     onClick={() => { setActiveFilter(s); setActiveFilterKind('series'); }}
                     className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-full transition-all flex items-center gap-2 ${
                       isActiveFilter(s, 'series')
-                        ? 'bg-sageBridge text-ricePaper border-sageBridge shadow-md'
-                        : 'text-sumiInk/60 border-sumiInk/20 hover:border-sageBridge/50 hover:text-sumiInk'
+                        ? 'bg-sageBridge text-cardBg border-sageBridge shadow-md'
+                        : 'text-darkText/60 border-darkText/20 hover:border-sageBridge/50 hover:text-darkText'
                     }`}
                   >
                     <span>{s}</span>
@@ -286,8 +286,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
           <div className="flex items-start gap-3">
             <Info size={20} className="text-sageBridge flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest text-sumiInk mb-2">About This Series</h4>
-              <p className="text-sm text-sumiInk/80 leading-relaxed">{activeSeriesDescription}</p>
+              <h4 className="text-sm font-bold uppercase tracking-widest text-darkText mb-2">About This Series</h4>
+              <p className="text-sm text-darkText/80 leading-relaxed">{activeSeriesDescription}</p>
             </div>
           </div>
         </div>
@@ -313,7 +313,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
                 className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-md transition-all ${
-                  currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:border-hankoRust/50 hover:text-sumiInk'
+                  currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:border-warmAmber/50 hover:text-darkText'
                 }`}
               >
                 Previous
@@ -325,8 +325,8 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                   onClick={() => setCurrentPage(pageNum)}
                   className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-md transition-all ${
                     currentPage === pageNum 
-                      ? 'bg-hankoRust text-ricePaper border-hankoRust' 
-                      : 'text-sumiInk/60 border-sumiInk/20 hover:border-hankoRust/50 hover:text-sumiInk'
+                      ? 'bg-warmAmber text-cardBg border-warmAmber' 
+                      : 'text-darkText/60 border-darkText/20 hover:border-warmAmber/50 hover:text-darkText'
                   }`}
                 >
                   {pageNum}
@@ -337,7 +337,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
                 onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border rounded-md transition-all ${
-                  currentPage === totalPages ? 'opacity-40 cursor-not-allowed' : 'hover:border-hankoRust/50 hover:text-sumiInk'
+                  currentPage === totalPages ? 'opacity-40 cursor-not-allowed' : 'hover:border-warmAmber/50 hover:text-darkText'
                 }`}
               >
                 Next
@@ -347,11 +347,11 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
         </>
       ) : (
         /* Empty State */
-        <div className="py-20 text-center border-0.5 border-dashed border-sumiInk/20 rounded-lg">
-          <p className="text-sumiInk/60 font-sans text-lg mb-4">No articles found in this filter.</p>
+        <div className="py-20 text-center border-0.5 border-dashed border-darkText/20 rounded-lg">
+          <p className="text-darkText/60 font-sans text-lg mb-4">No articles found in this filter.</p>
           <button
             onClick={() => { setActiveFilter(null); setActiveFilterKind(null); }}
-            className="text-xs font-bold uppercase tracking-widest text-hankoRust border-b border-hankoRust hover:border-sageBridge hover:text-sageBridge transition-all"
+            className="text-xs font-bold uppercase tracking-widest text-warmAmber border-b border-warmAmber hover:border-sageBridge hover:text-sageBridge transition-all"
           >
             Clear Filters
           </button>
