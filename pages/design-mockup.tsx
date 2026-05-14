@@ -25,7 +25,7 @@ const PalettePreview = ({ name, description, bg, text, primary, accent, neutral 
       </div>
       <div>
         <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: accent }}></div>
-        <p className="text-xs text-gray-600"><strong>Warm Accent</strong><br/>{accent}</p>
+        <p className="text-xs text-gray-600"><strong>Accent</strong><br/>{accent}</p>
       </div>
       <div>
         <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: neutral }}></div>
@@ -42,7 +42,7 @@ const PalettePreview = ({ name, description, bg, text, primary, accent, neutral 
         Jason K Hanani
       </h1>
       <p className="text-xl leading-relaxed mb-8 max-w-2xl" style={{ color: text }}>
-        I help businesses figure out what's actually broken — and design what needs to be built to fix it.
+        I help businesses figure out what&apos;s actually broken — and design what needs to be built to fix it.
       </p>
       <div className="flex flex-wrap gap-4">
         <button className="px-8 py-4 font-bold tracking-[0.15em] uppercase rounded-full text-white transition-all hover:shadow-lg" style={{ backgroundColor: primary }}>
@@ -119,98 +119,98 @@ export default function DesignMockup() {
           <div className="mb-16 bg-white p-8 rounded-lg">
             <h1 className="text-4xl font-bold mb-4 text-gray-900">Color Theory-Based Palettes</h1>
             <p className="text-lg text-gray-700 mb-4">
-              Six palettes using color theory: two dominant colors (emerald & sapphire) × three moods (luxurious, corporate, sophisticated) with warm accent tones
+              Four distinct palettes exploring deep purple and burnt orange/rust dominant colors with saturated accent tones
             </p>
             <p className="text-sm text-gray-500">
               <Link href="/" className="text-blue-600 hover:underline">← Back to home</Link>
             </p>
           </div>
 
-          {/* EMERALD DOMINANT SECTION */}
+          {/* PURPLE DOMINANT SECTION */}
           <div className="mb-20">
-            <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#1B7E5E' }}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Emerald Dominant + Warm Accent</h2>
-              <p className="text-gray-700">Emerald as primary color with warm gold/terracotta accent tones and neutral backgrounds. Creates sophistication with warmth and approachability.</p>
+            <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#5D3A7A' }}>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Deep Purple Dominant + Burnt Orange Accent</h2>
+              <p className="text-gray-700">Rich eggplant purple as primary with saturated burnt orange accents. Creates sophisticated creativity and distinctive personality.</p>
             </div>
 
-            {/* Emerald Luxurious */}
+            {/* Purple Luxurious */}
             <PalettePreview
-              name="Emerald — Luxurious & Premium"
-              description="High saturation emerald, warm cream background, rich warm accent. Creates a refined, upscale feel. Best for: premium positioning, luxury brand perception, warm elegance."
+              name="Purple — Luxurious & Creative"
+              description="Rich eggplant on warm cream with saturated burnt orange. Creates a premium, distinctive, creative feel. Best for: Standing out, premium creative positioning, bold sophistication."
               bg="#FFFBF7"
-              text="#0F2F1F"
-              primary="#1B7E5E"
-              accent="#D4A574"
+              text="#2B1B3D"
+              primary="#5D3A7A"
+              accent="#C45D3E"
               neutral="#E8DCC8"
             />
 
-            {/* Emerald Corporate */}
+            {/* Purple Corporate */}
             <PalettePreview
-              name="Emerald — Corporate & Trustworthy"
-              description="Slightly muted emerald, cool-neutral background, warm accent for humanity. Creates professional trust with warmth. Best for: b2b, corporate audience, institutional confidence with approachability."
+              name="Purple — Professional & Distinctive"
+              description="Muted purple on cool-neutral with burnt orange accent. Creates professional confidence while remaining distinctive. Best for: Standing out in corporate spaces, premium consulting, differentiated brand."
               bg="#F8FAFB"
-              text="#1A2B28"
-              primary="#287660"
-              accent="#B8956F"
+              text="#3A2547"
+              primary="#4A5A6F"
+              accent="#C45D3E"
               neutral="#E5E7EB"
             />
 
-            {/* Emerald Sophisticated */}
+            {/* Purple Sophisticated */}
             <PalettePreview
-              name="Emerald — Sophisticated & Balanced"
-              description="Medium saturation emerald, warm-neutral background, balanced warm accent. Creates elegant balance. Best for: premium but approachable, confidence without coldness, warm professionalism."
+              name="Purple — Sophisticated & Bold"
+              description="Medium eggplant on warm-neutral with deeper rust accent. Creates elegant boldness. Best for: Premium positioning that doesn&apos;t follow conventional corporate colors, creative problem-solving."
               bg="#FAF9F7"
-              text="#1F3A34"
-              primary="#2B6B5F"
-              accent="#C4956F"
+              text="#362840"
+              primary="#6B3F8F"
+              accent="#8B4513"
               neutral="#D4CEC1"
             />
           </div>
 
-          {/* SAPPHIRE DOMINANT SECTION */}
+          {/* ORANGE/RUST DOMINANT SECTION */}
           <div className="mb-20">
-            <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#0F3A85' }}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Sapphire Dominant + Warm Accent</h2>
-              <p className="text-gray-700">Sapphire as primary color with warm gold/terracotta accent tones and neutral backgrounds. Creates depth and intelligence with human warmth.</p>
+            <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#C45D3E' }}>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Burnt Orange/Rust Dominant + Cool Accents</h2>
+              <p className="text-gray-700">Saturated burnt orange and rust tones as primary with cool teal or navy accents. Creates warmth, energy, and grounded confidence.</p>
             </div>
 
-            {/* Sapphire Luxurious */}
+            {/* Orange Luxurious */}
             <PalettePreview
-              name="Sapphire — Luxurious & Premium"
-              description="High saturation sapphire, warm cream background, rich warm accent. Creates depth and elegance. Best for: luxury positioning, premium tech, high-end services, confident sophistication."
+              name="Orange — Luxurious & Energetic"
+              description="Saturated burnt orange on warm cream with deep teal accent. Creates premium warmth and energy. Best for: Creative consulting, dynamic brand, premium but approachable luxury."
               bg="#FFFBF5"
-              text="#0D1B2D"
-              primary="#0F3A85"
-              accent="#D4A574"
+              text="#3D2117"
+              primary="#C45D3E"
+              accent="#2A7F8F"
               neutral="#E8DCC8"
             />
 
-            {/* Sapphire Corporate */}
+            {/* Orange Corporate */}
             <PalettePreview
-              name="Sapphire — Corporate & Trustworthy"
-              description="Muted sapphire, cool-neutral background, warm accent for accessibility. Maximum trust and professionalism. Best for: finance, enterprise, institutional authority with human touch."
+              name="Orange — Professional & Grounded"
+              description="Muted rust on cool-neutral with teal accent. Creates earthy professionalism. Best for: Consulting that feels grounded and thoughtful, established expertise, warm authority."
               bg="#F8FAFB"
-              text="#1A2B3E"
-              primary="#1E4A7A"
-              accent="#A68860"
+              text="#4A3428"
+              primary="#A0522D"
+              accent="#2A7F8F"
               neutral="#E5E7EB"
             />
 
-            {/* Sapphire Sophisticated */}
+            {/* Orange Sophisticated */}
             <PalettePreview
-              name="Sapphire — Sophisticated & Balanced"
-              description="Rich sapphire, warm-neutral background, balanced warm accent. Creates intelligent calm. Best for: consultancy, systems thinking, strategic positioning, thoughtful expertise."
+              name="Orange — Sophisticated & Grounded"
+              description="Rich rust on warm-neutral with deep navy accent. Creates confident earthiness. Best for: Premium positioning with grounded expertise, strategic warmth, sophisticated systems thinking."
               bg="#FAF8F7"
-              text="#1A2D42"
-              primary="#1B5A8C"
-              accent="#C4956F"
+              text="#4A2F20"
+              primary="#8B4513"
+              accent="#1A3A52"
               neutral="#D4CEC1"
             />
           </div>
 
           <div className="bg-white p-8 rounded-lg text-center">
-            <p className="text-gray-700 mb-4 text-lg"><strong>Which palette resonates?</strong></p>
-            <p className="text-gray-600">Consider: Which dominant color (emerald or sapphire) feels more "you"? Which mood (luxurious, corporate, or sophisticated) best represents your positioning? The warm accent unifies all palettes.</p>
+            <p className="text-gray-700 mb-4 text-lg"><strong>Which direction resonates?</strong></p>
+            <p className="text-gray-600">Purple feels creative and distinctively bold. Orange/rust feels warm, grounded, and energetic. Which better represents your brand of problem-solving?</p>
           </div>
         </div>
       </div>
