@@ -16,7 +16,7 @@ module.exports = {
         pageBg: '#F5F5F5',
         cardBg: '#FFFFFF',
         diagnosticBlue: '#1E3A5F',
-        warmAmber: '#C97817',
+        warmAmber: '#C95F00',
         softTeal: '#2E8B8B',
         darkText: '#2C2C2C',
         bodyText: '#5A5550',
