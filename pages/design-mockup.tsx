@@ -2,53 +2,53 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 
-const PalettePreview = ({ name, description, bg, text, primary, accent, neutral }: { name: string; description: string; bg: string; text: string; primary: string; accent: string; neutral: string }) => (
-  <div className="mb-24 pb-16 border-b border-gray-300">
+const PalettePreview = ({ name, description, bg, text, primary, secondary, accent, darkText }: { name: string; description: string; bg: string; text: string; primary: string; secondary: string; accent: string; darkText: string }) => (
+  <div className="mb-24 pb-16 border-b" style={{ borderColor: '#E0E0E0' }}>
     <div className="mb-8">
-      <h2 className="text-3xl font-bold mb-2 text-gray-900">{name}</h2>
-      <p className="text-base text-gray-700 max-w-2xl">{description}</p>
+      <h2 className="text-3xl font-bold mb-2" style={{ color: darkText }}>{name}</h2>
+      <p className="text-base max-w-2xl" style={{ color: text }}>{description}</p>
     </div>
 
     {/* Color Swatches */}
     <div className="grid grid-cols-5 gap-4 mb-16">
       <div>
-        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: bg }}></div>
-        <p className="text-xs text-gray-600"><strong>Background</strong><br/>{bg}</p>
+        <div className="h-32 rounded-lg mb-3 border" style={{ backgroundColor: bg, borderColor: text }}></div>
+        <p className="text-xs" style={{ color: text }}><strong>Background</strong><br/>{bg}</p>
       </div>
       <div>
-        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: text }}></div>
-        <p className="text-xs text-gray-600"><strong>Text</strong><br/>{text}</p>
+        <div className="h-32 rounded-lg mb-3 border" style={{ backgroundColor: darkText, borderColor: text }}></div>
+        <p className="text-xs" style={{ color: text }}><strong>Dark Text</strong><br/>{darkText}</p>
       </div>
       <div>
-        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: primary }}></div>
-        <p className="text-xs text-gray-600"><strong>Primary</strong><br/>{primary}</p>
+        <div className="h-32 rounded-lg mb-3 border" style={{ backgroundColor: primary, borderColor: text }}></div>
+        <p className="text-xs" style={{ color: text }}><strong>Primary</strong><br/>{primary}</p>
       </div>
       <div>
-        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: accent }}></div>
-        <p className="text-xs text-gray-600"><strong>Accent</strong><br/>{accent}</p>
+        <div className="h-32 rounded-lg mb-3 border" style={{ backgroundColor: secondary, borderColor: text }}></div>
+        <p className="text-xs" style={{ color: text }}><strong>Secondary</strong><br/>{secondary}</p>
       </div>
       <div>
-        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: neutral }}></div>
-        <p className="text-xs text-gray-600"><strong>Neutral</strong><br/>{neutral}</p>
+        <div className="h-32 rounded-lg mb-3 border" style={{ backgroundColor: accent, borderColor: text }}></div>
+        <p className="text-xs" style={{ color: text }}><strong>Accent</strong><br/>{accent}</p>
       </div>
     </div>
 
     {/* Hero Preview */}
     <div className="mb-16 p-12 rounded-lg border-2" style={{ backgroundColor: bg, borderColor: primary }}>
-      <p className="font-bold tracking-[0.2em] text-xs uppercase mb-8" style={{ color: accent }}>
+      <p className="font-bold tracking-[0.2em] text-xs uppercase mb-8" style={{ color: secondary }}>
         Business Analyst &amp; Systems Designer
       </p>
-      <h1 className="text-6xl font-bold leading-tight mb-8" style={{ color: text }}>
+      <h1 className="text-6xl font-bold leading-tight mb-8" style={{ color: darkText }}>
         Jason K Hanani
       </h1>
-      <p className="text-xl leading-relaxed mb-8 max-w-2xl" style={{ color: text }}>
+      <p className="text-xl leading-relaxed mb-8 max-w-2xl" style={{ color: darkText }}>
         I help businesses figure out what&apos;s actually broken — and design what needs to be built to fix it.
       </p>
       <div className="flex flex-wrap gap-4">
         <button className="px-8 py-4 font-bold tracking-[0.15em] uppercase rounded-full text-white transition-all hover:shadow-lg" style={{ backgroundColor: primary }}>
           See My Work
         </button>
-        <button className="px-8 py-4 font-bold tracking-[0.15em] uppercase rounded-full transition-all" style={{ color: primary, borderColor: primary, borderWidth: '2px', backgroundColor: neutral }}>
+        <button className="px-8 py-4 font-bold tracking-[0.15em] uppercase rounded-full transition-all" style={{ color: primary, borderColor: primary, borderWidth: '2px', backgroundColor: bg }}>
           Work With Me
         </button>
       </div>
@@ -56,17 +56,17 @@ const PalettePreview = ({ name, description, bg, text, primary, accent, neutral 
 
     {/* Methodology Preview */}
     <div className="mb-16">
-      <h3 className="text-2xl font-bold mb-12" style={{ color: text }}>How I Work</h3>
+      <h3 className="text-2xl font-bold mb-12" style={{ color: darkText }}>How I Work</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {['Diagnose', 'Define', 'Design', 'Deliver'].map((stage, idx) => (
-          <div key={idx} className="p-6 rounded-lg" style={{ backgroundColor: `${primary}08`, borderLeftColor: accent, borderLeftWidth: '4px' }}>
-            <div className="text-5xl font-bold mb-4" style={{ color: primary, opacity: 0.2 }}>
+          <div key={idx} className="p-6 rounded-lg" style={{ backgroundColor: bg, borderLeftColor: secondary, borderLeftWidth: '4px' }}>
+            <div className="text-5xl font-bold mb-4" style={{ color: primary, opacity: 0.15 }}>
               {String(idx + 1).padStart(2, '0')}
             </div>
-            <h4 className="text-xl font-bold mb-3" style={{ color: text }}>
+            <h4 className="text-xl font-bold mb-3" style={{ color: darkText }}>
               {stage}
             </h4>
-            <p style={{ color: text, opacity: 0.75 }}>
+            <p style={{ color: text, opacity: 0.85 }}>
               {stage === 'Diagnose' && "Find what's actually broken, not just what's visible."}
               {stage === 'Define' && "Translate findings into requirements and decision frameworks."}
               {stage === 'Design' && "Architect the solution logic before it goes to engineering."}
@@ -79,24 +79,24 @@ const PalettePreview = ({ name, description, bg, text, primary, accent, neutral 
 
     {/* Featured Work Card Preview */}
     <div>
-      <h3 className="text-2xl font-bold mb-8" style={{ color: text }}>Outcomes</h3>
+      <h3 className="text-2xl font-bold mb-8" style={{ color: darkText }}>Outcomes</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {['Revenue Preservation', 'Logistics Optimization', 'Network Reengineering'].map((study, idx) => (
-          <div key={idx} className="p-6 rounded-lg border-2" style={{ backgroundColor: bg, borderColor: `${primary}30` }}>
-            <p className="text-xs font-bold uppercase tracking-[0.15em] mb-3" style={{ color: accent }}>
+          <div key={idx} className="p-6 rounded-lg border-2" style={{ backgroundColor: bg, borderColor: `${primary}40` }}>
+            <p className="text-xs font-bold uppercase tracking-[0.15em] mb-3" style={{ color: secondary }}>
               Case Study
             </p>
-            <h4 className="text-lg font-bold mb-3" style={{ color: text }}>
+            <h4 className="text-lg font-bold mb-3" style={{ color: darkText }}>
               {study}
             </h4>
-            <p style={{ color: text, opacity: 0.7 }} className="text-sm mb-6">
+            <p style={{ color: text, opacity: 0.75 }} className="text-sm mb-6">
               Diagnosed root cause, designed structured solution, delivered measurable outcomes.
             </p>
-            <div className="flex items-center justify-between pt-4" style={{ borderTopColor: accent, borderTopWidth: '1px', opacity: 0.5 }}>
+            <div className="flex items-center justify-between pt-4" style={{ borderTopColor: accent, borderTopWidth: '1px', opacity: 0.6 }}>
               <span className="text-sm font-bold" style={{ color: text }}>
                 €{695 + idx * 100}K Impact
               </span>
-              <span style={{ color: accent }} className="text-sm font-bold">
+              <span style={{ color: secondary }} className="text-sm font-bold">
                 →
               </span>
             </div>
@@ -114,103 +114,100 @@ export default function DesignMockup() {
         <title>Design Mockup | Jason K Hanani</title>
       </Head>
 
-      <div className="min-h-screen bg-gray-100 p-8">
+      <div className="min-h-screen p-8" style={{ backgroundColor: '#FAFAF8' }}>
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16 bg-white p-8 rounded-lg">
-            <h1 className="text-4xl font-bold mb-4 text-gray-900">Color Theory-Based Palettes</h1>
-            <p className="text-lg text-gray-700 mb-4">
-              Four distinct palettes exploring deep purple and burnt orange/rust dominant colors with saturated accent tones
+          <div className="mb-16 p-8 rounded-lg" style={{ backgroundColor: '#FFFFFF' }}>
+            <h1 className="text-4xl font-bold mb-4" style={{ color: '#1A1A1A' }}>Three Palettes: Structured But Human</h1>
+            <p className="text-lg mb-4" style={{ color: '#4A4A4A' }}>
+              Each palette balances analytical depth with genuine warmth. Built on the principle: diagnostic insight meets human care.
             </p>
-            <p className="text-sm text-gray-500">
-              <Link href="/" className="text-blue-600 hover:underline">← Back to home</Link>
+            <p className="text-sm" style={{ color: '#888888' }}>
+              <Link href="/" className="hover:underline" style={{ color: '#1E3A5F' }}>← Back to home</Link>
             </p>
           </div>
 
-          {/* PURPLE DOMINANT SECTION */}
+          {/* PALETTE 1: DIAGNOSTIC BLUE + WARM AMBER */}
           <div className="mb-20">
-            <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#5D3A7A' }}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Deep Purple Dominant + Burnt Orange Accent</h2>
-              <p className="text-gray-700">Rich eggplant purple as primary with saturated burnt orange accents. Creates sophisticated creativity and distinctive personality.</p>
+            <div className="p-8 rounded-lg mb-12" style={{ backgroundColor: '#FFFFFF', borderLeftWidth: '8px', borderLeftColor: '#1E3A5F' }}>
+              <h2 className="text-3xl font-bold mb-2" style={{ color: '#1E3A5F' }}>Palette 1: Diagnostic Blue + Warm Amber</h2>
+              <p style={{ color: '#4A4A4A' }} className="mb-3">
+                <strong className="text-lg" style={{ color: '#1E3A5F' }}>The Analyst Who Sees What Others Miss</strong>
+              </p>
+              <p style={{ color: '#4A4A4A' }}>
+                Deep slate blue signals analytical depth and trustworthiness. Warm amber accents the diagnostic insight—the moment clarity breaks through. For someone whose core function is finding what&apos;s broken.
+              </p>
             </div>
 
-            {/* Purple Luxurious */}
             <PalettePreview
-              name="Purple — Luxurious & Creative"
-              description="Rich eggplant on warm cream with saturated burnt orange. Creates a premium, distinctive, creative feel. Best for: Standing out, premium creative positioning, bold sophistication."
-              bg="#FFFBF7"
-              text="#2B1B3D"
-              primary="#5D3A7A"
-              accent="#C45D3E"
-              neutral="#E8DCC8"
-            />
-
-            {/* Purple Corporate */}
-            <PalettePreview
-              name="Purple — Professional & Distinctive"
-              description="Muted purple on cool-neutral with burnt orange accent. Creates professional confidence while remaining distinctive. Best for: Standing out in corporate spaces, premium consulting, differentiated brand."
-              bg="#F8FAFB"
-              text="#3A2547"
-              primary="#4A5A6F"
-              accent="#C45D3E"
-              neutral="#E5E7EB"
-            />
-
-            {/* Purple Sophisticated */}
-            <PalettePreview
-              name="Purple — Sophisticated & Bold"
-              description="Medium eggplant on warm-neutral with deeper rust accent. Creates elegant boldness. Best for: Premium positioning that doesn&apos;t follow conventional corporate colors, creative problem-solving."
-              bg="#FAF9F7"
-              text="#362840"
-              primary="#6B3F8F"
-              accent="#8B4513"
-              neutral="#D4CEC1"
+              name="Diagnostic Blue + Warm Amber"
+              description="Slate blue dominance signals depth and credibility. Amber accents signal breakthrough insight. Teal bridges analytical and human. Warm off-white background prevents clinical coldness."
+              bg="#F5F0E8"
+              text="#5A5550"
+              primary="#1E3A5F"
+              secondary="#D4891A"
+              accent="#2E8B8B"
+              darkText="#2C2C2C"
             />
           </div>
 
-          {/* ORANGE/RUST DOMINANT SECTION */}
+          {/* PALETTE 2: FOREST GREEN + BONE */}
           <div className="mb-20">
-            <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#C45D3E' }}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Burnt Orange/Rust Dominant + Cool Accents</h2>
-              <p className="text-gray-700">Saturated burnt orange and rust tones as primary with cool teal or navy accents. Creates warmth, energy, and grounded confidence.</p>
+            <div className="p-8 rounded-lg mb-12" style={{ backgroundColor: '#FFFFFF', borderLeftWidth: '8px', borderLeftColor: '#1E4D3B' }}>
+              <h2 className="text-3xl font-bold mb-2" style={{ color: '#1E4D3B' }}>Palette 2: Forest Green + Bone</h2>
+              <p style={{ color: '#4A4A4A' }} className="mb-3">
+                <strong className="text-lg" style={{ color: '#1E4D3B' }}>The Quiet Systems Builder</strong>
+              </p>
+              <p style={{ color: '#4A4A4A' }}>
+                Deep forest green signals growth, systems, and groundedness. It reads as mature and considered, not trendy. Warm bone neutrals and dusty gold keep it human and craft-oriented. Aligns with contemplative, unhurried thinking.
+              </p>
             </div>
 
-            {/* Orange Luxurious */}
             <PalettePreview
-              name="Orange — Luxurious & Energetic"
-              description="Saturated burnt orange on warm cream with deep teal accent. Creates premium warmth and energy. Best for: Creative consulting, dynamic brand, premium but approachable luxury."
-              bg="#FFFBF5"
-              text="#3D2117"
-              primary="#C45D3E"
-              accent="#2A7F8F"
-              neutral="#E8DCC8"
-            />
-
-            {/* Orange Corporate */}
-            <PalettePreview
-              name="Orange — Professional & Grounded"
-              description="Muted rust on cool-neutral with teal accent. Creates earthy professionalism. Best for: Consulting that feels grounded and thoughtful, established expertise, warm authority."
-              bg="#F8FAFB"
-              text="#4A3428"
-              primary="#A0522D"
-              accent="#2A7F8F"
-              neutral="#E5E7EB"
-            />
-
-            {/* Orange Sophisticated */}
-            <PalettePreview
-              name="Orange — Sophisticated & Grounded"
-              description="Rich rust on warm-neutral with deep navy accent. Creates confident earthiness. Best for: Premium positioning with grounded expertise, strategic warmth, sophisticated systems thinking."
-              bg="#FAF8F7"
-              text="#4A2F20"
-              primary="#8B4513"
-              accent="#1A3A52"
-              neutral="#D4CEC1"
+              name="Forest Green + Bone"
+              description="Green signals growth, systems, reliability—often underused in professional branding. Warm bone and cream neutrals feel human. Dusty gold accent signals craft and care. Deep espresso dark neutral gives depth without harshness."
+              bg="#FAF7F0"
+              text="#5A5550"
+              primary="#1E4D3B"
+              secondary="#B8943F"
+              accent="#E8DCC8"
+              darkText="#1A1208"
             />
           </div>
 
-          <div className="bg-white p-8 rounded-lg text-center">
-            <p className="text-gray-700 mb-4 text-lg"><strong>Which direction resonates?</strong></p>
-            <p className="text-gray-600">Purple feels creative and distinctively bold. Orange/rust feels warm, grounded, and energetic. Which better represents your brand of problem-solving?</p>
+          {/* PALETTE 3: CHARCOAL + MUTED TERRACOTTA */}
+          <div className="mb-20">
+            <div className="p-8 rounded-lg mb-12" style={{ backgroundColor: '#FFFFFF', borderLeftWidth: '8px', borderLeftColor: '#2D3142' }}>
+              <h2 className="text-3xl font-bold mb-2" style={{ color: '#2D3142' }}>Palette 3: Charcoal + Muted Terracotta</h2>
+              <p style={{ color: '#4A4A4A' }} className="mb-3">
+                <strong className="text-lg" style={{ color: '#2D3142' }}>The Bridge Builder</strong>
+              </p>
+              <p style={{ color: '#4A4A4A' }}>
+                Charcoal is sophisticated and serious without coldness. Muted terracotta signals humanity, warmth, craft, and rootedness—distinctive for professional branding. Pale steel blue bridges analytical signal without dominance. Best for freelance positioning where the person matters.
+              </p>
+            </div>
+
+            <PalettePreview
+              name="Charcoal + Muted Terracotta"
+              description="Charcoal reads as confident without shouting. Terracotta signals the human behind the analysis—craft, care, rootedness. Pale steel blue adds intellectual rigor. Warm grey and near-black neutrals keep it sophisticated and textured."
+              bg="#F0EDE8"
+              text="#5A5550"
+              primary="#2D3142"
+              secondary="#C4684F"
+              accent="#7B9EB9"
+              darkText="#1A1A1F"
+            />
+          </div>
+
+          <div className="p-8 rounded-lg text-center" style={{ backgroundColor: '#FFFFFF' }}>
+            <p className="text-lg mb-4" style={{ color: '#1A1A1A' }}><strong>Framework: Structured But Human</strong></p>
+            <p style={{ color: '#4A4A4A' }} className="mb-6 max-w-2xl mx-auto">
+              All three palettes resolve the same tension: analytical rigor + genuine care. They avoid purely corporate coldness and purely creative chaos. Each signals a different aspect of the same truth: you think deeply and you care about outcomes.
+            </p>
+            <div style={{ backgroundColor: '#F5F0E8', padding: '16px', borderRadius: '8px', marginTop: '24px' }}>
+              <p className="text-sm" style={{ color: '#4A4A4A' }}>
+                <strong style={{ color: '#1A1A1A' }}>Recommendation:</strong> Lead with Palette 1 (Diagnostic Blue) for portfolio and professional credibility. Pull green or terracotta accents into personal content (About, Now, Writing) where human dimension matters most.
+              </p>
+            </div>
           </div>
         </div>
       </div>
