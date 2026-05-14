@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 
-const PalettePreview = ({ name, description, bg, text, primary, secondary, neutral }: { name: string; description: string; bg: string; text: string; primary: string; secondary: string; neutral: string }) => (
+const PalettePreview = ({ name, description, bg, text, primary, accent, neutral }: { name: string; description: string; bg: string; text: string; primary: string; accent: string; neutral: string }) => (
   <div className="mb-24 pb-16 border-b border-gray-300">
     <div className="mb-8">
       <h2 className="text-3xl font-bold mb-2 text-gray-900">{name}</h2>
@@ -24,18 +24,18 @@ const PalettePreview = ({ name, description, bg, text, primary, secondary, neutr
         <p className="text-xs text-gray-600"><strong>Primary</strong><br/>{primary}</p>
       </div>
       <div>
-        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: secondary }}></div>
-        <p className="text-xs text-gray-600"><strong>Secondary</strong><br/>{secondary}</p>
+        <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: accent }}></div>
+        <p className="text-xs text-gray-600"><strong>Warm Accent</strong><br/>{accent}</p>
       </div>
       <div>
         <div className="h-32 rounded-lg mb-3 border border-gray-300" style={{ backgroundColor: neutral }}></div>
-        <p className="text-xs text-gray-600"><strong>Neutral Accent</strong><br/>{neutral}</p>
+        <p className="text-xs text-gray-600"><strong>Neutral</strong><br/>{neutral}</p>
       </div>
     </div>
 
     {/* Hero Preview */}
     <div className="mb-16 p-12 rounded-lg border-2" style={{ backgroundColor: bg, borderColor: primary }}>
-      <p className="font-bold tracking-[0.2em] text-xs uppercase mb-8" style={{ color: primary }}>
+      <p className="font-bold tracking-[0.2em] text-xs uppercase mb-8" style={{ color: accent }}>
         Business Analyst &amp; Systems Designer
       </p>
       <h1 className="text-6xl font-bold leading-tight mb-8" style={{ color: text }}>
@@ -59,7 +59,7 @@ const PalettePreview = ({ name, description, bg, text, primary, secondary, neutr
       <h3 className="text-2xl font-bold mb-12" style={{ color: text }}>How I Work</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {['Diagnose', 'Define', 'Design', 'Deliver'].map((stage, idx) => (
-          <div key={idx} className="p-6 rounded-lg" style={{ backgroundColor: `${primary}08`, borderLeftColor: secondary, borderLeftWidth: '4px' }}>
+          <div key={idx} className="p-6 rounded-lg" style={{ backgroundColor: `${primary}08`, borderLeftColor: accent, borderLeftWidth: '4px' }}>
             <div className="text-5xl font-bold mb-4" style={{ color: primary, opacity: 0.2 }}>
               {String(idx + 1).padStart(2, '0')}
             </div>
@@ -83,7 +83,7 @@ const PalettePreview = ({ name, description, bg, text, primary, secondary, neutr
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {['Revenue Preservation', 'Logistics Optimization', 'Network Reengineering'].map((study, idx) => (
           <div key={idx} className="p-6 rounded-lg border-2" style={{ backgroundColor: bg, borderColor: `${primary}30` }}>
-            <p className="text-xs font-bold uppercase tracking-[0.15em] mb-3" style={{ color: primary }}>
+            <p className="text-xs font-bold uppercase tracking-[0.15em] mb-3" style={{ color: accent }}>
               Case Study
             </p>
             <h4 className="text-lg font-bold mb-3" style={{ color: text }}>
@@ -92,11 +92,11 @@ const PalettePreview = ({ name, description, bg, text, primary, secondary, neutr
             <p style={{ color: text, opacity: 0.7 }} className="text-sm mb-6">
               Diagnosed root cause, designed structured solution, delivered measurable outcomes.
             </p>
-            <div className="flex items-center justify-between pt-4" style={{ borderTopColor: secondary, borderTopWidth: '1px', opacity: 0.5 }}>
+            <div className="flex items-center justify-between pt-4" style={{ borderTopColor: accent, borderTopWidth: '1px', opacity: 0.5 }}>
               <span className="text-sm font-bold" style={{ color: text }}>
                 €{695 + idx * 100}K Impact
               </span>
-              <span style={{ color: secondary }} className="text-sm font-bold">
+              <span style={{ color: accent }} className="text-sm font-bold">
                 →
               </span>
             </div>
@@ -119,7 +119,7 @@ export default function DesignMockup() {
           <div className="mb-16 bg-white p-8 rounded-lg">
             <h1 className="text-4xl font-bold mb-4 text-gray-900">Color Theory-Based Palettes</h1>
             <p className="text-lg text-gray-700 mb-4">
-              Six palettes using color theory: two dominant colors (emerald & sapphire) × three moods (luxurious, corporate, sophisticated)
+              Six palettes using color theory: two dominant colors (emerald & sapphire) × three moods (luxurious, corporate, sophisticated) with warm accent tones
             </p>
             <p className="text-sm text-gray-500">
               <Link href="/" className="text-blue-600 hover:underline">← Back to home</Link>
@@ -129,40 +129,40 @@ export default function DesignMockup() {
           {/* EMERALD DOMINANT SECTION */}
           <div className="mb-20">
             <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#1B7E5E' }}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Emerald Dominant</h2>
-              <p className="text-gray-700">Emerald as primary color (60%) with sapphire secondary (30%) and neutral accents (10%)</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Emerald Dominant + Warm Accent</h2>
+              <p className="text-gray-700">Emerald as primary color with warm gold/terracotta accent tones and neutral backgrounds. Creates sophistication with warmth and approachability.</p>
             </div>
 
             {/* Emerald Luxurious */}
             <PalettePreview
-              name="Emerald Dominant — Luxurious & Premium"
-              description="High saturation, warm neutrals. Creates a rich, sophisticated luxury feel. Best for: premium positioning, upscale brand perception."
+              name="Emerald — Luxurious & Premium"
+              description="High saturation emerald, warm cream background, rich warm accent. Creates a refined, upscale feel. Best for: premium positioning, luxury brand perception, warm elegance."
               bg="#FFFBF7"
               text="#0F2F1F"
               primary="#1B7E5E"
-              secondary="#0F3A7D"
+              accent="#D4A574"
               neutral="#E8DCC8"
             />
 
             {/* Emerald Corporate */}
             <PalettePreview
-              name="Emerald Dominant — Corporate & Trustworthy"
-              description="Slightly muted saturation, cool neutrals. Creates professional trust. Best for: b2b, corporate audience, institutional confidence."
+              name="Emerald — Corporate & Trustworthy"
+              description="Slightly muted emerald, cool-neutral background, warm accent for humanity. Creates professional trust with warmth. Best for: b2b, corporate audience, institutional confidence with approachability."
               bg="#F8FAFB"
               text="#1A2B28"
               primary="#287660"
-              secondary="#1B4A7A"
+              accent="#B8956F"
               neutral="#E5E7EB"
             />
 
             {/* Emerald Sophisticated */}
             <PalettePreview
-              name="Emerald Dominant — Sophisticated & Balanced"
-              description="Medium saturation, warm-neutral background. Creates elegant balance. Best for: premium but approachable, confidence without coldness."
+              name="Emerald — Sophisticated & Balanced"
+              description="Medium saturation emerald, warm-neutral background, balanced warm accent. Creates elegant balance. Best for: premium but approachable, confidence without coldness, warm professionalism."
               bg="#FAF9F7"
               text="#1F3A34"
               primary="#2B6B5F"
-              secondary="#1E4A80"
+              accent="#C4956F"
               neutral="#D4CEC1"
             />
           </div>
@@ -170,47 +170,47 @@ export default function DesignMockup() {
           {/* SAPPHIRE DOMINANT SECTION */}
           <div className="mb-20">
             <div className="bg-white p-8 rounded-lg mb-12 border-l-8" style={{ borderColor: '#0F3A85' }}>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Sapphire Dominant</h2>
-              <p className="text-gray-700">Sapphire as primary color (60%) with emerald secondary (30%) and neutral accents (10%)</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Sapphire Dominant + Warm Accent</h2>
+              <p className="text-gray-700">Sapphire as primary color with warm gold/terracotta accent tones and neutral backgrounds. Creates depth and intelligence with human warmth.</p>
             </div>
 
             {/* Sapphire Luxurious */}
             <PalettePreview
-              name="Sapphire Dominant — Luxurious & Premium"
-              description="High saturation sapphire, warm neutrals. Creates depth and elegance. Best for: luxury positioning, premium tech, high-end services."
+              name="Sapphire — Luxurious & Premium"
+              description="High saturation sapphire, warm cream background, rich warm accent. Creates depth and elegance. Best for: luxury positioning, premium tech, high-end services, confident sophistication."
               bg="#FFFBF5"
               text="#0D1B2D"
               primary="#0F3A85"
-              secondary="#1B7E5E"
+              accent="#D4A574"
               neutral="#E8DCC8"
             />
 
             {/* Sapphire Corporate */}
             <PalettePreview
-              name="Sapphire Dominant — Corporate & Trustworthy"
-              description="Muted sapphire, cool neutrals. Maximum trust and professionalism. Best for: finance, enterprise, institutional authority."
+              name="Sapphire — Corporate & Trustworthy"
+              description="Muted sapphire, cool-neutral background, warm accent for accessibility. Maximum trust and professionalism. Best for: finance, enterprise, institutional authority with human touch."
               bg="#F8FAFB"
               text="#1A2B3E"
               primary="#1E4A7A"
-              secondary="#2D6B5E"
+              accent="#A68860"
               neutral="#E5E7EB"
             />
 
             {/* Sapphire Sophisticated */}
             <PalettePreview
-              name="Sapphire Dominant — Sophisticated & Balanced"
-              description="Rich sapphire, warm-neutral background. Creates intelligent calm. Best for: consultancy, systems thinking, strategic positioning."
+              name="Sapphire — Sophisticated & Balanced"
+              description="Rich sapphire, warm-neutral background, balanced warm accent. Creates intelligent calm. Best for: consultancy, systems thinking, strategic positioning, thoughtful expertise."
               bg="#FAF8F7"
               text="#1A2D42"
               primary="#1B5A8C"
-              secondary="#2B6B5F"
+              accent="#C4956F"
               neutral="#D4CEC1"
             />
           </div>
 
           <div className="bg-white p-8 rounded-lg text-center">
             <p className="text-gray-700 mb-4 text-lg"><strong>Which palette resonates?</strong></p>
-            <p className="text-gray-600">Consider: Which dominant color feels more "you"? Which mood best represents your positioning?</p>
+            <p className="text-gray-600">Consider: Which dominant color (emerald or sapphire) feels more "you"? Which mood (luxurious, corporate, or sophisticated) best represents your positioning? The warm accent unifies all palettes.</p>
           </div>
         </div>
       </div>
