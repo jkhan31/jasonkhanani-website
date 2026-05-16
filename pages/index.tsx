@@ -6,20 +6,16 @@ import { CASE_STUDIES } from '../constants';
 
 const methodology = [
   {
-    title: 'Diagnose',
+    title: 'Understand',
     description: 'Find what\'s actually broken, not just what\'s visible.',
   },
   {
-    title: 'Define',
-    description: 'Translate findings into requirements, business cases, and decision frameworks.',
+    title: 'Structure',
+    description: 'Turn findings into clear decisions that stick.',
   },
   {
-    title: 'Design',
-    description: 'Architect the solution logic before it goes to engineering or execution.',
-  },
-  {
-    title: 'Deliver',
-    description: 'Coordinate stakeholders and measure what actually changed.',
+    title: 'Improve',
+    description: 'Design solutions and measure what actually moved.',
   },
 ];
 
@@ -110,10 +106,10 @@ const FeaturedWork: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 max-w-xl">
           <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-4 leading-tight">
-            Outcomes
+            Featured Work
           </h2>
           <p className="text-base text-bodyText leading-relaxed">
-            Recent projects where diagnostic thinking and structured design delivered measurable results.
+            See what I've built. Real outcomes from actual problems solved.
           </p>
         </div>
 
@@ -166,10 +162,10 @@ const CTASection: React.FC = () => (
   <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
     <div className="max-w-2xl">
       <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-6 leading-tight">
-        Let's solve something together
+        Ready to solve something together?
       </h2>
       <p className="text-lg text-darkText/70 leading-relaxed mb-8 max-w-xl">
-        Whether you're looking to hire, explore a specific problem, or just explore ideas — I'm available for full-time roles, freelance engagements, and short-term projects.
+        I'm available for full-time roles, freelance engagements, and short-term projects. Whether you're looking to hire, explore a specific problem, or just talk through ideas.
       </p>
       <div className="flex flex-wrap gap-4">
         <Link

@@ -151,7 +151,7 @@ const Writing: React.FC<WritingProps> = ({ articles: sanityData, seriesData }) =
       <div className="px-6 py-24 md:py-32 max-w-7xl mx-auto animate-in fade-in duration-700">
       <SectionHeader eyebrow="Thought Leadership" title="Insights & Strategic Thinking" />
       <p className="text-lg text-darkText/60 mb-8 leading-relaxed max-w-2xl">
-        Occasional essays on Industrial Engineering, operational systems, and the future of AI-augmented management.
+        Occasional essays on systems thinking, operational design, and AI in management.
       </p>
 
       {/* Search Component */}
