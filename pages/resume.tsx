@@ -11,7 +11,7 @@ const ResumePage = () => {
         <title>Resume | Jason K Hanani</title>
         <meta
           name="description"
-          content="Operations & Product Systems leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms — logistics architecture, marketplace operations, and AI-augmented execution."
+          content="Business Analyst & Systems Designer with €1.5M+ documented impact. Specializing in diagnostic thinking, requirements design, and operational systems across multi-market e-commerce platforms."
         />
         <meta property="og:title" content="Resume - Jason K Hanani" />
         <meta property="og:url" content="https://jasonkhanani.com/resume/" />
@@ -50,7 +50,7 @@ const ResumePage = () => {
           <section className="mb-12">
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-warmAmber">Summary</h2>
             <p className="text-base leading-relaxed text-darkText/80 max-w-2xl">
-              Systems-oriented leader across product operations, marketplace architecture, and business intelligence. Delivered €1.5M+ in quantified impact by engineering data-driven solutions for pricing, inventory, and fulfillment. Specializes in AI-augmented workflows and logic-prototyping to turn complex operational friction into scalable revenue and enhanced customer experience.
+              Business analyst and systems designer with €1.5M+ in documented impact across product operations, marketplace architecture, and operational systems. Specializes in diagnosing root problems, designing structured solutions, and building scalable systems that measurably improve revenue and customer experience.
             </p>
           </section>
 
