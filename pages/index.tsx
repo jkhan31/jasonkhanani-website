@@ -67,6 +67,7 @@ const Methodology: React.FC = () => (
   <section className="py-24 md:py-32 border-t border-darkText/10">
     <div className="max-w-7xl mx-auto px-6">
       <div className="mb-20 max-w-xl">
+        <SectionLabel label="Methodology" color="amber" />
         <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-4 leading-tight">
           How I Work
         </h2>
@@ -106,8 +107,9 @@ const FeaturedWork: React.FC = () => {
     <section className="bg-pageBg py-24 md:py-32 border-t border-darkText/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 max-w-xl">
+          <SectionLabel label="Featured Work" color="amber" />
           <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-4 leading-tight">
-            Featured Work
+            Real Problems, Real Solutions
           </h2>
           <p className="text-base text-bodyText leading-relaxed">
             See what I've built. Real outcomes from actual problems solved.

@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Download, Mail, Linkedin, ArrowRight } from 'lucide-react';
+import SectionLabel from '../components/SectionLabel';
 
 const ResumePage = () => {
   return (
@@ -48,7 +49,7 @@ const ResumePage = () => {
 
           {/* Summary */}
           <section className="mb-12">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-warmAmber">Summary</h2>
+            <SectionLabel label="Summary" color="amber" />
             <p className="text-base leading-relaxed text-darkText/80 max-w-2xl">
               Business analyst and systems designer with €1.5M+ in documented impact across product operations, marketplace architecture, and operational systems. Specializes in diagnosing root problems, designing structured solutions, and building scalable systems that measurably improve revenue and customer experience.
             </p>
@@ -56,7 +57,9 @@ const ResumePage = () => {
 
           {/* Experience */}
           <section className="mb-12">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-warmAmber">Experience</h2>
+            <div className="mb-8">
+              <SectionLabel label="Experience" color="amber" />
+            </div>
 
             {/* Commercial PMO */}
             <div className="mb-10">
@@ -167,7 +170,9 @@ const ResumePage = () => {
 
           {/* Education & Certifications */}
           <section className="border-t border-darkText/10 pt-12 mb-12">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-warmAmber">Education &amp; Certifications</h2>
+            <div className="mb-6">
+              <SectionLabel label="Education &amp; Certifications" color="amber" />
+            </div>
             <div className="space-y-4">
               <div>
                 <h4 className="font-bold text-sm text-darkText">B.S.E. Industrial &amp; Operations Engineering (Cum Laude)</h4>
@@ -186,7 +191,9 @@ const ResumePage = () => {
 
           {/* Tools & Methods */}
           <section className="border-t border-darkText/10 pt-12 mb-12">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-warmAmber">Tools &amp; Methods</h2>
+            <div className="mb-6">
+              <SectionLabel label="Tools &amp; Methods" color="amber" />
+            </div>
             <div className="flex flex-wrap gap-2">
               {[
                 'SQL (Advanced)',
@@ -210,15 +217,17 @@ const ResumePage = () => {
 
           {/* Case Studies CTA */}
           <section className="border-t border-darkText/10 pt-12">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-warmAmber">Case Studies</h2>
+            <div className="mb-4">
+              <SectionLabel label="Case Studies" color="amber" />
+            </div>
             <p className="text-sm text-darkText/60 leading-relaxed mb-6 max-w-lg">
               Selected platform initiatives with measurable impact across revenue, cost structure, automation, and multi-market operations.
             </p>
             <Link
-              href="/case-studies"
+              href="/work"
               className="inline-flex items-center gap-2 text-sm font-bold text-warmAmber hover:text-darkText transition-colors group uppercase tracking-wider"
             >
-              <span>View Case Studies</span>
+              <span>View Work</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </section>
