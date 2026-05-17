@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { Logo } from '../components/Logo';
 import { CASE_STUDIES } from '../constants';
+import SectionLabel from '../components/SectionLabel';
 
 const methodology = [
   {

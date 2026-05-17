@@ -130,7 +130,9 @@ const ptComponents = {
       />
     ),
     callout: ({ value }: any) => (
-      <Callout type={value.type} content={value.content} />
+      <Callout type={value.type} label={value.label}>
+        <div dangerouslySetInnerHTML={{ __html: value.content }} />
+      </Callout>
     ),
     youtube: ({ value }: any) => {
       const videoId = getYouTubeId(value.url);
