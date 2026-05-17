@@ -95,7 +95,7 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
     
     return parts.map((part, i) => 
       regex.test(part) ? (
-        <mark key={i} className="bg-foxOrange/20 text-sumiInk font-semibold">
+        <mark key={i} className="bg-softTeal/20 text-darkText font-semibold">
           {part}
         </mark>
       ) : (
@@ -109,7 +109,7 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
       {/* Search Input */}
       <div className="relative">
         <Search 
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-sumiInk/40" 
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-darkText/40" 
           size={20} 
         />
         <input
@@ -117,15 +117,15 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search articles by title, content, tags, or category..."
-          className="w-full pl-12 pr-12 py-4 text-base border border-sumiInk/20 rounded-md 
-                     focus:outline-none focus:ring-2 focus:ring-foxOrange/50 focus:border-foxOrange
-                     bg-white text-sumiInk placeholder-sumiInk/40"
+          className="w-full pl-12 pr-12 py-4 text-base border border-darkText/20 rounded-md 
+                     focus:outline-none focus:ring-2 focus:ring-softTeal/50 focus:border-softTeal
+                     bg-white text-darkText placeholder-sumiInk/40"
         />
         {searchQuery && (
           <button
             onClick={clearSearch}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-sumiInk/40 
-                       hover:text-sumiInk transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-darkText/40 
+                       hover:text-darkText transition-colors"
             aria-label="Clear search"
           >
             <X size={20} />
@@ -135,36 +135,36 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
 
       {/* Search Results Dropdown */}
       {showResults && (
-        <div className="absolute z-50 w-full mt-2 bg-white border border-sumiInk/20 
+        <div className="absolute z-50 w-full mt-2 bg-white border border-darkText/20 
                         rounded-md shadow-lg max-h-96 overflow-y-auto">
           {isSearching ? (
-            <div className="p-8 text-center text-sumiInk/60">
+            <div className="p-8 text-center text-darkText/60">
               Searching...
             </div>
           ) : searchResults.length > 0 ? (
             <div>
-              <div className="px-4 py-3 border-b border-sumiInk/10 text-xs uppercase 
-                              tracking-widest font-bold text-sumiInk/50">
+              <div className="px-4 py-3 border-b border-darkText/10 text-xs uppercase 
+                              tracking-widest font-bold text-darkText/50">
                 {searchResults.length} {searchResults.length === 1 ? 'Result' : 'Results'}
               </div>
               {searchResults.map((result) => (
                 <a
                   key={result._id}
                   href={`/writing/${result.slug}`}
-                  className="block px-4 py-4 hover:bg-foxOrange/5 border-b border-sumiInk/5 
+                  className="block px-4 py-4 hover:bg-softTeal/5 border-b border-darkText/5 
                              last:border-b-0 transition-colors"
                   onClick={clearSearch}
                 >
-                  <h3 className="font-serif text-lg text-sumiInk mb-1">
+                  <h3 className="font-serif text-lg text-darkText mb-1">
                     {highlightMatch(result.title, searchQuery)}
                   </h3>
                   {result.excerpt && (
-                    <p className="text-sm text-sumiInk/70 mb-2 line-clamp-2">
+                    <p className="text-sm text-darkText/70 mb-2 line-clamp-2">
                       {highlightMatch(result.excerpt, searchQuery)}
                     </p>
                   )}
-                  <div className="flex items-center gap-3 text-xs text-sumiInk/50">
-                    <span className="px-2 py-0.5 border border-foxOrange/20 text-foxOrange">
+                  <div className="flex items-center gap-3 text-xs text-darkText/50">
+                    <span className="px-2 py-0.5 border border-softTeal/20 text-softTeal">
                       {result.category}
                     </span>
                     <span>
@@ -180,10 +180,10 @@ export const ArticleSearch: React.FC<ArticleSearchProps> = ({ onResultsChange })
             </div>
           ) : (
             <div className="p-8 text-center">
-              <p className="text-sumiInk/60 font-serif italic mb-2">
+              <p className="text-darkText/60 font-serif italic mb-2">
                 No articles found matching "{searchQuery}"
               </p>
-              <p className="text-xs text-sumiInk/50">
+              <p className="text-xs text-darkText/50">
                 Try different keywords or browse all articles below
               </p>
             </div>

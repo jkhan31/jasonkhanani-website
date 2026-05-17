@@ -2,91 +2,95 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Logo } from '../components/Logo';
+import { CASE_STUDIES } from '../constants';
+import SectionLabel from '../components/SectionLabel';
 
-const capabilities = [
+const methodology = [
   {
-    title: 'Fee & Margin Architecture',
-    description: 'Diagnosing unit economics and rebuilding pricing models across SKUs, lanes, and seller tiers.',
+    title: 'Understand',
+    description: 'Find what\'s actually broken, not just what\'s visible.',
   },
   {
-    title: 'Fulfillment System Design',
-    description: 'Routing logic, activation flows, and warehouse network optimization for multi-market operations.',
+    title: 'Structure',
+    description: 'Turn findings into clear decisions that stick.',
   },
   {
-    title: 'AI-Augmented Workflows',
-    description: 'Deploying automation into seller support, operational tagging, and business rule systems.',
-  },
-  {
-    title: 'Multi-Market Operations',
-    description: 'Cross-border initiative coordination across 6+ markets — onboarding, compliance, and execution.',
+    title: 'Improve',
+    description: 'Design solutions and measure what actually moved.',
   },
 ];
 
 const Hero: React.FC = () => (
-  <section className="px-6 py-24 md:py-32 lg:py-48 max-w-7xl mx-auto">
-    <div className="max-w-4xl">
+  <section className="px-6 py-24 md:py-36 lg:py-48 max-w-7xl mx-auto">
+    <div className="max-w-3xl">
       {/* Role Tag */}
-      <p className="text-hankoRust font-bold tracking-[0.2em] text-sm uppercase mb-4">
-        Operations &amp; Product Systems
+      <p className="text-warmAmber font-bold tracking-[0.2em] text-xs uppercase mb-6">
+        Business Analyst &amp; Systems Designer
       </p>
 
       {/* Name */}
-      <h1 className="text-6xl md:text-7xl lg:text-8xl font-sans font-bold text-sumiInk leading-tight mb-6 tracking-tight">
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-darkText leading-tight mb-8 tracking-tight">
         <span className="md:hidden">Jason K<br />Hanani</span>
         <span className="hidden md:inline">Jason K Hanani</span>
       </h1>
 
       {/* Value Proposition */}
-      <p className="text-lg md:text-xl text-sumiInk max-w-2xl leading-relaxed mb-12">
-        I build the systems that make multi-market platforms run — fee architecture, routing logic, AI-augmented workflows. €1.5M+ in documented outcomes.
-      </p>
+      <div className="max-w-2xl mb-12">
+        <p className="text-lg md:text-xl text-darkText leading-relaxed mb-6">
+          I help businesses figure out what's actually broken — and design what needs to be built to fix it. I work at the intersection of business and technology: translating messy problems into clear requirements, structured decisions, and systems that work.
+        </p>
+        <p className="text-base text-bodyText leading-relaxed">
+          €1.5M+ in quantified impact across e-commerce operations and logistics.
+        </p>
+      </div>
 
       {/* CTAs */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 pt-4">
         <Link
-          href="/resume"
-          className="px-8 py-4 bg-hankoRust text-ricePaper text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk transition-colors duration-300"
+          href="/work"
+          className="px-8 py-4 bg-warmAmber text-cardBg text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-diagnosticBlue transition-colors duration-300"
         >
-          View Resume
+          See My Work
         </Link>
         <Link
-          href="/case-studies"
-          className="px-8 py-4 border border-sumiInk/30 text-sumiInk text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk hover:text-ricePaper hover:border-sumiInk transition-colors duration-300"
+          href="/about"
+          className="px-8 py-4 border border-darkText/30 text-darkText text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-darkText hover:text-cardBg hover:border-darkText transition-colors duration-300"
         >
-          View Case Studies
+          Work With Me
         </Link>
       </div>
     </div>
   </section>
 );
 
-const Capabilities: React.FC = () => (
-  <section className="bg-ricePaper py-24 md:py-32 border-t border-sumiInk/10">
+const Methodology: React.FC = () => (
+  <section className="py-24 md:py-32 border-t border-darkText/10">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="mb-16 max-w-xl">
-        <h2 className="text-4xl md:text-5xl font-sans font-bold text-sumiInk mb-4 leading-tight">
-          What I Build
+      <div className="mb-20 max-w-xl">
+        <SectionLabel label="Methodology" color="amber" />
+        <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-4 leading-tight">
+          How I Work
         </h2>
-        <p className="text-base text-sumiInk/60 leading-relaxed">
-          Four areas where I design and own the operational layer — from diagnosis through execution.
+        <p className="text-base text-bodyText leading-relaxed">
+          My approach to solving complex problems and designing solutions that actually work.
         </p>
       </div>
 
       <div>
-        {capabilities.map((cap, idx) => (
+        {methodology.map((stage, idx) => (
           <div
             key={idx}
-            className="grid grid-cols-[4rem_1fr] md:grid-cols-[8rem_1fr] gap-x-8 md:gap-x-16 py-10 border-t border-sumiInk/10 last:border-b"
+            className="grid grid-cols-[4rem_1fr] md:grid-cols-[8rem_1fr] gap-x-8 md:gap-x-16 py-12 border-t border-darkText/10 last:border-b"
           >
-            <span className="text-4xl md:text-5xl font-sans font-bold text-hankoRust/20 leading-none pt-1 tabular-nums">
+            <span className="text-4xl md:text-5xl font-sans font-bold text-warmAmber/15 leading-none pt-1 tabular-nums">
               {String(idx + 1).padStart(2, '0')}
             </span>
             <div>
-              <h3 className="text-xl md:text-2xl font-sans font-bold text-sumiInk mb-2 leading-snug">
-                {cap.title}
+              <h3 className="text-xl md:text-2xl font-sans font-bold text-darkText mb-3 leading-snug">
+                {stage.title}
               </h3>
-              <p className="text-sm md:text-base text-sumiInk/60 leading-relaxed max-w-2xl">
-                {cap.description}
+              <p className="text-sm md:text-base text-bodyText leading-relaxed max-w-2xl">
+                {stage.description}
               </p>
             </div>
           </div>
@@ -96,27 +100,90 @@ const Capabilities: React.FC = () => (
   </section>
 );
 
+const FeaturedWork: React.FC = () => {
+  const featured = CASE_STUDIES.slice(0, 3);
+
+  return (
+    <section className="bg-pageBg py-24 md:py-32 border-t border-darkText/10">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-16 max-w-xl">
+          <SectionLabel label="Featured Work" color="amber" />
+          <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-4 leading-tight">
+            Real Problems, Real Solutions
+          </h2>
+          <p className="text-base text-bodyText leading-relaxed">
+            See what I've built. Real outcomes from actual problems solved.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {featured.map((study) => (
+            <Link
+              key={study.id}
+              href="/work"
+              className="group"
+            >
+              <div className="h-full flex flex-col p-6 border border-darkText/10 rounded-lg bg-cardBg hover:border-warmAmber/50 hover:bg-warmAmber/5 transition-colors duration-300">
+                <div className="mb-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-warmAmber mb-2">
+                    Case Study
+                  </p>
+                  <h3 className="text-xl font-sans font-bold text-darkText group-hover:text-warmAmber transition-colors">
+                    {study.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-bodyText leading-relaxed mb-6 flex-grow">
+                  {study.diagnosis || study.details[1]?.replace(/\*\*/g, '')}
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-darkText/10">
+                  <span className="text-sm font-bold text-darkText">
+                    {study.impact}
+                  </span>
+                  <span className="text-warmAmber text-sm font-bold group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-12 pt-12 border-t border-darkText/10">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-warmAmber text-cardBg text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-diagnosticBlue transition-colors duration-300"
+          >
+            View All Work
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const CTASection: React.FC = () => (
-  <section className="px-6 py-24 max-w-7xl mx-auto border-t border-sumiInk/10">
-    <div className="max-w-xl mb-10">
-      <h2 className="text-3xl font-sans font-bold text-sumiInk mb-3">Explore the work</h2>
-      <p className="text-base text-sumiInk/60 leading-relaxed">
-        Full experience and context in the resume. Quantified outcomes in the case studies.
+  <section className="px-6 py-24 md:py-32 max-w-7xl mx-auto">
+    <div className="max-w-2xl">
+      <h2 className="text-4xl md:text-5xl font-sans font-bold text-darkText mb-6 leading-tight">
+        Ready to solve something together?
+      </h2>
+      <p className="text-lg text-darkText/70 leading-relaxed mb-8 max-w-xl">
+        I'm available for full-time roles, freelance engagements, and short-term projects. Whether you're looking to hire, explore a specific problem, or just talk through ideas.
       </p>
-    </div>
-    <div className="flex flex-wrap gap-4">
-      <Link
-        href="/resume"
-        className="px-8 py-4 bg-hankoRust text-ricePaper text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk transition-colors duration-300"
-      >
-        View Resume
-      </Link>
-      <Link
-        href="/case-studies"
-        className="px-8 py-4 border border-sumiInk/30 text-sumiInk text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-sumiInk hover:text-ricePaper hover:border-sumiInk transition-colors duration-300"
-      >
-        View Case Studies
-      </Link>
+      <div className="flex flex-wrap gap-4">
+        <Link
+          href="/about#contact"
+          className="px-8 py-4 bg-warmAmber text-cardBg text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-diagnosticBlue transition-colors duration-300"
+        >
+          Get In Touch
+        </Link>
+        <Link
+          href="/about"
+          className="px-8 py-4 border border-darkText/30 text-darkText text-sm font-bold tracking-[0.15em] uppercase rounded-full hover:bg-darkText hover:text-cardBg hover:border-darkText transition-colors duration-300"
+        >
+          Learn More
+        </Link>
+      </div>
     </div>
   </section>
 );
@@ -125,20 +192,21 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jason K Hanani | Operations & Product Systems</title>
+        <title>Jason K Hanani | Business Analyst & Systems Designer</title>
         <meta
           name="description"
-          content="Operations & Product Systems leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms — logistics architecture, marketplace operations, and AI-augmented execution."
+          content="Business Analyst & Systems Designer specializing in diagnostic thinking, requirements design, and solution architecture. €1.5M+ in documented impact across e-commerce platforms."
         />
-        <meta property="og:title" content="Jason K Hanani | Operations & Product Systems" />
-        <meta property="og:description" content="Operations & Product Systems leader delivering €1.5M+ in quantified impact across multi-market e-commerce platforms." />
+        <meta property="og:title" content="Jason K Hanani | Business Analyst & Systems Designer" />
+        <meta property="og:description" content="I help businesses figure out what's broken and design what needs to be built to fix it. €1.5M+ documented impact." />
         <meta property="og:url" content="https://jasonkhanani.com/" />
         <link rel="canonical" href="https://jasonkhanani.com/" />
       </Head>
 
       <div className="animate-in fade-in duration-1000">
         <Hero />
-        <Capabilities />
+        <Methodology />
+        <FeaturedWork />
         <CTASection />
       </div>
     </>

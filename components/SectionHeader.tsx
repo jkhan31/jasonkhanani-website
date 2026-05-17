@@ -8,10 +8,10 @@ interface Props {
   eyebrowClassName?: string;
 }
 
-export const SectionHeader: React.FC<Props> = ({ eyebrow, title, className = "", titleClassName = "text-sumiInk", eyebrowClassName = "" }) => (
+export const SectionHeader: React.FC<Props> = ({ eyebrow, title, className = "", titleClassName = "text-darkText", eyebrowClassName = "" }) => (
   <div className={`mb-6 ${className}`}>
     {eyebrow && (
-      <p className={`text-hankoRust font-medium tracking-widest text-xs uppercase mb-2 ${eyebrowClassName}`}>
+      <p className={`text-warmAmber font-medium tracking-widest text-xs uppercase mb-2 ${eyebrowClassName}`}>
         {eyebrow}
       </p>
     )}

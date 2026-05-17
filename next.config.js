@@ -12,6 +12,15 @@ const nextConfig = {
     ],
   },
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  async redirects() {
+    return [
+      {
+        source: '/case-studies',
+        destination: '/work',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig

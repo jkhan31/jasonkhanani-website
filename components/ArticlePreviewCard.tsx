@@ -13,20 +13,20 @@
     return (
         <Link 
         href={`/writing/${article.slug}`} 
-        className={`group block ${compact ? 'p-6' : 'p-8 md:p-10'} rounded-2xl border border-sumiInk/8 bg-white shadow-sm hover:shadow-md hover:border-sumiInk/15 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-hankoRust/40 focus-visible:ring-offset-2 focus:outline-none flex flex-col h-full`}
+        className={`group block ${compact ? 'p-6' : 'p-8 md:p-10'} rounded-2xl border border-darkText/8 bg-white shadow-sm hover:shadow-md hover:border-darkText/15 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-warmAmber/40 focus-visible:ring-offset-2 focus:outline-none flex flex-col h-full`}
         >
         {/* Date, Category, Read Time */}
         <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-hankoRust/80">
+            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-warmAmber/80">
                 {article.date}
             </span>
-            <span className="w-1 h-1 rounded-full bg-hankoRust/20" />
-            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-sumiInk/60">
+            <span className="w-1 h-1 rounded-full bg-warmAmber/20" />
+            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-darkText/60">
                 {article.category}
             </span>
             </div>
-            <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-bold text-sumiInk/50">
+            <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-bold text-darkText/50">
             <Clock size={11} />
             {article.readTime}
             </div>
@@ -56,24 +56,24 @@
 
         {/* Title + Excerpt (growable content area to keep CTA/tags at bottom) */}
         <div className="flex-grow">
-            <h3 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-sans font-bold mb-4 text-sumiInk group-hover:text-hankoRust transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+            <h3 className={`${compact ? 'text-2xl md:text-2xl' : 'text-2xl md:text-3xl'} font-sans font-bold mb-4 text-darkText group-hover:text-warmAmber transition-colors ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
                 {article.title}
             </h3>
 
             {/* Excerpt */}
-            <p className={`text-sumiInk/60 mb-8 leading-relaxed ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
+            <p className={`text-darkText/60 mb-8 leading-relaxed ${compact ? 'line-clamp-3' : 'line-clamp-4'}`}>
                 {article.excerpt}
             </p>
         </div>
 
         {/* CTA and Tags */}
         <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold tracking-widest text-hankoRust border-b border-hankoRust/20 pb-0.5 group-hover:border-foxOrange group-hover:text-foxOrange transition-all">
+            <span className="text-[10px] uppercase font-bold tracking-widest text-warmAmber border-b border-warmAmber/20 pb-0.5 group-hover:border-sageBridge group-hover:text-softTeal transition-all">
             Read Essay
             </span>
             <div className="flex flex-wrap gap-2 justify-end">
             {article.tags.slice(0, 2).map(tag => (
-                <span key={tag} className="text-[9px] uppercase tracking-widest font-bold text-sumiInk/60">
+                <span key={tag} className="text-[9px] uppercase tracking-widest font-bold text-darkText/60">
                 #{tag}
                 </span>
             ))}

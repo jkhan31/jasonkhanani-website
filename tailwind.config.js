@@ -11,7 +11,15 @@ module.exports = {
         ricePaper: '#FAF5F0',
         sumiInk: '#1A1A1A',
         hankoRust: '#C73E1D',
-        foxOrange: '#F07F2E',
+        sageBridge: '#5A7A6F',
+        // Palette 1: Diagnostic Blue + Warm Amber
+        pageBg: '#F5F5F5',
+        cardBg: '#FFFFFF',
+        diagnosticBlue: '#1E3A5F',
+        warmAmber: '#C95F00',
+        softTeal: '#2E8B8B',
+        darkText: '#2C2C2C',
+        bodyText: '#5A5550',
       },
       fontFamily: {
         serif: ['"Archivo"', 'sans-serif'],
@@ -20,6 +28,7 @@ module.exports = {
       },
       borderWidth: {
         '0.5': '0.5px',
+        '2.5': '2.5px',
       }
     }
   },

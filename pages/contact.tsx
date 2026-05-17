@@ -59,9 +59,9 @@ const Contact: React.FC = () => {
     <>
       <Head>
         <title>Contact | Jason K Hanani</title>
-        <meta 
-          name="description" 
-          content="Get in touch with Jason K Hanani — Operations & Product Systems leader. Open to consulting, collaboration, and professional inquiries."
+        <meta
+          name="description"
+          content="Get in touch with Jason K Hanani — Business Analyst & Systems Designer. Open to consulting, collaboration, and professional inquiries."
         />
         <meta property="og:title" content="Contact Jason K Hanani" />
         <meta property="og:url" content="https://jasonkhanani.com/contact/" />
@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
               required
               className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700/60 rounded-xl text-ricePaper focus:ring-0 focus:border-hankoRust/60 transition-colors"
             />
-            {errors.name && <div className="text-foxOrange text-xs mt-1">{errors.name}</div>}
+            {errors.name && <div className="text-sageBridge text-xs mt-1">{errors.name}</div>}
           </label>
 
           <label className="block mb-4">
@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
               required
               className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700/60 rounded-xl text-ricePaper focus:ring-0 focus:border-hankoRust/60 transition-colors"
             />
-            {errors.email && <div className="text-foxOrange text-xs mt-1">{errors.email}</div>}
+            {errors.email && <div className="text-sageBridge text-xs mt-1">{errors.email}</div>}
           </label>
 
           <label className="block mb-6">
@@ -112,7 +112,7 @@ const Contact: React.FC = () => {
               rows={6}
               className="mt-2 w-full px-4 py-3 bg-transparent border border-zinc-700/60 rounded-xl text-ricePaper focus:ring-0 focus:border-hankoRust/60 transition-colors resize-none"
             />
-            {errors.message && <div className="text-foxOrange text-xs mt-1">{errors.message}</div>}
+            {errors.message && <div className="text-sageBridge text-xs mt-1">{errors.message}</div>}
           </label>
 
           <div className="flex items-center gap-4">
@@ -123,9 +123,9 @@ const Contact: React.FC = () => {
               Send
             </button>
 
-            {status === 'success' && <div className="text-sm text-foxOrange">Thanks — message sent.</div>}
+            {status === 'success' && <div className="text-sm text-sageBridge">Thanks — message sent.</div>}
 
-            {status === 'error' && <div className="text-sm text-foxOrange">There was a problem. Please try again.</div>}
+            {status === 'error' && <div className="text-sm text-sageBridge">There was a problem. Please try again.</div>}
           </div>
         </form>
       </div>

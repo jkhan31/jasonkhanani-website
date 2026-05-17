@@ -82,7 +82,7 @@ const ArticleEntry: React.FC<{
                 {article.tags.map((tag) => (
                   <span
                     key={tag._ref}
-                    className="inline-block px-2 py-1 text-xs uppercase tracking-wider rounded-sm border-0.5 border-foxOrange/40 text-foxOrange/80 bg-foxOrange/5"
+                    className="inline-block px-2 py-1 text-xs uppercase tracking-wider rounded-sm border-0.5 border-sageBridge/40 text-sageBridge/80 bg-sageBridge/5"
                   >
                     {tag.title || 'untagged'}
                   </span>
@@ -174,7 +174,7 @@ const WritingIndex: React.FC<WritingIndexProps> = ({ articles }) => {
                     onClick={() => setSelectedTag(tag)}
                     className={`px-3 py-1.5 text-sm uppercase tracking-wider rounded-sm border-0.5 transition-all font-sans font-medium ${
                       selectedTag === tag
-                        ? 'border-foxOrange text-foxOrange bg-foxOrange/10'
+                        ? 'border-sageBridge text-sageBridge bg-sageBridge/10'
                         : 'border-sumiInk/20 text-sumiInk/70 hover:border-sumiInk/40 hover:text-sumiInk/90'
                     }`}
                   >

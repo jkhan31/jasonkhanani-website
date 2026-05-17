@@ -149,7 +149,7 @@ const Framework: React.FC = () => {
             subtitle="The Capacity"
             refNum="1"
             icon={Shield}
-            accentClass="bg-foxOrange"
+            accentClass="bg-sageBridge"
             description="Refers to physical, mental, and emotional integrity. This is the systemic capacity. Without it, the axis becomes brittle under load, leading to structural burnout or failure."
             mechanism="Wellbeing is not just the absence of illness; it is the active maintenance of the 'Cooling System' (neuroendocrine and inflammatory regulation) required to handle the heat of a high-purpose life."
             motto="Wellbeing provides the fuel to sustain the journey."
@@ -159,14 +159,14 @@ const Framework: React.FC = () => {
         {/* Supporting Pillars */}
         <div className="bg-sumiInk p-12 md:p-16 text-ricePaper relative overflow-hidden rounded-sm">
           <div className="absolute top-0 right-0 p-8 opacity-10"><Brain size={120} /></div>
-          <h3 className="text-xs uppercase tracking-widest font-bold mb-12 text-foxOrange">Enabled by 3 Engineered Pillars</h3>
+          <h3 className="text-xs uppercase tracking-widest font-bold mb-12 text-sageBridge">Enabled by 3 Engineered Pillars</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <Brain className="text-foxOrange" size={20} />
+                <Brain className="text-sageBridge" size={20} />
                 <h4 className="text-xl font-serif">
                   Behavioral Science
-                  <a href="#ref-3" className="text-xs opacity-50 font-sans align-top ml-1 hover:text-foxOrange hover:underline hover:opacity-100 transition-all">[3]</a>
+                  <a href="#ref-3" className="text-xs opacity-50 font-sans align-top ml-1 hover:text-sageBridge hover:underline hover:opacity-100 transition-all">[3]</a>
                 </h4>
               </div>
               <p className="text-sm opacity-80 leading-relaxed">
@@ -175,10 +175,10 @@ const Framework: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <BookOpen className="text-foxOrange" size={20} />
+                <BookOpen className="text-sageBridge" size={20} />
                 <h4 className="text-xl font-serif">
                   Reflective Practice
-                  <a href="#ref-4" className="text-xs opacity-50 font-sans align-top ml-1 hover:text-foxOrange hover:underline hover:opacity-100 transition-all">[4]</a>
+                  <a href="#ref-4" className="text-xs opacity-50 font-sans align-top ml-1 hover:text-sageBridge hover:underline hover:opacity-100 transition-all">[4]</a>
                 </h4>
               </div>
               <p className="text-sm opacity-80 leading-relaxed">
@@ -187,10 +187,10 @@ const Framework: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <GitBranch className="text-foxOrange" size={20} />
+                <GitBranch className="text-sageBridge" size={20} />
                 <h4 className="text-xl font-serif">
                   Contextual Design
-                  <a href="#ref-5" className="text-xs opacity-50 font-sans align-top ml-1 hover:text-foxOrange hover:underline hover:opacity-100 transition-all">[5]</a>
+                  <a href="#ref-5" className="text-xs opacity-50 font-sans align-top ml-1 hover:text-sageBridge hover:underline hover:opacity-100 transition-all">[5]</a>
                 </h4>
               </div>
               <p className="text-sm opacity-80 leading-relaxed">
@@ -233,7 +233,7 @@ const Framework: React.FC = () => {
                 icon: Zap,
                 text: 'Purpose-aligned, intentional work. Aligns with biological peaks (Ultradian Rhythms) to maximize focus and flow without incurring cognitive debt.',
                 motto: 'True momentum flows from inner alignment.',
-                accent: 'bg-foxOrange',
+                accent: 'bg-sageBridge',
                 ref: '2'
               },
               {
