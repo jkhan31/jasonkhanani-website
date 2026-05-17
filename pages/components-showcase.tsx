@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import Badge from '../components/Badge';
 import Callout from '../components/Callout';
 import SectionLabel from '../components/SectionLabel';
@@ -146,9 +147,15 @@ export default function ComponentsShowcase() {
         </section>
 
         <div className="border-t border-darkText/10 pt-12">
-          <p className="text-bodyText text-sm">
+          <p className="text-bodyText text-sm mb-6">
             These components are ready to be integrated across all pages. They follow the design reference aesthetic from the RemoFirst application brief and maintain consistency with the jasonkhanani.com brand identity.
           </p>
+          <Link
+            href="/design-guide"
+            className="inline-flex items-center gap-2 text-sm font-bold text-warmAmber hover:text-diagnosticBlue transition-colors uppercase tracking-wider"
+          >
+            → View Full Design Guide
+          </Link>
         </div>
       </div>
     </>
