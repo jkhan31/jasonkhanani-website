@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Mail, Linkedin, ArrowRight } from 'lucide-react';
+import SectionLabel from '../components/SectionLabel';
 
 const AboutPage = () => {
   return (
@@ -31,7 +32,9 @@ const AboutPage = () => {
 
           {/* How I Work */}
           <div className="mb-20">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-warmAmber mb-8">How I Work</h2>
+            <div className="mb-8">
+              <SectionLabel label="How I Work" color="amber" />
+            </div>
             <div className="space-y-4 text-base leading-relaxed text-bodyText">
               <p>
                 I do deep diagnostic work before recommending solutions. That means asking questions—a lot of them—looking at data, and understanding the actual constraints before designing the fix. Most business problems aren't what they first appear to be.
@@ -47,7 +50,9 @@ const AboutPage = () => {
 
           {/* Background */}
           <div className="mb-20">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-warmAmber mb-8">Background</h2>
+            <div className="mb-8">
+              <SectionLabel label="Background" color="amber" />
+            </div>
             <div className="space-y-4 text-base leading-relaxed text-bodyText">
               <p>
                 I'm a systems thinker by training—B.S. from the University of Michigan in Industrial & Operations Engineering. That education shaped how I see problems: everything is a system, every system has constraints, and understanding the constraints is how you improve the system.
@@ -63,7 +68,9 @@ const AboutPage = () => {
 
           {/* What I'm Looking For */}
           <div className="mb-20">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-warmAmber mb-8">What I'm Looking For</h2>
+            <div className="mb-8">
+              <SectionLabel label="What I'm Looking For" color="amber" />
+            </div>
             <p className="text-base leading-relaxed text-bodyText mb-6">
               I'm currently open to two paths:
             </p>
@@ -84,7 +91,9 @@ const AboutPage = () => {
 
           {/* Personal */}
           <div className="mb-20">
-            <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-warmAmber mb-8">A Human Note</h2>
+            <div className="mb-8">
+              <SectionLabel label="A Human Note" color="amber" />
+            </div>
             <p className="text-base leading-relaxed text-bodyText">
               I've been based in Jakarta for the last five years. I'm fascinated by systems and how people actually use them—why they break, how to fix them, what makes some processes elegant and others chaotic. Outside of work, I read a lot, spend time on the water, and work on small projects that let me think deeply about problems.
             </p>
