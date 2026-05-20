@@ -155,7 +155,7 @@ const Header: React.FC = () => {
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="relative min-h-screen selection:bg-foxOrange/20">
+    <div className="relative min-h-screen selection:bg-accl/20">
       {/* Texture Overlay */}
       <div className="fixed inset-0 bg-noise z-[9999]" />
       
