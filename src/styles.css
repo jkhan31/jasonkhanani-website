@@ -1,11 +1,11 @@
 body {
-  background-color: #FAF5F0;
-  color: #1A1A1A;
-  font-family: 'Inter', sans-serif;
+  background-color: #faf7f2;
+  color: #1c1c18;
+  font-family: 'DM Sans', sans-serif;
 }
 .bg-grid {
   background-size: 30px 30px;
-  background-image: radial-gradient(circle, #C73E1D08 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0,122,92,0.05) 1px, transparent 1px);
 }
 .bg-noise {
   /* Noise texture removed for cleaner aesthetic */
@@ -13,20 +13,20 @@ body {
   pointer-events: none;
 }
 ::selection {
-  background-color: #C73E1D30;
-  color: #C73E1D;
+  background-color: rgba(0,122,92,0.2);
+  color: #007a5c;
 }
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF5F0;
+  background: #faf7f2;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C73E1D30;
+  background: rgba(0,122,92,0.2);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C73E1D60;
+  background: rgba(0,122,92,0.4);
 }
 
 /* Utility to hide scrollbars while preserving scrollability */
@@ -40,12 +40,12 @@ body {
 
 /* Giscus Comment System Styling */
 .giscus-comments {
-  --giscus-color-bg-primary: #FAF5F0;
-  --giscus-color-bg-secondary: rgba(199, 62, 29, 0.05);
-  --giscus-color-text-primary: #1A1A1A;
-  --giscus-color-text-secondary: rgba(26, 26, 26, 0.6);
-  --giscus-color-border-primary: rgba(26, 26, 26, 0.1);
-  --giscus-color-accent: #C73E1D;
+  --giscus-color-bg-primary: #faf7f2;
+  --giscus-color-bg-secondary: rgba(0,122,92,0.05);
+  --giscus-color-text-primary: #1c1c18;
+  --giscus-color-text-secondary: rgba(28, 28, 24, 0.6);
+  --giscus-color-border-primary: rgba(0,0,0,0.08);
+  --giscus-color-accent: #007a5c;
 }
 
 /* Article typography improvements for post content */
@@ -54,7 +54,8 @@ body {
   margin: 0 auto;
   font-size: 1.0625rem;
   line-height: 1.75;
-  color: #1A1A1A;
+  color: #1c1c18;
+  font-family: 'DM Sans', sans-serif;
 }
 .article-content p {
   margin: 1.05em 0;
@@ -62,25 +63,25 @@ body {
 .article-content h2,
 .article-content h3,
 .article-content h4 {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Lora', serif;
   font-weight: 700;
   line-height: 1.2;
   margin-top: 1.6em;
   margin-bottom: 0.5em;
-  color: #111827;
+  color: #1c1c18;
 }
 .article-content h1 { /* in case full-width headings are used */
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Lora', serif;
   font-weight: 700;
   line-height: 1.08;
   margin-top: 0.6em;
   margin-bottom: 0.6em;
 }
 .article-content blockquote {
-  border-left: 4px solid #C73E1D;
+  border-left: 4px solid #007a5c;
   padding-left: 1rem;
-  color: #374151;
-  background: #FFFBF7;
+  color: #3e3c36;
+  background: #e4f4ef;
   margin: 1.2em 0;
   font-style: italic;
   border-radius: 4px;
@@ -100,7 +101,7 @@ body {
 }
 .article-content figcaption {
   font-size: 0.9rem;
-  color: #6B7280;
+  color: #8a8478;
   margin-top: 0.45rem;
 }
 .article-content pre {
@@ -112,11 +113,12 @@ body {
   margin: 1.1rem 0;
 }
 .article-content code {
-  background: #F3F4F6;
+  background: #f0ebe0;
   padding: 0.12rem 0.35rem;
   border-radius: 4px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
   font-size: 0.95em;
+  color: #1c1c18;
 }
 .article-content table {
   width: 100%;
@@ -125,13 +127,14 @@ body {
 }
 .article-content th,
 .article-content td {
-  border: 1px solid #E5E7EB;
+  border: 1px solid rgba(0,0,0,0.08);
   padding: 0.6rem;
   text-align: left;
 }
 .article-content a {
-  color: #C73E1D;
+  color: #007a5c;
   text-decoration: underline;
+  text-decoration-color: #c8e8de;
   text-underline-offset: 3px;
 }
 .article-content ul,
@@ -140,8 +143,8 @@ body {
 }
 .article-content .callout {
   display: block;
-  border-left: 4px solid #C73E1D;
-  background: #FFFCF8;
+  border-left: 4px solid #007a5c;
+  background: #e4f4ef;
   padding: 0.75rem 1rem;
   border-radius: 6px;
   margin: 1rem 0;
