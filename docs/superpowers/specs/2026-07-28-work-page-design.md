@@ -18,6 +18,18 @@ studies + illustrative demos + a pre-existing data-analysis deck
 unified `/work` page. Four new demos will also be built to give every real
 case study a matching interactive demo.
 
+Note: the repo-root `portfolio-projects/` folder (separate from
+`public/portfolio-projects/`) contains PRDs for two larger, unbuilt tools —
+`02-unit-economics-analyzer.md` (Streamlit/Python app on the real Olist
+dataset, mirrors Cost-to-Serve Optimization and Payment Handling Fee
+Design) and `claude-mds/05-ai-ops-assistant.md` (React + n8n chatbot,
+mirrors AI Support Automation). Both are "Planned," each need their own
+repo/deployment, and are out of scope here. The four lightweight demos
+below are deliberately simpler stand-ins whose job is to conceptually
+illustrate what each project was, not to be a full product — if the
+Unit Economics Analyzer or AI Operations Assistant are ever built, they'd
+be a natural stronger replacement for their corresponding lightweight demo.
+
 ## Goals
 
 - One page, `/work`, replaces `/case-studies` as the site's portfolio hub.
