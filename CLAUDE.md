@@ -2,9 +2,7 @@
 
 ## Project Overview
 
-Personal portfolio and blog for Jason Kester Hanani, an Industrial Engineer specializing in remote operations optimization. The site features two brand personas:
-- **Hanko Rust** (`#802B0A`) — The Investigator: forensic, data-driven analysis
-- **Fox Orange** (`#F07F2E`) — The Architect: systems design, scalable workflows
+Personal portfolio and blog for Jason Kester Hanani, an Industrial Engineer specializing in remote operations optimization. The site uses a single teal-and-cream visual identity (see Design System below) — the earlier "Hanko Rust / Fox Orange" two-persona rust-and-orange scheme was retired in the teal-cream redesign (commit `c50ab3e`).
 
 Built with Next.js 14 (Pages Router), Sanity CMS, and Tailwind CSS. Deployed on Netlify with ISR.
 
@@ -39,19 +37,30 @@ npm run test      # Run Vitest test suite
 ## Design System
 
 ### Brand Colors (Tailwind tokens)
+Current palette (teal & cream, since the `c50ab3e` redesign):
+
 | Token | Hex | Use |
 |-------|-----|-----|
-| `ricePaper` | `#FAF5F0` | Page background |
-| `sumiInk` | `#1A1A1A` | Primary text |
-| `hankoRust` | `#802B0A` | Investigator accent, active nav, CTAs |
-| `foxOrange` | `#F07F2E` | Architect accent, links, hover states |
-| `sage` | `#4D6B57` | Future-facing, secondary accents |
+| `bg` | `#faf7f2` | Page background (cream) |
+| `bg2` | `#f0ebe0` | Secondary background |
+| `bg3` | `#e8e2d4` | Tertiary background |
+| `ink` | `#1c1c18` | Primary text |
+| `ink2` | `#3e3c36` | Secondary text |
+| `mut` | `#8a8478` | Muted text |
+| `acc` | `#007a5c` | Accent — teal, active nav, CTAs, links |
+| `acc2` | `#005c44` | Accent hover/pressed |
+| `accl` | `#c8e8de` | Light accent tint |
+| `acct` | `#e4f4ef` | Lightest accent tint (badges, subtle fills) |
+| `accd` | `#003d2e` | Darkest accent (dark-panel headings) |
+| `bdr` | `rgba(0,0,0,0.08)` | Hairline borders |
+
+`ricePaper`, `sumiInk`, `hankoRust`, `foxOrange` still exist as **legacy aliases** kept for backwards compatibility during the transition — they currently resolve to `bg`/`ink`/`acc`/`acc` respectively (i.e. `hankoRust` and `foxOrange` are now both the same teal, not distinct rust/orange colors). Existing components still reference the legacy names; new work may use either, but be aware they're not distinct accent colors anymore. `sage` (`#4D6B57`) is referenced in one place (`pages/framework.tsx`) but is **not defined** in `tailwind.config.js` — that's a dead class, not a real token; don't add new usages of it.
 
 Always use Tailwind token names — never raw hex values in JSX/TSX.
 
 ### Typography
-- `font-serif` → Source Serif 4 (headings, pull quotes)
-- `font-sans` → Inter (body text, UI labels)
+- `font-serif` → Lora (headings, pull quotes)
+- `font-sans` → DM Sans (body text, UI labels)
 - `font-signature` → Caveat (personal/informal accents)
 
 ### Border Convention
